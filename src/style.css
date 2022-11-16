@@ -1,0 +1,103 @@
+/* ************************ common styles ************************ */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  color: #2d3436;
+  font-family: "roboto";
+  box-sizing: border-box;
+  letter-spacing: 0.05rem;
+}
+
+html {
+  font-size: 16px;
+}
+
+body,
+html,
+#root,
+.wrapper {
+  height: 100%;
+}
+
+.wrapper {
+  display: grid;
+  row-gap: 1rem;
+  grid-template-rows: auto 1fr auto;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 1px;
+  padding: 0.5rem 2rem;
+  background-color: #f6f6f6;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover,
+:focus {
+  background-color: #bbb;
+}
+
+/* ************************ fonts ************************ */
+
+@font-face {
+  src: url("./fonts/Roboto-Medium.ttf") format("truetype");
+  font-family: "roboto";
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  src: url("./fonts/Roboto-Regular.ttf") format("truetype");
+  font-family: "roboto";
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  src: url("./fonts/Roboto-Light.ttf") format("truetype");
+  font-family: "roboto";
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  src: url("./fonts/Roboto-Italic.ttf") format("truetype");
+  font-family: "roboto";
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  src: url("./fonts/Roboto-LightItalic.ttf") format("truetype");
+  font-family: "roboto";
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* ************************ media ************************ */
+
+@media (max-width: 640px) {
+  button {
+    border-radius: 0;
+    padding: 0.5rem 2rem;
+    background-color: #f6f6f6;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 14px;
+  }
+  button {
+    padding: 1rem 2rem;
+  }
+}

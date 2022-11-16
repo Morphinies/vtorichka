@@ -1,0 +1,11 @@
+.footer {
+  display: grid;
+  padding: 0.5rem 2rem;
+  background: linear-gradient(180deg, #353d3f 0%, #16191a 100%);
+}
+
+.footerText {
+  color: #777;
+  font-size: 0.8rem;
+  justify-self: center;
+}

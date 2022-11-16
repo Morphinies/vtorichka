@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="1854" height="1854" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1854 1854">
+  <defs>
+    <style>
+      .cls-1 {
+        mask: url(#mask);
+      }
+
+      .cls-2 {
+        mask: url(#mask-4);
+      }
+
+      .cls-3 {
+        fill: #9a0038;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        fill-rule: evenodd;
+      }
+
+      .cls-8 {
+        fill: url(#linear-gradient-5);
+      }
+
+      .cls-9 {
+        fill: url(#linear-gradient-6);
+      }
+
+      .cls-4 {
+        fill: #102770;
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-11 {
+        fill: url(#linear-gradient-8);
+      }
+
+      .cls-12 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-13 {
+        fill: url(#linear-gradient-7);
+      }
+
+      .cls-5 {
+        fill: #ffbcd8;
+      }
+
+      .cls-6 {
+        fill: #1e003d;
+      }
+
+      .cls-14 {
+        mask: url(#mask-3);
+      }
+
+      .cls-15 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-16 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-7 {
+        fill: #fde3a7;
+      }
+
+      .cls-17 {
+        clip-rule: evenodd;
+        fill: none;
+      }
+
+      .cls-18 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-19 {
+        mask: url(#mask-2);
+      }
+
+      .cls-20 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-21 {
+        mask: url(#mask-1);
+      }
+
+      .cls-22 {
+        clip-path: url(#clippath-1);
+      }
+    </style>
+    <clipPath id="clippath">
+      <path d="M1468.6,1248.8c0,119.7-97.6,217.3-217.3,217.3L0,1468.7v385.3H1234.5c389.1-255.1,222.4-676.4,219.1-684.6,9.7,24.6,15,51.4,15,79.4" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="1571.2" y1="1166.2" x2="32.4" y2="1866.3" gradientTransform="matrix(1, 0, 0, 1, 0, 0)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#003780"/>
+      <stop offset="1" stop-color="#ff8cc8"/>
+    </linearGradient>
+    <clipPath id="clippath-1">
+      <path d="M1112.3,646.2c338.6,0,497.5,120.9,497.5,120.9,43.4-76.6,65.4-162.9,65.4-251.3C1675.2,231.9,1443.3,0,1159.4,0h-222.1C375.9,44.8,385.3,385.3,385.3,385.3h776.6c71.2,0,130.5,59.3,130.5,130.5s-59.3,130.4-130.5,130.4h-49.7Z" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <linearGradient id="linear-gradient-2" x1="898.7" y1="467.8" x2="1684.6" y2="-54" gradientTransform="matrix(1, 0, 0, 1, 0, 0)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5e147d"/>
+      <stop offset="1" stop-color="#ff8cc8"/>
+    </linearGradient>
+    <clipPath id="clippath-2">
+      <path d="M1453.7,1169.7c6.2,15.6,166.3,431.5-219.3,684.2h16.9c332.4,0,602.6-270.2,602.6-602.6s-91.3-370.6-244.2-484.3c0,0-158.9-120.9-497.5-120.9H385.3V385.3S375.9,44.8,937.3,0H0V1031.5H1251.4c91.7,0,170.4,57.3,202.2,137.9,0,0,0,.2,.1,.3" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <linearGradient id="linear-gradient-3" x1="789.2" y1="-12.9" x2="1013.8" y2="1519.3" gradientTransform="matrix(1, 0, 0, 1, 0, 0)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffcf4b"/>
+      <stop offset="1" stop-color="#ba1c58"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="516.2" y1="-209.3" x2="-198.2" y2="962.5" gradientTransform="translate(360.7 -254.9)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#000"/>
+    </linearGradient>
+    <mask id="mask" width="816.7" height="608.6" maskUnits="userSpaceOnUse">
+      <rect width="816.7" height="608.6" style="fill: url(#linear-gradient-4);"/>
+    </mask>
+    <linearGradient id="linear-gradient-5" x1="576.1" y1="77.2" x2="37.9" y2="744.3" gradientTransform="translate(404.4 -280.2)" xlink:href="#linear-gradient-4"/>
+    <mask id="mask-1" x="385.3" width="552" height="385.3" maskUnits="userSpaceOnUse">
+      <rect x="385.3" width="552" height="385.3" style="fill: url(#linear-gradient-5);"/>
+    </mask>
+    <linearGradient id="linear-gradient-6" x1="1248.7" y1="99.3" x2="766.6" y2="723.4" gradientTransform="translate(469.2 -236.9)" xlink:href="#linear-gradient-4"/>
+    <mask id="mask-2" x="955.4" width="719.7" height="767.1" maskUnits="userSpaceOnUse">
+      <rect x="955.4" width="719.7" height="767.1" style="fill: url(#linear-gradient-6);"/>
+    </mask>
+    <linearGradient id="linear-gradient-7" x1="788.2" y1="1255.6" x2="689.1" y2="1992.1" gradientTransform="translate(464.4 -113.4)" xlink:href="#linear-gradient-4"/>
+    <mask id="mask-3" x="914" y="1169.4" width="577.9" height="684.6" maskUnits="userSpaceOnUse">
+      <rect x="914" y="1169.4" width="577.9" height="684.6" style="fill: url(#linear-gradient-7);"/>
+    </mask>
+    <linearGradient id="linear-gradient-8" x1="1331.9" y1="1956.8" x2="684.6" y2="761.4" gradientTransform="translate(500.8 -113.4)" xlink:href="#linear-gradient-4"/>
+    <mask id="mask-4" x="1234.5" y="767.1" width="619.5" height="1086.9" maskUnits="userSpaceOnUse">
+      <rect x="1234.5" y="767.1" width="619.5" height="1086.9" style="fill: url(#linear-gradient-8);"/>
+    </mask>
+  </defs>
+  <g style="clip-path: url(#clippath);">
+    <rect y="1169.4" width="1623.6" height="684.6" style="fill: url(#linear-gradient);"/>
+  </g>
+  <g style="clip-path: url(#clippath-1);">
+    <rect x="375.9" width="1299.3" height="767.1" style="fill: url(#linear-gradient-2);"/>
+  </g>
+  <g style="clip-path: url(#clippath-2);">
+    <rect width="1854" height="1854" style="fill: url(#linear-gradient-3);"/>
+  </g>
+  <g style="mask: url(#mask);">
+    <path d="M0,608.6C45.9,57.1,816.7,0,816.7,0H0V608.6Z" style="fill: #fde3a7; fill-rule: evenodd;"/>
+  </g>
+  <g style="mask: url(#mask-1);">
+    <path d="M706.9,385.3C650.6,212.1,937.3,0,937.3,0,375.9,44.8,385.3,385.3,385.3,385.3h321.6Z" style="fill: #1e003d; fill-rule: evenodd;"/>
+  </g>
+  <g style="mask: url(#mask-2);">
+    <path d="M955.4,0s654.9,112.8,654.4,767.1c43.4-76.6,65.4-162.9,65.4-251.3C1675.2,231.9,1443.3,0,1159.4,0h-204Z" style="fill: #ffbcd8; fill-rule: evenodd;"/>
+  </g>
+  <g style="mask: url(#mask-3);">
+    <path d="M914,1466.8c504.7,3.2,320.5,387.2,320.5,387.2,389.1-255.1,222.4-676.4,219.1-684.6,9.7,24.6,15,51.4,15,79.4,0,119.7-97.6,217.3-217.3,217.3l-337.4,.7Z" style="fill: #102770; fill-rule: evenodd;"/>
+  </g>
+  <g style="mask: url(#mask-4);">
+    <path d="M1609.8,767.1c191.3,619.5-156.2,402.3-156.2,402.3,3.3,8.2,170,429.5-219.1,684.6h16.9c332.4,0,602.6-270.2,602.6-602.6s-91.3-370.6-244.2-484.3" style="fill: #9a0038; fill-rule: evenodd;"/>
+  </g>
+</svg>
