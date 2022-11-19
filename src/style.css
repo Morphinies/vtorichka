@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-size: 16px;
   font-weight: 300;
   color: #2d3436;
   font-family: "roboto";
@@ -10,8 +11,12 @@
   letter-spacing: 0.05rem;
 }
 
-html {
-  font-size: 16px;
+input {
+  border: none;
+  outline: none;
+}
+input:focus {
+  background-color: #fff;
 }
 
 body,
@@ -21,27 +26,49 @@ html,
   height: 100%;
 }
 
-.wrapper {
-  display: grid;
-  row-gap: 1rem;
-  grid-template-rows: auto 1fr auto;
-}
-
-button {
-  border: none;
-  cursor: pointer;
-  border-radius: 1px;
-  padding: 0.5rem 2rem;
+body {
   background-color: #f6f6f6;
 }
 
-button:focus {
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+}
+
+/* button */
+.btn {
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 1px;
+  padding: 0.5rem 2rem;
+  transition: all 0.3s;
+  background-color: #f6f6f6;
+}
+
+.btn:focus {
   outline: none;
 }
 
-button:hover,
+.btn:hover,
 :focus {
   background-color: #bbb;
+}
+
+.btn:active {
+  background-color: #aaa;
+}
+
+/* list */
+
+li {
+  list-style-type: none;
 }
 
 /* ************************ fonts ************************ */
@@ -84,20 +111,19 @@ button:hover,
 /* ************************ media ************************ */
 
 @media (max-width: 640px) {
-  button {
-    border-radius: 0;
-    padding: 0.5rem 2rem;
-    background-color: #f6f6f6;
-    border-bottom-left-radius: 1px;
-    border-bottom-right-radius: 1px;
-  }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
   html {
     font-size: 14px;
   }
-  button {
+  .btn {
     padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 300px) {
+  * {
+    font-size: 14px;
   }
 }

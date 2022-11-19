@@ -1,7 +1,7 @@
 .footer {
   display: grid;
   padding: 0.5rem 2rem;
-  background: linear-gradient(180deg, #353d3f 0%, #16191a 100%);
+  background: linear-gradient(180deg, #16191a 100%, #353d3f 0%);
 }
 
 .footerText {

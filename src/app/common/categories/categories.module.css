@@ -1,0 +1,71 @@
+.aside {
+  display: grid;
+  justify-self: flex-start;
+}
+
+.categories {
+  overflow-y: auto;
+  margin: 2rem;
+  display: grid;
+  overflow: hidden;
+  border-radius: 3px;
+  align-self: flex-start;
+  background-color: #16191a;
+}
+
+.category {
+  display: grid;
+  cursor: pointer;
+  column-gap: 1rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid #16191a;
+  grid-template-columns: 1fr auto;
+}
+
+.category,
+.category .categoryName,
+.category .arrowDown path {
+  transition: all 0.3s;
+}
+
+.category:hover .categoryName {
+  color: #16191a;
+}
+
+.category:hover .arrowDown path {
+  fill: #16191a;
+  stroke: #16191a;
+}
+
+.category:hover {
+  background-color: #f6f6f6;
+}
+
+#categoryBtn {
+  border: none;
+  padding: 2rem 1rem;
+  align-self: center;
+  border: 2px solid #16191a;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-left: none;
+}
+
+#btnHideCategory {
+  border: 2px solid #16191a;
+}
+
+.btnsText {
+  writing-mode: vertical-rl;
+}
+
+.categoryName {
+  justify-self: center;
+  color: #f6f6f6;
+}
+
+.arrowDown {
+  width: 1rem;
+  align-self: center;
+  justify-self: center;
+}
