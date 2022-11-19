@@ -4,9 +4,9 @@
 }
 
 .categories {
-  overflow-y: auto;
-  margin: 2rem;
   display: grid;
+  overflow-y: auto;
+  margin-top: 2rem;
   overflow: hidden;
   border-radius: 3px;
   align-self: flex-start;
@@ -19,6 +19,7 @@
   column-gap: 1rem;
   padding: 0.5rem 1rem;
   border: 2px solid #16191a;
+  border-left: none;
   grid-template-columns: 1fr auto;
 }
 
@@ -53,6 +54,7 @@
 
 #btnHideCategory {
   border: 2px solid #16191a;
+  border-left: none;
 }
 
 .btnsText {
@@ -60,12 +62,52 @@
 }
 
 .categoryName {
-  justify-self: center;
   color: #f6f6f6;
+  align-self: center;
+  justify-self: center;
 }
 
 .arrowDown {
   width: 1rem;
   align-self: center;
   justify-self: center;
+}
+
+.cancelImg {
+  height: 1rem;
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .aside {
+    grid-area: 2/1/2/3;
+    justify-self: stretch;
+    border-bottom: 2px solid #16191a;
+  }
+  #categoryBtn {
+    border: none;
+    padding: 1rem;
+    border-radius: 0;
+    align-self: center;
+  }
+  .btnsText {
+    writing-mode: horizontal-tb;
+  }
+  .categories {
+    display: flex;
+    margin-top: 0;
+    border-radius: 0;
+    overflow-x: auto;
+    overflow-y: unset;
+  }
+  #btnHideCategory {
+    padding: 1rem;
+    border: none;
+  }
+  .category {
+    border: none;
+  }
+  .cancelImg {
+    display: block;
+  }
 }

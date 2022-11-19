@@ -1,5 +1,6 @@
 import api from "../../api";
 import s from "./categories.module.css";
+import cancel from "../../img/cancel.svg";
 import React, { useEffect, useState } from "react";
 
 const Categories = () => {
@@ -9,7 +10,6 @@ const Categories = () => {
   useEffect(() => {
     api.categoryList.fetchAll().then((data) => setCategories(data));
   }, []);
-  categories && console.log(categories);
   return (
     <aside className={s.aside}>
       {categoriesHidden ? (
@@ -29,6 +29,7 @@ const Categories = () => {
                 className="btn"
                 id={s.btnHideCategory}
               >
+                <img className={s.cancelImg} src={cancel} alt="cancel" />
                 скрыть
               </button>
               {categories.map((category) => (

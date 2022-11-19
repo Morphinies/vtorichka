@@ -113,6 +113,12 @@ li {
 @media (max-width: 640px) {
 }
 
+@media (max-width: 480px) {
+  .main {
+    grid-template-rows: auto auto 1fr;
+  }
+}
+
 @media (max-width: 380px) {
   html {
     font-size: 14px;
