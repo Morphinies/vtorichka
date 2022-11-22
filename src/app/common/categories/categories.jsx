@@ -26,18 +26,19 @@ const Categories = () => {
   };
 
   return (
-    categories && (
-      <nav className={s.categoriesNav}>
-        {!categoriesHidden ? (
-          <>
-            <button
-              onClick={() => setCategoriesHidden(true)}
-              className="btn"
-              id={s.categoriesHideBtn}
-            >
-              <p className={s.categoriesHideText}>категории</p>
-              <img className={s.imgCancel} src={cancel} alt="" />
-            </button>
+    <nav className={s.categoriesNav}>
+      {!categoriesHidden ? (
+        <>
+          <button
+            onClick={() => setCategoriesHidden(true)}
+            className="btn"
+            id={s.categoriesHideBtn}
+          >
+            <p className={s.categoriesHideText}>категории</p>
+            <img className={s.imgCancel} src={cancel} alt="" />
+          </button>
+
+          {categories && categories.values && (
             <ul className={s.categoriesList}>
               {categories.map((category) => (
                 <>
@@ -57,6 +58,7 @@ const Categories = () => {
                       <img className={s.imgArrowDown} src={arrowDown} alt="" />
                     )}
                   </li>
+
                   {currentCategory === category.name && category.values && (
                     <ul className={s.categoriesList}>
                       {category.values.map((subCategory1) => (
@@ -109,42 +111,21 @@ const Categories = () => {
                     </ul>
                   )}
                 </>
-                // {currentCategory === category.name && category.values && (
-                //     <ul className={s.categoriesList}>
-                //       {category.values.map((subCategory1) => (
-                //         <li
-                //           className="btn"
-                //           id={s.category}
-                //           key={subCategory1.name}
-                //           onClick={() => chooseCategory(category)}
-                //         >
-                //           <p className={s.categoryName}>{subCategory1.name}</p>
-                //           {subCategory1.values && (
-                //             <img
-                //               className={s.imgArrowDown}
-                //               src={arrowDown}
-                //               alt=""
-                //             />
-                //           )}
-                //         </li>
-                //       ))}
-                //     </ul>
-                //   )}
               ))}
             </ul>
-          </>
-        ) : (
-          <button
-            onClick={() => setCategoriesHidden(false)}
-            className="btn"
-            id={s.categoriesHideBtn}
-          >
-            <p className={s.categoriesHideText}>категории</p>
-            <img className={s.imgArrowDown} src={arrowDown} alt="" />
-          </button>
-        )}
-      </nav>
-    )
+          )}
+        </>
+      ) : (
+        <button
+          onClick={() => setCategoriesHidden(false)}
+          className="btn"
+          id={s.categoriesHideBtn}
+        >
+          <p className={s.categoriesHideText}>категории</p>
+          <img className={s.imgArrowDown} src={arrowDown} alt="" />
+        </button>
+      )}
+    </nav>
   );
 };
 
