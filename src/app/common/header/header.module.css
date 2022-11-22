@@ -60,7 +60,8 @@
 
 @media (max-width: 380px) {
   .header {
-    row-gap: 1rem;
+    row-gap: 0.7rem;
+    padding: 0.7rem 2px;
     grid-template-columns: auto;
   }
 
@@ -74,23 +75,16 @@
 
   .navBlock {
     width: 100%;
-    column-gap: normal;
+    column-gap: 2px;
     justify-content: center;
   }
 
   #headerBtn {
     width: 100%;
-    max-width: 180px;
-    margin-right: 2px;
+    max-width: 190px;
   }
 
   #headerBtn:last-child {
     margin-right: 0;
-  }
-}
-
-@media (max-width: 300px) {
-  .header {
-    padding: 1rem 0.5rem;
   }
 }

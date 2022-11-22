@@ -7,27 +7,32 @@
 .form {
   width: 60%;
   display: grid;
+  column-gap: 2px;
   justify-self: center;
-  border: 2px solid #16191a;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  padding: 0 2px 2px 2px;
+  border-radius: 0 0 2px 2px;
+  background-color: #16191a;
   grid-template-columns: 1fr auto;
-  border-top: none;
 }
 
 .input {
   padding: 1rem;
-  font-size: 1rem;
+  border-radius: 0 0 2px 2px;
+  background-color: #f6f6f6;
+}
+
+.input::placeholder {
   color: #16191a;
 }
 
 .input:active,
 :focus {
+  color: #16191a;
   background-color: #fff;
 }
 
 #searchBtn {
-  border-left: 2px solid #16191a;
+  border-radius: 0 0 2px 2px;
 }
 
 .searchImg {
@@ -44,20 +49,21 @@
   .form {
     width: 100%;
     border-radius: 0;
-    border-left: none;
-    border-right: none;
+    padding: 0 2px 2px 2px;
+  }
+
+  #searchBtn {
+    padding: 0.8rem;
+    border-radius: 2px;
+  }
+
+  .input {
+    border-radius: 2px;
   }
 }
 
 @media (max-width: 380px) {
-  #searchBtn {
-    padding: 1rem;
-  }
 }
 
 @media (max-width: 300px) {
-  #searchBtn,
-  .input {
-    padding: 1rem;
-  }
 }
