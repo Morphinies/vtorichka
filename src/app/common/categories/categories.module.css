@@ -1,4 +1,5 @@
 .categoriesNav {
+  align-self: start;
   padding-top: 2rem;
   display: grid;
 }

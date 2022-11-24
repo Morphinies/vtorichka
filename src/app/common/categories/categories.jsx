@@ -1,86 +1,80 @@
 import api from "../../api";
 import s from "./categories.module.css";
 import cancel from "../../img/cancel.svg";
+import CategoriesList from "./categoriesList";
 import arrowDown from "../../img/arrowDown.svg";
 import React, { useEffect, useState } from "react";
+import BtnDisplayCategories from "./btnDisplayCategories";
 
-const Categories = () => {
+const Categories = ({ chooseCategory }) => {
   const [categories, setCategories] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState("");
-  const [currentSubCategory, setCurrentSubCategory] = useState("");
-  const [categoriesHidden, setCategoriesHidden] = useState(false);
-  console.log(currentCategory);
+  const [categoriesHidden, setCategoriesHidden] = useState(true);
 
   useEffect(() => {
     api.categoryList.fetchAll().then((data) => setCategories(data));
   }, []);
 
-  const chooseCategory = (category) => {
-    setCurrentCategory(category.name);
-    currentCategory === category.name && setCurrentCategory("");
-  };
-
-  const chooseSubCategory = (subCategory1) => {
-    setCurrentSubCategory(subCategory1.name);
-    currentSubCategory === subCategory1.name && setCurrentSubCategory("");
-  };
+  useEffect(() => {
+    categories.length && setCategoriesHidden(false);
+  }, [categories]);
 
   return (
     <nav className={s.categoriesNav}>
       {!categoriesHidden ? (
         <>
-          <button
-            onClick={() => setCategoriesHidden(true)}
-            className="btn"
-            id={s.categoriesHideBtn}
-          >
-            <p className={s.categoriesHideText}>категории</p>
-            <img className={s.imgCancel} src={cancel} alt="" />
-          </button>
+          <BtnDisplayCategories
+            img={cancel}
+            display={true}
+            setCategoriesHidden={setCategoriesHidden}
+          />
 
-          {categories && categories.values && (
-            <ul className={s.categoriesList}>
-              {categories.map((category) => (
-                <>
-                  <li
-                    role="button"
-                    className="btn"
-                    id={
-                      category.name === currentCategory
-                        ? s.currentCategory
-                        : s.category
-                    }
-                    key={category.name}
-                    onClick={() => chooseCategory(category)}
-                  >
-                    <p className={s.categoryName}>{category.name}</p>
-                    {category.values && (
-                      <img className={s.imgArrowDown} src={arrowDown} alt="" />
-                    )}
-                  </li>
+          <CategoriesList
+            categories={categories}
+            chooseCategory={chooseCategory}
+          />
+        </>
+      ) : (
+        <BtnDisplayCategories
+          display={false}
+          img={arrowDown}
+          setCategoriesHidden={setCategoriesHidden}
+        />
+      )}
+    </nav>
+  );
+};
 
-                  {currentCategory === category.name && category.values && (
-                    <ul className={s.categoriesList}>
-                      {category.values.map((subCategory1) => (
-                        <>
-                          <li
-                            className="btn"
-                            id={s.category}
-                            key={subCategory1.name}
-                            onClick={() => chooseSubCategory(subCategory1)}
-                          >
-                            <p className={s.categoryName}>
-                              {subCategory1.name}
-                            </p>
-                            {subCategory1.values && (
-                              <img
-                                className={s.imgArrowDown}
-                                src={arrowDown}
-                                alt=""
-                              />
-                            )}
-                          </li>
-                          {currentSubCategory === subCategory1.name &&
+export default Categories;
+
+// {currentCategory === category.name && category.values && (
+//   <ul className={s.categoriesList}>
+//     {category.values.map((subCategory1) => (
+//       <>
+//         <li
+//           className="btn"
+//           id={s.category}
+//           key={subCategory1.name}
+//           onClick={() => chooseSubCategory(subCategory1)}
+//         >
+//           <p className={s.categoryName}>
+//             {subCategory1.name}
+//           </p>
+//           {subCategory1.values && (
+//             <img
+//               className={s.imgArrowDown}
+//               src={arrowDown}
+//               alt=""
+//             />
+//           )}
+//         </li>
+
+//         {/*  */}
+//       </>
+//     ))}
+//   </ul>
+// )}
+
+/* {currentSubCategory === subCategory1.name &&
                             subCategory1.values && (
                               <ul className={s.categoriesList}>
                                 {subCategory1.values.map((subCategory2) => (
@@ -105,28 +99,4 @@ const Categories = () => {
                                   </li>
                                 ))}
                               </ul>
-                            )}
-                        </>
-                      ))}
-                    </ul>
-                  )}
-                </>
-              ))}
-            </ul>
-          )}
-        </>
-      ) : (
-        <button
-          onClick={() => setCategoriesHidden(false)}
-          className="btn"
-          id={s.categoriesHideBtn}
-        >
-          <p className={s.categoriesHideText}>категории</p>
-          <img className={s.imgArrowDown} src={arrowDown} alt="" />
-        </button>
-      )}
-    </nav>
-  );
-};
-
-export default Categories;
+                            )} */

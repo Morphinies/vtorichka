@@ -1,0 +1,10 @@
+.products {
+  display: grid;
+}
+
+.header {
+  font-size: 2rem;
+  padding-top: 3rem;
+  font-weight: normal;
+  justify-self: center;
+}
