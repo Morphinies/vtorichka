@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./categories.module.css";
 
-const BtnDisplayCategories = ({ setCategoriesHidden, img, display }) => {
+const CategoriesDisplayBtn = ({ setCategoriesHidden, img, display }) => {
   return (
     <button
       className="btn"
@@ -14,4 +14,4 @@ const BtnDisplayCategories = ({ setCategoriesHidden, img, display }) => {
   );
 };
 
-export default BtnDisplayCategories;
+export default CategoriesDisplayBtn;

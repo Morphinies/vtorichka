@@ -2,8 +2,17 @@ const categories = [
   {
     name: "одежда",
     values: [
-      { name: "рубашка", values: [{ name: "в клеточку" }] },
-      { name: "брюки" },
+      {
+        name: "рубашка",
+        values: [{ name: "в клеточку", values: [{ name: "тряпочная" }] }],
+      },
+      {
+        name: "брюки",
+        values: [
+          { name: "чёрные", values: [{ name: "джинсовые" }] },
+          { name: "белые" },
+        ],
+      },
       { name: "носки" },
     ],
   },
@@ -19,7 +28,7 @@ const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(categories);
-    }, 2000);
+    }, 500);
   });
 const categoryList = { fetchAll };
 

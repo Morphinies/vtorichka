@@ -17,7 +17,7 @@
   grid-template-columns: 1fr auto;
 }
 
-.categoriesList {
+.catList {
   row-gap: 3px;
   display: flex;
   flex-direction: column;
