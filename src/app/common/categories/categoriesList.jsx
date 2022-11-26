@@ -125,21 +125,30 @@ const CategoriesList = ({ categories, chooseCategory }) => {
     catList && (
       <ul className={s.catList}>
         {catList.map((catItem) => (
-          <li role="button" id={s.category} key={catItem.name}>
-            <p
-              className="btn"
-              id={s.categoryName}
-              onClick={() => chooseCategory(catItem.name)}
-            >
-              {catItem.name}
-            </p>
-            <img
-              alt=""
-              className="btn"
-              src={arrowDown}
-              id={s.imgArrowDown}
-              onClick={() => displayCat(catItem)}
-            />
+          <li
+            role="button"
+            id={s.curCategory}
+            key={catItem.name}
+            className={s.category}
+          >
+            <div className={s.wrapper}>
+              <p
+                className="btn"
+                id={s.categoryName}
+                onClick={() => chooseCategory(catItem.name)}
+              >
+                {catItem.name}
+              </p>
+              {catItem.values && (
+                <div
+                  className="btn"
+                  id={s.divImgArrowDown}
+                  onClick={() => displayCat(catItem)}
+                >
+                  <img className={s.imgArrowDown} alt="" src={arrowDown} />
+                </div>
+              )}
+            </div>
           </li>
         ))}
       </ul>
