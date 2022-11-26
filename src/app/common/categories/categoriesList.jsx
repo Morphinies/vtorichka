@@ -21,9 +21,7 @@ const CategoriesList = ({ categories, chooseCategory }) => {
     const indexOfCatItem = catList.indexOf(catItem) + 1;
     curCat.map((category) => (allSumOpenCat += category.values.length));
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     if (!catItem.values) {
-      chooseCategory(catItem.name);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ открытие ветки категорий ~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -127,17 +125,21 @@ const CategoriesList = ({ categories, chooseCategory }) => {
     catList && (
       <ul className={s.catList}>
         {catList.map((catItem) => (
-          <li
-            role="button"
-            className="btn"
-            id={s.category}
-            key={catItem.name}
-            onClick={() => displayCat(catItem)}
-          >
-            <p className={s.categoryName}>{catItem.name}</p>
-            {catItem.values && (
-              <img className={s.imgArrowDown} src={arrowDown} alt="" />
-            )}
+          <li role="button" id={s.category} key={catItem.name}>
+            <p
+              className="btn"
+              id={s.categoryName}
+              onClick={() => chooseCategory(catItem.name)}
+            >
+              {catItem.name}
+            </p>
+            <img
+              alt=""
+              className="btn"
+              src={arrowDown}
+              id={s.imgArrowDown}
+              onClick={() => displayCat(catItem)}
+            />
           </li>
         ))}
       </ul>
