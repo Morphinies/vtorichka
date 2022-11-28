@@ -8,8 +8,10 @@ const CategoriesDisplayBtn = ({ setCategoriesHidden, img, display }) => {
       id={s.categoriesHideBtn}
       onClick={() => setCategoriesHidden(display)}
     >
-      <p className={s.categoriesHideText}>категории</p>
-      <img className={s.imgCancel} src={img} alt="" />
+      <div className={s.btnWrapper}>
+        <p className={s.categoriesHideText}>категории</p>
+        <img className={s.imgCancel} src={img} alt="" />
+      </div>
     </button>
   );
 };

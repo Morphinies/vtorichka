@@ -5,7 +5,21 @@ import React, { useEffect, useState } from "react";
 const CategoriesList = ({ categories, chooseCategory }) => {
   const [catList, setCatList] = useState([]);
   const [curCat, setCurCat] = useState([]);
+  const [choosedCategory, setChoosedCategory] = useState({});
+
   useEffect(() => setCatList(categories), [categories]);
+
+  const changeCategory = (catItem) => {
+    choosedCategory && catItem.name === choosedCategory.name
+      ? (() => {
+          setChoosedCategory({});
+          chooseCategory("");
+        })()
+      : (() => {
+          setChoosedCategory(catItem);
+          chooseCategory(catItem.name);
+        })();
+  };
 
   const displayCat = (catItem) => {
     const calcSumOpenCat = () => {
@@ -120,29 +134,40 @@ const CategoriesList = ({ categories, chooseCategory }) => {
       setCurCat((arr) => [...arr.slice(0, arr.indexOf(catItem))]);
     }
   };
-
   return (
     catList && (
       <ul className={s.catList}>
         {catList.map((catItem) => (
-          <li
-            role="button"
-            id={s.curCategory}
-            key={catItem.name}
-            className={s.category}
-          >
-            <div className={s.wrapper}>
+          <li role="button" key={catItem.name} className={s.category}>
+            <div
+              className={s.wrapper}
+              id={
+                (curCat.length > 0 && curCat.includes(catItem)) ||
+                (curCat.length > 0 && curCat.at(-1).name === catItem.name) ||
+                (curCat.length > 0 && curCat.at(-1).values.includes(catItem))
+                  ? s.curWrapper
+                  : ""
+              }
+            >
               <p
                 className="btn"
-                id={s.categoryName}
-                onClick={() => chooseCategory(catItem.name)}
+                id={
+                  choosedCategory === catItem
+                    ? s.choosedCategoryName
+                    : s.categoryName
+                }
+                onClick={() => changeCategory(catItem)}
               >
                 {catItem.name}
               </p>
               {catItem.values && (
                 <div
                   className="btn"
-                  id={s.divImgArrowDown}
+                  id={
+                    curCat.at(-1) === catItem
+                      ? s.divImgArrowDownActive
+                      : s.divImgArrowDown
+                  }
                   onClick={() => displayCat(catItem)}
                 >
                   <img className={s.imgArrowDown} alt="" src={arrowDown} />
