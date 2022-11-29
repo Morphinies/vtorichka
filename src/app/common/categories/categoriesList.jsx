@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 const CategoriesList = ({ categories, chooseCategory }) => {
   const [catList, setCatList] = useState([]);
   const [curCat, setCurCat] = useState([]);
-  const [choosedCategory, setChoosedCategory] = useState({});
+  // const [choosedCategory, setChoosedCategory] = useState({});
 
   useEffect(() => setCatList(categories), [categories]);
 
@@ -123,60 +123,35 @@ const CategoriesList = ({ categories, chooseCategory }) => {
     }
   };
 
-  const changeCategory = (catItem) => {
-    choosedCategory && catItem.name === choosedCategory.name
-      ? (() => {
-          displayCat(catItem);
-          setChoosedCategory({});
-          chooseCategory("");
-        })()
-      : (() => {
-          displayCat(catItem);
-          setChoosedCategory(catItem);
-          chooseCategory(catItem.name);
-        })();
-  };
+  // const changeCategory = (catItem) => {
+  //   choosedCategory && catItem.name === choosedCategory.name
+  //     ? (() => {
+  //         displayCat(catItem);
+  //         setChoosedCategory({});
+  //         chooseCategory("");
+  //       })()
+  //     : (() => {
+  //         displayCat(catItem);
+  //         setChoosedCategory(catItem);
+  //         chooseCategory(catItem.name);
+  //       })();
+  // };
 
   return (
     catList && (
       <ul className={s.catList}>
         {catList.map((catItem) => (
-          <li role="button" key={catItem.name} className={s.category}>
-            <div
-              className={s.wrapper}
-              id={
-                (curCat.length > 0 && curCat.includes(catItem)) ||
-                (curCat.length > 0 && curCat.at(-1).name === catItem.name) ||
-                (curCat.length > 0 && curCat.at(-1).values.includes(catItem))
-                  ? s.curWrapper
-                  : ""
-              }
-            >
-              <p
-                className="btn"
-                id={
-                  choosedCategory === catItem
-                    ? s.choosedCategoryName
-                    : s.categoryName
-                }
-                onClick={() => changeCategory(catItem)}
-              >
-                {catItem.name}
-              </p>
-              {catItem.values && (
-                <div
-                  className="btn"
-                  id={
-                    curCat.at(-1) === catItem
-                      ? s.divImgArrowDownActive
-                      : s.divImgArrowDown
-                  }
-                  onClick={() => displayCat(catItem)}
-                >
-                  <img className={s.imgArrowDown} alt="" src={arrowDown} />
-                </div>
-              )}
-            </div>
+          <li
+            role="button"
+            onClick={() => displayCat(catItem)}
+            className={s.categoriesBtn}
+            id={curCat.includes(catItem) ? s.openCatItem : ""}
+            key={catItem.name}
+          >
+            <p className={s.categoriesBtnText}>{catItem.name}</p>
+            {catItem.values && (
+              <img className={s.imgArrowDown} alt="" src={arrowDown} />
+            )}
           </li>
         ))}
       </ul>

@@ -4,18 +4,12 @@ import s from "./categories.module.css";
 const CategoriesDisplayBtn = ({ setCategoriesHidden, img, display }) => {
   return (
     <button
-      className="btn"
+      className={s.categoriesBtn}
       id={display ? s.categoriesHideBtn : s.categoriesShowBtn}
       onClick={() => setCategoriesHidden(display)}
     >
-      <div
-        className={
-          display ? s.btnWrapper : s.btnWrapper + " " + s.btnWrapperShow
-        }
-      >
-        <p className={s.categoriesHideText}>каталог</p>
-        {display && <img className={s.imgCancel} src={img} alt="" />}
-      </div>
+      <p className={s.categoriesBtnText}>каталог</p>
+      {display && <img className={s.imgCancel} src={img} alt="" />}
     </button>
   );
 };
