@@ -5,12 +5,16 @@ const CategoriesDisplayBtn = ({ setCategoriesHidden, img, display }) => {
   return (
     <button
       className="btn"
-      id={s.categoriesHideBtn}
+      id={display ? s.categoriesHideBtn : s.categoriesShowBtn}
       onClick={() => setCategoriesHidden(display)}
     >
-      <div className={s.btnWrapper}>
-        <p className={s.categoriesHideText}>категории</p>
-        <img className={s.imgCancel} src={img} alt="" />
+      <div
+        className={
+          display ? s.btnWrapper : s.btnWrapper + " " + s.btnWrapperShow
+        }
+      >
+        <p className={s.categoriesHideText}>каталог</p>
+        {display && <img className={s.imgCancel} src={img} alt="" />}
       </div>
     </button>
   );

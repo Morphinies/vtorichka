@@ -9,6 +9,7 @@ import CategoriesDisplayBtn from "./categoriesDisplayBtn";
 const Categories = ({ chooseCategory }) => {
   const [categories, setCategories] = useState([]);
   const [categoriesHidden, setCategoriesHidden] = useState(true);
+  const [opacity, setOpacity] = useState(true);
 
   useEffect(() => {
     api.categoryList.fetchAll().then((data) => setCategories(data));
@@ -18,28 +19,32 @@ const Categories = ({ chooseCategory }) => {
     categories.length && setCategoriesHidden(false);
   }, [categories]);
 
-  return (
-    <nav className={s.categoriesNav}>
-      {!categoriesHidden ? (
-        <>
-          <CategoriesDisplayBtn
-            img={cancel}
-            display={true}
-            setCategoriesHidden={setCategoriesHidden}
-          />
+  const categoriesHide = (display) => {
+    setCategoriesHidden(display);
+    setOpacity(true);
+  };
 
-          <CategoriesList
-            categories={categories}
-            chooseCategory={chooseCategory}
-          />
-        </>
-      ) : (
-        <CategoriesDisplayBtn
-          display={false}
-          img={arrowDown}
-          setCategoriesHidden={setCategoriesHidden}
-        />
-      )}
+  useEffect(() => {
+    setTimeout(() => setOpacity(false), 100);
+  }, [categoriesHidden]);
+
+  return !categoriesHidden ? (
+    <nav className={s.categoriesNav} id={!opacity ? s.opacity : ""}>
+      <CategoriesDisplayBtn
+        img={cancel}
+        display={true}
+        setCategoriesHidden={categoriesHide}
+      />
+
+      <CategoriesList categories={categories} chooseCategory={chooseCategory} />
+    </nav>
+  ) : (
+    <nav className={s.categoriesNav} id={!opacity ? s.opacity : ""}>
+      <CategoriesDisplayBtn
+        display={false}
+        img={arrowDown}
+        setCategoriesHidden={categoriesHide}
+      />
     </nav>
   );
 };

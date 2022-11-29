@@ -46,6 +46,9 @@
 }
 
 @media (max-width: 480px) {
+  .nav {
+    grid-area: auto;
+  }
   .form {
     width: 100%;
     border-radius: 0;

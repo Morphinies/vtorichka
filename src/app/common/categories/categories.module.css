@@ -1,7 +1,17 @@
 .categoriesNav {
+  opacity: 0;
   align-self: start;
   padding-top: 2rem;
   display: grid;
+}
+
+#opacity {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.categoriesNav * {
+  transition: all 0.5s;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ кнопка скрыть категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -9,9 +19,15 @@
 #categoriesHideBtn {
   border: none;
   padding: 2px;
+  padding-left: 0;
   margin-bottom: 3px;
   margin-right: 1rem;
+  border-radius: 0 3px 3px 0;
   background: linear-gradient(180deg, #353d3f 0%, #16191a 50%);
+}
+
+#categoriesHideBtn .btnWrapper {
+  border-radius: 0 2px 2px 0;
 }
 
 #categoriesHideBtn:hover .btnWrapper {
@@ -45,6 +61,7 @@
 }
 
 .categoriesHideText {
+  font-size: 0.9rem;
   text-align: left;
   color: #f6f6f6;
 }
@@ -66,7 +83,9 @@
 .wrapper {
   padding: 2px;
   display: grid;
+  padding-left: 0;
   transition: all 1s;
+  border-radius: 0 3px 3px 0;
   grid-template-columns: 1fr auto;
   background: linear-gradient(180deg, #353d3f 0%, #16191a 50%);
 }
@@ -106,6 +125,15 @@
   filter: invert(1);
 }
 
+#divImgArrowDown,
+#divImgArrowDownActive {
+  border-radius: 0 2px 2px 0;
+}
+
+#choosedCategoryName {
+  border-radius: 0;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ кнопка подкатегорий раскрыта ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #divImgArrowDownActive {
   background-color: #f6f6f6;
@@ -116,11 +144,7 @@
 }
 
 #divImgArrowDownActive:hover {
-  background-color: rgba(0, 0, 0, 0);
-}
-
-#divImgArrowDownActive:hover .imgArrowDown {
-  filter: none;
+  background-color: #ddd;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ стрелка вниз ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -133,4 +157,92 @@
 
 #categoryName {
   min-width: 10rem;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ кнопка показать категории ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#categoriesShowBtn {
+  font-size: 0.9rem;
+  border: none;
+  padding: 2px;
+  padding-left: 0;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #353d3f 0%, #16191a 50%);
+}
+#categoriesShowBtn * {
+  transition: all 0.3s;
+}
+
+#categoriesShowBtn .btnWrapper {
+  border-radius: 0 2px 2px 0;
+  writing-mode: vertical-lr;
+  padding: 2rem 0.5rem;
+}
+
+#categoriesShowBtn:hover .btnWrapper {
+  padding-left: 1rem;
+}
+
+#categoriesShowBtn .btnWrapper .imgCancel {
+  rotate: 90deg;
+}
+
+#categoriesShowBtn:hover .btnWrapper .imgCancel {
+  filter: invert(1);
+}
+
+#categoriesShowBtn:hover .btnWrapper {
+  background: #f6f6f6;
+}
+
+#categoriesShowBtn:hover .btnWrapper .categoriesHideText {
+  color: #16191a;
+}
+
+.btnWrapperShow {
+  column-gap: 0;
+}
+
+@media (max-width: 640px) {
+  .btnWrapper,
+  #categoryName,
+  #divImgArrowDown {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categoriesNav {
+    padding-top: 3px;
+  }
+  #categoriesHideBtn {
+    margin-right: 0;
+  }
+
+  .categoriesHideText {
+    text-align: center;
+  }
+
+  .category {
+    grid-template-columns: 1fr;
+  }
+
+  #categoriesShowBtn {
+    border-radius: 0;
+    padding: 2px;
+  }
+
+  #categoriesShowBtn .btnWrapper {
+    border-radius: 2px;
+    writing-mode: horizontal-tb;
+    padding: 0.5rem 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .btnWrapper,
+  #categoriesShowBtn .btnWrapperShow {
+    padding: 1rem;
+  }
 }

@@ -9,18 +9,6 @@ const CategoriesList = ({ categories, chooseCategory }) => {
 
   useEffect(() => setCatList(categories), [categories]);
 
-  const changeCategory = (catItem) => {
-    choosedCategory && catItem.name === choosedCategory.name
-      ? (() => {
-          setChoosedCategory({});
-          chooseCategory("");
-        })()
-      : (() => {
-          setChoosedCategory(catItem);
-          chooseCategory(catItem.name);
-        })();
-  };
-
   const displayCat = (catItem) => {
     const calcSumOpenCat = () => {
       let sum = 0;
@@ -134,6 +122,21 @@ const CategoriesList = ({ categories, chooseCategory }) => {
       setCurCat((arr) => [...arr.slice(0, arr.indexOf(catItem))]);
     }
   };
+
+  const changeCategory = (catItem) => {
+    choosedCategory && catItem.name === choosedCategory.name
+      ? (() => {
+          displayCat(catItem);
+          setChoosedCategory({});
+          chooseCategory("");
+        })()
+      : (() => {
+          displayCat(catItem);
+          setChoosedCategory(catItem);
+          chooseCategory(catItem.name);
+        })();
+  };
+
   return (
     catList && (
       <ul className={s.catList}>
