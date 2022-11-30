@@ -50,23 +50,17 @@
     grid-area: auto;
   }
   .form {
+    padding: 0;
     width: 100%;
     border-radius: 0;
-    padding: 0 2px 2px 2px;
   }
 
   #searchBtn {
-    padding: 0.8rem;
-    border-radius: 2px;
+    padding: 0 1.5rem;
+    border-radius: 0;
   }
 
   .input {
-    border-radius: 2px;
+    border-radius: 0;
   }
-}
-
-@media (max-width: 380px) {
-}
-
-@media (max-width: 300px) {
 }

@@ -9,7 +9,12 @@ const CategoriesDisplayBtn = ({ setCategoriesHidden, img, display }) => {
       onClick={() => setCategoriesHidden(display)}
     >
       <p className={s.categoriesBtnText}>каталог</p>
-      {display && <img className={s.imgCancel} src={img} alt="" />}
+      <img
+        className={s.imgDisplayCat}
+        id={display ? "" : s.imgArrowDown}
+        src={img}
+        alt=""
+      />
     </button>
   );
 };

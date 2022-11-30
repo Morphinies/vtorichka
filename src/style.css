@@ -45,11 +45,12 @@ body {
 .btn {
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   border-radius: 2px;
   padding: 0.5rem 2rem;
   transition: all 0.3s;
   background-color: #f6f6f6;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .btn:focus {
@@ -57,12 +58,11 @@ body {
 }
 
 .btn:hover {
-  background-color: #ddd;
+  background-color: rgb(182, 182, 182);
 }
 
-.btn:active,
-.btn:focus {
-  background-color: #c3c3c3;
+.btn:active {
+  background-color: rgb(200, 200, 200);
 }
 
 /* list */
@@ -118,14 +118,14 @@ li {
     grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr;
   }
+  .btn {
+    padding: 1rem 2rem;
+  }
 }
 
 @media (max-width: 380px) {
   html {
     font-size: 14px;
-  }
-  .btn {
-    padding: 1rem 2rem;
   }
 }
 

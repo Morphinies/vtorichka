@@ -2,38 +2,28 @@ import s from "./categories.module.css";
 import arrowDown from "../../img/arrowDown.svg";
 import React, { useEffect, useState } from "react";
 
-const CategoriesList = ({ categories, chooseCategory }) => {
-  const [catList, setCatList] = useState([]);
+const CategoriesList = ({ categories, chooseCategory, opacity }) => {
   const [curCat, setCurCat] = useState([]);
-  // const [choosedCategory, setChoosedCategory] = useState({});
+  const [catList, setCatList] = useState([]);
+  const [choosedCategory, setChoosedCategory] = useState({});
 
   useEffect(() => setCatList(categories), [categories]);
 
   const displayCat = (catItem) => {
-    const calcSumOpenCat = () => {
-      let sum = 0;
-      const catItemOpenCats = curCat.slice(curCat.indexOf(catItem));
-      catItemOpenCats.map((category) => (sum += category.values.length));
-      return sum;
-    };
     let allSumOpenCat = 0;
     const catItemCats = catItem.values;
-    const sumOpenCat = calcSumOpenCat();
     const lIndexOfCurCat = curCat.length - 1;
-    const indexOfCatItem = catList.indexOf(catItem) + 1;
     curCat.map((category) => (allSumOpenCat += category.values.length));
 
     if (!catItem.values) {
+      chooseCategory(catItem.name);
+      setChoosedCategory(catItem);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ открытие ветки категорий ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     else if (!curCat.length) {
       (() => {
-        setCatList(
-          catList
-            .slice(0, indexOfCatItem)
-            .concat(catItemCats, catList.slice(indexOfCatItem))
-        );
+        setCatList([catItem].concat(catItemCats));
         setCurCat((arr) => [...arr, catItem]);
       })();
     }
@@ -43,109 +33,50 @@ const CategoriesList = ({ categories, chooseCategory }) => {
       !curCat.includes(catItem) &&
       curCat[lIndexOfCurCat].values.includes(catItem)
     ) {
-      setCatList(
-        catList
-          .slice(0, indexOfCatItem)
-          .concat(catItemCats, catList.slice(indexOfCatItem))
-      );
+      setCatList(curCat.concat([catItem], catItemCats));
       setCurCat((arr) => [...arr, catItem]);
     }
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ определение соседней категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~ повторное нажатие на категорию из истории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     else if (
       curCat.length &&
-      !curCat.includes(catItem) &&
-      !curCat[lIndexOfCurCat].values.includes(catItem)
+      curCat.includes(catItem) &&
+      curCat[0] !== catItem
     ) {
-      let isNeighbor = 0;
-      curCat.map(
-        (category) => category.values.includes(catItem) && isNeighbor++
-      );
-
-      //~~~~~~~~~~~~~~~~~~~~~~~~~~ переключение на соседнюю категорию  ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-      if (isNeighbor) {
-        let dadCats = [];
-        const newDadCatList = [];
-
-        curCat.map(
-          (category) =>
-            category.values.includes(catItem) && dadCats.push(category)
-        );
-
-        const dadCatItem = dadCats[0];
-        const dadIndexInCurCat = curCat.indexOf(dadCatItem);
-        const dadIndexInCatList = catList.indexOf(dadCatItem) + 1;
-
-        dadCatItem.values.map((category) =>
-          category === catItem
-            ? newDadCatList.push(category) &&
-              newDadCatList.push(...category.values)
-            : newDadCatList.push(category)
-        );
-
-        setCatList(
-          catList
-            .slice(0, dadIndexInCatList)
-            .concat(
-              newDadCatList,
-              catList.slice(dadIndexInCatList + allSumOpenCat)
-            )
-        );
-        setCurCat((arr) =>
-          arr.slice(0, dadIndexInCurCat + 1).concat([catItem])
-        );
-      }
-
-      //~~~~~~~~~~~~~~~~~~~~~~~~~~ переключение на соседнюю ветку категорий ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-      else {
-        const startNewBranch = catList.slice(0, catList.indexOf(curCat[0]) + 1);
-        const newBranch = startNewBranch.concat(
-          catList.slice(startNewBranch.length + allSumOpenCat)
-        );
-        const indexNewCat = newBranch.indexOf(catItem) + 1;
-
-        setCatList(
-          newBranch
-            .slice(0, indexNewCat)
-            .concat(catItemCats, newBranch.slice(indexNewCat))
-        );
-        setCurCat([catItem]);
-      }
-    }
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ повторное нажатие на категорию из истории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    else if (curCat.length && curCat.includes(catItem)) {
+      console.log(catList.indexOf(catItem));
       setCatList(
         catList
-          .slice(0, indexOfCatItem)
-          .concat(catList.slice(indexOfCatItem + sumOpenCat))
+          .slice(0, catList.indexOf(catItem))
+          .concat(catList[catList.indexOf(catItem) - 1].values)
       );
       setCurCat((arr) => [...arr.slice(0, arr.indexOf(catItem))]);
     }
-  };
 
-  // const changeCategory = (catItem) => {
-  //   choosedCategory && catItem.name === choosedCategory.name
-  //     ? (() => {
-  //         displayCat(catItem);
-  //         setChoosedCategory({});
-  //         chooseCategory("");
-  //       })()
-  //     : (() => {
-  //         displayCat(catItem);
-  //         setChoosedCategory(catItem);
-  //         chooseCategory(catItem.name);
-  //       })();
-  // };
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~ возвращение к основному каталогу ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    else if (
+      curCat.length &&
+      curCat.includes(catItem) &&
+      curCat[0] === catItem
+    ) {
+      setCatList(categories);
+      setCurCat([]);
+    }
+  };
 
   return (
     catList && (
-      <ul className={s.catList}>
+      <ul className={s.catList} id={!opacity ? s.opacity : ""}>
         {catList.map((catItem) => (
           <li
             role="button"
             onClick={() => displayCat(catItem)}
             className={s.categoriesBtn}
-            id={curCat.includes(catItem) ? s.openCatItem : ""}
+            id={
+              curCat.includes(catItem)
+                ? s.openCatItem
+                : catItem === choosedCategory
+                ? s.choosedCatItem
+                : ""
+            }
             key={catItem.name}
           >
             <p className={s.categoriesBtnText}>{catItem.name}</p>

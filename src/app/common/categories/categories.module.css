@@ -1,14 +1,17 @@
 .categoriesNav {
-  opacity: 0;
   display: grid;
   margin-top: 2rem;
   align-self: start;
+  justify-self: start;
+  overflow: hidden;
+  border-radius: 0 3px 3px 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   background: linear-gradient(180deg, #353d3f 0%, #16191a 100%);
 }
 
 #opacity {
-  transition: opacity 0.5s ease-in-out;
   opacity: 1;
+  transition: opacity 0.2s;
 }
 
 .categoriesNav * {
@@ -22,7 +25,7 @@
   display: grid;
   cursor: pointer;
   column-gap: 1rem;
-  padding: 0.5rem 2rem;
+  padding: 0.8rem 2rem;
   grid-template-columns: 1fr auto;
   background-color: rgba(0, 0, 0, 0);
 }
@@ -35,16 +38,48 @@
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+.catList {
+  opacity: 0;
+}
+
+.catList .categoriesBtn {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#categoriesShowBtn .categoriesBtnText {
+  min-width: auto;
+  writing-mode: vertical-lr;
+}
+
+#categoriesShowBtn {
+  column-gap: 0;
+  padding: 2rem 0.8rem;
+}
+
+#categoriesShowBtn:hover {
+  padding-left: 1.8rem;
+}
+
+#categoriesHideBtn:hover .imgDisplayCat {
+  transition: all 1s;
+  rotate: 270deg;
+}
+
 /* images */
 
 .imgArrowDown,
-.imgCancel {
+.imgDisplayCat {
   width: 1.2rem;
+}
+
+#imgArrowDown {
+  display: none;
 }
 
 /* btn hide/show */
 
 .categoriesBtnText {
+  min-width: 8rem;
   text-align: left;
   color: #f6f6f6;
 }
@@ -57,4 +92,42 @@
 
 #openCatItem .imgArrowDown {
   rotate: 180deg;
+}
+
+#choosedCatItem {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 480px) {
+  .categoriesNav {
+    margin-top: 0;
+    border-radius: 0;
+    background: linear-gradient(180deg, #16191a 0%, #353d3f 100%);
+  }
+  .categoriesBtn {
+    padding: 1rem;
+  }
+  .categoriesBtn:hover {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  #imgArrowDown {
+    display: block;
+  }
+
+  #categoriesShowBtn .categoriesBtnText {
+    writing-mode: horizontal-tb;
+  }
+
+  #categoriesShowBtn {
+    padding: 1rem;
+  }
+
+  #categoriesShowBtn {
+    column-gap: 1rem;
+  }
+
+  #categoriesShowBtn:hover {
+    padding: 1rem;
+  }
 }
