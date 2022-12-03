@@ -2,7 +2,7 @@ import s from "./categories.module.css";
 import arrowDown from "../../img/arrowDown.svg";
 import React, { useEffect, useState } from "react";
 
-const CategoriesList = ({ categories, chooseCategory, opacity }) => {
+const GoodsList = ({ categories, chooseCategory, opacity }) => {
   const [curCat, setCurCat] = useState([]);
   const [catList, setCatList] = useState([]);
   const [choosedCategory, setChoosedCategory] = useState({});
@@ -90,4 +90,4 @@ const CategoriesList = ({ categories, chooseCategory, opacity }) => {
   );
 };
 
-export default CategoriesList;
+export default GoodsList;

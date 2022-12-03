@@ -7,8 +7,8 @@ import Products from "../common/products/products";
 import api from "../api";
 
 const Main = () => {
-  const [category, setCategory] = useState("");
   const [filters, setFilters] = useState([]);
+  const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
   const [appliedFilters, setAppliedFilters] = useState("");
 
@@ -26,7 +26,7 @@ const Main = () => {
 
   const chooseFilters = (filters) => {
     setAppliedFilters(filters);
-    console.log(appliedFilters);
+    // console.log(appliedFilters);
   };
 
   return (
@@ -34,9 +34,17 @@ const Main = () => {
       <Header />
       <main className="main">
         <SearchLine />
-        <Categories chooseCategory={chooseCategory} categories={categories} />
+        <Categories
+          btnName="каталог"
+          categories={categories}
+          chooseCategory={chooseCategory}
+        />
         <Products category={category} />
-        <Categories chooseCategory={chooseFilters} categories={filters} />
+        <Categories
+          btnName="фильтры"
+          categories={filters}
+          chooseCategory={chooseFilters}
+        />
       </main>
       <Footer />
     </div>

@@ -1,11 +1,12 @@
 import s from "./categories.module.css";
 import cancel from "../../img/cancel.svg";
-import CategoriesList from "./categoriesList";
 import arrowDown from "../../img/arrowDown.svg";
 import React, { useEffect, useState } from "react";
 import CategoriesDisplayBtn from "./categoriesDisplayBtn";
+import GoodsList from "./goodsList";
+import FiltersList from "../filters/filtersList";
 
-const Categories = ({ chooseCategory, categories }) => {
+const Categories = ({ chooseCategory, categories, btnName }) => {
   const [categoriesHidden, setCategoriesHidden] = useState(true);
   const [opacity, setOpacity] = useState(true);
 
@@ -25,12 +26,22 @@ const Categories = ({ chooseCategory, categories }) => {
   return (
     <nav className={s.categoriesNav}>
       <CategoriesDisplayBtn
+        btnName={btnName}
         img={categoriesHidden ? arrowDown : cancel}
         display={categoriesHidden ? false : true}
         setCategoriesHidden={categoriesHide}
       />
-      {!categoriesHidden && (
-        <CategoriesList
+
+      {!categoriesHidden && btnName === "каталог" && (
+        <GoodsList
+          opacity={opacity}
+          categories={categories}
+          chooseCategory={chooseCategory}
+        />
+      )}
+
+      {!categoriesHidden && btnName === "фильтры" && (
+        <FiltersList
           opacity={opacity}
           categories={categories}
           chooseCategory={chooseCategory}
@@ -38,13 +49,6 @@ const Categories = ({ chooseCategory, categories }) => {
       )}
     </nav>
   );
-  // <nav className={s.categoriesNav} id={!opacity ? s.opacity : ""}>
-  //   <CategoriesDisplayBtn
-  //     display={false}
-  //     img={arrowDown}
-  //     setCategoriesHidden={categoriesHide}
-  //   />
-  // </nav>
 };
 
 export default Categories;
