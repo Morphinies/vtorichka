@@ -1,7 +1,7 @@
 import React from "react";
 import s from "../categories/categories.module.css";
 
-const BtnApplyFilter = ({ choosedFilters, applyFilters, name }) => {
+const BtnClearAllFilters = ({ choosedFilters, applyFilters }) => {
   const isEmpty = (obj) => {
     for (let i in obj) {
       return false;
@@ -12,18 +12,18 @@ const BtnApplyFilter = ({ choosedFilters, applyFilters, name }) => {
   return (
     <button
       type="button"
-      id={s.applyFilterBtn}
+      id={s.clearAllFilterBtn}
       className={
         s.categoriesBtn + " " + (isEmpty(choosedFilters) && "disabled")
       }
       onClick={() => {
         if (isEmpty(choosedFilters)) return;
-        applyFilters(choosedFilters);
+        applyFilters({});
       }}
     >
-      <p className={s.categoriesBtnText}>{name}</p>
+      <p className={s.categoriesBtnText}>сбросить</p>
     </button>
   );
 };
 
-export default BtnApplyFilter;
+export default BtnClearAllFilters;

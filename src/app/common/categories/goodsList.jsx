@@ -1,21 +1,31 @@
 import s from "./categories.module.css";
 import arrowDown from "../../img/arrowDown.svg";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const GoodsList = ({ categories, chooseCategory, opacity }) => {
-  const [curCat, setCurCat] = useState([]);
-  const [catList, setCatList] = useState([]);
-  const [choosedCategory, setChoosedCategory] = useState({});
-
-  useEffect(() => setCatList(categories), [categories]);
-
+const GoodsList = ({
+  curCat,
+  catList,
+  opacity,
+  setCurCat,
+  setCatList,
+  chooseCategory,
+  choosedCategory,
+  setCatListDefault,
+  setChoosedCategory,
+}) => {
   const displayCat = (catItem) => {
     let allSumOpenCat = 0;
     const catItemCats = catItem.values;
     const lIndexOfCurCat = curCat.length - 1;
     curCat.map((category) => (allSumOpenCat += category.values.length));
 
-    if (!catItem.values) {
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~ убрать категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    if (!catItem.values && catItem.name === choosedCategory.name) {
+      chooseCategory("");
+      setChoosedCategory({});
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор/смена категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    else if (!catItem.values) {
       chooseCategory(catItem.name);
       setChoosedCategory(catItem);
     }
@@ -42,7 +52,6 @@ const GoodsList = ({ categories, chooseCategory, opacity }) => {
       curCat.includes(catItem) &&
       curCat[0] !== catItem
     ) {
-      console.log(catList.indexOf(catItem));
       setCatList(
         catList
           .slice(0, catList.indexOf(catItem))
@@ -57,7 +66,7 @@ const GoodsList = ({ categories, chooseCategory, opacity }) => {
       curCat.includes(catItem) &&
       curCat[0] === catItem
     ) {
-      setCatList(categories);
+      setCatListDefault();
       setCurCat([]);
     }
   };

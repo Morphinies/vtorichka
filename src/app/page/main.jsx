@@ -10,7 +10,9 @@ const Main = () => {
   const [filters, setFilters] = useState([]);
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
-  const [appliedFilters, setAppliedFilters] = useState("");
+  const [appliedFilters, setAppliedFilters] = useState({});
+
+  // console.log(appliedFilters);
 
   useEffect(() => {
     api.categoryList.fetchAll().then((data) => setCategories(data));
@@ -24,9 +26,8 @@ const Main = () => {
     setCategory(category);
   };
 
-  const chooseFilters = (filters) => {
+  const applyFilters = (filters) => {
     setAppliedFilters(filters);
-    // console.log(appliedFilters);
   };
 
   return (
@@ -43,7 +44,7 @@ const Main = () => {
         <Categories
           btnName="фильтры"
           categories={filters}
-          chooseCategory={chooseFilters}
+          applyFilters={applyFilters}
         />
       </main>
       <Footer />

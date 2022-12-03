@@ -3,11 +3,11 @@ import BtnClearFilter from "./btnClearFilter";
 import s from "../categories/categories.module.css";
 
 const InputPrice = ({
-  setChoosedFilters,
-  choosedFilters,
   name,
   label,
   placeholder,
+  choosedFilters,
+  setChoosedFilters,
 }) => {
   let regExpNumber = /\d/g;
 
@@ -20,6 +20,7 @@ const InputPrice = ({
       <label htmlFor={name} className={s.inputLabel}>
         {label}
       </label>
+
       <input
         type="text"
         value={

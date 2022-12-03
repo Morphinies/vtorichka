@@ -1,13 +1,17 @@
 import InputPrice from "./inputPrice";
-import React, { useState } from "react";
+import React from "react";
 import BtnOpenFilter from "./btnOpenFilter";
-import s from "../categories/categories.module.css";
 import BtnApplyFilter from "./btnApplyFilter";
+import s from "../categories/categories.module.css";
 
-const FiltersList = ({ filters, chooseFilters, opacity }) => {
-  const [openedFilters, setOpenedFilters] = useState([]);
-  const [choosedFilters, setChoosedFilters] = useState({});
-
+const FiltersList = ({
+  opacity,
+  applyFilters,
+  openedFilters,
+  choosedFilters,
+  setOpenedFilters,
+  setChoosedFilters,
+}) => {
   const displayFilter = (item) => {
     openedFilters.includes(item)
       ? setOpenedFilters((arr) =>
@@ -19,7 +23,7 @@ const FiltersList = ({ filters, chooseFilters, opacity }) => {
   return (
     <form className={s.filtersForm} id={!opacity ? s.opacity : ""}>
       <BtnOpenFilter
-        filterName={"цена"}
+        filterName="цена"
         displayFilter={displayFilter}
         opened={openedFilters.includes("цена")}
       />
@@ -41,7 +45,11 @@ const FiltersList = ({ filters, chooseFilters, opacity }) => {
           />
         </>
       )}
-      <BtnApplyFilter choosedFilters={choosedFilters} />
+      <BtnApplyFilter
+        choosedFilters={choosedFilters}
+        applyFilters={applyFilters}
+        name="применить"
+      />
     </form>
   );
 };

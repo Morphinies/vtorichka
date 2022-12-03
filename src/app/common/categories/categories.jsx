@@ -6,17 +6,28 @@ import CategoriesDisplayBtn from "./categoriesDisplayBtn";
 import GoodsList from "./goodsList";
 import FiltersList from "../filters/filtersList";
 
-const Categories = ({ chooseCategory, categories, btnName }) => {
-  const [categoriesHidden, setCategoriesHidden] = useState(true);
+const Categories = ({ chooseCategory, applyFilters, categories, btnName }) => {
+  const [curCat, setCurCat] = useState([]);
+  const [catList, setCatList] = useState([]);
   const [opacity, setOpacity] = useState(true);
+  const [openedFilters, setOpenedFilters] = useState([]);
+  const [choosedFilters, setChoosedFilters] = useState({});
+  const [choosedCategory, setChoosedCategory] = useState({});
+  const [categoriesHidden, setCategoriesHidden] = useState(true);
+
+  useEffect(() => setCatList(categories), [categories]);
 
   useEffect(() => {
     categories && categories.length && setCategoriesHidden(false);
   }, [categories]);
 
   const categoriesHide = (display) => {
-    setCategoriesHidden(display);
     setOpacity(true);
+    setCategoriesHidden(display);
+  };
+
+  const setCatListDefault = () => {
+    setCatList(categories);
   };
 
   useEffect(() => {
@@ -27,24 +38,33 @@ const Categories = ({ chooseCategory, categories, btnName }) => {
     <nav className={s.categoriesNav}>
       <CategoriesDisplayBtn
         btnName={btnName}
-        img={categoriesHidden ? arrowDown : cancel}
-        display={categoriesHidden ? false : true}
         setCategoriesHidden={categoriesHide}
+        display={categoriesHidden ? false : true}
+        img={categoriesHidden ? arrowDown : cancel}
       />
 
       {!categoriesHidden && btnName === "каталог" && (
         <GoodsList
+          curCat={curCat}
           opacity={opacity}
-          categories={categories}
+          catList={catList}
+          setCurCat={setCurCat}
+          setCatList={setCatList}
           chooseCategory={chooseCategory}
+          choosedCategory={choosedCategory}
+          setCatListDefault={setCatListDefault}
+          setChoosedCategory={setChoosedCategory}
         />
       )}
 
       {!categoriesHidden && btnName === "фильтры" && (
         <FiltersList
           opacity={opacity}
-          categories={categories}
-          chooseCategory={chooseCategory}
+          applyFilters={applyFilters}
+          openedFilters={openedFilters}
+          choosedFilters={choosedFilters}
+          setOpenedFilters={setOpenedFilters}
+          setChoosedFilters={setChoosedFilters}
         />
       )}
     </nav>
