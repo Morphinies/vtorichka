@@ -141,9 +141,40 @@
   rotate: 270deg;
 }
 
+/* type Filter */
+
+.inputCheckBox {
+  border: none;
+  text-align: left;
+  padding: 0.8rem 2rem;
+  grid-template-columns: 1fr auto;
+}
+
+.inputCheckBox,
+.inputCheckBox * {
+  cursor: pointer;
+}
+
+.inputCheckBox:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.checkBox {
+  padding: 1px;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 3px;
+  border: 1px solid #16191a;
+}
+
+.checkBoxHidden {
+  display: none;
+}
+
 /*  media  */
 @media (max-width: 480px) {
   .categoriesNav {
+    justify-self: stretch;
     margin-top: 0;
     border-radius: 0;
     background: linear-gradient(180deg, #16191a 0%, #353d3f 100%);

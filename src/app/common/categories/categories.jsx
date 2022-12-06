@@ -6,12 +6,22 @@ import CategoriesDisplayBtn from "./categoriesDisplayBtn";
 import GoodsList from "./goodsList";
 import FiltersList from "../filters/filtersList";
 
-const Categories = ({ chooseCategory, applyFilters, categories, btnName }) => {
+const Categories = ({
+  btnName,
+  categories,
+  applyFilters,
+  appliedFilters,
+  chooseCategory,
+  defaultFilters,
+}) => {
   const [curCat, setCurCat] = useState([]);
   const [catList, setCatList] = useState([]);
   const [opacity, setOpacity] = useState(true);
   const [openedFilters, setOpenedFilters] = useState([]);
-  const [choosedFilters, setChoosedFilters] = useState({});
+  const [choosedFilters, setChoosedFilters] = useState({
+    checkBox1: true,
+    checkBox2: true,
+  });
   const [choosedCategory, setChoosedCategory] = useState({});
   const [categoriesHidden, setCategoriesHidden] = useState(true);
 
@@ -38,6 +48,8 @@ const Categories = ({ chooseCategory, applyFilters, categories, btnName }) => {
     <nav className={s.categoriesNav}>
       <CategoriesDisplayBtn
         btnName={btnName}
+        appliedFilters={appliedFilters}
+        defaultFilters={defaultFilters}
         setCategoriesHidden={categoriesHide}
         display={categoriesHidden ? false : true}
         img={categoriesHidden ? arrowDown : cancel}
@@ -63,6 +75,8 @@ const Categories = ({ chooseCategory, applyFilters, categories, btnName }) => {
           applyFilters={applyFilters}
           openedFilters={openedFilters}
           choosedFilters={choosedFilters}
+          appliedFilters={appliedFilters}
+          defaultFilters={defaultFilters}
           setOpenedFilters={setOpenedFilters}
           setChoosedFilters={setChoosedFilters}
         />

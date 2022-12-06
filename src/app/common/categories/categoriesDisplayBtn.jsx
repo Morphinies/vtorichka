@@ -2,10 +2,10 @@ import React from "react";
 import s from "./categories.module.css";
 
 const CategoriesDisplayBtn = ({
-  setCategoriesHidden,
   img,
   display,
   btnName,
+  setCategoriesHidden,
 }) => {
   return (
     <button

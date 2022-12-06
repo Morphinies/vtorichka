@@ -10,9 +10,14 @@ const Main = () => {
   const [filters, setFilters] = useState([]);
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
-  const [appliedFilters, setAppliedFilters] = useState({});
-
-  // console.log(appliedFilters);
+  const [appliedFilters, setAppliedFilters] = useState({
+    checkBox1: true,
+    checkBox2: true,
+  });
+  const defaultFilters = {
+    checkBox1: true,
+    checkBox2: true,
+  };
 
   useEffect(() => {
     api.categoryList.fetchAll().then((data) => setCategories(data));
@@ -22,14 +27,6 @@ const Main = () => {
     api.filterList.fetchAll().then((data) => setFilters(data));
   });
 
-  const chooseCategory = (category) => {
-    setCategory(category);
-  };
-
-  const applyFilters = (filters) => {
-    setAppliedFilters(filters);
-  };
-
   return (
     <div className="wrapper">
       <Header />
@@ -38,13 +35,16 @@ const Main = () => {
         <Categories
           btnName="каталог"
           categories={categories}
-          chooseCategory={chooseCategory}
+          chooseCategory={setCategory}
+          defaultFilters={defaultFilters}
         />
         <Products category={category} />
         <Categories
           btnName="фильтры"
           categories={filters}
-          applyFilters={applyFilters}
+          defaultFilters={defaultFilters}
+          appliedFilters={appliedFilters}
+          applyFilters={setAppliedFilters}
         />
       </main>
       <Footer />
