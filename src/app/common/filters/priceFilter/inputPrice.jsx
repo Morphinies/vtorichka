@@ -26,7 +26,7 @@ const InputPrice = ({
         value={
           (choosedFilters[name] && regExpPrice(choosedFilters[name])) || ""
         }
-        maxLength={10}
+        maxLength={12}
         id={s.name}
         placeholder={placeholder}
         className={s.priceInput}

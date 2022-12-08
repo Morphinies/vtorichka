@@ -7,6 +7,7 @@ import GoodsList from "./goodsList";
 import FiltersList from "../filters/filtersList";
 
 const Categories = ({
+  id,
   btnName,
   categories,
   applyFilters,
@@ -45,7 +46,7 @@ const Categories = ({
   }, [categoriesHidden]);
 
   return (
-    <nav className={s.categoriesNav}>
+    <nav className={s.categoriesNav} id={s["categoriesNav" + id]}>
       <CategoriesDisplayBtn
         btnName={btnName}
         appliedFilters={appliedFilters}

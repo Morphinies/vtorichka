@@ -16,7 +16,7 @@ const CategoriesDisplayBtn = ({
       <p className={s.categoriesBtnText}>{btnName}</p>
       <img
         className={s.imgDisplayCat}
-        id={display ? "" : s.imgArrowDown}
+        id={display ? "" : s.hidden}
         src={img}
         alt=""
       />

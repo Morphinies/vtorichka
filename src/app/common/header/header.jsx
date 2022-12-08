@@ -12,10 +12,10 @@ const Header = () => {
         <h1 className={s.logoName}>вторичка</h1>
       </div>
       <nav className={s.navBlock}>
-        <button className="btn" id={s.headerBtn}>
+        <button className={"btn " + s.headerBtn} id={s.logInBtn}>
           вход
         </button>
-        <button className="btn " id={s.headerBtn}>
+        <button className={"btn " + s.headerBtn} id={s.regBtn}>
           регистрация
         </button>
       </nav>

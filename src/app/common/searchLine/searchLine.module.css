@@ -1,23 +1,27 @@
+/* ************************ common ************************ */
 .nav {
   display: grid;
-  grid-area: 1/1/1/3;
+  grid-area: 1/1/2/3;
   align-self: flex-start;
 }
 
+/* ************************ search line ************************ */
 .form {
-  width: 60%;
+  width: 50%;
   display: grid;
   column-gap: 2px;
   justify-self: center;
+  align-self: flex-start;
   padding: 0 2px 2px 2px;
-  border-radius: 0 0 2px 2px;
+  border-radius: 0 0 5px 5px;
   background-color: #16191a;
   grid-template-columns: 1fr auto;
 }
 
+/* ************************ input ************************ */
 .input {
-  padding: 1rem;
-  border-radius: 0 0 2px 2px;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0 3px;
   background-color: #f6f6f6;
 }
 
@@ -26,41 +30,61 @@
 }
 
 .input:active,
-:focus {
+.input:focus {
   color: #16191a;
   background-color: #fff;
 }
 
+/* ************************ input button ************************ */
 #searchBtn {
-  border-radius: 0 0 2px 2px;
+  transition: all 0.3s;
+  border-radius: 0 0 3px 0;
+  background-color: #f6f6f6;
+}
+
+#searchBtn:hover {
+  border-radius: 5px;
+  background-color: #16191a;
+}
+
+#searchBtn:hover .searchImg {
+  filter: invert(1);
 }
 
 .searchImg {
   height: auto;
+  transition: all 0.3s;
 }
 
+/* ************************ media ************************ */
 @media (max-width: 980px) {
   .form {
-    width: 80%;
+    width: 70%;
   }
 }
 
 @media (max-width: 480px) {
   .nav {
-    grid-area: auto;
+    display: grid;
+    grid-area: 3/1/4/2;
+    padding: 1rem;
+    align-self: flex-start;
   }
+
   .form {
-    padding: 0;
     width: 100%;
-    border-radius: 0;
+    padding: 2px;
+    border-radius: 5px;
   }
 
   #searchBtn {
     padding: 0 1.5rem;
-    border-radius: 0;
+    border-radius: 0 3px 3px 0;
   }
 
   .input {
-    border-radius: 0;
+    min-width: 100px;
+    padding: 1rem 1rem;
+    border-radius: 3px 0 0 3px;
   }
 }

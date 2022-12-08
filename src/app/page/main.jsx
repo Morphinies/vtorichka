@@ -33,6 +33,7 @@ const Main = () => {
       <main className="main">
         <SearchLine />
         <Categories
+          id="1"
           btnName="каталог"
           categories={categories}
           chooseCategory={setCategory}
@@ -40,6 +41,7 @@ const Main = () => {
         />
         <Products category={category} />
         <Categories
+          id="2"
           btnName="фильтры"
           categories={filters}
           defaultFilters={defaultFilters}
