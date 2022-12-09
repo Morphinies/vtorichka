@@ -37,7 +37,6 @@ const Main = () => {
           btnName="каталог"
           categories={categories}
           chooseCategory={setCategory}
-          defaultFilters={defaultFilters}
         />
         <Products category={category} />
         <Categories

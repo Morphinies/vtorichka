@@ -40,6 +40,7 @@ const FiltersList = ({
         choosedFilters={choosedFilters}
         setChoosedFilters={setChoosedFilters}
       />
+
       <TypeFilter
         displayFilter={displayFilter}
         openedFilters={openedFilters}
@@ -53,6 +54,7 @@ const FiltersList = ({
         applyFilters={applyFilters}
         name="применить"
       />
+
       {!equalObjects(defaultFilters, appliedFilters) && (
         <BtnClearAllFilters
           name="сбросить"

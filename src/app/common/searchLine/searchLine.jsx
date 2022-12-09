@@ -4,6 +4,7 @@ import searchImg from "../../img/search.svg";
 
 const SearchLine = () => {
   const [textSearch, setTextSearch] = useState("");
+
   const search = (e) => {
     e.preventDefault();
     textSearch !== "" && console.log(textSearch);

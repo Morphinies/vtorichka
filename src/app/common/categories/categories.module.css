@@ -30,6 +30,7 @@
   cursor: pointer;
   column-gap: 1rem;
   padding: 0.7rem 2rem;
+  transition: all 0.3s;
   grid-template-columns: 1fr auto;
   background-color: rgba(0, 0, 0, 0);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -237,7 +238,7 @@
   .inputContainer {
     margin-right: 0;
     column-gap: 1rem;
-    padding: 0.7rem 3rem;
+    padding: 1rem 3rem;
   }
 
   .priceInput {
@@ -253,5 +254,9 @@
   #choosedCatItem {
     padding-left: 3rem;
     padding-right: 3rem;
+  }
+
+  #animateBtn {
+    background-color: #fff;
   }
 }

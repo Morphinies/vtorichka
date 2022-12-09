@@ -1,10 +1,10 @@
 import s from "./categories.module.css";
+import Catalog from "./catalog/catalog";
 import cancel from "../../img/cancel.svg";
+import FiltersList from "./filters/filtersList";
 import arrowDown from "../../img/arrowDown.svg";
 import React, { useEffect, useState } from "react";
 import CategoriesDisplayBtn from "./categoriesDisplayBtn";
-import Catalog from "./catalog/catalog";
-import FiltersList from "./filters/filtersList";
 
 const Categories = ({
   id,
@@ -19,28 +19,25 @@ const Categories = ({
   const [catList, setCatList] = useState([]);
   const [opacity, setOpacity] = useState(true);
   const [openedFilters, setOpenedFilters] = useState([]);
-  const [choosedFilters, setChoosedFilters] = useState({
-    checkBox1: true,
-    checkBox2: true,
-  });
   const [choosedCategory, setChoosedCategory] = useState({});
   const [categoriesHidden, setCategoriesHidden] = useState(true);
+  const [choosedFilters, setChoosedFilters] = useState(defaultFilters);
 
+  // создать отображаемый список категорий
   useEffect(() => setCatList(categories), [categories]);
 
-  useEffect(() => {
-    categories && categories.length && setCategoriesHidden(false);
-  }, [categories]);
-
+  // отображение категорий true/false
   const categoriesHide = (display) => {
     setOpacity(true);
     setCategoriesHidden(display);
   };
 
+  // возвращение к первоначальному каталогу
   const setCatListDefault = () => {
     setCatList(categories);
   };
 
+  // плавное появление каталога/фильтров
   useEffect(() => {
     setTimeout(() => setOpacity(false), 100);
   }, [categoriesHidden]);
@@ -49,8 +46,6 @@ const Categories = ({
     <nav className={s.categoriesNav} id={s["categoriesNav" + id]}>
       <CategoriesDisplayBtn
         btnName={btnName}
-        appliedFilters={appliedFilters}
-        defaultFilters={defaultFilters}
         setCategoriesHidden={categoriesHide}
         display={categoriesHidden ? false : true}
         img={categoriesHidden ? arrowDown : cancel}

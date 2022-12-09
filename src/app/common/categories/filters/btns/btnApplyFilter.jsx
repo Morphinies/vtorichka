@@ -17,7 +17,7 @@ const BtnApplyFilter = ({
   return (
     <button
       type="button"
-      id={s.applyFilterBtn}
+      id={s.catBtnApply}
       className={
         s.categoriesBtn +
         " " +
