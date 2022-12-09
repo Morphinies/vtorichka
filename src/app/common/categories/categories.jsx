@@ -3,8 +3,8 @@ import cancel from "../../img/cancel.svg";
 import arrowDown from "../../img/arrowDown.svg";
 import React, { useEffect, useState } from "react";
 import CategoriesDisplayBtn from "./categoriesDisplayBtn";
-import GoodsList from "./goodsList";
-import FiltersList from "../filters/filtersList";
+import Catalog from "./catalog/catalog";
+import FiltersList from "./filters/filtersList";
 
 const Categories = ({
   id,
@@ -57,7 +57,7 @@ const Categories = ({
       />
 
       {!categoriesHidden && btnName === "каталог" && (
-        <GoodsList
+        <Catalog
           curCat={curCat}
           opacity={opacity}
           catList={catList}

@@ -1,5 +1,5 @@
 import React from "react";
-import s from "../../categories/categories.module.css";
+import s from "../../../categories/categories.module.css";
 
 const BtnApplyFilter = ({
   name,

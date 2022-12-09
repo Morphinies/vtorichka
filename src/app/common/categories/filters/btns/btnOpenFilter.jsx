@@ -1,6 +1,6 @@
 import React from "react";
-import arrowDown from "../../../img/arrowDown.svg";
-import s from "../../categories/categories.module.css";
+import arrowDown from "../../../../img/arrowDown.svg";
+import s from "../../../categories/categories.module.css";
 
 const BtnOpenFilter = ({ filterName, displayFilter, opened }) => {
   return (

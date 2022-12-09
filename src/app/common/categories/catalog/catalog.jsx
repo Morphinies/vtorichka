@@ -1,8 +1,8 @@
-import s from "./categories.module.css";
-import arrowDown from "../../img/arrowDown.svg";
 import React from "react";
+import s from "../categories.module.css";
+import arrowDown from "../../../img/arrowDown.svg";
 
-const GoodsList = ({
+const Catalog = ({
   curCat,
   catList,
   opacity,
@@ -99,4 +99,4 @@ const GoodsList = ({
   );
 };
 
-export default GoodsList;
+export default Catalog;

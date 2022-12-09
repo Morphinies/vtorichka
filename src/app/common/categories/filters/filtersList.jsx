@@ -1,6 +1,6 @@
 import React from "react";
 import PriceFilter from "./priceFilter/priceFilter";
-import s from "../categories/categories.module.css";
+import s from "../../categories/categories.module.css";
 import BtnApplyFilter from "./btns/btnApplyFilter";
 import BtnClearAllFilters from "./btns/btnClearAllFilters";
 import TypeFilter from "./typeFilter/typeFilter";

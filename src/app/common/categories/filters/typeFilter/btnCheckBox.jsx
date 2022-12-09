@@ -1,6 +1,6 @@
 import React from "react";
-import checked from "../../../img/checked.svg";
-import s from "../../categories/categories.module.css";
+import checked from "../../../../img/checked.svg";
+import s from "../../../categories/categories.module.css";
 
 const BtnCheckBox = ({ setChoosedFilters, choosedFilters, label, name }) => {
   return (

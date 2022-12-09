@@ -1,6 +1,6 @@
 import React from "react";
 import BtnClearFilter from "../btns/btnClearFilter";
-import s from "../../categories/categories.module.css";
+import s from "../../../categories/categories.module.css";
 
 const InputPrice = ({
   name,
