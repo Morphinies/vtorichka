@@ -261,7 +261,7 @@
   }
 
   /* ************************ wave effect  ************************ */
-  #catBtnApply {
+  .wave {
     overflow: hidden;
     position: relative;
   }
