@@ -259,4 +259,38 @@
   #animateBtn {
     background-color: #fff;
   }
+
+  /* ************************ wave effect  ************************ */
+  #catBtnApply {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .wave::after {
+    content: "";
+    animation-name: wave;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes wave {
+    0% {
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+      left: -50%;
+      width: 50%;
+      position: absolute;
+      background: linear-gradient(
+        90deg,
+        #ffffff00 0%,
+        #ffffff00 30%,
+        #ffffff 100%
+      );
+    }
+    80% {
+      opacity: 1;
+      left: 150%;
+    }
+  }
 }
