@@ -42,7 +42,7 @@ const BtnApplyFilter = ({
   return (
     <button
       type="button"
-      id={s.catBtnApply}
+      id={s.clickAnimate}
       className={
         s.categoriesBtn +
         (equalObjects(choosedFilters, appliedFilters) ? " disabled " : " ") +
