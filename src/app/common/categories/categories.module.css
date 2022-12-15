@@ -269,8 +269,7 @@
   .wave::after {
     content: "";
     animation-name: wave;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
+    animation-duration: 1.5s;
   }
 
   @keyframes wave {
@@ -289,8 +288,10 @@
       );
     }
     80% {
+      left: 0;
       opacity: 1;
-      left: 150%;
+      right: -50%;
+      width: 200%;
     }
   }
 }

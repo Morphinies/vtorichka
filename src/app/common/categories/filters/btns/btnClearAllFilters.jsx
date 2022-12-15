@@ -7,6 +7,7 @@ const BtnClearAllFilters = ({
   choosedFilters,
   setOpenedFilters,
   setChoosedFilters,
+  setCategoriesHidden,
 }) => {
   return (
     <button
@@ -17,6 +18,7 @@ const BtnClearAllFilters = ({
         applyFilters({ ...defaultFilters });
         setOpenedFilters([]);
         setChoosedFilters({ ...defaultFilters });
+        setCategoriesHidden(true);
       }}
     >
       <p className={s.categoriesBtnText}>сбросить</p>

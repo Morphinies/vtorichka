@@ -14,6 +14,7 @@ const FiltersList = ({
   defaultFilters,
   setOpenedFilters,
   setChoosedFilters,
+  setCategoriesHidden,
 }) => {
   const displayFilter = (item) => {
     openedFilters.includes(item)
@@ -63,6 +64,7 @@ const FiltersList = ({
           defaultFilters={defaultFilters}
           setOpenedFilters={setOpenedFilters}
           setChoosedFilters={setChoosedFilters}
+          setCategoriesHidden={setCategoriesHidden}
         />
       )}
     </form>

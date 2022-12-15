@@ -15,13 +15,10 @@ const BtnApplyFilter = ({
     );
   };
 
+  // волновой эффект
   let timeOut = useRef();
   const [waveStyle, setWaveStyle] = useState("");
-
-  console.log(waveStyle);
-
   const waveOn = () => {
-    // волновой эффект
     if (!!waveStyle) {
       setWaveStyle("");
       setTimeout(() => {

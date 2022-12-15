@@ -75,6 +75,7 @@ const Categories = ({
           defaultFilters={defaultFilters}
           setOpenedFilters={setOpenedFilters}
           setChoosedFilters={setChoosedFilters}
+          setCategoriesHidden={setCategoriesHidden}
         />
       )}
     </nav>
