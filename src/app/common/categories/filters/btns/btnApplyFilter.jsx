@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useRef } from "react";
+import React from "react";
 import s from "../../../categories/categories.module.css";
 
 const BtnApplyFilter = ({
@@ -7,6 +6,7 @@ const BtnApplyFilter = ({
   applyFilters,
   choosedFilters,
   appliedFilters,
+  setCategoriesHidden,
 }) => {
   const equalObjects = (obj1, obj2) => {
     return (
@@ -15,40 +15,18 @@ const BtnApplyFilter = ({
     );
   };
 
-  // волновой эффект
-  let timeOut = useRef();
-  const [waveStyle, setWaveStyle] = useState("");
-  const waveOn = () => {
-    if (!!waveStyle) {
-      setWaveStyle("");
-      setTimeout(() => {
-        setWaveStyle(s.wave);
-      }, 100);
-    } else if (!waveStyle) {
-      setWaveStyle(s.wave);
-    }
-
-    // таймер выполнения волнового эффекта
-    timeOut.current && clearTimeout(timeOut.current);
-    timeOut.current = setTimeout(() => {
-      setWaveStyle("");
-      timeOut.current = undefined;
-    }, 2000);
-  };
-
   return (
     <button
       type="button"
       id={s.clickAnimate}
       className={
         s.categoriesBtn +
-        (equalObjects(choosedFilters, appliedFilters) ? " disabled " : " ") +
-        waveStyle
+        (equalObjects(choosedFilters, appliedFilters) ? " disabled " : "")
       }
       onClick={() => {
         if (equalObjects(choosedFilters, appliedFilters)) return;
         applyFilters(choosedFilters);
-        waveOn();
+        setCategoriesHidden(true);
       }}
     >
       <p className={s.categoriesBtnText}>{name}</p>

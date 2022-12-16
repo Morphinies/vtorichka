@@ -50,10 +50,11 @@ const FiltersList = ({
       />
 
       <BtnApplyFilter
+        name="применить"
+        applyFilters={applyFilters}
         appliedFilters={appliedFilters}
         choosedFilters={choosedFilters}
-        applyFilters={applyFilters}
-        name="применить"
+        setCategoriesHidden={setCategoriesHidden}
       />
 
       {!equalObjects(defaultFilters, appliedFilters) && (

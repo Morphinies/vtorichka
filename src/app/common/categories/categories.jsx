@@ -45,7 +45,7 @@ const Categories = ({
   return (
     <nav className={s.categoriesNav} id={s["categoriesNav" + id]}>
       <CategoriesDisplayBtn
-        btnName={btnName}
+        btnName={btnName + (appliedFilters != defaultFilters)} //!!!
         setCategoriesHidden={categoriesHide}
         display={categoriesHidden ? false : true}
         img={categoriesHidden ? arrowDown : cancel}
