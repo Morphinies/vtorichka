@@ -154,6 +154,10 @@
   rotate: 270deg;
 }
 
+.filtersBtn .categoriesBtnText {
+  text-align: center;
+}
+
 /* ************************ type filter  ************************ */
 
 .inputCheckBox {

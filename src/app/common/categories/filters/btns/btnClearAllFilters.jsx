@@ -13,7 +13,7 @@ const BtnClearAllFilters = ({
     <button
       type="button"
       id={s.clearAllFilterBtn}
-      className={s.categoriesBtn}
+      className={s.categoriesBtn + " " + s.filtersBtn}
       onClick={() => {
         applyFilters({ ...defaultFilters });
         setOpenedFilters([]);

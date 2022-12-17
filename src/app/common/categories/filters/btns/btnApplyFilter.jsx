@@ -21,6 +21,8 @@ const BtnApplyFilter = ({
       id={s.clickAnimate}
       className={
         s.categoriesBtn +
+        " " +
+        s.filtersBtn +
         (equalObjects(choosedFilters, appliedFilters) ? " disabled " : "")
       }
       onClick={() => {

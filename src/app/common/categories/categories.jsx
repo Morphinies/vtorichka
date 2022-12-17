@@ -42,10 +42,25 @@ const Categories = ({
     setTimeout(() => setOpacity(false), 100);
   }, [categoriesHidden]);
 
+  const equalObjects = (obj1, obj2) => {
+    return (
+      JSON.stringify(Object.entries(obj1).sort()) ===
+      JSON.stringify(Object.entries(obj2).sort())
+    );
+  };
+
   return (
     <nav className={s.categoriesNav} id={s["categoriesNav" + id]}>
       <CategoriesDisplayBtn
-        btnName={btnName + (appliedFilters != defaultFilters)} //!!!
+        btnName={
+          btnName +
+          " " +
+          (appliedFilters
+            ? equalObjects(appliedFilters, defaultFilters)
+              ? ""
+              : "*"
+            : "")
+        } //!!!
         setCategoriesHidden={categoriesHide}
         display={categoriesHidden ? false : true}
         img={categoriesHidden ? arrowDown : cancel}
