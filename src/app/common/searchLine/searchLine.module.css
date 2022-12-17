@@ -105,6 +105,6 @@
   }
 
   #searchBtn:active .searchImg {
-    filter: invert(1);
+    filter: invert(0);
   }
 }
