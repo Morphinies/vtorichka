@@ -39,6 +39,8 @@ const FiltersList = ({
         displayFilter={displayFilter}
         openedFilters={openedFilters}
         choosedFilters={choosedFilters}
+        appliedFilters={appliedFilters}
+        defaultFilters={defaultFilters}
         setChoosedFilters={setChoosedFilters}
       />
 

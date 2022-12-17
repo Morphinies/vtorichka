@@ -299,3 +299,20 @@
     }
   }
 }
+
+@media (hover: none) {
+  #categoriesShowBtn:hover {
+    padding-left: 0.7rem;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  #categoriesHideBtn:hover {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  #categoriesHideBtn:hover .imgDisplayCat,
+  .btnClear:hover .imgDisplayCat {
+    rotate: none;
+  }
+  .categoriesBtn:hover {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}

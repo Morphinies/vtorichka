@@ -93,3 +93,15 @@
     margin-right: 0;
   }
 }
+
+@media (hover: none) {
+  .headerBtn:hover {
+    padding-top: 0.5rem;
+    color: #f6f6f6;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .headerBtn:active {
+    color: inherit;
+    background-color: #f6f6f6;
+  }
+}

@@ -88,3 +88,23 @@
     border-radius: 3px 0 0 3px;
   }
 }
+
+@media (hover: none) {
+  #searchBtn:hover {
+    border-radius: 0 0 3px 0;
+    background-color: #f6f6f6;
+  }
+
+  #searchBtn:hover .searchImg {
+    filter: none;
+  }
+
+  #searchBtn:active {
+    border-radius: 5px;
+    background-color: #16191a;
+  }
+
+  #searchBtn:active .searchImg {
+    filter: invert(1);
+  }
+}
