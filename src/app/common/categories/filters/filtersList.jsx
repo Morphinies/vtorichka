@@ -1,9 +1,8 @@
 import React from "react";
 import PriceFilter from "./priceFilter/priceFilter";
 import s from "../../categories/categories.module.css";
-import BtnApplyFilter from "./btns/btnApplyFilter";
-import BtnClearAllFilters from "./btns/btnClearAllFilters";
 import TypeFilter from "./typeFilter/typeFilter";
+import BtnsApplyFilters from "./btns/btnsApplyFilters";
 
 const FiltersList = ({
   opacity,
@@ -26,13 +25,6 @@ const FiltersList = ({
       : setOpenedFilters((arr) => arr.concat(item));
   };
 
-  const equalObjects = (obj1, obj2) => {
-    return (
-      JSON.stringify(Object.entries(obj1).sort()) ===
-      JSON.stringify(Object.entries(obj2).sort())
-    );
-  };
-
   return (
     <form className={s.filtersForm} id={!opacity ? s.opacity : ""}>
       <PriceFilter
@@ -43,33 +35,22 @@ const FiltersList = ({
         defaultFilters={defaultFilters}
         setChoosedFilters={setChoosedFilters}
       />
-
       <TypeFilter
         displayFilter={displayFilter}
         openedFilters={openedFilters}
         choosedFilters={choosedFilters}
         setChoosedFilters={setChoosedFilters}
       />
-
-      <BtnApplyFilter
-        name="применить"
+      <BtnsApplyFilters
+        name="окей"
         applyFilters={applyFilters}
         appliedFilters={appliedFilters}
         choosedFilters={choosedFilters}
+        defaultFilters={defaultFilters}
+        setOpenedFilters={setOpenedFilters}
+        setChoosedFilters={setChoosedFilters}
         setCategoriesHidden={setCategoriesHidden}
       />
-
-      {!equalObjects(defaultFilters, appliedFilters) && (
-        <BtnClearAllFilters
-          name="сбросить"
-          applyFilters={applyFilters}
-          choosedFilters={choosedFilters}
-          defaultFilters={defaultFilters}
-          setOpenedFilters={setOpenedFilters}
-          setChoosedFilters={setChoosedFilters}
-          setCategoriesHidden={setCategoriesHidden}
-        />
-      )}
     </form>
   );
 };

@@ -23,6 +23,7 @@
 }
 
 .logoBlock:hover .logoImg,
+.logoBlock:active .logoImg,
 .logoBlock:focus .logoImg {
   filter: brightness(1.3);
 }
@@ -32,10 +33,10 @@
 }
 
 .logoName {
+  color: #eee;
   font-weight: 400;
   font-size: 1.2rem;
   align-self: center;
-  color: rgba(246, 246, 246, 0.8);
 }
 
 /* ************************ navigation ************************ */
@@ -46,9 +47,12 @@
 }
 
 .headerBtn {
-  border-top: none;
+  border: none;
+  color: #eee;
   align-self: flex-start;
+  border: 1px solid #eee;
   border-radius: 0 0 5px 5px;
+  border-top: none;
 }
 
 .headerBtn:hover {
@@ -56,6 +60,24 @@
 }
 
 /* ************************ media ************************ */
+
+@media (hover: none) {
+  .headerBtn:hover {
+    padding-top: 0.5rem;
+    color: #f6f6f6;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .headerBtn:active {
+    background-color: rgba(238, 238, 238, 0.2);
+  }
+  .logoBlock:hover .logoImg {
+    filter: none;
+  }
+  .logoBlock:active .logoImg {
+    filter: brightness(1.3);
+  }
+}
+
 @media (max-width: 640px) {
   .header {
     padding: 0 1rem 1rem 1rem;
@@ -66,6 +88,10 @@
   .logoName {
     display: none;
   }
+
+  .headerBtn:hover {
+    padding-top: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -75,6 +101,10 @@
 
   .headerBtn {
     padding: 1rem;
+  }
+
+  .headerBtn:hover {
+    padding-top: 1rem;
   }
 
   .logoBlock {
@@ -91,17 +121,5 @@
 @media (max-width: 380px) {
   .headerBtn:last-child {
     margin-right: 0;
-  }
-}
-
-@media (hover: none) {
-  .headerBtn:hover {
-    padding-top: 0.5rem;
-    color: #f6f6f6;
-    background-color: rgba(0, 0, 0, 0);
-  }
-  .headerBtn:active {
-    color: inherit;
-    background-color: #f6f6f6;
   }
 }

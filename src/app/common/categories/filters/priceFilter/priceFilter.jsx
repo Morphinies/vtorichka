@@ -24,14 +24,14 @@ const PriceFilter = ({
             choosedFilters={choosedFilters}
             placeholder="min"
             name="minPrice"
-            label="от"
+            // label="от"
           />
           <InputPrice
             setChoosedFilters={setChoosedFilters}
             choosedFilters={choosedFilters}
             placeholder="max"
             name="maxPrice"
-            label="до"
+            // label="до"
           />
         </>
       )}

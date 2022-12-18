@@ -37,18 +37,18 @@
 
 /* ************************ input button ************************ */
 #searchBtn {
+  border: none;
   transition: all 0.3s;
   border-radius: 0 0 3px 0;
   background-color: #f6f6f6;
 }
 
 #searchBtn:hover {
-  border-radius: 5px;
-  background-color: #16191a;
+  background-color: #fff;
 }
 
-#searchBtn:hover .searchImg {
-  filter: invert(1);
+#searchBtn:active {
+  background-color: #dedede;
 }
 
 .searchImg {
@@ -57,6 +57,27 @@
 }
 
 /* ************************ media ************************ */
+
+@media (hover: none) {
+  #searchBtn:hover {
+    border-radius: 0 0 3px 0;
+    background-color: #f6f6f6;
+  }
+
+  #searchBtn:hover .searchImg {
+    filter: none;
+  }
+
+  #searchBtn:active {
+    border-radius: 5px;
+    background-color: #16191a;
+  }
+
+  #searchBtn:active .searchImg {
+    filter: invert(1);
+  }
+}
+
 @media (max-width: 980px) {
   .form {
     width: 70%;
@@ -86,25 +107,5 @@
     min-width: 100px;
     padding: 1rem 1rem;
     border-radius: 3px 0 0 3px;
-  }
-}
-
-@media (hover: none) {
-  #searchBtn:hover {
-    border-radius: 0 0 3px 0;
-    background-color: #f6f6f6;
-  }
-
-  #searchBtn:hover .searchImg {
-    filter: none;
-  }
-
-  #searchBtn:active {
-    border-radius: 5px;
-    background-color: #16191a;
-  }
-
-  #searchBtn:active .searchImg {
-    filter: invert(0);
   }
 }

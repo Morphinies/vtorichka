@@ -7,6 +7,7 @@ import Products from "../common/products/products";
 import api from "../api";
 
 const Main = () => {
+  const [openedCat, setOpenedCat] = useState("");
   const [filters, setFilters] = useState([]);
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
@@ -34,6 +35,8 @@ const Main = () => {
         <SearchLine />
         <Categories
           id="1"
+          openedCat={openedCat}
+          setOpenedCat={setOpenedCat}
           btnName="каталог"
           categories={categories}
           chooseCategory={setCategory}
@@ -41,6 +44,8 @@ const Main = () => {
         <Products category={category} />
         <Categories
           id="2"
+          openedCat={openedCat}
+          setOpenedCat={setOpenedCat}
           btnName="фильтры"
           categories={filters}
           defaultFilters={defaultFilters}

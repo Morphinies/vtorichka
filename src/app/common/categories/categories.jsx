@@ -50,7 +50,12 @@ const Categories = ({
   };
 
   return (
-    <nav className={s.categoriesNav} id={s["categoriesNav" + id]}>
+    <nav
+      className={
+        s.categoriesNav + " " + (categoriesHidden ? "" : s.catNavOpened)
+      }
+      id={s["categoriesNav" + id]}
+    >
       <CategoriesDisplayBtn
         btnName={
           btnName +
@@ -60,7 +65,7 @@ const Categories = ({
               ? ""
               : "*"
             : "")
-        } //!!!
+        }
         setCategoriesHidden={categoriesHide}
         display={categoriesHidden ? false : true}
         img={categoriesHidden ? arrowDown : cancel}

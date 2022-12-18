@@ -17,9 +17,9 @@ const InputPrice = ({
 
   return (
     <div className={s.inputContainer}>
-      <label htmlFor={name} className={s.inputLabel}>
+      {/* <label htmlFor={name} className={s.inputLabel}>
         {label}
-      </label>
+      </label> */}
 
       <input
         type="text"

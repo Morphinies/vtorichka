@@ -11,7 +11,9 @@ const CategoriesDisplayBtn = ({
     <button
       className={s.categoriesBtn}
       id={display ? s.categoriesHideBtn : s.categoriesShowBtn}
-      onClick={() => setCategoriesHidden(display)}
+      onClick={() => {
+        setCategoriesHidden(display);
+      }}
     >
       <p className={s.categoriesBtnText}>{btnName}</p>
       <img
