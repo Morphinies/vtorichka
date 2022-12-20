@@ -57,6 +57,11 @@
 
 .headerBtn:hover {
   padding-top: 1rem;
+  background-color: rgba(238, 238, 238, 0.1);
+}
+
+.headerBtn:active {
+  background-color: rgba(238, 238, 238, 0.15);
 }
 
 /* ************************ media ************************ */

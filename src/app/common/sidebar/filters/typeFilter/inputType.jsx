@@ -1,17 +1,17 @@
 import React from "react";
-import BtnCheckBox from "./btnCheckBox";
+import CheckBox from "./checkBox";
 
 const InputType = ({ choosedFilters, setChoosedFilters }) => {
   return (
     <>
-      <BtnCheckBox
+      <CheckBox
         label="б/у"
         name="checkBox1"
         choosedFilters={choosedFilters}
         setChoosedFilters={setChoosedFilters}
       />
 
-      <BtnCheckBox
+      <CheckBox
         label="новое"
         name="checkBox2"
         choosedFilters={choosedFilters}

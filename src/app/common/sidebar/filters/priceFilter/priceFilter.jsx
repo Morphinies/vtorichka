@@ -1,14 +1,14 @@
 import React from "react";
-import BtnOpenFilter from "../btns/btnOpenFilter";
 import InputPrice from "./inputPrice";
+import BtnOpenFilter from "../btns/btnOpenFilter";
 
 const PriceFilter = ({
   displayFilter,
   openedFilters,
   choosedFilters,
   setChoosedFilters,
-  appliedFilters,
-  defaultFilters,
+  // appliedFilters,
+  // defaultFilters,
 }) => {
   return (
     <>
@@ -17,6 +17,7 @@ const PriceFilter = ({
         displayFilter={displayFilter}
         opened={openedFilters.includes("цена")}
       />
+
       {openedFilters.includes("цена") && (
         <>
           <InputPrice
@@ -24,14 +25,12 @@ const PriceFilter = ({
             choosedFilters={choosedFilters}
             placeholder="min"
             name="minPrice"
-            // label="от"
           />
           <InputPrice
             setChoosedFilters={setChoosedFilters}
             choosedFilters={choosedFilters}
             placeholder="max"
             name="maxPrice"
-            // label="до"
           />
         </>
       )}

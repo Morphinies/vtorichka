@@ -1,11 +1,10 @@
 import React from "react";
-import PriceFilter from "../../sidebar/filters/priceFilter/priceFilter";
-import s from "../../categories/categories.module.css";
-import TypeFilter from "../../sidebar/filters/typeFilter/typeFilter";
-import BtnsApplyFilters from "./btns/btnsApplyFilters";
+import s from "./filters.module.css";
+import TypeFilter from "./typeFilter/typeFilter";
+import PriceFilter from "./priceFilter/priceFilter";
+// import BtnsApplyFilters from "./btns/btnsApplyFilters";
 
-const FiltersList = ({
-  opacity,
+const Filters = ({
   applyFilters,
   openedFilters,
   choosedFilters,
@@ -26,7 +25,7 @@ const FiltersList = ({
   };
 
   return (
-    <form className={s.filtersForm} id={!opacity ? s.opacity : ""}>
+    <form className={s.filtersForm}>
       <PriceFilter
         displayFilter={displayFilter}
         openedFilters={openedFilters}
@@ -41,8 +40,7 @@ const FiltersList = ({
         choosedFilters={choosedFilters}
         setChoosedFilters={setChoosedFilters}
       />
-      <BtnsApplyFilters
-        name="окей"
+      {/* <BtnsApplyFilters
         applyFilters={applyFilters}
         appliedFilters={appliedFilters}
         choosedFilters={choosedFilters}
@@ -50,9 +48,9 @@ const FiltersList = ({
         setOpenedFilters={setOpenedFilters}
         setChoosedFilters={setChoosedFilters}
         setCategoriesHidden={setCategoriesHidden}
-      />
+      /> */}
     </form>
   );
 };
 
-export default FiltersList;
+export default Filters;

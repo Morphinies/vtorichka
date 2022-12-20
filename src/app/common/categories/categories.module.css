@@ -142,12 +142,6 @@
   color: initial;
 }
 
-/* ************************ filters  ************************ */
-.filtersForm {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
 /* ************************ price filter  ************************ */
 .inputContainer {
   display: grid;
@@ -328,22 +322,6 @@
 
   #categoriesHideBtn {
     border-radius: 0;
-  }
-
-  .categoriesNav {
-    margin-top: 0;
-    border-radius: 0;
-    justify-self: stretch;
-    border-top: 1px solid #f6f6f6;
-    background: linear-gradient(180deg, #16191a 0%, #353d3f 100%);
-  }
-
-  #categoriesNav2 {
-    background: linear-gradient(0deg, #16191a 0%, #353d3f 100%);
-  }
-
-  #categoriesNav2 {
-    padding-bottom: 0;
   }
 
   .categoriesBtn {

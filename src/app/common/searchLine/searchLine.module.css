@@ -64,17 +64,12 @@
     background-color: #f6f6f6;
   }
 
+  #searchBtn:active {
+    background-color: #dedede;
+  }
+
   #searchBtn:hover .searchImg {
     filter: none;
-  }
-
-  #searchBtn:active {
-    border-radius: 5px;
-    background-color: #16191a;
-  }
-
-  #searchBtn:active .searchImg {
-    filter: invert(1);
   }
 }
 

@@ -5,20 +5,19 @@ import SearchLine from "../common/searchLine/searchLine";
 import Categories from "../common/categories/categories";
 import Products from "../common/products/products";
 import api from "../api";
+import CatalogBlock from "../common/sidebar/catalog/catalogBlock";
+import FiltersBlock from "../common/sidebar/filters/filtersBlock";
 
 const Main = () => {
-  const [openedCat, setOpenedCat] = useState("");
-  const [filters, setFilters] = useState([]);
-  const [category, setCategory] = useState("");
-  const [categories, setCategories] = useState([]);
-  const [appliedFilters, setAppliedFilters] = useState({
-    checkBox1: true,
-    checkBox2: true,
-  });
   const defaultFilters = {
     checkBox1: true,
     checkBox2: true,
   };
+  const [filters, setFilters] = useState([]);
+  const [category, setCategory] = useState("");
+  const [openedCat, setOpenedCat] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [appliedFilters, setAppliedFilters] = useState({ ...defaultFilters });
 
   useEffect(() => {
     api.categoryList.fetchAll().then((data) => setCategories(data));
@@ -33,25 +32,34 @@ const Main = () => {
       <Header />
       <main className="main">
         <SearchLine />
-        <Categories
+
+        <CatalogBlock
           id="1"
-          openedCat={openedCat}
-          setOpenedCat={setOpenedCat}
           btnName="каталог"
           categories={categories}
           chooseCategory={setCategory}
         />
+
         <Products category={category} />
-        <Categories
+
+        <FiltersBlock
           id="2"
-          openedCat={openedCat}
-          setOpenedCat={setOpenedCat}
           btnName="фильтры"
-          categories={filters}
           defaultFilters={defaultFilters}
           appliedFilters={appliedFilters}
           applyFilters={setAppliedFilters}
         />
+
+        {/* <Categories
+          id="2"
+          btnName="фильтры"
+          categories={filters}
+          openedCat={openedCat}
+          setOpenedCat={setOpenedCat}
+          defaultFilters={defaultFilters}
+          appliedFilters={appliedFilters}
+          applyFilters={setAppliedFilters}
+        /> */}
       </main>
       <Footer />
     </div>

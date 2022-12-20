@@ -1,17 +1,18 @@
 import React from "react";
+// import s from "../filters.module.css";
+import v from "../../sidebar.module.css";
 import arrowDown from "../../../../img/arrowDown.svg";
-import s from "../../../categories/categories.module.css";
 
 const BtnOpenFilter = ({ filterName, displayFilter, opened }) => {
   return (
     <button
       type="button"
       onClick={() => displayFilter(filterName)}
-      className={s.categoriesBtn}
-      id={opened ? s.openCatItem : ""}
+      className={v.btnDisplayCat}
+      id={opened ? v.openCatItem : ""}
     >
-      <p className={s.categoriesBtnText}>{filterName}</p>
-      <img className={s.imgArrowDown} alt="" src={arrowDown} />
+      <p className={v.btnDisplayCatText}>{filterName}</p>
+      <img className={v.imgArrowDown} alt="" src={arrowDown} />
     </button>
   );
 };

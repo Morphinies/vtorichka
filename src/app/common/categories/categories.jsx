@@ -14,6 +14,8 @@ const Categories = ({
   appliedFilters,
   chooseCategory,
   defaultFilters,
+  setOpenedCat,
+  openedCat,
 }) => {
   const [curCat, setCurCat] = useState([]);
   const [catList, setCatList] = useState([]);
@@ -59,11 +61,10 @@ const Categories = ({
       <CategoriesDisplayBtn
         btnName={
           btnName +
-          " " +
           (appliedFilters
             ? equalObjects(appliedFilters, defaultFilters)
               ? ""
-              : "*"
+              : " *"
             : "")
         }
         setCategoriesHidden={categoriesHide}

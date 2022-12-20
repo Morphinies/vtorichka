@@ -1,26 +1,21 @@
 import React from "react";
+import s from "../filters.module.css";
+// import v from "../../sidebar.module.css";
 import BtnClearFilter from "../btns/btnClearFilter";
-import s from "../../../categories/categories.module.css";
 
 const InputPrice = ({
   name,
-  label,
   placeholder,
   choosedFilters,
   setChoosedFilters,
 }) => {
   let regExpNumber = /\d/g;
-
   const regExpPrice = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
 
   return (
     <div className={s.inputContainer}>
-      {/* <label htmlFor={name} className={s.inputLabel}>
-        {label}
-      </label> */}
-
       <input
         type="text"
         value={
@@ -49,7 +44,11 @@ const InputPrice = ({
             });
         }}
       />
-      <BtnClearFilter setChoosedFilters={setChoosedFilters} name={name} />
+      <BtnClearFilter
+        name={name}
+        choosedFilters={choosedFilters}
+        setChoosedFilters={setChoosedFilters}
+      />
     </div>
   );
 };
