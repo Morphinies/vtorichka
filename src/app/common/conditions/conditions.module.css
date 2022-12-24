@@ -16,6 +16,10 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
+.conditionBtn:hover {
+  background: #fff;
+}
+
 .conditionBtn:hover .conditionBtnImg {
   transform: rotate(180deg);
   transition: transform 1s;
@@ -31,10 +35,6 @@
   filter: invert(1);
   align-self: center;
   justify-self: center;
-}
-
-.conditionBtn:hover {
-  background: rgba(0, 0, 0, 0.1);
 }
 
 .conditionBtn:active {

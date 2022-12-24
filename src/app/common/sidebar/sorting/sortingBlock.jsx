@@ -4,7 +4,12 @@ import React, { useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 import Sorting from "./sorting";
 
-const SortingBlock = ({ btnName, choosedSorting, setChoosedSorting }) => {
+const SortingBlock = ({
+  btnName,
+  choosedSorting,
+  setChoosedSorting,
+  setConditionsApplied,
+}) => {
   const [blockHidden, setBlockHidden] = useState(true);
 
   return (
@@ -20,8 +25,9 @@ const SortingBlock = ({ btnName, choosedSorting, setChoosedSorting }) => {
 
       {!blockHidden && (
         <Sorting
-          chooseSorting={setChoosedSorting}
           choosedSorting={choosedSorting}
+          chooseSorting={setChoosedSorting}
+          setConditionsApplied={setConditionsApplied} //
         />
       )}
     </nav>

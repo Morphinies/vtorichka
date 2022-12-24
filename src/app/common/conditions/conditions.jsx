@@ -11,10 +11,10 @@ const Conditions = ({ choosedConditions, defaultValues }) => {
   };
   return (
     !equalObjects(choosedConditions, defaultValues) && (
-      <div className={s.conditions}>
+      <>
         {Object.keys(choosedConditions).map((condition) => {
           return (
-            <>
+            <div className={s.conditions}>
               {condition === "category" &&
                 !equalObjects(
                   choosedConditions[condition],
@@ -39,10 +39,10 @@ const Conditions = ({ choosedConditions, defaultValues }) => {
                   console.log(choosedConditions[condition])
                 // <ConditionBtn btnName={choosedConditions[condition].name} />
               }
-            </>
+            </div>
           );
         })}
-      </div>
+      </>
     )
   );
 };

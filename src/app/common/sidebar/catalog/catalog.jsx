@@ -8,10 +8,11 @@ const Catalog = ({
   catList,
   setCurCat,
   setCatList,
-  chooseCategory,
+  // chooseCategory,
   choosedCategory,
   setCatListDefault,
   setChoosedCategory,
+  setConditionsApplied,
 }) => {
   const displayCat = (catItem) => {
     let allSumOpenCat = 0;
@@ -21,15 +22,29 @@ const Catalog = ({
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ убрать категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     if (!catItem.values && catItem.name === choosedCategory.name) {
-      chooseCategory((prevState) => {
-        return { ...prevState, name: "" };
+      // chooseCategory((prevState) => {
+      //   return { ...prevState, value: "" };
+      // });
+      setConditionsApplied((prevState) => {
+        console.log({
+          ...prevState,
+          category: { name: "категория", value: "" },
+        });
+        return { ...prevState };
       });
       setChoosedCategory({});
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор/смена категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     else if (!catItem.values) {
-      chooseCategory((prevState) => {
-        return { ...prevState, name: catItem.name };
+      // chooseCategory((prevState) => {
+      //   return { ...prevState, value: catItem.name };
+      // });
+      setConditionsApplied((prevState) => {
+        console.log({
+          ...prevState,
+          category: { name: "категория", value: catItem.name },
+        });
+        return { ...prevState };
       });
       setChoosedCategory(catItem);
     }

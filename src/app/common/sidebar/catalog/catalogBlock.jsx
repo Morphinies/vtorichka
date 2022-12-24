@@ -1,14 +1,25 @@
+import api from "../../../api";
 import Catalog from "./catalog";
 import { useEffect } from "react";
 import v from "../sidebar.module.css";
 import React, { useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 
-const CatalogBlock = ({ id, btnName, categories, chooseCategory }) => {
+const CatalogBlock = ({
+  id,
+  btnName,
+  // chooseCategory,
+  setConditionsApplied,
+}) => {
   const [curCat, setCurCat] = useState([]);
   const [catList, setCatList] = useState();
   const [catalogHidden, setCatalogHidden] = useState(true);
   const [choosedCategory, setChoosedCategory] = useState({});
+
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    api.categoryList.fetchAll().then((data) => setCategories(data));
+  }, []);
 
   useEffect(() => {
     setCatList(categories);
@@ -31,7 +42,8 @@ const CatalogBlock = ({ id, btnName, categories, chooseCategory }) => {
           catList={catList}
           setCurCat={setCurCat}
           setCatList={setCatList}
-          chooseCategory={chooseCategory}
+          // chooseCategory={chooseCategory}
+          setConditionsApplied={setConditionsApplied} //
           choosedCategory={choosedCategory}
           setCatListDefault={() => setCatList(categories)}
           setChoosedCategory={setChoosedCategory}
