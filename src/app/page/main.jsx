@@ -1,65 +1,86 @@
-import React, { useEffect, useState } from "react";
+import api from "../api";
 import Footer from "../common/footer/footer";
 import Header from "../common/header/header";
-import SearchLine from "../common/searchLine/searchLine";
-import Categories from "../common/categories/categories";
 import Products from "../common/products/products";
-import api from "../api";
+import React, { useEffect, useState } from "react";
+import SearchLine from "../common/searchLine/searchLine";
 import CatalogBlock from "../common/sidebar/catalog/catalogBlock";
 import FiltersBlock from "../common/sidebar/filters/filtersBlock";
+import SortingBlock from "../common/sidebar/sorting/sortingBlock";
+import Conditions from "../common/conditions/conditions";
 
 const Main = () => {
-  const defaultFilters = {
-    checkBox1: true,
-    checkBox2: true,
+  const defaultValues = {
+    filters: { checkBox1: true, checkBox2: true },
+    sorting: {
+      name: "дате (c новых)",
+      value: "dateToDown",
+    },
+    category: { name: "" },
   };
-  const [filters, setFilters] = useState([]);
-  const [category, setCategory] = useState("");
-  const [openedCat, setOpenedCat] = useState("");
-  const [categories, setCategories] = useState([]);
-  const [appliedFilters, setAppliedFilters] = useState({ ...defaultFilters });
 
-  useEffect(() => {
-    api.categoryList.fetchAll().then((data) => setCategories(data));
-  }, []);
+  const [catalog, setCatalog] = useState([]);
+  const [choosedCategory, setChoosedCategory] = useState(
+    defaultValues.category
+  );
+  const [choosedSorting, setChoosedSorting] = useState(defaultValues.sorting);
+  const [choosedFilters, setChoosedFilters] = useState(defaultValues.filters);
 
-  useEffect(() => {
-    api.filterList.fetchAll().then((data) => setFilters(data));
+  const [choosedConditions, setChoosedConditions] = useState({
+    category: defaultValues.category,
+    sorting: defaultValues.sorting,
+    filters: defaultValues.filters,
   });
+
+  useEffect(() => {
+    choosedConditions.category !== choosedCategory &&
+      setChoosedConditions((prevState) => {
+        return { ...prevState, category: choosedCategory };
+      });
+    choosedConditions.sorting !== choosedSorting &&
+      setChoosedConditions((prevState) => {
+        return { ...prevState, sorting: choosedSorting };
+      });
+    choosedConditions.filters !== choosedFilters &&
+      setChoosedConditions((prevState) => {
+        return { ...prevState, filters: choosedFilters };
+      });
+  }, [choosedConditions, choosedCategory, choosedSorting, choosedFilters]);
+
+  useEffect(() => {
+    api.categoryList.fetchAll().then((data) => setCatalog(data));
+  }, []);
 
   return (
     <div className="wrapper">
       <Header />
       <main className="main">
         <SearchLine />
-
+        <Conditions
+          defaultValues={defaultValues}
+          choosedConditions={choosedConditions}
+        />
         <CatalogBlock
           id="1"
           btnName="каталог"
-          categories={categories}
-          chooseCategory={setCategory}
+          categories={catalog}
+          chooseCategory={setChoosedCategory}
         />
 
-        <Products category={category} />
+        <Products category={choosedCategory} />
 
         <FiltersBlock
           id="2"
           btnName="фильтры"
-          defaultFilters={defaultFilters}
-          appliedFilters={appliedFilters}
-          applyFilters={setAppliedFilters}
+          defaultFilters={defaultValues.filters}
+          appliedFilters={choosedFilters}
+          applyFilters={setChoosedFilters}
         />
-
-        {/* <Categories
-          id="2"
-          btnName="фильтры"
-          categories={filters}
-          openedCat={openedCat}
-          setOpenedCat={setOpenedCat}
-          defaultFilters={defaultFilters}
-          appliedFilters={appliedFilters}
-          applyFilters={setAppliedFilters}
-        /> */}
+        <SortingBlock
+          btnName="сортировка"
+          choosedSorting={choosedSorting}
+          setChoosedSorting={setChoosedSorting}
+        />
       </main>
       <Footer />
     </div>

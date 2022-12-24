@@ -14,6 +14,14 @@
   transition: all 0.3s;
 }
 
+#categoriesNav1 {
+  grid-area: 3/1/4/2;
+}
+
+#categoriesNav2 {
+  grid-area: 4/1/5/2;
+}
+
 .catNavOpened {
   padding: 2px 2px 2px 0;
 }
@@ -46,6 +54,7 @@
   min-width: 8rem;
   text-align: left;
   color: #f6f6f6;
+  align-self: center;
 }
 
 /* ************************ btn show ************************ */

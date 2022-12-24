@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
 import { useState } from "react";
 import s from "../filters.module.css";
+import React, { useEffect } from "react";
 import cancel from "../../../../img/cancel.svg";
-// import v from "../../sidebar.module.css";
 
 const BtnClearFilter = ({ setChoosedFilters, choosedFilters, name }) => {
   // эффект вращения при нажатии

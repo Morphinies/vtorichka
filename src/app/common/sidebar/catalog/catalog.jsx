@@ -21,12 +21,16 @@ const Catalog = ({
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ убрать категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     if (!catItem.values && catItem.name === choosedCategory.name) {
-      chooseCategory("");
+      chooseCategory((prevState) => {
+        return { ...prevState, name: "" };
+      });
       setChoosedCategory({});
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор/смена категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     else if (!catItem.values) {
-      chooseCategory(catItem.name);
+      chooseCategory((prevState) => {
+        return { ...prevState, name: catItem.name };
+      });
       setChoosedCategory(catItem);
     }
 

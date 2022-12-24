@@ -5,17 +5,22 @@
 }
 
 /* ************************ input container  ************************ */
+.filterLine {
+  display: grid;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filterLine:hover,
+.filterLine:active {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
 .inputContainer {
   border: none;
   display: grid;
   column-gap: 1rem;
   padding: 0.5rem 2rem;
   grid-template-columns: 8rem 1rem;
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.inputContainer:hover {
-  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .priceInput {
@@ -48,10 +53,11 @@
 .checkBoxContainer {
   cursor: pointer;
   padding: 0.7rem 2rem;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .checkBoxContainer:active {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .checkBox {
@@ -83,6 +89,31 @@
   animation-iteration-count: 1;
 }
 
+/* ************************ block btns apply filters   ************************ */
+.btnsApplyFilters {
+  display: grid;
+  column-gap: 0.5rem;
+  padding: 0.332rem 2rem;
+  grid-template-columns: auto auto;
+}
+
+.btnApplyFilters {
+  display: grid;
+  padding: 0.4rem 1rem;
+}
+
+.btnApplyFilters:hover,
+.btnApplyFilters:active {
+  border: 1px solid #f6f6f6;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btnApplyFiltersImg {
+  width: 1rem;
+  align-self: center;
+  justify-self: center;
+}
+
 @keyframes rotation {
   from {
     -webkit-transform: rotate(0deg);
@@ -93,24 +124,63 @@
 }
 
 /* ************************ media queries  ************************ */
-
 @media (hover: none) {
-  .inputContainer {
+  .filterLine:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
 }
 
 @media (max-width: 640px) {
-  /*  input container   */
   .inputContainer {
-    padding: 0.7rem 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .btnsApplyFilters {
+    column-gap: 0.5rem;
+    padding: 0.332rem 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .filtersForm .inputCheckBox {
-    padding: 1rem 3rem;
+  .btnsApplyFilters {
+    column-gap: 0.5rem;
+    padding: 0.5rem 2rem;
   }
-  /* .inputContainer {
-  } */
+  .btnApplyFilters {
+    padding: 0.532rem 2rem;
+  }
+
+  .inputContainer {
+    justify-self: center;
+    grid-template-columns: auto auto;
+  }
+  .priceInput {
+    width: 9rem;
+    padding: 0.5rem 1rem;
+  }
+  .checkBoxContainer {
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  .checkBox {
+    width: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .priceInput {
+    width: 10rem;
+    padding: 0.5rem 1rem;
+  }
+  .btnApplyFilters {
+    padding: 0.608rem 2rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .priceInput {
+    width: 9rem;
+  }
+  .btnApplyFilters {
+    padding: 0.536rem 2rem;
+  }
 }

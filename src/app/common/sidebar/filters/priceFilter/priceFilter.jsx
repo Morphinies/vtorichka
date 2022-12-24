@@ -7,8 +7,6 @@ const PriceFilter = ({
   openedFilters,
   choosedFilters,
   setChoosedFilters,
-  // appliedFilters,
-  // defaultFilters,
 }) => {
   return (
     <>

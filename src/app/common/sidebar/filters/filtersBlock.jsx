@@ -21,7 +21,7 @@ const FiltersBlock = ({
     );
   };
 
-  const hideFlters = () => {
+  const hideFilters = () => {
     setCategoriesHidden(!categoriesHidden);
   };
 
@@ -37,7 +37,7 @@ const FiltersBlock = ({
             (equalObjects(appliedFilters, defaultFilters) ? "" : " *"))
         }
         blockHidden={categoriesHidden}
-        hideBlock={hideFlters}
+        hideBlock={hideFilters}
       />
 
       {!categoriesHidden && (

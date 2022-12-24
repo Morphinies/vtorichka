@@ -1,16 +1,16 @@
 import React from "react";
+import s from "../filters.module.css";
 import apply from "../../../../img/apply.svg";
 import reset from "../../../../img/reset.svg";
-import s from "../filters.module.css";
 
 const BtnsApplyFilters = ({
   applyFilters,
   choosedFilters,
   appliedFilters,
-  setCategoriesHidden,
-  setChoosedFilters,
   defaultFilters,
   setOpenedFilters,
+  setChoosedFilters,
+  setCategoriesHidden,
 }) => {
   const equalObjects = (obj1, obj2) => {
     return (
@@ -24,6 +24,7 @@ const BtnsApplyFilters = ({
       <button
         type="button"
         className={
+          "btn " +
           s.btnApplyFilters +
           " " +
           (equalObjects(choosedFilters, appliedFilters) ? "disabled" : "")
@@ -45,6 +46,7 @@ const BtnsApplyFilters = ({
       <button
         type="button"
         className={
+          "btn " +
           s.btnApplyFilters +
           " " +
           (equalObjects(appliedFilters, defaultFilters) ? "disabled" : "")

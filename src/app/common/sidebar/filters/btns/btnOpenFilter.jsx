@@ -1,5 +1,4 @@
 import React from "react";
-// import s from "../filters.module.css";
 import v from "../../sidebar.module.css";
 import arrowDown from "../../../../img/arrowDown.svg";
 

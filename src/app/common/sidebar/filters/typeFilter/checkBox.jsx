@@ -5,29 +5,34 @@ import checked from "../../../../img/checked.svg";
 
 const CheckBox = ({ setChoosedFilters, choosedFilters, label, name }) => {
   return (
-    <button
-      onClick={() => {
-        setChoosedFilters((prevState) => {
-          return { ...prevState, [name]: !prevState[name] };
-        });
-      }}
-      type="button"
-      id={s.checkBoxContainer}
-      className={s.inputContainer + " " + s.checkBoxContainer}
-    >
-      <p className={v.btnDisplayCatText + " " + s.labelCheckBox} htmlFor="name">
-        {label}
-      </p>
-      <div className={s.checkBox}>
-        <img
-          className={
-            s.imgCheckBox + " " + (choosedFilters[name] ? "" : s.imgHidden)
-          }
-          alt=""
-          src={checked}
-        />
-      </div>
-    </button>
+    <div className={s.filterLine}>
+      <button
+        onClick={() => {
+          setChoosedFilters((prevState) => {
+            return { ...prevState, [name]: !prevState[name] };
+          });
+        }}
+        type="button"
+        id={s.checkBoxContainer}
+        className={s.inputContainer + " " + s.checkBoxContainer}
+      >
+        <p
+          className={v.btnDisplayCatText + " " + s.labelCheckBox}
+          htmlFor="name"
+        >
+          {label}
+        </p>
+        <div className={s.checkBox}>
+          <img
+            className={
+              s.imgCheckBox + " " + (choosedFilters[name] ? "" : s.imgHidden)
+            }
+            alt=""
+            src={checked}
+          />
+        </div>
+      </button>
+    </div>
   );
 };
 

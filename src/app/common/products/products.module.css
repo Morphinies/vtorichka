@@ -1,16 +1,18 @@
 .products {
   display: grid;
+  grid-area: 3/2/7/3;
 }
 
-.header {
-  font-size: 2rem;
-  padding-top: 3rem;
+.productHeaderTitle {
+  font-size: 1.5rem;
+  padding-top: 1rem;
   font-weight: normal;
   justify-self: center;
+  align-self: flex-start;
 }
 
 @media (max-width: 480px) {
   .products {
-    grid-area: 4/1/4/2;
+    grid-area: 5/1/6/2;
   }
 }

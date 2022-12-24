@@ -2,7 +2,7 @@ import React from "react";
 import s from "./filters.module.css";
 import TypeFilter from "./typeFilter/typeFilter";
 import PriceFilter from "./priceFilter/priceFilter";
-// import BtnsApplyFilters from "./btns/btnsApplyFilters";
+import BtnsApplyFilters from "./btns/btnsApplyFilters";
 
 const Filters = ({
   applyFilters,
@@ -40,7 +40,7 @@ const Filters = ({
         choosedFilters={choosedFilters}
         setChoosedFilters={setChoosedFilters}
       />
-      {/* <BtnsApplyFilters
+      <BtnsApplyFilters
         applyFilters={applyFilters}
         appliedFilters={appliedFilters}
         choosedFilters={choosedFilters}
@@ -48,7 +48,7 @@ const Filters = ({
         setOpenedFilters={setOpenedFilters}
         setChoosedFilters={setChoosedFilters}
         setCategoriesHidden={setCategoriesHidden}
-      /> */}
+      />
     </form>
   );
 };
