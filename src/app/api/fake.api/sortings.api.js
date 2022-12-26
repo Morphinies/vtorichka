@@ -2,10 +2,10 @@ import sortArrowImg from "../../img/arrowSort.svg";
 import sortArrowDownImg from "../../img/arrowSortDown.svg";
 
 const sortings = [
-  { name: "дате (c новых)", value: "dateToDown", img: sortArrowDownImg },
-  { name: "дате (со старых)", value: "dateToUp", img: sortArrowImg },
-  { name: "цене (с дорогих)", value: "priceToUp", img: sortArrowDownImg },
-  { name: "цене (с дешевых)", value: "priceToDown", img: sortArrowImg },
+  { value: "дате (c новых)", img: sortArrowDownImg },
+  { value: "дате (со старых)", img: sortArrowImg },
+  { value: "цене (с дорогих)", img: sortArrowDownImg },
+  { value: "цене (с дешевых)", img: sortArrowImg },
 ];
 
 const fetchAll = () =>

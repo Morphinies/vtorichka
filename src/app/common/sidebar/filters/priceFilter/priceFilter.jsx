@@ -3,10 +3,13 @@ import InputPrice from "./inputPrice";
 import BtnOpenFilter from "../btns/btnOpenFilter";
 
 const PriceFilter = ({
+  formData,
+  setFormData,
   displayFilter,
   openedFilters,
-  choosedFilters,
-  setChoosedFilters,
+  defaultFilters,
+  // choosedFilters,
+  // setChoosedFilters,
 }) => {
   return (
     <>
@@ -19,16 +22,22 @@ const PriceFilter = ({
       {openedFilters.includes("цена") && (
         <>
           <InputPrice
-            setChoosedFilters={setChoosedFilters}
-            choosedFilters={choosedFilters}
+            // setChoosedFilters={setChoosedFilters}
+            // choosedFilters={choosedFilters}
+            id="minPrice"
             placeholder="min"
-            name="minPrice"
+            formData={formData}
+            setFormData={setFormData}
+            defaultFilters={defaultFilters}
           />
           <InputPrice
-            setChoosedFilters={setChoosedFilters}
-            choosedFilters={choosedFilters}
+            // setChoosedFilters={setChoosedFilters}
+            // choosedFilters={choosedFilters}
             placeholder="max"
-            name="maxPrice"
+            id="maxPrice"
+            formData={formData}
+            setFormData={setFormData}
+            defaultFilters={defaultFilters}
           />
         </>
       )}

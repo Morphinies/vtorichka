@@ -9,21 +9,19 @@ const FiltersBlock = ({
   applyFilters,
   appliedFilters,
   defaultFilters,
+  filtersApplied,
+  setFiltersApplied,
 }) => {
   const [openedFilters, setOpenedFilters] = useState([]);
   const [categoriesHidden, setCategoriesHidden] = useState(true);
-  const [choosedFilters, setChoosedFilters] = useState(defaultFilters);
-
-  const equalObjects = (obj1, obj2) => {
-    return (
-      JSON.stringify(Object.entries(obj1).sort()) ===
-      JSON.stringify(Object.entries(obj2).sort())
-    );
-  };
+  const [formData, setFormData] = useState(defaultFilters);
 
   const hideFilters = () => {
     setCategoriesHidden(!categoriesHidden);
   };
+
+  // console.log(filtersApplied);
+  // console.log(defaultFilters);
 
   return (
     <nav
@@ -33,8 +31,12 @@ const FiltersBlock = ({
       <BtnDisplayBlock
         btnName={
           btnName +
-          (appliedFilters &&
-            (equalObjects(appliedFilters, defaultFilters) ? "" : " *"))
+          (filtersApplied.length === defaultFilters.length &&
+            defaultFilters.map((filter) =>
+              filtersApplied.includes(filter) && defaultFilters.includes(filter)
+                ? ""
+                : " *"
+            ))
         }
         blockHidden={categoriesHidden}
         hideBlock={hideFilters}
@@ -42,14 +44,16 @@ const FiltersBlock = ({
 
       {!categoriesHidden && (
         <Filters
-          applyFilters={applyFilters}
+          formData={formData}
+          setFormData={setFormData}
           openedFilters={openedFilters}
-          choosedFilters={choosedFilters}
-          appliedFilters={appliedFilters}
           defaultFilters={defaultFilters}
+          filtersApplied={filtersApplied}
           setOpenedFilters={setOpenedFilters}
-          setChoosedFilters={setChoosedFilters}
+          setFiltersApplied={setFiltersApplied}
           setCategoriesHidden={setCategoriesHidden}
+          // appliedFilters={appliedFilters}
+          // applyFilters={applyFilters}
         />
       )}
     </nav>

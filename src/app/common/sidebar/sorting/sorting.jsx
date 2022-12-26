@@ -1,15 +1,19 @@
 import React from "react";
 import s from "./sorting.module.css";
 import v from "../sidebar.module.css";
-import { useState } from "react";
-import { useEffect } from "react";
-import api from "../../../api";
 
-const Sorting = ({ chooseSorting, choosedSorting, setConditionsApplied }) => {
-  const [sortingList, setSortingList] = useState();
-  useEffect(() => {
-    api.sortingList.fetchAll().then((data) => setSortingList(data));
-  }, []);
+const Sorting = ({
+  sortingList,
+  chooseSorting,
+  choosedSorting,
+  setConditionsApplied,
+}) => {
+  const equalObjects = (obj1, obj2) => {
+    return (
+      JSON.stringify(Object.entries(obj1).sort()) ===
+      JSON.stringify(Object.entries(obj2).sort())
+    );
+  };
 
   return (
     sortingList && (
@@ -24,17 +28,18 @@ const Sorting = ({ chooseSorting, choosedSorting, setConditionsApplied }) => {
                 : "")
             }
             onClick={() => {
-              chooseSorting(sortingItem);
-              setConditionsApplied((prevState) => {
-                console.log(prevState);
-                return {
-                  ...prevState,
-                  sorting: { name: "сортировка", value: sortingItem },
-                };
-              });
+              !equalObjects(choosedSorting, sortingItem) &&
+                chooseSorting(sortingItem) &&
+                setConditionsApplied((prevState) => {
+                  console.log(prevState);
+                  return {
+                    ...prevState,
+                    sorting: { name: "сортировка", value: sortingItem },
+                  };
+                });
             }}
           >
-            <p className={v.btnDisplayCatText}>{sortingItem.name}</p>
+            <p className={v.btnDisplayCatText}>{sortingItem.value}</p>
             <img src={sortingItem.img} alt="" className={s.sortArrowImg} />
           </li>
         ))}

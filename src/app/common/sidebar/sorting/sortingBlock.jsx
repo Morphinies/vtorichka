@@ -6,6 +6,7 @@ import Sorting from "./sorting";
 
 const SortingBlock = ({
   btnName,
+  sortingList,
   choosedSorting,
   setChoosedSorting,
   setConditionsApplied,
@@ -25,6 +26,7 @@ const SortingBlock = ({
 
       {!blockHidden && (
         <Sorting
+          sortingList={sortingList}
           choosedSorting={choosedSorting}
           chooseSorting={setChoosedSorting}
           setConditionsApplied={setConditionsApplied} //

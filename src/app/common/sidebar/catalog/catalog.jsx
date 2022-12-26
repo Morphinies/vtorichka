@@ -8,45 +8,35 @@ const Catalog = ({
   catList,
   setCurCat,
   setCatList,
-  // chooseCategory,
-  choosedCategory,
   setCatListDefault,
-  setChoosedCategory,
+  conditionsApplied,
   setConditionsApplied,
 }) => {
+  // handle click on category button
   const displayCat = (catItem) => {
     let allSumOpenCat = 0;
-    const catItemCats = catItem.values;
+    const catItemCats = catItem.value;
     const lIndexOfCurCat = curCat.length - 1;
-    curCat.map((category) => (allSumOpenCat += category.values.length));
+    curCat.map((category) => (allSumOpenCat += category.value.length));
+
+    console.log(catItem);
+    console.log(conditionsApplied.category);
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ убрать категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    if (!catItem.values && catItem.name === choosedCategory.name) {
-      // chooseCategory((prevState) => {
-      //   return { ...prevState, value: "" };
-      // });
+    if (catItem.name === conditionsApplied.category.name) {
       setConditionsApplied((prevState) => {
-        console.log({
-          ...prevState,
-          category: { name: "категория", value: "" },
-        });
-        return { ...prevState };
+        return { ...prevState, category: { name: "", value: "" } };
       });
-      setChoosedCategory({});
     }
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор/смена категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    else if (!catItem.values) {
-      // chooseCategory((prevState) => {
-      //   return { ...prevState, value: catItem.name };
-      // });
+    else if (!catItem.value) {
       setConditionsApplied((prevState) => {
-        console.log({
+        return {
           ...prevState,
-          category: { name: "категория", value: catItem.name },
-        });
-        return { ...prevState };
+          category: { name: catItem.name, value: catItem.value },
+        };
       });
-      setChoosedCategory(catItem);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ открытие ветки категорий ~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -56,15 +46,17 @@ const Catalog = ({
         setCurCat((arr) => [...arr, catItem]);
       })();
     }
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ внутренняя категория ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     else if (
       curCat.length &&
       !curCat.includes(catItem) &&
-      curCat[lIndexOfCurCat].values.includes(catItem)
+      curCat[lIndexOfCurCat].value.includes(catItem)
     ) {
       setCatList(curCat.concat([catItem], catItemCats));
       setCurCat((arr) => [...arr, catItem]);
     }
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ повторное нажатие на категорию из истории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     else if (
       curCat.length &&
@@ -74,7 +66,7 @@ const Catalog = ({
       setCatList(
         catList
           .slice(0, catList.indexOf(catItem))
-          .concat(catList[catList.indexOf(catItem) - 1].values)
+          .concat(catList[catList.indexOf(catItem) - 1].value)
       );
       setCurCat((arr) => [...arr.slice(0, arr.indexOf(catItem))]);
     }
@@ -101,14 +93,14 @@ const Catalog = ({
             id={
               curCat.includes(catItem)
                 ? v.openCatItem
-                : catItem === choosedCategory
+                : catItem.name === conditionsApplied.category.name
                 ? s.choosedCatItem
                 : ""
             }
             key={catItem.name}
           >
             <p className={v.btnDisplayCatText}>{catItem.name}</p>
-            {catItem.values && (
+            {catItem.value && (
               <img className={v.imgArrowDown} alt="" src={arrowDown} />
             )}
           </li>

@@ -8,13 +8,12 @@ import BtnDisplayBlock from "../btnDisplayBlock";
 const CatalogBlock = ({
   id,
   btnName,
-  // chooseCategory,
+  conditionsApplied,
   setConditionsApplied,
 }) => {
   const [curCat, setCurCat] = useState([]);
   const [catList, setCatList] = useState();
   const [catalogHidden, setCatalogHidden] = useState(true);
-  const [choosedCategory, setChoosedCategory] = useState({});
 
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -42,11 +41,9 @@ const CatalogBlock = ({
           catList={catList}
           setCurCat={setCurCat}
           setCatList={setCatList}
-          // chooseCategory={chooseCategory}
-          setConditionsApplied={setConditionsApplied} //
-          choosedCategory={choosedCategory}
+          conditionsApplied={conditionsApplied}
+          setConditionsApplied={setConditionsApplied}
           setCatListDefault={() => setCatList(categories)}
-          setChoosedCategory={setChoosedCategory}
         />
       )}
     </nav>

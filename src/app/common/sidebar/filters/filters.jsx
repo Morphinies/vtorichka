@@ -1,17 +1,19 @@
 import React from "react";
 import s from "./filters.module.css";
-import TypeFilter from "./typeFilter/typeFilter";
+// import TypeFilter from "./typeFilter/typeFilter";
 import PriceFilter from "./priceFilter/priceFilter";
-import BtnsApplyFilters from "./btns/btnsApplyFilters";
+// import BtnsApplyFilters from "./btns/btnsApplyFilters";
 
 const Filters = ({
-  applyFilters,
+  // applyFilters,
+  // appliedFilters,
+  formData,
+  setFormData,
   openedFilters,
-  choosedFilters,
-  appliedFilters,
   defaultFilters,
+  filtersApplied,
   setOpenedFilters,
-  setChoosedFilters,
+  setFiltersApplied,
   setCategoriesHidden,
 }) => {
   const displayFilter = (item) => {
@@ -27,28 +29,30 @@ const Filters = ({
   return (
     <form className={s.filtersForm}>
       <PriceFilter
+        formData={formData}
+        setFormData={setFormData}
         displayFilter={displayFilter}
         openedFilters={openedFilters}
-        choosedFilters={choosedFilters}
-        appliedFilters={appliedFilters}
         defaultFilters={defaultFilters}
-        setChoosedFilters={setChoosedFilters}
       />
-      <TypeFilter
+      {/* <TypeFilter
+        formData={formData}
+        setFormData={setFormData}
         displayFilter={displayFilter}
         openedFilters={openedFilters}
-        choosedFilters={choosedFilters}
-        setChoosedFilters={setChoosedFilters}
-      />
-      <BtnsApplyFilters
-        applyFilters={applyFilters}
-        appliedFilters={appliedFilters}
-        choosedFilters={choosedFilters}
         defaultFilters={defaultFilters}
+      /> */}
+      {/* <BtnsApplyFilters
+        formData={formData}
+        setFormData={setFormData}
+        defaultFilters={defaultFilters}
+        filtersApplied={filtersApplied}
         setOpenedFilters={setOpenedFilters}
-        setChoosedFilters={setChoosedFilters}
+        setFiltersApplied={setFiltersApplied}
         setCategoriesHidden={setCategoriesHidden}
-      />
+        // applyFilters={applyFilters}
+        // appliedFilters={appliedFilters}
+      /> */}
     </form>
   );
 };

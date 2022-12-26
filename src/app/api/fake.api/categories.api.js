@@ -1,27 +1,27 @@
 const categories = [
   {
     name: "одежда",
-    values: [
+    value: [
       {
         name: "рубашка",
-        values: [{ name: "в клеточку", values: [{ name: "тряпочная" }] }],
+        value: [{ name: "в клеточку", value: [{ name: "тряпочная" }] }],
       },
       {
         name: "брюки",
-        values: [
-          { name: "чёрные", values: [{ name: "джинсовые" }] },
+        value: [
+          { name: "чёрные", value: [{ name: "джинсовые" }] },
           { name: "белые" },
         ],
       },
       { name: "носки" },
     ],
   },
-  { name: "обувь", values: [{ name: "кеды" }, { name: "кросовки" }] },
+  { name: "обувь", value: [{ name: "кеды" }, { name: "кросовки" }] },
   {
     name: "электроника",
-    values: [{ name: "компьютер" }, { name: "телефон" }],
+    value: [{ name: "компьютер" }, { name: "телефон" }],
   },
-  { name: "украшения", values: [{ name: "кольцо" }] },
+  { name: "украшения", value: [{ name: "кольцо" }] },
 ];
 
 const fetchAll = () =>

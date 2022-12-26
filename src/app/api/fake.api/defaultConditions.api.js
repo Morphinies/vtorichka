@@ -10,9 +10,9 @@ const defaultValues = {
   ],
   sorting: {
     name: "сортировка",
-    value: "по дате",
+    value: "дате (c новых)",
   },
-  category: { name: "категория", value: "" },
+  category: { name: "", value: "" },
 };
 
 const fetchAll = () =>
