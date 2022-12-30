@@ -8,8 +8,6 @@ const PriceFilter = ({
   displayFilter,
   openedFilters,
   defaultFilters,
-  // choosedFilters,
-  // setChoosedFilters,
 }) => {
   return (
     <>
@@ -22,8 +20,6 @@ const PriceFilter = ({
       {openedFilters.includes("цена") && (
         <>
           <InputPrice
-            // setChoosedFilters={setChoosedFilters}
-            // choosedFilters={choosedFilters}
             id="minPrice"
             placeholder="min"
             formData={formData}
@@ -31,10 +27,8 @@ const PriceFilter = ({
             defaultFilters={defaultFilters}
           />
           <InputPrice
-            // setChoosedFilters={setChoosedFilters}
-            // choosedFilters={choosedFilters}
-            placeholder="max"
             id="maxPrice"
+            placeholder="max"
             formData={formData}
             setFormData={setFormData}
             defaultFilters={defaultFilters}

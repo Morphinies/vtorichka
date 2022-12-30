@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./filters.module.css";
-// import TypeFilter from "./typeFilter/typeFilter";
+import TypeFilter from "./typeFilter/typeFilter";
 import PriceFilter from "./priceFilter/priceFilter";
 // import BtnsApplyFilters from "./btns/btnsApplyFilters";
 
@@ -35,13 +35,13 @@ const Filters = ({
         openedFilters={openedFilters}
         defaultFilters={defaultFilters}
       />
-      {/* <TypeFilter
+      <TypeFilter
         formData={formData}
         setFormData={setFormData}
         displayFilter={displayFilter}
         openedFilters={openedFilters}
         defaultFilters={defaultFilters}
-      /> */}
+      />
       {/* <BtnsApplyFilters
         formData={formData}
         setFormData={setFormData}

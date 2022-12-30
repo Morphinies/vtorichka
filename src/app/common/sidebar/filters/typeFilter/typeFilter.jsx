@@ -3,10 +3,11 @@ import InputType from "./inputType";
 import BtnOpenFilter from "../btns/btnOpenFilter";
 
 const TypeFilter = ({
+  formData,
+  setFormData,
   displayFilter,
   openedFilters,
-  choosedFilters,
-  setChoosedFilters,
+  defaultFilters,
 }) => {
   return (
     <>
@@ -17,10 +18,7 @@ const TypeFilter = ({
       />
       {openedFilters.includes("тип") && (
         <>
-          <InputType
-            choosedFilters={choosedFilters}
-            setChoosedFilters={setChoosedFilters}
-          />
+          <InputType formData={formData} setFormData={setFormData} />
         </>
       )}
     </>

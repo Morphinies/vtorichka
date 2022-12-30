@@ -3,13 +3,54 @@ import s from "../filters.module.css";
 import v from "../../sidebar.module.css";
 import checked from "../../../../img/checked.svg";
 
-const CheckBox = ({ setChoosedFilters, choosedFilters, label, name }) => {
+const CheckBox = ({ setFormData, formData, label, name, id }) => {
+  //поиск индекса фильтра типов
+  const indexOfFilter = () => {
+    for (let form of formData) {
+      if (form.name === name) {
+        return formData.indexOf(form);
+      }
+    }
+  };
+
+  //поиск индекса определённого типа
+  const indexOfFilterValue = () => {
+    const filterValueArr = formData[indexOfFilter()].value;
+    for (let value of filterValueArr) {
+      if (value.name === id) {
+        return filterValueArr.indexOf(value);
+      }
+    }
+  };
+
+  const changedObj = () => {
+    const mainArrForChange = formData[indexOfFilter()].value; // массив объектов с типами
+    const objForChange = mainArrForChange[indexOfFilterValue()]; // объект для изменения в масиве с типами
+    const indexObjForChange = mainArrForChange.indexOf(objForChange); // индекс объекта для изменения в масиве с типами
+    const changedObj = { ...objForChange, value: !objForChange.value }; // объект изменённый в масиве с типами
+    const changedArr = [
+      // массив объектов с типами изменённый
+      ...mainArrForChange.slice(0, indexObjForChange),
+      changedObj,
+      ...mainArrForChange.slice(indexObjForChange + 1),
+    ];
+
+    return { ...formData[indexOfFilter()], value: [...changedArr] };
+  };
+
+  const choosedCheckBox =
+    formData[indexOfFilter()].value[indexOfFilterValue()].value;
+
   return (
     <div className={s.filterLine}>
       <button
         onClick={() => {
-          setChoosedFilters((prevState) => {
-            return { ...prevState, [name]: !prevState[name] };
+          setFormData((prevData) => {
+            return [
+              ...prevData.slice(0, indexOfFilter()),
+              changedObj(),
+              ...prevData.slice(indexOfFilter() + 1),
+            ];
           });
         }}
         type="button"
@@ -25,7 +66,7 @@ const CheckBox = ({ setChoosedFilters, choosedFilters, label, name }) => {
         <div className={s.checkBox}>
           <img
             className={
-              s.imgCheckBox + " " + (choosedFilters[name] ? "" : s.imgHidden)
+              s.imgCheckBox + " " + (choosedCheckBox ? "" : s.imgHidden)
             }
             alt=""
             src={checked}
@@ -36,34 +77,4 @@ const CheckBox = ({ setChoosedFilters, choosedFilters, label, name }) => {
   );
 };
 
-// const CheckBox = ({ setChoosedFilters, choosedFilters, label, name }) => {
-//   return (
-//     <button
-//       onClick={() => {
-//         setChoosedFilters((prevState) => {
-//           return { ...prevState, [name]: !prevState[name] };
-//         });
-//       }}
-//       type="button"
-//       className={s.inputContainer + " " + s.inputCheckBox}
-//     >
-//       <label className={s.labelCheckBox} htmlFor="name">
-//         {label}
-//       </label>
-//       <input
-//         id={s.name}
-//         type="checkbox"
-//         onChange={() => {}}
-//         className={s.checkBoxHidden}
-//         checked={setChoosedFilters[name]}
-//       />
-//       <div className={s.checkBox}>
-//         {choosedFilters[name] && <img alt="checked" src={checked} />}
-//       </div>
-//     </button>
-//   );
-// };
-
 export default CheckBox;
-
-// setCheckedNumb((prevState) => prevState - 1);

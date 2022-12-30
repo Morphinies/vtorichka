@@ -16,12 +16,11 @@ const FiltersBlock = ({
   const [categoriesHidden, setCategoriesHidden] = useState(true);
   const [formData, setFormData] = useState(defaultFilters);
 
+  console.log(formData);
+
   const hideFilters = () => {
     setCategoriesHidden(!categoriesHidden);
   };
-
-  // console.log(filtersApplied);
-  // console.log(defaultFilters);
 
   return (
     <nav

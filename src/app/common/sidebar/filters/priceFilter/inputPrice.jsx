@@ -14,7 +14,15 @@ const InputPrice = ({ id, formData, setFormData, placeholder }) => {
     }
   };
 
-  // console.log(formData);
+  const clearFilter = () => {
+    setFormData((oldArray) => {
+      const cutItemIndex = Number(searchIndex(oldArray));
+      return [
+        ...oldArray.slice(0, cutItemIndex),
+        ...oldArray.slice(cutItemIndex + 1),
+      ];
+    });
+  };
 
   return (
     <div className={s.filterLine}>
@@ -34,15 +42,7 @@ const InputPrice = ({ id, formData, setFormData, placeholder }) => {
             let numb = e.target.value;
             let addNumb = e.target.value.at(-1);
 
-            if (!numb && formData[searchIndex(formData)]) {
-              // !!!!!!!!!!!!!!!!
-              setFormData((oldArray) => {
-                console.log(oldArray);
-                oldArray.splice(searchIndex(oldArray), 1);
-                console.log(oldArray);
-                return [...oldArray];
-              });
-            }
+            !numb && formData[searchIndex(formData)] && clearFilter();
 
             numb &&
               addNumb.match(regExpNumber) &&
@@ -65,20 +65,9 @@ const InputPrice = ({ id, formData, setFormData, placeholder }) => {
                   return [...oldArray];
                 }
               });
-            // setFormData((prevState) => {
-            //   prevState.map()
-            //   return {
-            //     ...prevState,
-            //     [name]: numb.match(regExpNumber).join(""),
-            //   };
-            // });
           }}
         />
-        <BtnClearFilter
-          name={id}
-          choosedFilters={formData}
-          setFormData={setFormData}
-        />
+        <BtnClearFilter id={id} formData={formData} clearFilter={clearFilter} />
       </div>
     </div>
   );

@@ -3,22 +3,25 @@ import s from "../filters.module.css";
 import React, { useEffect } from "react";
 import cancel from "../../../../img/cancel.svg";
 
-const BtnClearFilter = ({ setChoosedFilters, choosedFilters, name }) => {
+const BtnClearFilter = ({ formData, clearFilter, id }) => {
   // эффект вращения при нажатии
   const [rotation, setRotation] = useState(false);
   useEffect(() => {
     setTimeout(() => setRotation(false), 1000);
   }, [rotation]);
 
+  const searchIndex = (array) => {
+    for (let i in array) {
+      if (array[i].id === id) return i;
+    }
+  };
+
   return (
     <button
       onClick={() => {
-        if (choosedFilters[name]) {
+        if (searchIndex(formData)) {
           setRotation(true);
-          setChoosedFilters((prevState) => {
-            delete prevState[name];
-            return { ...prevState };
-          });
+          clearFilter();
         }
       }}
       type="button"
