@@ -2,47 +2,33 @@ import React from "react";
 import ConditionBtn from "./conditionBtn";
 import s from "./conditions.module.css";
 
-const Conditions = ({ choosedConditions, defaultValues }) => {
+const Conditions = ({
+  defaultConditions,
+  conditionsApplied,
+  setConditionsApplied,
+}) => {
   const equalObjects = (obj1, obj2) => {
     return (
       JSON.stringify(Object.entries(obj1).sort()) ===
       JSON.stringify(Object.entries(obj2).sort())
     );
   };
-  return (
-    !equalObjects(choosedConditions, defaultValues) && (
-      <>
-        {Object.keys(choosedConditions).map((condition) => {
-          return (
-            <div className={s.conditions}>
-              {condition === "category" &&
-                !equalObjects(
-                  choosedConditions[condition],
-                  defaultValues[condition]
-                ) && (
-                  <ConditionBtn btnName={choosedConditions[condition].name} />
-                )}
 
-              {condition === "sorting" &&
-                !equalObjects(
-                  choosedConditions[condition].value,
-                  defaultValues[condition].value
-                ) && (
-                  <ConditionBtn btnName={choosedConditions[condition].name} />
-                )}
-              {
-                condition === "filters" &&
-                  !equalObjects(
-                    choosedConditions[condition],
-                    defaultValues[condition]
-                  ) &&
-                  console.log(choosedConditions[condition])
-                // <ConditionBtn btnName={choosedConditions[condition].name} />
-              }
+  return (
+    !equalObjects(defaultConditions, conditionsApplied) && (
+      <div className={s.conditions}>
+        {Object.keys(conditionsApplied).map((condition) => {
+          console.log(conditionsApplied[condition]);
+          return (
+            <div key={condition}>
+              {!equalObjects(
+                defaultConditions[condition],
+                conditionsApplied[condition]
+              ) && <ConditionBtn btnName={conditionsApplied[condition].name} />}
             </div>
           );
         })}
-      </>
+      </div>
     )
   );
 };

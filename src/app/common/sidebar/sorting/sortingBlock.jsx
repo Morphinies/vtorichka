@@ -1,17 +1,18 @@
+import api from "../../../api";
+import Sorting from "./sorting";
 import s from "./sorting.module.css";
 import v from "../sidebar.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
-import Sorting from "./sorting";
 
-const SortingBlock = ({
-  btnName,
-  sortingList,
-  choosedSorting,
-  setChoosedSorting,
-  setConditionsApplied,
-}) => {
+const SortingBlock = ({ btnName, conditionsApplied, setConditionsApplied }) => {
   const [blockHidden, setBlockHidden] = useState(true);
+
+  // sorting list
+  const [sortingList, setSortingList] = useState();
+  useEffect(() => {
+    api.sortingList.fetchAll().then((data) => setSortingList(data));
+  }, []);
 
   return (
     <nav
@@ -27,9 +28,9 @@ const SortingBlock = ({
       {!blockHidden && (
         <Sorting
           sortingList={sortingList}
-          choosedSorting={choosedSorting}
-          chooseSorting={setChoosedSorting}
-          setConditionsApplied={setConditionsApplied} //
+          conditionsApplied={conditionsApplied}
+          setConditionsApplied={setConditionsApplied}
+          hideBlock={() => setBlockHidden(!blockHidden)}
         />
       )}
     </nav>

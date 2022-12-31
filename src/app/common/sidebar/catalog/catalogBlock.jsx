@@ -13,9 +13,8 @@ const CatalogBlock = ({
 }) => {
   const [curCat, setCurCat] = useState([]);
   const [catList, setCatList] = useState();
-  const [catalogHidden, setCatalogHidden] = useState(true);
-
   const [categories, setCategories] = useState([]);
+  const [catalogHidden, setCatalogHidden] = useState(true);
   useEffect(() => {
     api.categoryList.fetchAll().then((data) => setCategories(data));
   }, []);
@@ -32,6 +31,7 @@ const CatalogBlock = ({
       <BtnDisplayBlock
         btnName={btnName}
         blockHidden={catalogHidden}
+        conditionsApplied={conditionsApplied}
         hideBlock={() => setCatalogHidden(!catalogHidden)}
       />
 
@@ -44,6 +44,7 @@ const CatalogBlock = ({
           conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
           setCatListDefault={() => setCatList(categories)}
+          hideCatalog={() => setCatalogHidden(!catalogHidden)}
         />
       )}
     </nav>

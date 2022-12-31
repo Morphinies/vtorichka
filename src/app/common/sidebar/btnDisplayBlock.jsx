@@ -10,7 +10,7 @@ const BtnDisplayBlock = ({ btnName, blockHidden, hideBlock }) => {
       className={v.btnDisplayCat}
       id={blockHidden ? v.categoriesShowBtn : v.categoriesHideBtn}
     >
-      <p className={v.btnDisplayCatText}>{btnName}</p>
+      <p className={v.btnDisplayCatText}>{btnName} </p>
       {!blockHidden && <img className={v.imgDisplayCat} src={cancel} alt="" />}
     </button>
   );

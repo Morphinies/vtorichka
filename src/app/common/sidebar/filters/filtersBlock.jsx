@@ -6,17 +6,13 @@ import BtnDisplayBlock from "../btnDisplayBlock";
 const FiltersBlock = ({
   id,
   btnName,
-  applyFilters,
-  appliedFilters,
   defaultFilters,
-  filtersApplied,
-  setFiltersApplied,
+  conditionsApplied,
+  setConditionsApplied,
 }) => {
   const [openedFilters, setOpenedFilters] = useState([]);
-  const [categoriesHidden, setCategoriesHidden] = useState(true);
   const [formData, setFormData] = useState(defaultFilters);
-
-  console.log(formData);
+  const [categoriesHidden, setCategoriesHidden] = useState(true);
 
   const hideFilters = () => {
     setCategoriesHidden(!categoriesHidden);
@@ -29,13 +25,14 @@ const FiltersBlock = ({
     >
       <BtnDisplayBlock
         btnName={
-          btnName +
-          (filtersApplied.length === defaultFilters.length &&
-            defaultFilters.map((filter) =>
-              filtersApplied.includes(filter) && defaultFilters.includes(filter)
-                ? ""
-                : " *"
-            ))
+          btnName
+          // +
+          // (filtersApplied.length === defaultFilters.length &&
+          //   defaultFilters.map((filter) =>
+          //     filtersApplied.includes(filter) && defaultFilters.includes(filter)
+          //       ? ""
+          //       : " *"
+          //   ))
         }
         blockHidden={categoriesHidden}
         hideBlock={hideFilters}
@@ -47,11 +44,14 @@ const FiltersBlock = ({
           setFormData={setFormData}
           openedFilters={openedFilters}
           defaultFilters={defaultFilters}
-          filtersApplied={filtersApplied}
           setOpenedFilters={setOpenedFilters}
-          setFiltersApplied={setFiltersApplied}
+          conditionsApplied={conditionsApplied}
           setCategoriesHidden={setCategoriesHidden}
+          setConditionsApplied={setConditionsApplied}
+
+          // setFiltersApplied={setFiltersApplied}
           // appliedFilters={appliedFilters}
+          // filtersApplied={filtersApplied}
           // applyFilters={applyFilters}
         />
       )}

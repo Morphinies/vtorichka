@@ -2,19 +2,17 @@ import React from "react";
 import s from "./filters.module.css";
 import TypeFilter from "./typeFilter/typeFilter";
 import PriceFilter from "./priceFilter/priceFilter";
-// import BtnsApplyFilters from "./btns/btnsApplyFilters";
+import BtnsApplyFilters from "./btns/btnsApplyFilters";
 
 const Filters = ({
-  // applyFilters,
-  // appliedFilters,
   formData,
   setFormData,
   openedFilters,
   defaultFilters,
-  filtersApplied,
   setOpenedFilters,
-  setFiltersApplied,
+  conditionsApplied,
   setCategoriesHidden,
+  setConditionsApplied,
 }) => {
   const displayFilter = (item) => {
     openedFilters.includes(item)
@@ -42,17 +40,15 @@ const Filters = ({
         openedFilters={openedFilters}
         defaultFilters={defaultFilters}
       />
-      {/* <BtnsApplyFilters
+      <BtnsApplyFilters
         formData={formData}
         setFormData={setFormData}
         defaultFilters={defaultFilters}
-        filtersApplied={filtersApplied}
         setOpenedFilters={setOpenedFilters}
-        setFiltersApplied={setFiltersApplied}
+        conditionsApplied={conditionsApplied}
         setCategoriesHidden={setCategoriesHidden}
-        // applyFilters={applyFilters}
-        // appliedFilters={appliedFilters}
-      /> */}
+        setConditionsApplied={setConditionsApplied}
+      />
     </form>
   );
 };

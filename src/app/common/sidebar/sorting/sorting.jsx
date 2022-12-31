@@ -3,9 +3,9 @@ import s from "./sorting.module.css";
 import v from "../sidebar.module.css";
 
 const Sorting = ({
+  hideBlock,
   sortingList,
-  chooseSorting,
-  choosedSorting,
+  conditionsApplied,
   setConditionsApplied,
 }) => {
   const equalObjects = (obj1, obj2) => {
@@ -23,18 +23,17 @@ const Sorting = ({
             key={sortingItem.value}
             className={
               v.btnDisplayCat +
-              (choosedSorting.value === sortingItem.value
+              (conditionsApplied.sorting.value === sortingItem.value
                 ? " " + s.choosedSorting
                 : "")
             }
             onClick={() => {
-              !equalObjects(choosedSorting, sortingItem) &&
-                chooseSorting(sortingItem) &&
+              !equalObjects(sortingList, conditionsApplied) &&
                 setConditionsApplied((prevState) => {
-                  console.log(prevState);
+                  hideBlock();
                   return {
                     ...prevState,
-                    sorting: { name: "сортировка", value: sortingItem },
+                    sorting: { name: "сортировка", value: sortingItem.value },
                   };
                 });
             }}

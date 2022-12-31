@@ -1,52 +1,29 @@
-import api from "../api";
+import React, { useState } from "react";
+import Conditions from "../common/conditions/conditions";
 import Footer from "../common/footer/footer";
 import Header from "../common/header/header";
-import React, { useEffect, useState } from "react";
 import Products from "../common/products/products";
 import SearchLine from "../common/searchLine/searchLine";
-// import Conditions from "../common/conditions/conditions";
 import CatalogBlock from "../common/sidebar/catalog/catalogBlock";
 import FiltersBlock from "../common/sidebar/filters/filtersBlock";
 import SortingBlock from "../common/sidebar/sorting/sortingBlock";
 
 const Main = ({ defaultConditions }) => {
-  // console.log(conditionsApplied);
-
   // applied conditions
   const [conditionsApplied, setConditionsApplied] = useState({
     ...defaultConditions,
   });
-
-  // sorting list
-  const [sortingList, setSortingList] = useState();
-  useEffect(() => {
-    api.sortingList.fetchAll().then((data) => setSortingList(data));
-  }, []);
-
-  // choosed sorting
-  const [choosedSorting, setChoosedSorting] = useState(
-    defaultConditions.sorting
-  );
-
-  // category
-  // const [choosedCategory, setChoosedCategory] = useState(
-  //   defaultConditions.category
-  // );
-
-  // choosed filters
-  const [choosedFilters, setChoosedFilters] = useState(
-    defaultConditions.filters
-  );
 
   return (
     <div className="wrapper">
       <Header />
       <main className="main">
         <SearchLine />
-        {/* <Conditions
+        <Conditions
           defaultConditions={defaultConditions}
           conditionsApplied={conditionsApplied}
-        /> */}
+          setConditionsApplied={setConditionsApplied}
+        />
         <CatalogBlock
           id="1"
           btnName="каталог"
@@ -59,17 +36,13 @@ const Main = ({ defaultConditions }) => {
         <FiltersBlock
           id="2"
           btnName="фильтры"
-          filtersApplied={conditionsApplied.filters}
-          setFiltersApplied={setConditionsApplied}
-          appliedFilters={choosedFilters}
-          applyFilters={setChoosedFilters}
+          conditionsApplied={conditionsApplied}
           defaultFilters={defaultConditions.filters}
+          setConditionsApplied={setConditionsApplied}
         />
         <SortingBlock
           btnName="сортировка"
-          sortingList={sortingList}
-          choosedSorting={choosedSorting}
-          setChoosedSorting={setChoosedSorting}
+          conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
         />
       </main>

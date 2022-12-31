@@ -8,6 +8,7 @@ const Catalog = ({
   catList,
   setCurCat,
   setCatList,
+  hideCatalog,
   setCatListDefault,
   conditionsApplied,
   setConditionsApplied,
@@ -18,9 +19,6 @@ const Catalog = ({
     const catItemCats = catItem.value;
     const lIndexOfCurCat = curCat.length - 1;
     curCat.map((category) => (allSumOpenCat += category.value.length));
-
-    console.log(catItem);
-    console.log(conditionsApplied.category);
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ убрать категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     if (catItem.name === conditionsApplied.category.name) {
@@ -37,6 +35,7 @@ const Catalog = ({
           category: { name: catItem.name, value: catItem.value },
         };
       });
+      hideCatalog();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ открытие ветки категорий ~~~~~~~~~~~~~~~~~~~~~~~~~~//

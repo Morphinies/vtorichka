@@ -4,13 +4,13 @@ import apply from "../../../../img/apply.svg";
 import reset from "../../../../img/reset.svg";
 
 const BtnsApplyFilters = ({
-  applyFilters,
-  choosedFilters,
-  appliedFilters,
+  formData,
+  setFormData,
   defaultFilters,
   setOpenedFilters,
-  setChoosedFilters,
+  conditionsApplied,
   setCategoriesHidden,
+  setConditionsApplied,
 }) => {
   const equalObjects = (obj1, obj2) => {
     return (
@@ -27,11 +27,13 @@ const BtnsApplyFilters = ({
           "btn " +
           s.btnApplyFilters +
           " " +
-          (equalObjects(choosedFilters, appliedFilters) ? "disabled" : "")
+          (equalObjects(conditionsApplied.filters, formData) ? "disabled" : "")
         }
         onClick={() => {
-          if (equalObjects(choosedFilters, appliedFilters)) return;
-          applyFilters(choosedFilters);
+          if (equalObjects(conditionsApplied.filters, formData)) return;
+          setConditionsApplied((prevState) => {
+            return { ...prevState, filters: formData };
+          });
           setCategoriesHidden(true);
         }}
       >
@@ -49,13 +51,17 @@ const BtnsApplyFilters = ({
           "btn " +
           s.btnApplyFilters +
           " " +
-          (equalObjects(appliedFilters, defaultFilters) ? "disabled" : "")
+          (equalObjects(conditionsApplied.filters, defaultFilters)
+            ? "disabled"
+            : "")
         }
         onClick={() => {
-          if (!equalObjects(appliedFilters, defaultFilters)) {
-            applyFilters({ ...defaultFilters });
+          if (!equalObjects(conditionsApplied.filters, defaultFilters)) {
+            setConditionsApplied((prevState) => {
+              return { ...prevState, filters: defaultFilters };
+            });
             setOpenedFilters([]);
-            setChoosedFilters({ ...defaultFilters });
+            setFormData(defaultFilters);
             setCategoriesHidden(true);
           }
         }}
