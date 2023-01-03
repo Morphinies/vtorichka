@@ -23,10 +23,11 @@ const CheckBox = ({ setFormData, formData, label, name, id }) => {
     }
   };
 
+  const mainArrForChange = formData[indexOfFilter()].value; // массив объектов с типами
+  const objForChange = mainArrForChange[indexOfFilterValue()]; // объект для изменения в масиве с типами
+  const indexObjForChange = mainArrForChange.indexOf(objForChange); // индекс объекта для изменения в масиве с типами
+
   const changedObj = () => {
-    const mainArrForChange = formData[indexOfFilter()].value; // массив объектов с типами
-    const objForChange = mainArrForChange[indexOfFilterValue()]; // объект для изменения в масиве с типами
-    const indexObjForChange = mainArrForChange.indexOf(objForChange); // индекс объекта для изменения в масиве с типами
     const changedObj = { ...objForChange, value: !objForChange.value }; // объект изменённый в масиве с типами
     const changedArr = [
       // массив объектов с типами изменённый
@@ -41,17 +42,30 @@ const CheckBox = ({ setFormData, formData, label, name, id }) => {
   const choosedCheckBox =
     formData[indexOfFilter()].value[indexOfFilterValue()].value;
 
+  const checkedNumb = (arr) => {
+    let count = 2;
+    for (let obj of arr) {
+      if (!obj.value) return;
+      for (let filter of obj.value) {
+        !filter.value && count--;
+      }
+      return count;
+    }
+  };
+
   return (
     <div className={s.filterLine}>
       <button
         onClick={() => {
-          setFormData((prevData) => {
-            return [
-              ...prevData.slice(0, indexOfFilter()),
-              changedObj(),
-              ...prevData.slice(indexOfFilter() + 1),
-            ];
-          });
+          checkedNumb(formData) === 1 && objForChange.value
+            ? console.log()
+            : setFormData((prevData) => {
+                return [
+                  ...prevData.slice(0, indexOfFilter()),
+                  changedObj(),
+                  ...prevData.slice(indexOfFilter() + 1),
+                ];
+              });
         }}
         type="button"
         id={s.checkBoxContainer}

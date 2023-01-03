@@ -3,8 +3,8 @@ const defaultValues = {
     {
       name: "тип",
       value: [
-        { name: "б/у", value: true },
         { name: "новое", value: true },
+        { name: "б/у", value: true },
       ],
     },
   ],

@@ -14,20 +14,25 @@ const Conditions = ({
     );
   };
 
+  const changedObject = (arr1, arr2) => {
+    const arrOfChangedObj = [];
+    arr1.map((obj1) =>
+      arr2.map(
+        (obj2) =>
+          obj1.name === obj2.name &&
+          obj1.value === obj2.value &&
+          arrOfChangedObj.push(obj1)
+      )
+    );
+    return arrOfChangedObj;
+  };
+
   return (
     !equalObjects(defaultConditions, conditionsApplied) && (
       <div className={s.conditions}>
         {Object.keys(conditionsApplied).map((condition) => {
           return (
             <div key={condition}>
-              {/* !equalObjects(
-                defaultConditions[condition],
-                conditionsApplied[condition]
-              )
-                if (condition === "category") { (
-                    <ConditionBtn btnName={conditionsApplied[condition].name} />
-                  ) */}
-
               {equalObjects(
                 defaultConditions[condition],
                 conditionsApplied[condition]
@@ -35,26 +40,26 @@ const Conditions = ({
                 ""
               ) : condition === "category" ? ( //category
                 <ConditionBtn btnName={conditionsApplied[condition].name} />
-              ) : condition === "filters" ? ( //filters
-                conditionsApplied[condition].map((filter) => {
-                  !defaultConditions[condition].includes(filter)
-                    ? !Array.isArray(filter.value)
-                      ? console.log("!")
-                      : console.log(filter.value)
-                    : console.log();
-
-                  // !defaultConditions[condition].includes(
-                  //   conditionsApplied[condition][i]
-                  // ) && !Array.isArray(conditionsApplied[condition][i].value)
-                  //   ? console.log(
-                  //       conditionsApplied[condition][i].id +
-                  //         ": " +
-                  //         conditionsApplied[condition][i].value
-                  //     )
-                  //   : console.log("тип");
-                })
+              ) : condition === "filters" ? (
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                conditionsApplied[condition].map(
+                  (filter) =>
+                    filter.name === "тип" &&
+                    !defaultConditions[condition].includes(filter) &&
+                    defaultConditions[condition].map((defCond) =>
+                      changedObject(filter.value, defCond.value).map(
+                        (changedObj) => (
+                          <ConditionBtn
+                            key={changedObj.name}
+                            btnName={changedObj.name}
+                          />
+                        )
+                      )
+                    )
+                )
               ) : (
-                ""
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                condition === "sorting"
               )}
             </div>
           );
