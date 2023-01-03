@@ -8,6 +8,7 @@ import BtnDisplayBlock from "../btnDisplayBlock";
 const CatalogBlock = ({
   id,
   btnName,
+  defaultCategory,
   conditionsApplied,
   setConditionsApplied,
 }) => {
@@ -15,6 +16,14 @@ const CatalogBlock = ({
   const [catList, setCatList] = useState();
   const [categories, setCategories] = useState([]);
   const [catalogHidden, setCatalogHidden] = useState(true);
+
+  const equalObjects = (obj1, obj2) => {
+    return (
+      JSON.stringify(Object.entries(obj1).sort()) ===
+      JSON.stringify(Object.entries(obj2).sort())
+    );
+  };
+
   useEffect(() => {
     api.categoryList.fetchAll().then((data) => setCategories(data));
   }, []);
@@ -29,7 +38,12 @@ const CatalogBlock = ({
       id={v["categoriesNav" + id]}
     >
       <BtnDisplayBlock
-        btnName={btnName}
+        btnName={
+          btnName +
+          (equalObjects(conditionsApplied.category, defaultCategory)
+            ? ""
+            : " *")
+        }
         blockHidden={catalogHidden}
         conditionsApplied={conditionsApplied}
         hideBlock={() => setCatalogHidden(!catalogHidden)}

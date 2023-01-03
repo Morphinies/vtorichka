@@ -18,13 +18,44 @@ const Conditions = ({
     !equalObjects(defaultConditions, conditionsApplied) && (
       <div className={s.conditions}>
         {Object.keys(conditionsApplied).map((condition) => {
-          console.log(conditionsApplied[condition]);
           return (
             <div key={condition}>
-              {!equalObjects(
+              {/* !equalObjects(
                 defaultConditions[condition],
                 conditionsApplied[condition]
-              ) && <ConditionBtn btnName={conditionsApplied[condition].name} />}
+              )
+                if (condition === "category") { (
+                    <ConditionBtn btnName={conditionsApplied[condition].name} />
+                  ) */}
+
+              {equalObjects(
+                defaultConditions[condition],
+                conditionsApplied[condition]
+              ) ? (
+                ""
+              ) : condition === "category" ? ( //category
+                <ConditionBtn btnName={conditionsApplied[condition].name} />
+              ) : condition === "filters" ? ( //filters
+                conditionsApplied[condition].map((filter) => {
+                  !defaultConditions[condition].includes(filter)
+                    ? !Array.isArray(filter.value)
+                      ? console.log("!")
+                      : console.log(filter.value)
+                    : console.log();
+
+                  // !defaultConditions[condition].includes(
+                  //   conditionsApplied[condition][i]
+                  // ) && !Array.isArray(conditionsApplied[condition][i].value)
+                  //   ? console.log(
+                  //       conditionsApplied[condition][i].id +
+                  //         ": " +
+                  //         conditionsApplied[condition][i].value
+                  //     )
+                  //   : console.log("тип");
+                })
+              ) : (
+                ""
+              )}
             </div>
           );
         })}

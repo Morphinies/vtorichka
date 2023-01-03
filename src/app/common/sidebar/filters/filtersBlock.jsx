@@ -14,6 +14,13 @@ const FiltersBlock = ({
   const [formData, setFormData] = useState(defaultFilters);
   const [categoriesHidden, setCategoriesHidden] = useState(true);
 
+  const equalObjects = (obj1, obj2) => {
+    return (
+      JSON.stringify(Object.entries(obj1).sort()) ===
+      JSON.stringify(Object.entries(obj2).sort())
+    );
+  };
+
   const hideFilters = () => {
     setCategoriesHidden(!categoriesHidden);
   };
@@ -25,14 +32,8 @@ const FiltersBlock = ({
     >
       <BtnDisplayBlock
         btnName={
-          btnName
-          // +
-          // (filtersApplied.length === defaultFilters.length &&
-          //   defaultFilters.map((filter) =>
-          //     filtersApplied.includes(filter) && defaultFilters.includes(filter)
-          //       ? ""
-          //       : " *"
-          //   ))
+          btnName +
+          (equalObjects(conditionsApplied.filters, defaultFilters) ? "" : " *")
         }
         blockHidden={categoriesHidden}
         hideBlock={hideFilters}
@@ -48,11 +49,6 @@ const FiltersBlock = ({
           conditionsApplied={conditionsApplied}
           setCategoriesHidden={setCategoriesHidden}
           setConditionsApplied={setConditionsApplied}
-
-          // setFiltersApplied={setFiltersApplied}
-          // appliedFilters={appliedFilters}
-          // filtersApplied={filtersApplied}
-          // applyFilters={applyFilters}
         />
       )}
     </nav>

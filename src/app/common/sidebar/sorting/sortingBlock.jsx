@@ -5,7 +5,12 @@ import v from "../sidebar.module.css";
 import React, { useEffect, useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 
-const SortingBlock = ({ btnName, conditionsApplied, setConditionsApplied }) => {
+const SortingBlock = ({
+  btnName,
+  defaultSorting,
+  conditionsApplied,
+  setConditionsApplied,
+}) => {
   const [blockHidden, setBlockHidden] = useState(true);
 
   // sorting list
@@ -14,13 +19,27 @@ const SortingBlock = ({ btnName, conditionsApplied, setConditionsApplied }) => {
     api.sortingList.fetchAll().then((data) => setSortingList(data));
   }, []);
 
+  const equalObjects = (obj1, obj2) => {
+    return (
+      JSON.stringify(Object.entries(obj1).sort()) ===
+      JSON.stringify(Object.entries(obj2).sort())
+    );
+  };
+
   return (
     <nav
       className={v.categoriesNav + " " + (!blockHidden && v.catNavOpened)}
       id={s.sorting}
     >
       <BtnDisplayBlock
-        btnName={btnName + (!blockHidden ? " по:" : "")}
+        btnName={
+          btnName +
+          (!blockHidden ? " по:" : "") +
+          (blockHidden &&
+          !equalObjects(conditionsApplied.sorting, defaultSorting)
+            ? " *"
+            : "")
+        }
         hideBlock={() => setBlockHidden(!blockHidden)}
         blockHidden={blockHidden}
       />

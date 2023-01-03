@@ -27,6 +27,7 @@ const Main = ({ defaultConditions }) => {
         <CatalogBlock
           id="1"
           btnName="каталог"
+          defaultCategory={defaultConditions.category}
           conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
         />
@@ -43,6 +44,7 @@ const Main = ({ defaultConditions }) => {
         <SortingBlock
           btnName="сортировка"
           conditionsApplied={conditionsApplied}
+          defaultSorting={defaultConditions.sorting}
           setConditionsApplied={setConditionsApplied}
         />
       </main>
