@@ -20,14 +20,14 @@ const PriceFilter = ({
       {openedFilters.includes("цена") && (
         <>
           <InputPrice
-            id="minPrice"
+            id="от"
             placeholder="min"
             formData={formData}
             setFormData={setFormData}
             defaultFilters={defaultFilters}
           />
           <InputPrice
-            id="maxPrice"
+            id="до"
             placeholder="max"
             formData={formData}
             setFormData={setFormData}

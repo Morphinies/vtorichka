@@ -28,44 +28,50 @@ const Conditions = ({
   };
 
   return (
-    !equalObjects(defaultConditions, conditionsApplied) && (
-      <div className={s.conditions}>
-        {Object.keys(conditionsApplied).map((condition) => {
-          return (
-            <div key={condition}>
-              {equalObjects(
-                defaultConditions[condition],
-                conditionsApplied[condition]
-              ) ? (
-                ""
-              ) : condition === "category" ? ( //category
-                <ConditionBtn btnName={conditionsApplied[condition].name} />
-              ) : condition === "filters" ? (
-                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                conditionsApplied[condition].map(
-                  (filter) =>
-                    filter.name === "тип" &&
-                    !defaultConditions[condition].includes(filter) &&
-                    defaultConditions[condition].map((defCond) =>
-                      changedObject(filter.value, defCond.value).map(
-                        (changedObj) => (
+    <div className={s.conditions}>
+      {!equalObjects(defaultConditions, conditionsApplied) &&
+        Object.keys(conditionsApplied).map((condition) => {
+          if (
+            equalObjects(
+              defaultConditions[condition],
+              conditionsApplied[condition]
+            )
+          )
+            return null;
+          else
+            return (
+              <>
+                {condition === "category" && (
+                  <ConditionBtn btnName={conditionsApplied[condition].name} />
+                )}
+                {condition === "filters" &&
+                  conditionsApplied[condition].map((filter) =>
+                    filter.name === "тип"
+                      ? !defaultConditions[condition].includes(filter) &&
+                        defaultConditions[condition].map((defCond) =>
+                          changedObject(filter.value, defCond.value).map(
+                            (changedObj) => (
+                              <ConditionBtn
+                                key={changedObj.name}
+                                btnName={changedObj.name}
+                              />
+                            )
+                          )
+                        )
+                      : filter.name === "цена" &&
+                        !defaultConditions[condition].includes(filter) && (
                           <ConditionBtn
-                            key={changedObj.name}
-                            btnName={changedObj.name}
+                            key={filter.id}
+                            btnName={filter.id + ": " + filter.value + " р."}
                           />
                         )
-                      )
-                    )
-                )
-              ) : (
-                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                condition === "sorting"
-              )}
-            </div>
-          );
+                  )}
+
+                {condition === "sorting"}
+              </>
+            );
         })}
-      </div>
-    )
+    </div>
   );
 };
 
