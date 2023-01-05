@@ -42,7 +42,10 @@ const Conditions = ({
             return (
               <>
                 {condition === "category" && (
-                  <ConditionBtn btnName={conditionsApplied[condition].name} />
+                  <ConditionBtn
+                    btnName={conditionsApplied[condition].name}
+                    id={conditionsApplied[condition].name}
+                  />
                 )}
                 {condition === "filters" &&
                   conditionsApplied[condition].map((filter) =>
@@ -52,7 +55,7 @@ const Conditions = ({
                           changedObject(filter.value, defCond.value).map(
                             (changedObj) => (
                               <ConditionBtn
-                                key={changedObj.name}
+                                id={changedObj.name}
                                 btnName={changedObj.name}
                               />
                             )
@@ -61,13 +64,18 @@ const Conditions = ({
                       : filter.name === "цена" &&
                         !defaultConditions[condition].includes(filter) && (
                           <ConditionBtn
-                            key={filter.id}
+                            id={filter.id}
                             btnName={filter.id + ": " + filter.value + " р."}
                           />
                         )
                   )}
 
-                {condition === "sorting"}
+                {condition === "sorting" && (
+                  <ConditionBtn
+                    id={conditionsApplied[condition].name}
+                    btnName={conditionsApplied[condition].name}
+                  />
+                )}
               </>
             );
         })}
