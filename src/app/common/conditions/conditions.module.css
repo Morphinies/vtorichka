@@ -1,4 +1,5 @@
 .conditions {
+  height: 55px;
   display: flex;
   padding: 0.5rem;
   grid-area: 2/1/3/3;

@@ -1,10 +1,10 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import ConditionBtn from "./conditionBtn";
 import s from "./conditions.module.css";
 
 const Conditions = ({
-  clearFilter,
-  clearCategory,
   defaultConditions,
   conditionsApplied,
   setConditionsApplied,
@@ -16,79 +16,69 @@ const Conditions = ({
     );
   };
 
-  const changedObject = (arr1, arr2) => {
-    const arrOfChangedObj = [];
-    arr1.map((obj1) =>
-      arr2.map(
-        (obj2) =>
-          obj1.name === obj2.name &&
-          obj1.value === obj2.value &&
-          arrOfChangedObj.push(obj1)
-      )
-    );
-    return arrOfChangedObj;
-  };
+  const [conditions, setConditions] = useState({});
+  // console.log(conditions);
+
+  useEffect(() => {
+    if (!equalObjects(defaultConditions.filters, conditionsApplied.filters)) {
+      for (let cond of conditionsApplied.filters) {
+        for (let defCond of defaultConditions.filters) {
+          if (
+            // фильтр по типу
+            cond.name === "тип" &&
+            !equalObjects(defCond.value, cond.value)
+          ) {
+            for (let filt of cond.value) {
+              for (let defFilt of defCond.value) {
+                if (
+                  filt.name === defFilt.name &&
+                  filt.value === defFilt.value
+                ) {
+                  setConditions((prevState) => {
+                    return { ...prevState, type: filt };
+                  });
+                }
+              }
+            }
+          } else if (cond.name === "цена") {
+            // фильтр по цене
+            if (cond.id === "от") {
+              setConditions((prevState) => {
+                return {
+                  ...prevState,
+                  minPrice: { name: cond.id + " " + cond.value + "р." },
+                };
+              });
+            } else if (cond.id === "до") {
+              setConditions((prevState) => {
+                return {
+                  ...prevState,
+                  maxPrice: { name: cond.id + " " + cond.value + "р." },
+                };
+              });
+            } else {
+              console.log("hi");
+              setConditions((prevState) => {
+                return {
+                  ...prevState,
+                  minPrice: {},
+                  maxPrice: {},
+                };
+              });
+            }
+          }
+        }
+      }
+    } else {
+      setConditions({});
+    }
+  }, [conditionsApplied, defaultConditions]);
 
   return (
     <div className={s.conditions}>
-      {!equalObjects(defaultConditions, conditionsApplied) &&
-        Object.keys(conditionsApplied)
-          .reverse()
-          .map((condition) => {
-            return (
-              equalObjects(
-                defaultConditions[condition],
-                conditionsApplied[condition]
-              ) ||
-              (condition === "category" && (
-                <ConditionBtn
-                  condition={condition}
-                  clearCategory={clearCategory}
-                  btnName={conditionsApplied[condition].name}
-                  key={conditionsApplied[condition].name}
-                />
-              )) ||
-              (condition === "filters" &&
-                conditionsApplied[condition].map((filter) =>
-                  filter.name === "тип"
-                    ? !defaultConditions[condition].includes(filter) &&
-                      defaultConditions[condition].map((defCond) =>
-                        changedObject(filter.value, defCond.value).map(
-                          (changedObj) => (
-                            <ConditionBtn
-                              condition={condition}
-                              key={changedObj.name}
-                              btnName={changedObj.name}
-                              clearFilter={clearFilter}
-                              conditionId={filter.name}
-                            />
-                          )
-                        )
-                      )
-                    : filter.name === "цена" &&
-                      !defaultConditions[condition].includes(filter) && (
-                        <ConditionBtn
-                          key={filter.id}
-                          condition={condition}
-                          clearFilter={clearFilter}
-                          conditionId={filter.name}
-                          btnName={filter.id + ": " + filter.value + "р."}
-                        />
-                      )
-                )) ||
-              (condition === "sorting" && (
-                <ConditionBtn
-                  key={conditionsApplied[condition].value}
-                  btnName={
-                    conditionsApplied[condition].name +
-                    " по " +
-                    conditionsApplied[condition].value
-                  }
-                />
-              )) ||
-              null
-            );
-          })}
+      {Object.values(conditions).map((cond) => {
+        return <ConditionBtn btnName={cond.name} key={cond.name} />;
+      })}
     </div>
   );
 };

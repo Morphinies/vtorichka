@@ -14,45 +14,12 @@ const Main = ({ defaultConditions }) => {
     ...defaultConditions,
   });
 
-  const clearCategory = () => {
-    setConditionsApplied({ ...defaultConditions });
-  };
-
-  console.log(conditionsApplied.filters);
-  const clearFilter = (conditionId) => {
-    setConditionsApplied((prevState) => {
-      return {
-        ...prevState,
-        filters: prevState.filters.map((filter) => {
-          let defFilter;
-          for (let cond of defaultConditions.filters) {
-            if (cond.name === conditionId) defFilter = { ...cond };
-          }
-          return filter.name === conditionId ? defFilter : filter;
-        }),
-      };
-    });
-
-    // setConditionsApplied((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     filters: conditionsApplied.filters.map((filter) =>
-    //       filter.name === conditionId
-    //         ? (filter.name = defaultConditions.filters)
-    //         : filter
-    //     ),
-    //   };
-    // });
-  };
-
   return (
     <div className="wrapper">
       <Header />
       <main className="main">
         <SearchLine />
         <Conditions
-          clearFilter={clearFilter}
-          clearCategory={clearCategory}
           defaultConditions={defaultConditions}
           conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
