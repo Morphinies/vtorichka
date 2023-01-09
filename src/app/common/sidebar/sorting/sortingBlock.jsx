@@ -34,7 +34,6 @@ const SortingBlock = ({
       <BtnDisplayBlock
         btnName={
           btnName +
-          (!blockHidden ? " по:" : "") +
           (blockHidden &&
           !equalObjects(conditionsApplied.sorting, defaultSorting)
             ? " *"

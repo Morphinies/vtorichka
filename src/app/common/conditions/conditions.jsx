@@ -17,17 +17,60 @@ const Conditions = ({
   };
 
   const [conditions, setConditions] = useState({});
-  // console.log(conditions);
 
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ условие по категории
   useEffect(() => {
+    if (!equalObjects(conditionsApplied.category, defaultConditions.category)) {
+      setConditions((prevState) => {
+        return {
+          ...prevState,
+          category: { name: conditionsApplied.category.name },
+        };
+      });
+    } else {
+      setConditions((prevState) => {
+        return {
+          ...prevState,
+          category: { name: null },
+        };
+      });
+    }
+  }, [conditionsApplied, defaultConditions]);
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ условие по сортировке
+  useEffect(() => {
+    if (!equalObjects(conditionsApplied.sorting, defaultConditions.sorting)) {
+      setConditions((prevState) => {
+        return {
+          ...prevState,
+          sorting: {
+            name:
+              conditionsApplied.sorting.name +
+              ": " +
+              conditionsApplied.sorting.value,
+          },
+        };
+      });
+    } else {
+      setConditions((prevState) => {
+        return { ...prevState, sorting: null };
+      });
+    }
+  }, [conditionsApplied, defaultConditions]);
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ условие по фильтрам
+  useEffect(() => {
+    const regExpPrice = (number) => {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    };
+
     if (!equalObjects(defaultConditions.filters, conditionsApplied.filters)) {
+      setConditions((prevState) => {
+        return { ...prevState, type: null, minPrice: {}, maxPrice: {} };
+      });
       for (let cond of conditionsApplied.filters) {
         for (let defCond of defaultConditions.filters) {
-          if (
-            // фильтр по типу
-            cond.name === "тип" &&
-            !equalObjects(defCond.value, cond.value)
-          ) {
+          if (cond.name === "тип" && !equalObjects(defCond.value, cond.value)) {
             for (let filt of cond.value) {
               for (let defFilt of defCond.value) {
                 if (
@@ -41,19 +84,22 @@ const Conditions = ({
               }
             }
           } else if (cond.name === "цена") {
-            // фильтр по цене
             if (cond.id === "от") {
               setConditions((prevState) => {
                 return {
                   ...prevState,
-                  minPrice: { name: cond.id + " " + cond.value + "р." },
+                  minPrice: {
+                    name: cond.id + ": " + regExpPrice(cond.value) + "р.",
+                  },
                 };
               });
             } else if (cond.id === "до") {
               setConditions((prevState) => {
                 return {
                   ...prevState,
-                  maxPrice: { name: cond.id + " " + cond.value + "р." },
+                  maxPrice: {
+                    name: cond.id + ": " + regExpPrice(cond.value) + "р.",
+                  },
                 };
               });
             } else {
@@ -70,14 +116,27 @@ const Conditions = ({
         }
       }
     } else {
-      setConditions({});
+      setConditions((prevState) => {
+        return { ...prevState, type: null, minPrice: {}, maxPrice: {} };
+      });
     }
   }, [conditionsApplied, defaultConditions]);
 
   return (
     <div className={s.conditions}>
       {Object.values(conditions).map((cond) => {
-        return <ConditionBtn btnName={cond.name} key={cond.name} />;
+        return (
+          cond &&
+          cond.name && (
+            <ConditionBtn
+              key={cond.name}
+              btnName={cond.name}
+              defaultConditions={defaultConditions}
+              conditionsApplied={conditionsApplied}
+              setConditionsApplied={setConditionsApplied}
+            />
+          )
+        );
       })}
     </div>
   );

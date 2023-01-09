@@ -10,7 +10,7 @@ const defaultValues = {
   ],
   sorting: {
     name: "сортировка",
-    value: "дате (c новых)",
+    value: "c новых",
   },
   category: { name: "", value: "" },
 };
