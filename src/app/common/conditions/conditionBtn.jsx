@@ -3,6 +3,7 @@ import del from "../../img/cancel.svg";
 import s from "./conditions.module.css";
 
 const ConditionBtn = ({
+  cond,
   btnName,
   defaultConditions,
   conditionsApplied,
@@ -11,7 +12,8 @@ const ConditionBtn = ({
   return (
     <button
       onClick={() => {
-        setConditionsApplied({ ...defaultConditions });
+        console.log(cond);
+        // setConditionsApplied({ ...defaultConditions });
       }}
       className={"btn " + s.conditionBtn}
     >

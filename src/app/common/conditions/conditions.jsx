@@ -24,14 +24,17 @@ const Conditions = ({
       setConditions((prevState) => {
         return {
           ...prevState,
-          category: { name: conditionsApplied.category.name },
+          category: {
+            name: conditionsApplied.category.name,
+            value: "category",
+          },
         };
       });
     } else {
       setConditions((prevState) => {
         return {
           ...prevState,
-          category: { name: null },
+          category: { name: null, value: null },
         };
       });
     }
@@ -48,6 +51,7 @@ const Conditions = ({
               conditionsApplied.sorting.name +
               ": " +
               conditionsApplied.sorting.value,
+            value: "sorting",
           },
         };
       });
@@ -129,6 +133,7 @@ const Conditions = ({
           cond &&
           cond.name && (
             <ConditionBtn
+              cond={cond}
               key={cond.name}
               btnName={cond.name}
               defaultConditions={defaultConditions}
