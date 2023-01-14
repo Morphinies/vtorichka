@@ -67,7 +67,6 @@ const Conditions = ({
     const regExpPrice = (number) => {
       return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     };
-
     if (!equalObjects(defaultConditions.filters, conditionsApplied.filters)) {
       setConditions((prevState) => {
         return { ...prevState, type: null, minPrice: {}, maxPrice: {} };
@@ -82,7 +81,10 @@ const Conditions = ({
                   filt.value === defFilt.value
                 ) {
                   setConditions((prevState) => {
-                    return { ...prevState, type: filt };
+                    return {
+                      ...prevState,
+                      type: { name: filt.name, value: "type" },
+                    };
                   });
                 }
               }
@@ -94,6 +96,7 @@ const Conditions = ({
                   ...prevState,
                   minPrice: {
                     name: cond.id + ": " + regExpPrice(cond.value) + "р.",
+                    value: "minPrice",
                   },
                 };
               });
@@ -103,11 +106,11 @@ const Conditions = ({
                   ...prevState,
                   maxPrice: {
                     name: cond.id + ": " + regExpPrice(cond.value) + "р.",
+                    value: "maxPrice",
                   },
                 };
               });
             } else {
-              console.log("hi");
               setConditions((prevState) => {
                 return {
                   ...prevState,

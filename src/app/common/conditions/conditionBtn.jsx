@@ -9,11 +9,59 @@ const ConditionBtn = ({
   conditionsApplied,
   setConditionsApplied,
 }) => {
+  const clearCondition = (condition) => {
+    if (condition.value === "minPrice") {
+      setConditionsApplied((prevState) => {
+        return {
+          ...prevState,
+          filters: conditionsApplied.filters.filter(
+            (filter) => filter.id !== "от"
+          ),
+        };
+      });
+    } else if (condition.value === "maxPrice") {
+      setConditionsApplied((prevState) => {
+        return {
+          ...prevState,
+          filters: conditionsApplied.filters.filter(
+            (filter) => filter.id !== "до"
+          ),
+        };
+      });
+    } else if (condition.value === "type") {
+      setConditionsApplied((prevState) => {
+        return {
+          ...prevState,
+          filters: conditionsApplied.filters.map((filter) => {
+            return filter.name === "тип"
+              ? defaultConditions.filters.find(
+                  (filter) => filter.name === "тип"
+                )
+              : filter;
+          }),
+        };
+      });
+    } else if (condition.value === "sorting") {
+      setConditionsApplied((prevState) => {
+        return {
+          ...prevState,
+          sorting: defaultConditions.sorting,
+        };
+      });
+    } else if (condition.value === "category") {
+      setConditionsApplied((prevState) => {
+        return {
+          ...prevState,
+          category: defaultConditions.category,
+        };
+      });
+    }
+  };
+
   return (
     <button
       onClick={() => {
-        console.log(cond);
-        // setConditionsApplied({ ...defaultConditions });
+        clearCondition(cond);
       }}
       className={"btn " + s.conditionBtn}
     >

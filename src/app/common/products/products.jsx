@@ -2,10 +2,13 @@ import React from "react";
 import s from "./products.module.css";
 
 const Products = () => {
+  const arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
   return (
-    <div className={s.products}>
-      {/* <h1 className={s.productHeaderTitle}>{category}</h1> */}
-    </div>
+    <ul className={s.products}>
+      {arr.map((i) => (
+        <li className={s.productCard}></li>
+      ))}
+    </ul>
   );
 };
 

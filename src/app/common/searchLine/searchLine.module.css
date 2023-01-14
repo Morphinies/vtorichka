@@ -20,7 +20,8 @@
 
 /* ************************ input ************************ */
 .input {
-  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  padding: 0.3rem 1rem;
   border-radius: 0 0 0 3px;
   background-color: #f6f6f6;
 }
@@ -79,10 +80,16 @@
   }
 }
 
+@media (max-width: 640px) {
+  .form {
+    width: 80%;
+  }
+}
+
 @media (max-width: 480px) {
   .nav {
     display: grid;
-    padding: 1rem;
+    padding: 0.5rem 1rem 0 1rem;
     grid-area: 4/1/5/2;
     align-self: flex-start;
   }
@@ -94,7 +101,7 @@
   }
 
   #searchBtn {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
     border-radius: 0 3px 3px 0;
   }
 

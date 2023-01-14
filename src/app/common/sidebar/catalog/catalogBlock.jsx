@@ -8,14 +8,15 @@ import BtnDisplayBlock from "../btnDisplayBlock";
 const CatalogBlock = ({
   id,
   btnName,
+  catalogHidden,
   defaultCategory,
+  setCatalogHidden,
   conditionsApplied,
   setConditionsApplied,
 }) => {
   const [curCat, setCurCat] = useState([]);
   const [catList, setCatList] = useState();
   const [categories, setCategories] = useState([]);
-  const [catalogHidden, setCatalogHidden] = useState(true);
 
   const equalObjects = (obj1, obj2) => {
     return (
@@ -46,7 +47,7 @@ const CatalogBlock = ({
         }
         blockHidden={catalogHidden}
         conditionsApplied={conditionsApplied}
-        hideBlock={() => setCatalogHidden(!catalogHidden)}
+        hideBlock={setCatalogHidden}
       />
 
       {!catalogHidden && (
@@ -58,7 +59,7 @@ const CatalogBlock = ({
           conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
           setCatListDefault={() => setCatList(categories)}
-          hideCatalog={() => setCatalogHidden(!catalogHidden)}
+          hideCatalog={setCatalogHidden}
         />
       )}
     </nav>

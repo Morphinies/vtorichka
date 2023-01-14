@@ -21,7 +21,7 @@ const Filters = ({
             .slice(0, arr.indexOf(item))
             .concat(arr.slice(arr.indexOf(item) + 1))
         )
-      : setOpenedFilters((arr) => arr.concat(item));
+      : setOpenedFilters([item]);
   };
 
   return (

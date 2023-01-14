@@ -7,12 +7,12 @@ import BtnDisplayBlock from "../btnDisplayBlock";
 
 const SortingBlock = ({
   btnName,
+  blockHidden,
+  setBlockHidden,
   defaultSorting,
   conditionsApplied,
   setConditionsApplied,
 }) => {
-  const [blockHidden, setBlockHidden] = useState(true);
-
   // sorting list
   const [sortingList, setSortingList] = useState();
   useEffect(() => {
@@ -39,7 +39,7 @@ const SortingBlock = ({
             ? " *"
             : "")
         }
-        hideBlock={() => setBlockHidden(!blockHidden)}
+        hideBlock={setBlockHidden}
         blockHidden={blockHidden}
       />
 
@@ -48,7 +48,7 @@ const SortingBlock = ({
           sortingList={sortingList}
           conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
-          hideBlock={() => setBlockHidden(!blockHidden)}
+          hideBlock={setBlockHidden}
         />
       )}
     </nav>

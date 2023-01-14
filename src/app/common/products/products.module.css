@@ -1,18 +1,19 @@
 .products {
   display: grid;
+  margin-left: 2rem;
   grid-area: 3/2/7/3;
 }
 
-.productHeaderTitle {
-  font-size: 1.5rem;
-  padding-top: 1rem;
-  font-weight: normal;
-  justify-self: center;
-  align-self: flex-start;
+.productCard {
+  width: 200px;
+  height: 250px;
+  display: grid;
+  border-radius: 5px;
+  border: 2px solid #16191a;
 }
 
 @media (max-width: 480px) {
   .products {
-    grid-area: 5/1/6/2;
+    grid-area: 6/1/7/2;
   }
 }

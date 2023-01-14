@@ -136,7 +136,7 @@ input[type="number"]:focus {
 
 @media (max-width: 480px) {
   .main {
-    grid-template-rows: repeat(4, auto) 1fr;
+    grid-template-rows: repeat(5, auto) 1fr;
     grid-template-columns: 1fr;
   }
   .btn {

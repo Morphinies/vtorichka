@@ -1,28 +1,29 @@
 import Filters from "./filters";
 import v from "../sidebar.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 
 const FiltersBlock = ({
   id,
   btnName,
   defaultFilters,
+  categoriesHidden,
   conditionsApplied,
+  setCategoriesHidden,
   setConditionsApplied,
 }) => {
   const [openedFilters, setOpenedFilters] = useState([]);
   const [formData, setFormData] = useState(defaultFilters);
-  const [categoriesHidden, setCategoriesHidden] = useState(true);
+
+  useEffect(() => {
+    categoriesHidden && setOpenedFilters([]);
+  }, [categoriesHidden]);
 
   const equalObjects = (obj1, obj2) => {
     return (
       JSON.stringify(Object.entries(obj1).sort()) ===
       JSON.stringify(Object.entries(obj2).sort())
     );
-  };
-
-  const hideFilters = () => {
-    setCategoriesHidden(!categoriesHidden);
   };
 
   return (
@@ -36,7 +37,7 @@ const FiltersBlock = ({
           (equalObjects(conditionsApplied.filters, defaultFilters) ? "" : " *")
         }
         blockHidden={categoriesHidden}
-        hideBlock={hideFilters}
+        hideBlock={setCategoriesHidden}
       />
 
       {!categoriesHidden && (
