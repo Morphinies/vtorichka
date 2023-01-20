@@ -58,7 +58,7 @@ const Main = ({ defaultConditions }) => {
           defaultCategory={defaultConditions.category}
         />
 
-        <Products />
+        <Products conditions={conditionsApplied} />
 
         <FiltersBlock
           id="2"

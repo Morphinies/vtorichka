@@ -98,6 +98,8 @@
   rotate: 180deg;
 }
 
+/* ************************ position absolute ************************ */
+
 /* ************************ media queries ************************ */
 @media (hover: none) {
   .btnDisplayCat:hover {
