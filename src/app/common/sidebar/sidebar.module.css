@@ -54,6 +54,7 @@
 #categoriesShowBtn {
   column-gap: 0;
   padding: 2rem 0.7rem;
+  transition: padding-left 0.3s;
 }
 
 #categoriesShowBtn:hover {
