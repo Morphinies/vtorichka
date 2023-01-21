@@ -83,7 +83,7 @@ const Catalog = ({
 
   return (
     catList && (
-      <ul className={s.catList}>
+      <ul className={v.catList}>
         {catList.map((catItem) => (
           <li
             role="button"
