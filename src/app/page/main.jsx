@@ -46,41 +46,44 @@ const Main = ({ defaultConditions }) => {
           conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
         />
-        <CatalogBlock
-          id="1"
-          btnName="каталог"
-          catalogHidden={categoriesHidden}
-          conditionsApplied={conditionsApplied}
-          setCatalogHidden={() => {
-            categoriesHidden ? openCategories() : setCategoriesHidden(true);
-          }}
-          setConditionsApplied={setConditionsApplied}
-          defaultCategory={defaultConditions.category}
-        />
-
         <Products conditions={conditionsApplied} />
 
-        <FiltersBlock
-          id="2"
-          btnName="фильтры"
-          categoriesHidden={filtersHidden}
-          conditionsApplied={conditionsApplied}
-          setCategoriesHidden={() => {
-            filtersHidden ? openFilters() : setFiltersHidden(true);
-          }}
-          defaultFilters={defaultConditions.filters}
-          setConditionsApplied={setConditionsApplied}
-        />
-        <SortingBlock
-          btnName="сортировка"
-          blockHidden={sortingHidden}
-          setBlockHidden={() => {
-            sortingHidden ? openSorting() : setSortingHidden(true);
-          }}
-          conditionsApplied={conditionsApplied}
-          defaultSorting={defaultConditions.sorting}
-          setConditionsApplied={setConditionsApplied}
-        />
+        <div className="sidebarWrap">
+          <div className="sidebarCatalog">
+            <CatalogBlock
+              id="1"
+              btnName="каталог"
+              catalogHidden={categoriesHidden}
+              conditionsApplied={conditionsApplied}
+              setCatalogHidden={() => {
+                categoriesHidden ? openCategories() : setCategoriesHidden(true);
+              }}
+              setConditionsApplied={setConditionsApplied}
+              defaultCategory={defaultConditions.category}
+            />
+            <FiltersBlock
+              id="2"
+              btnName="фильтры"
+              categoriesHidden={filtersHidden}
+              conditionsApplied={conditionsApplied}
+              setCategoriesHidden={() => {
+                filtersHidden ? openFilters() : setFiltersHidden(true);
+              }}
+              defaultFilters={defaultConditions.filters}
+              setConditionsApplied={setConditionsApplied}
+            />
+            <SortingBlock
+              btnName="сортировка"
+              blockHidden={sortingHidden}
+              setBlockHidden={() => {
+                sortingHidden ? openSorting() : setSortingHidden(true);
+              }}
+              conditionsApplied={conditionsApplied}
+              defaultSorting={defaultConditions.sorting}
+              setConditionsApplied={setConditionsApplied}
+            />
+          </div>
+        </div>
       </main>
       <Footer />
     </div>

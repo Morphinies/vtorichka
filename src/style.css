@@ -37,7 +37,7 @@ body {
 
 .main {
   display: grid;
-  grid-template-rows: repeat(5, auto) 1fr;
+  grid-template-rows: repeat(3, auto);
   grid-template-columns: auto 1fr;
 }
 
@@ -90,6 +90,20 @@ input[type="number"]:focus {
 
 .disabled:hover {
   border: none;
+}
+
+/* sidebarWrap */
+
+.sidebarWrap {
+  width: 3rem;
+  grid-area: 3/1/4/2;
+  position: relative;
+}
+
+.sidebarCatalog {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
 }
 
 /* ************************ fonts ************************ */
