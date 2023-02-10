@@ -1,6 +1,5 @@
 import React from "react";
-import s from "./sorting.module.css";
-import v from "../sidebar.module.css";
+import SortingItem from "./sortingItem";
 
 const Sorting = ({
   hideBlock,
@@ -19,28 +18,15 @@ const Sorting = ({
     sortingList && (
       <ul>
         {sortingList.map((sortingItem) => (
-          <li
+          <SortingItem
+            hideBlock={hideBlock}
             key={sortingItem.value}
-            className={
-              v.btnDisplayCat +
-              (conditionsApplied.sorting.value === sortingItem.value
-                ? " " + s.choosedSorting
-                : "")
-            }
-            onClick={() => {
-              !equalObjects(sortingList, conditionsApplied) &&
-                setConditionsApplied((prevState) => {
-                  hideBlock();
-                  return {
-                    ...prevState,
-                    sorting: { name: "сортировка", value: sortingItem.value },
-                  };
-                });
-            }}
-          >
-            <p className={v.btnDisplayCatText}>{sortingItem.value}</p>
-            <img src={sortingItem.img} alt="" className={s.sortArrowImg} />
-          </li>
+            sortingItem={sortingItem}
+            sortingList={sortingList}
+            equalObjects={equalObjects}
+            conditionsApplied={conditionsApplied}
+            setConditionsApplied={setConditionsApplied}
+          />
         ))}
       </ul>
     )

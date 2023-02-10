@@ -24,6 +24,35 @@ const InputPrice = ({ id, formData, setFormData, placeholder }) => {
     });
   };
 
+  const changePrice = (e) => {
+    let numb = e.target.value;
+    let addNumb = e.target.value.at(-1);
+
+    !numb && formData[searchIndex(formData)] && clearFilter();
+
+    numb &&
+      addNumb.match(regExpNumber) &&
+      setFormData((oldArray) => {
+        if (!oldArray[searchIndex(oldArray)]) {
+          return [
+            ...oldArray,
+            {
+              id: id,
+              name: "цена",
+              value: numb.match(regExpNumber).join(""),
+            },
+          ];
+        } else {
+          oldArray[searchIndex(oldArray)] = {
+            id: id,
+            name: "цена",
+            value: numb.match(regExpNumber).join(""),
+          };
+          return [...oldArray];
+        }
+      });
+  };
+
   return (
     <div className={s.filterLine}>
       <div className={s.inputContainer}>
@@ -38,34 +67,7 @@ const InputPrice = ({ id, formData, setFormData, placeholder }) => {
           id={s.name}
           placeholder={placeholder}
           className={s.priceInput}
-          onChange={(e) => {
-            let numb = e.target.value;
-            let addNumb = e.target.value.at(-1);
-
-            !numb && formData[searchIndex(formData)] && clearFilter();
-
-            numb &&
-              addNumb.match(regExpNumber) &&
-              setFormData((oldArray) => {
-                if (!oldArray[searchIndex(oldArray)]) {
-                  return [
-                    ...oldArray,
-                    {
-                      id: id,
-                      name: "цена",
-                      value: numb.match(regExpNumber).join(""),
-                    },
-                  ];
-                } else {
-                  oldArray[searchIndex(oldArray)] = {
-                    id: id,
-                    name: "цена",
-                    value: numb.match(regExpNumber).join(""),
-                  };
-                  return [...oldArray];
-                }
-              });
-          }}
+          onChange={(e) => changePrice(e)}
         />
         <BtnClearFilter id={id} formData={formData} clearFilter={clearFilter} />
       </div>

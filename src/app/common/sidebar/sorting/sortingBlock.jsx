@@ -7,8 +7,8 @@ import BtnDisplayBlock from "../btnDisplayBlock";
 
 const SortingBlock = ({
   btnName,
-  blockHidden,
-  setBlockHidden,
+  openedSideBar,
+  changeOpenedSideBar,
   defaultSorting,
   conditionsApplied,
   setConditionsApplied,
@@ -28,27 +28,33 @@ const SortingBlock = ({
 
   return (
     <nav
-      className={v.categoriesNav + " " + (!blockHidden && v.catNavOpened)}
+      className={
+        v.categoriesNav + " " + (openedSideBar === btnName && v.catNavOpened)
+      }
       id={s.sorting}
     >
       <BtnDisplayBlock
         btnName={
           btnName +
-          (blockHidden &&
+          (openedSideBar !== btnName &&
           !equalObjects(conditionsApplied.sorting, defaultSorting)
             ? " *"
             : "")
         }
-        hideBlock={setBlockHidden}
-        blockHidden={blockHidden}
+        hideBlock={() =>
+          changeOpenedSideBar(openedSideBar === btnName ? "" : btnName)
+        }
+        blockHidden={openedSideBar !== btnName}
       />
 
-      {!blockHidden && (
+      {openedSideBar === btnName && (
         <Sorting
           sortingList={sortingList}
           conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
-          hideBlock={setBlockHidden}
+          hideBlock={() =>
+            changeOpenedSideBar(openedSideBar === btnName ? "" : btnName)
+          }
         />
       )}
     </nav>

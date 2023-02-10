@@ -1,28 +1,35 @@
-import React, { useState } from "react";
 import s from "./searchLine.module.css";
-import searchImg from "../../img/search.svg";
+import SearchLineForm from "./searchLineForm";
+import React, { useState, useEffect } from "react";
+import PossibleGoods from "./possibleGoods";
 
-const SearchLine = () => {
-  const [textSearch, setTextSearch] = useState("");
+const SearchLine = ({ allProducts, searchProducts, setSearchProducts }) => {
+  const [regex, setRegex] = useState(); // условное выражение, по которому происходит поиск
+  const [selected, setSelected] = useState([]);
+  const [textSearch, setTextSearch] = useState(""); // то, что сейчас находится в поиск. строке
 
-  const search = (e) => {
-    e.preventDefault();
-    textSearch !== "" && console.log(textSearch);
-  };
+  // изменение условия поиска
+  useEffect(() => {
+    !textSearch && setRegex();
+    textSearch && setRegex(new RegExp(`${textSearch}`, "gi"));
+  }, [textSearch]);
+
+  // изменение отобранных товаров
+  useEffect(() => {
+    !regex && setSelected([]);
+    regex && setSelected(allProducts.filter((prod) => regex.test(prod.name)));
+  }, [regex, allProducts]);
 
   return (
     <nav className={s.nav}>
-      <form onSubmit={search} className={s.form}>
-        <input
-          onChange={(e) => setTextSearch(e.target.value)}
-          className={s.input}
-          type="text"
-          placeholder="поиск ..."
-        />
-        <button type="button" className="btn" id={s.searchBtn} onClick={search}>
-          <img className={s.searchImg} src={searchImg} alt="поиск" />
-        </button>
-      </form>
+      <SearchLineForm
+        selected={selected}
+        textSearch={textSearch}
+        setTextSearch={setTextSearch}
+        searchProducts={searchProducts}
+        setSearchProducts={setSearchProducts}
+      />
+      <PossibleGoods selected={selected} textSearch={textSearch} />
     </nav>
   );
 };

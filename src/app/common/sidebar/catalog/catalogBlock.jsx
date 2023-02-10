@@ -8,10 +8,10 @@ import BtnDisplayBlock from "../btnDisplayBlock";
 const CatalogBlock = ({
   id,
   btnName,
-  catalogHidden,
+  openedSideBar,
   defaultCategory,
-  setCatalogHidden,
   conditionsApplied,
+  changeOpenedSideBar,
   setConditionsApplied,
 }) => {
   const [curCat, setCurCat] = useState([]);
@@ -35,7 +35,9 @@ const CatalogBlock = ({
 
   return (
     <nav
-      className={v.categoriesNav + " " + (!catalogHidden && v.catNavOpened)}
+      className={
+        v.categoriesNav + " " + (openedSideBar === btnName && v.catNavOpened)
+      }
       id={v["categoriesNav" + id]}
     >
       <BtnDisplayBlock
@@ -45,12 +47,14 @@ const CatalogBlock = ({
             ? ""
             : " *")
         }
-        blockHidden={catalogHidden}
+        blockHidden={openedSideBar !== btnName}
         conditionsApplied={conditionsApplied}
-        hideBlock={setCatalogHidden}
+        hideBlock={() =>
+          changeOpenedSideBar(openedSideBar === btnName ? "" : btnName)
+        }
       />
 
-      {!catalogHidden && (
+      {openedSideBar === btnName && (
         <Catalog
           curCat={curCat}
           catList={catList}
@@ -59,7 +63,9 @@ const CatalogBlock = ({
           conditionsApplied={conditionsApplied}
           setConditionsApplied={setConditionsApplied}
           setCatListDefault={() => setCatList(categories)}
-          hideCatalog={setCatalogHidden}
+          hideCatalog={() =>
+            changeOpenedSideBar(openedSideBar === btnName ? "" : btnName)
+          }
         />
       )}
     </nav>

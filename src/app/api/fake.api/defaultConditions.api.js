@@ -19,7 +19,7 @@ const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(defaultValues);
-    }, 500);
+    }, 1000);
   });
 
 const defaultConditions = { fetchAll };

@@ -1,23 +1,19 @@
 import Filters from "./filters";
 import v from "../sidebar.module.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 
 const FiltersBlock = ({
   id,
   btnName,
+  openedSideBar,
   defaultFilters,
-  categoriesHidden,
   conditionsApplied,
-  setCategoriesHidden,
+  changeOpenedSideBar,
   setConditionsApplied,
 }) => {
   const [openedFilters, setOpenedFilters] = useState([]);
   const [formData, setFormData] = useState(defaultFilters);
-
-  useEffect(() => {
-    categoriesHidden && setOpenedFilters([]);
-  }, [categoriesHidden]);
 
   const equalObjects = (obj1, obj2) => {
     return (
@@ -28,7 +24,9 @@ const FiltersBlock = ({
 
   return (
     <nav
-      className={v.categoriesNav + " " + (!categoriesHidden && v.catNavOpened)}
+      className={
+        v.categoriesNav + " " + (openedSideBar === btnName && v.catNavOpened)
+      }
       id={v["categoriesNav" + id]}
     >
       <BtnDisplayBlock
@@ -36,11 +34,13 @@ const FiltersBlock = ({
           btnName +
           (equalObjects(conditionsApplied.filters, defaultFilters) ? "" : " *")
         }
-        blockHidden={categoriesHidden}
-        hideBlock={setCategoriesHidden}
+        blockHidden={openedSideBar !== btnName}
+        hideBlock={() => {
+          changeOpenedSideBar(openedSideBar === btnName ? "" : btnName);
+        }}
       />
 
-      {!categoriesHidden && (
+      {openedSideBar === btnName && (
         <Filters
           formData={formData}
           setFormData={setFormData}
@@ -48,7 +48,9 @@ const FiltersBlock = ({
           defaultFilters={defaultFilters}
           setOpenedFilters={setOpenedFilters}
           conditionsApplied={conditionsApplied}
-          setCategoriesHidden={setCategoriesHidden}
+          setCategoriesHidden={() => {
+            changeOpenedSideBar(openedSideBar === btnName ? "" : btnName);
+          }}
           setConditionsApplied={setConditionsApplied}
         />
       )}

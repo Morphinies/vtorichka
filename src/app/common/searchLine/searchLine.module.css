@@ -18,6 +18,15 @@
   grid-template-columns: 1fr auto;
 }
 
+.formWithRes,
+.formWithText {
+  grid-template-columns: 1fr auto auto;
+}
+
+.formWithText {
+  border-radius: 0;
+}
+
 /* ************************ input ************************ */
 .input {
   font-size: 1.2rem;
@@ -37,18 +46,25 @@
 }
 
 /* ************************ input button ************************ */
-#searchBtn {
+#searchBtn,
+#searchBtnFormNotEmpty {
   border: none;
   transition: all 0.3s;
   border-radius: 0 0 3px 0;
   background-color: #f6f6f6;
 }
 
-#searchBtn:hover {
+#searchBtnFormNotEmpty {
+  border-radius: 0;
+}
+
+#searchBtn:hover,
+#searchBtnFormNotEmpty:hover {
   background-color: #fff;
 }
 
-#searchBtn:active {
+#searchBtn:active,
+#searchBtnFormNotEmpty:active {
   background-color: #dedede;
 }
 
@@ -57,19 +73,78 @@
   transition: all 0.3s;
 }
 
+/* ************************ selected ************************ */
+.selectedWrap {
+  width: 50%;
+  display: grid;
+  position: relative;
+  justify-self: center;
+}
+
+.selectedList {
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  border-radius: 0 0 5px 5px;
+  background-color: #16191a;
+}
+
+.selectedItem {
+  margin: 2px;
+  margin-top: 0;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: #f6f6f6;
+}
+
+.selectedItem:last-child {
+  border-radius: 0 0 3px 3px;
+}
+
+.selectedItem:hover {
+  background-color: #dedede;
+}
+
+.selectedItemDis:hover {
+  cursor: default;
+  background-color: #f6f6f6;
+}
+
+.formNotEmpty {
+  border-radius: 0;
+}
+
+.btnReset {
+  border: none;
+  cursor: pointer;
+  padding: 0 1rem;
+  background-color: #f6f6f6;
+}
+.btnReset:hover {
+  background-color: #ffffff;
+}
+
+.btnResetHide {
+  display: none;
+}
+
 /* ************************ media ************************ */
 
 @media (hover: none) {
-  #searchBtn:hover {
+  #searchBtn:hover,
+  #searchBtnFormNotEmpty:hover {
     border-radius: 0 0 3px 0;
     background-color: #f6f6f6;
   }
 
-  #searchBtn:active {
+  #searchBtn:active,
+  #searchBtnFormNotEmpty:active {
     background-color: #dedede;
   }
 
-  #searchBtn:hover .searchImg {
+  #searchBtn:hover .searchImg,
+  #searchBtnFormNotEmpty:hover .searchImg {
     filter: none;
   }
 }

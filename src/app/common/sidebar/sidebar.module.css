@@ -22,20 +22,20 @@
   column-gap: 1rem;
   padding: 0.7rem 2rem;
   grid-template-columns: 1fr auto;
-  background-color: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0);
+  transition: all 0s;
 }
 
 .catList .btnDisplayCat:last-child {
   border-radius: 0 0 3px 0;
-  transition: all 0s;
 }
 
 .btnDisplayCat:hover {
-  background-color: rgba(238, 238, 238, 0.15);
+  background-color: #353d3f;
 }
 
 .btnDisplayCat:active {
-  background-color: #353d3f;
+  background-color: #353d3fcc;
 }
 
 .btnDisplayCatText {

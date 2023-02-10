@@ -1,7 +1,6 @@
 import React from "react";
-import s from "./catalog.module.css";
 import v from "../sidebar.module.css";
-import arrowDown from "../../../img/arrowDown.svg";
+import CatalogItem from "./catalogItem";
 
 const Catalog = ({
   curCat,
@@ -85,24 +84,13 @@ const Catalog = ({
     catList && (
       <ul className={v.catList}>
         {catList.map((catItem) => (
-          <li
-            role="button"
-            onClick={() => displayCat(catItem)}
-            className={v.btnDisplayCat}
-            id={
-              curCat.includes(catItem)
-                ? v.openCatItem
-                : catItem.name === conditionsApplied.category.name
-                ? s.choosedCatItem
-                : ""
-            }
+          <CatalogItem
+            curCat={curCat}
+            catItem={catItem}
             key={catItem.name}
-          >
-            <p className={v.btnDisplayCatText}>{catItem.name}</p>
-            {catItem.value && (
-              <img className={v.imgArrowDown} alt="" src={arrowDown} />
-            )}
-          </li>
+            displayCat={displayCat}
+            conditionsApplied={conditionsApplied}
+          />
         ))}
       </ul>
     )

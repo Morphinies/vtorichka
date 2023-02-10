@@ -1,10 +1,10 @@
 import "./style.css";
 import React from "react";
-import Root from "./app/page/root";
 import ReactDOM from "react-dom/client";
+import MainPage from "./app/page/mainPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([{ path: "/", element: <Root /> }]);
+const router = createBrowserRouter([{ path: "/", element: <MainPage /> }]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
