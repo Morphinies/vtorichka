@@ -176,6 +176,7 @@
 .sellerImgWrap {
   width: 5rem;
   height: 5rem;
+  border: 1px solid #16191a;
   margin-left: auto;
   margin-right: auto;
   border-radius: 100%;
@@ -191,7 +192,7 @@
 /* prod btns */
 .prodBtns {
   display: flex;
-  padding-top: 2rem;
+  padding-top: 1rem;
   column-gap: 0.5rem;
   padding-bottom: 1rem;
   justify-content: center;
@@ -200,19 +201,28 @@
 .prodBtn {
   display: grid;
   cursor: pointer;
-  column-gap: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 100px;
-  background-color: #ccc;
   grid-template-columns: auto auto;
+  background-color: rgba(0, 0, 0, 0);
 }
 
-.prodBtn:hover {
-  background-color: #c2c2c2;
+.btnWrite:hover,
+.btnCall:hover {
+  background-color: #daf6e1;
 }
 
-.prodBtnName {
-  font-weight: 400;
+.btnFavorite:hover {
+  background-color: #ffdfde;
+}
+
+.btnWrite,
+.btnCall {
+  border-color: #2ba84a;
+}
+
+.btnFavorite {
+  border-color: #ff0800;
 }
 
 .prodBtn * {

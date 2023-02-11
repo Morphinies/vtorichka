@@ -1,7 +1,7 @@
 import React from "react";
-import s from "./productCard.module.css";
-import arrowBack from "../../img/arrowBack.svg";
-import arrowNext from "../../img/arrowNext.svg";
+import s from "../productCard.module.css";
+import arrowBack from "../../../img/arrowBack.svg";
+import arrowNext from "../../../img/arrowNext.svg";
 
 const BtnsChangeImg = ({ imgBack, imgForward, showedImg, imgTotal }) => {
   return (

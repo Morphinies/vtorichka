@@ -34,6 +34,7 @@ const Main = ({ defaultConditions }) => {
         <>
           <SearchLine
             allProducts={allProducts}
+            chooseProduct={showProduct}
             searchProducts={searchProducts}
             setSearchProducts={setSearchProducts}
           />

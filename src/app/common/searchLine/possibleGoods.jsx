@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./searchLine.module.css";
 
-const PossibleGoods = ({ selected, textSearch }) => {
+const PossibleGoods = ({ selected, textSearch, chooseProduct }) => {
   return (
     <div className={s.selectedWrap}>
       <ul className={s.selectedList}>
@@ -13,7 +13,11 @@ const PossibleGoods = ({ selected, textSearch }) => {
         )}
         {/* предлагаемые товары */}
         {selected.map((option) => (
-          <li key={option.id} className={s.selectedItem}>
+          <li
+            onClick={() => chooseProduct(option)}
+            key={option.id}
+            className={s.selectedItem}
+          >
             {option.name}
           </li>
         ))}

@@ -1,13 +1,15 @@
 import React from "react";
-import heart from "../../img/heart.svg";
-import s from "./productCard.module.css";
-import message from "../../img/message.svg";
+import call from "../../../img/call.svg";
+import heart from "../../../img/heart.svg";
+import s from "../productCard.module.css";
+import message from "../../../img/message.svg";
+import ProdName from "./prodName";
 
 const ProductCardInfo = ({ product }) => {
   console.log(product);
   return (
     <div className={s.productInfo}>
-      <h2 className={s.prodName}>{product.name}</h2>
+      <ProdName name={product.name} />
       <div className={s.priceWrap}>
         <h1 className={s.prodPrice}>{product.price}р</h1>
       </div>
@@ -34,18 +36,21 @@ const ProductCardInfo = ({ product }) => {
           текст Lorem Ipsum, используемый с XVI века, приведён ниже.
         </p>
       </div>
+
       <div className={s.seller}>
         <div className={s.sellerImgWrap}></div>
         <p className={s.sellerName}>{product.seller}</p>
       </div>
+
       <div className={s.prodBtns}>
         <button className={s.prodBtn + " " + s.btnWrite}>
-          <p className={s.prodBtnName}>написать</p>{" "}
-          <img alt="" className={s.prodBtnImg} src={message} />
+          <img title="написать" alt="" className={s.prodBtnImg} src={message} />
         </button>
         <button className={s.prodBtn + " " + s.btnFavorite}>
-          <p className={s.prodBtnName}>избранное</p>{" "}
-          <img alt="" className={s.prodBtnImg} src={heart} />
+          <img title="избранное" alt="" className={s.prodBtnImg} src={heart} />
+        </button>
+        <button className={s.prodBtn + " " + s.btnCall}>
+          <img title="позвонить" alt="" className={s.prodBtnImg} src={call} />
         </button>
       </div>
     </div>

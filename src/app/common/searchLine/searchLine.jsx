@@ -3,7 +3,12 @@ import SearchLineForm from "./searchLineForm";
 import React, { useState, useEffect } from "react";
 import PossibleGoods from "./possibleGoods";
 
-const SearchLine = ({ allProducts, searchProducts, setSearchProducts }) => {
+const SearchLine = ({
+  allProducts,
+  chooseProduct,
+  searchProducts,
+  setSearchProducts,
+}) => {
   const [regex, setRegex] = useState(); // условное выражение, по которому происходит поиск
   const [selected, setSelected] = useState([]);
   const [textSearch, setTextSearch] = useState(""); // то, что сейчас находится в поиск. строке
@@ -29,7 +34,11 @@ const SearchLine = ({ allProducts, searchProducts, setSearchProducts }) => {
         searchProducts={searchProducts}
         setSearchProducts={setSearchProducts}
       />
-      <PossibleGoods selected={selected} textSearch={textSearch} />
+      <PossibleGoods
+        selected={selected}
+        textSearch={textSearch}
+        chooseProduct={chooseProduct}
+      />
     </nav>
   );
 };

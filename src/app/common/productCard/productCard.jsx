@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./productCard.module.css";
-import ProductCardImg from "./productCardImg";
+import ProductCardImg from "./prodImg/productCardImg";
+import ProductCardInfo from "./prodInfo/productCardInfo";
 import BtnCloseProduct from "./btnCloseProduct";
-import ProductCardInfo from "./productCardInfo";
 
 const ProductCard = ({ closeCard, product }) => {
   return (
