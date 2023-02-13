@@ -23,6 +23,8 @@ const Main = ({ defaultConditions }) => {
     setOpenedProduct(product);
   };
 
+  // localStorage.clear("favoriteProduct");
+
   return (
     <main className="main">
       {openedProduct.id ? (

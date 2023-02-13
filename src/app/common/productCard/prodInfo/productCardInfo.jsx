@@ -1,12 +1,37 @@
-import React from "react";
-import call from "../../../img/call.svg";
-import heart from "../../../img/heart.svg";
-import s from "../productCard.module.css";
-import message from "../../../img/message.svg";
 import ProdName from "./prodName";
+import React, { useEffect, useState } from "react";
+import call from "../../../img/call.svg";
+import s from "../productCard.module.css";
+import heart from "../../../img/heart.svg";
+import message from "../../../img/message.svg";
+import heartFill from "../../../img/heartFill.svg";
 
 const ProductCardInfo = ({ product }) => {
-  console.log(product);
+  // избранные товары
+  const [isFavorite, setIsFavorite] = useState(
+    localStorage.getItem("favoriteProduct").includes(product.id)
+  );
+
+  useEffect(() => {
+    const favoriteProducts = JSON.parse(
+      localStorage.getItem("favoriteProduct")
+    );
+    favoriteProducts.includes(product.id)
+      ? localStorage.setItem(
+          "favoriteProduct",
+          JSON.stringify([
+            ...favoriteProducts.slice(0, favoriteProducts.indexOf(product.id)),
+            ...favoriteProducts.slice(favoriteProducts.indexOf(product.id) + 1),
+          ])
+        )
+      : localStorage.setItem(
+          "favoriteProduct",
+          JSON.stringify([...favoriteProducts, product.id])
+        );
+  }, [isFavorite, product.id]);
+
+  // const updateFavorite = (id) => {};
+
   return (
     <div className={s.productInfo}>
       <ProdName name={product.name} />
@@ -46,8 +71,16 @@ const ProductCardInfo = ({ product }) => {
         <button className={s.prodBtn + " " + s.btnWrite}>
           <img title="написать" alt="" className={s.prodBtnImg} src={message} />
         </button>
-        <button className={s.prodBtn + " " + s.btnFavorite}>
-          <img title="избранное" alt="" className={s.prodBtnImg} src={heart} />
+        <button
+          onClick={() => setIsFavorite(!isFavorite)}
+          className={s.prodBtn + " " + s.btnFavorite}
+        >
+          <img
+            alt=""
+            title="избранное"
+            className={s.prodBtnImg}
+            src={isFavorite ? heartFill : heart}
+          />
         </button>
         <button className={s.prodBtn + " " + s.btnCall}>
           <img title="позвонить" alt="" className={s.prodBtnImg} src={call} />
