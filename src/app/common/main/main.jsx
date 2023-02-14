@@ -9,11 +9,11 @@ const Main = ({ defaultConditions }) => {
   // products in local storage
   const allProductsInLS = localStorage.getItem("products")
     ? JSON.parse(localStorage.getItem("products"))
-    : {};
+    : [];
 
+  const [allProducts, setAllProducts] = useState(allProductsInLS);
   const [openedSideBar, setOpenedSideBar] = useState("");
   const [searchProducts, setSearchProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState(allProductsInLS);
   const [conditionsApplied, setConditionsApplied] = useState({
     ...defaultConditions,
   });
@@ -22,8 +22,6 @@ const Main = ({ defaultConditions }) => {
   const showProduct = (product) => {
     setOpenedProduct(product);
   };
-
-  // localStorage.clear("favoriteProduct");
 
   return (
     <main className="main">

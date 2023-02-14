@@ -1,5 +1,5 @@
-import ProductsItem from "../item/product";
 import s from "../products.module.css";
+import ProductsItem from "../item/productsItem";
 import React, { useEffect, useState } from "react";
 
 const ProductsList = ({ productsOnPage, showProduct }) => {

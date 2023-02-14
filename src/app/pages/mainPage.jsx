@@ -12,6 +12,8 @@ const MainPage = () => {
     api.defaultConditions.fetchAll().then((data) => setDefaultConditions(data));
   }, [defaultConditions]);
 
+  // localStorage.clear(); // отключить запоминание действий
+
   return (
     <div className="wrapper">
       <Header />

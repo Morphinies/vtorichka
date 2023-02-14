@@ -1,18 +1,34 @@
 import adidas from "../../img/productImg/adidas.jpg";
+import avatar from "../../img/avatar.jpg";
 import jordans from "../../img/productImg/jordans.jpg";
 import newBalance from "../../img/productImg/newBalance.png";
+
+const textAbout = `Откуда он появился? Многие думают, что Lorem Ipsum - взятый с потолка
+псевдо-латинский набор слов, но это не совсем так. Его корни уходят в
+один фрагмент классической латыни 45 года н.э., то есть более двух
+тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа
+Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem
+Ipsum, "consectetur", и занялся его поисками в классической латинской
+литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum
+в разделах 1.10.32 и 1.10.33 книги "de Finibus Bonorum et Malorum" ("О
+пределах добра и зла"), написанной Цицероном в 45 году н.э. Этот трактат
+по теории этики был очень популярен в эпоху Возрождения. Первая строка
+Lorem Ipsum, "Lorem ipsum dolor sit amet..", происходит от одной из
+строк в разделе 1.10.32 Классический текст Lorem Ipsum, используемый с
+XVI века, приведён ниже. `;
 
 const products = [
   {
     id: 1,
     type: "б/у",
-    place: "г. Торопец",
-    time: new Date(2000, 0, 23, 11, 12, 50, 0),
-    name: "джорданы 1",
-    category: "кеды",
     price: 2000,
-    seller: "Иван",
+    category: "кеды",
+    name: "джорданы 1",
+    place: "г. Торопец",
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
+    seller: { id: 1, phone: "+79108309115", name: "Иван", avatar: avatar },
+    time: new Date(2000, 0, 23, 11, 12, 50, 0),
   },
   {
     id: 2,
@@ -22,7 +38,8 @@ const products = [
     name: "Кроссовки adidas Ultimashow Кроссовки adidas Ultimashow ",
     category: "кеды",
     price: 2500,
-    seller: "Иван",
+    seller: { id: 2, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
@@ -33,7 +50,8 @@ const products = [
     name: "нью баланс",
     category: "кеды",
     price: 3500,
-    seller: "Иван",
+    seller: { id: 3, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
@@ -44,7 +62,8 @@ const products = [
     name: "модные адики",
     category: "кеды",
     price: 4500,
-    seller: "Иван",
+    seller: { id: 4, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
@@ -55,7 +74,8 @@ const products = [
     name: "джорданы 1",
     category: "кеды",
     price: 5500,
-    seller: "Иван",
+    seller: { id: 5, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
@@ -66,7 +86,8 @@ const products = [
     name: "джорданы 1",
     category: "кеды",
     price: 6500,
-    seller: "Иван",
+    seller: { id: 6, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
@@ -77,7 +98,8 @@ const products = [
     name: "джорданы 1",
     category: "кеды",
     price: 1500,
-    seller: "Иван",
+    seller: { id: 7, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
@@ -88,7 +110,8 @@ const products = [
     name: "adidas for running top",
     category: "кеды",
     price: 7500,
-    seller: "Иван",
+    seller: { id: 8, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
@@ -99,7 +122,8 @@ const products = [
     name: "джорданы 1",
     category: "кеды",
     price: 8500,
-    seller: "Иван",
+    seller: { id: 9, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
@@ -110,7 +134,8 @@ const products = [
     name: "джорданы 1",
     category: "кеды",
     price: 2700,
-    seller: "Иван",
+    seller: { id: 10, phone: "+79108309115", name: "Иван", avatar: avatar },
+    textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
 ];
