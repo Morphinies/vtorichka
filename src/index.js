@@ -1,15 +1,15 @@
 import "./style.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import RegPage from "./app/pages/regPage";
 import MainPage from "./app/pages/mainPage";
-import AuthPage from "./app/pages/authPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LoginPage from "./app/pages/loginPage";
+import SignUpPage from "./app/pages/signUpPage";
 
 const router = createBrowserRouter([
   { path: "/", element: <MainPage /> },
-  { path: "/reg", element: <RegPage /> },
-  { path: "/auth", element: <AuthPage /> },
+  { path: "/login", element: <LoginPage /> },
+  { path: "/signUp", element: <SignUpPage /> },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

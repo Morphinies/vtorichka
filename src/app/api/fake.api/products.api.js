@@ -1,5 +1,5 @@
-import adidas from "../../img/productImg/adidas.jpg";
 import avatar from "../../img/avatar.jpg";
+import adidas from "../../img/productImg/adidas.jpg";
 import jordans from "../../img/productImg/jordans.jpg";
 import newBalance from "../../img/productImg/newBalance.png";
 

@@ -9,22 +9,22 @@ const HeadNav = () => {
     case "/":
       return (
         <nav className={s.navBlock}>
-          <HeadBtn name={"вход"} link={"/auth"} />
-          <HeadBtn name={"регистрация"} link={"/reg"} />
+          <HeadBtn name={"вход"} link={"/login"} />
+          <HeadBtn name={"регистрация"} link={"/signUp"} />
         </nav>
       );
-    case "/auth":
+    case "/login":
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          <HeadBtn name={"регистрация"} link={"/reg"} />
+          <HeadBtn name={"регистрация"} link={"/signUp"} />
         </nav>
       );
-    case "/reg":
+    case "/signUp":
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          <HeadBtn name={"вход"} link={"/auth"} />
+          <HeadBtn name={"вход"} link={"/login"} />
         </nav>
       );
     default:

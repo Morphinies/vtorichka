@@ -1,0 +1,73 @@
+/* form wrap */
+.wrap {
+  width: min-content;
+  border-radius: 5px;
+  justify-self: center;
+  align-self: flex-start;
+  margin: 3rem 1rem 0 1rem;
+  border: 4px solid #16191a;
+}
+
+.title {
+  color: #eee;
+  margin: 0 auto;
+  cursor: default;
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background-color: #16191a;
+}
+
+/* form */
+
+.form {
+  margin: auto;
+  display: grid;
+  row-gap: 1rem;
+  width: min-content;
+  padding: 2rem 4rem 1rem 4rem;
+}
+
+/* input  */
+
+.inputLine {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  align-self: center;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.label {
+  padding: 0.5rem 0;
+  margin-right: 2rem;
+  white-space: nowrap;
+}
+
+/* forgot password */
+.helpText {
+  opacity: 50%;
+  text-align: center;
+}
+
+.helpText:hover {
+  opacity: 80%;
+}
+
+/* button  */
+.button {
+  margin: auto;
+  margin-top: 1rem;
+  font-weight: 400;
+  color: #16191a;
+  width: min-content;
+  border: 2px solid #16191a;
+}
+
+.button:hover {
+  background-color: #16191a1f;
+}
