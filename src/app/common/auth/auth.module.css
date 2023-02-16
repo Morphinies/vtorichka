@@ -1,5 +1,6 @@
 /* form wrap */
 .wrap {
+  position: relative;
   width: min-content;
   border-radius: 5px;
   justify-self: center;

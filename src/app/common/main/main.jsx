@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import Sidebar from "../sidebar/sidebar";
 import Products from "../products/list/products";
 import Conditions from "../conditions/conditions";
 import SearchLine from "../searchLine/searchLine";
-import Sidebar from "../sidebar/sidebar";
 import ProductCard from "../productCard/productCard";
 
 const Main = ({ defaultConditions }) => {
@@ -24,7 +24,7 @@ const Main = ({ defaultConditions }) => {
   };
 
   return (
-    <main className="main">
+    <>
       {openedProduct.id ? (
         <ProductCard
           product={openedProduct}
@@ -59,7 +59,7 @@ const Main = ({ defaultConditions }) => {
           />
         </>
       )}
-    </main>
+    </>
   );
 };
 

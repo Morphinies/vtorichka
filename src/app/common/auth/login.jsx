@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import s from "./auth.module.css";
-import { Link } from "react-router-dom";
 import api from "../../api";
+import s from "./auth.module.css";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Loading from "../loading/loading.jsx";
 
 const Login = () => {
   const [formValues, setFormValues] = useState({ login: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({});
   user.id && console.log(user);
 
@@ -23,11 +25,14 @@ const Login = () => {
   };
 
   const sendData = ({ login, password }) => {
+    setLoading(true);
     api.usersList.fetchAll().then((data) => {
-      const user = data.find(
-        (user) => user.password === password && user.email === login
-      );
-      return user && setUser(user);
+      data.find((user) => {
+        if (user.password === password && user.email === login) {
+          setUser(user);
+        }
+        return setLoading(false);
+      });
     });
   };
 
@@ -81,6 +86,7 @@ const Login = () => {
           <p className={s.helpText}>забыли пароль?</p>{" "}
         </Link>
       </form>
+      {loading && <Loading />}
     </div>
   );
 };

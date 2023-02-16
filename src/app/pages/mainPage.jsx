@@ -17,11 +17,13 @@ const MainPage = () => {
   return (
     <div className="wrapper">
       <Header />
-      {defaultConditions ? (
-        <Main defaultConditions={defaultConditions} />
-      ) : (
-        <Loading />
-      )}
+      <main className="main">
+        {defaultConditions ? (
+          <Main defaultConditions={defaultConditions} />
+        ) : (
+          <Loading />
+        )}
+      </main>
       <Footer />
     </div>
   );
