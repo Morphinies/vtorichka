@@ -1,38 +1,39 @@
 import api from "../../api";
 import s from "./auth.module.css";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Loading from "../loading/loading.jsx";
+import ResponseMes from "./responseMes";
+import Mail from "./input/mail";
+import Password from "./input/password";
+import BtnLogin from "./btnLogin";
+import BtnForgotPassword from "./btnForgotPassword";
 
 const Login = () => {
   const [formValues, setFormValues] = useState({ login: "", password: "" });
+  const [responseMes, setResponseMes] = useState();
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState({});
-  user.id && console.log(user);
+  const [setUser] = useState({});
 
-  const enterLogin = (enterValue) => {
-    enterValue.length <= 30 &&
-      setFormValues((prevState) => {
-        return { ...prevState, login: enterValue };
-      });
+  // ответ на кнопку войти
+  const response = (user) => {
+    user
+      ? setResponseMes("Добро пожаловать, " + user.name + "!")
+      : setResponseMes("Логин или пароль не верен!");
   };
+  useEffect(() => {
+    responseMes && setTimeout(() => setResponseMes(), 2000);
+  });
 
-  const enterPassword = (enterValue) => {
-    enterValue.length <= 20 &&
-      setFormValues((prevState) => {
-        return { ...prevState, password: enterValue };
-      });
-  };
-
+  // отправка введённых данных и поиск на сервере
   const sendData = ({ login, password }) => {
     setLoading(true);
     api.usersList.fetchAll().then((data) => {
-      data.find((user) => {
-        if (user.password === password && user.email === login) {
-          setUser(user);
-        }
-        return setLoading(false);
-      });
+      const user = data.find(
+        (user) => user.password === password && user.email === login
+      );
+      user && setUser(user);
+      setLoading(false);
+      response(user);
     });
   };
 
@@ -41,52 +42,20 @@ const Login = () => {
       <h1 className={s.title}>вход</h1>
       <form className={s.form} action="">
         {/* Почта */}
-        <p className={s.inputLine}>
-          <label className={s.label} htmlFor="login">
-            почта:
-          </label>
-          <input
-            id="login"
-            type="text"
-            name="login"
-            maxLength={30}
-            className={s.input}
-            value={formValues.login}
-            onChange={(e) => enterLogin(e.target.value)}
-          />
-        </p>
+        <Mail formValues={formValues} setFormValues={setFormValues} />
 
         {/* Пароль */}
-        <p className={s.inputLine}>
-          <label className={s.label} htmlFor="password">
-            пароль:
-          </label>
-          <input
-            id="password"
-            maxLength={20}
-            type="password"
-            name="password"
-            className={s.input}
-            value={formValues.password}
-            onChange={(e) => enterPassword(e.target.value)}
-          />
-        </p>
+        <Password formValues={formValues} setFormValues={setFormValues} />
 
         {/* кнопка войти */}
-        <button
-          onClick={() => sendData(formValues)}
-          type="button"
-          className={"btn " + s.button}
-        >
-          войти
-        </button>
+        <BtnLogin sendData={sendData} formValues={formValues} />
 
         {/* ссылка на восстановление пароля */}
-        <Link to="/login">
-          <p className={s.helpText}>забыли пароль?</p>{" "}
-        </Link>
+        <BtnForgotPassword />
       </form>
+
       {loading && <Loading />}
+      {responseMes && <ResponseMes message={responseMes} />}
     </div>
   );
 };

@@ -25,7 +25,7 @@
 .form {
   margin: auto;
   display: grid;
-  row-gap: 1rem;
+  row-gap: 0.25rem;
   width: min-content;
   padding: 2rem 4rem 1rem 4rem;
 }
@@ -52,6 +52,7 @@
 /* forgot password */
 .helpText {
   opacity: 50%;
+  margin-top: 0.5rem;
   text-align: center;
 }
 
@@ -71,4 +72,35 @@
 
 .button:hover {
   background-color: #16191a1f;
+}
+
+/* Response message */
+
+.message {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.messageText {
+  font-size: 1.5rem;
+  color: #16191a;
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  background-color: rgb(255, 255, 255);
+}
+
+/* error message */
+
+.errorMessage {
+  height: 1rem;
+  float: right;
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
 }
