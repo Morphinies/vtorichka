@@ -1,11 +1,11 @@
 import api from "../../api";
-import s from "./auth.module.css";
-import React, { useEffect, useState } from "react";
-import Loading from "../loading/loading.jsx";
-import ResponseMes from "./responseMes";
 import Mail from "./input/mail";
-import Password from "./input/password";
 import BtnLogin from "./btnLogin";
+import s from "./auth.module.css";
+import ResponseMes from "./responseMes";
+import Password from "./input/password";
+import Loading from "../loading/loading.jsx";
+import React, { useEffect, useState } from "react";
 import BtnForgotPassword from "./btnForgotPassword";
 
 const Login = () => {

@@ -1,54 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import s from "../auth.module.css";
 
 const Mail = ({ formValues, setFormValues }) => {
   // ввод почты
   const [errorMes, setErrorMes] = useState("");
+  const [success, setSuccess] = useState(false);
+  useRef();
+  let timerId = useRef();
+
   const enterLogin = (enterValue) => {
-    const regExp = enterValue.replace(/\W/g, "");
+    clearTimeout(timerId.current);
+    const regExp = /[A-Z1-9._%+-@]/gi;
+    const resValue = enterValue
+      ? enterValue.match(regExp) && enterValue.match(regExp).join("")
+      : "";
     enterValue.length <= 30 &&
       setFormValues((prevState) => {
-        return { ...prevState, login: regExp };
+        return { ...prevState, login: resValue };
       });
   };
-  console.log(errorMes);
-
-  const mailRegExp = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
 
   const error = (value, rules) => {
+    let errors = 0;
     for (let rule of rules) {
       // empty
       if (rule === "empty") {
         if (value === "") {
-          setErrorMes("заполните стороку");
+          setErrorMes("заполните поле");
+          errors += 1;
           break;
-        } else {
-          setErrorMes("");
         }
       }
       // mailFormat
       if (rule === "mailFormat") {
+        const mailRegExp = new RegExp(
+          /^[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$/i
+        );
         if (!mailRegExp.test(value)) {
-          setErrorMes("Неверный формат почты");
+          setErrorMes("неверный формат почты");
+          errors += 1;
           break;
-        } else {
-          setErrorMes("");
         }
       }
     }
+    return errors;
   };
 
-  // empty error
-  // if (rule === "empty") {
-  //   value === "" ? setErrorMes("заполните стороку") : setErrorMes("");
-  // } else if (rule === "mailFormat") {
-  //   mailRegExp.test(value)
-  //     ? setErrorMes("")
-  //     : setErrorMes("не соответстует формату эл. почты");
-  // }
-
   useEffect(() => {
-    error(formValues.login, ["empty", "mailFormat"]);
+    setErrorMes("");
+    setSuccess(false);
+    timerId.current = setTimeout(() => {
+      error(formValues.login, ["empty", "mailFormat"]) === 0 &&
+        setSuccess(true);
+    }, 1000);
   }, [formValues]);
 
   return (
@@ -62,12 +66,18 @@ const Mail = ({ formValues, setFormValues }) => {
           type="text"
           name="login"
           maxLength={30}
-          className={s.input}
           value={formValues.login}
           onChange={(e) => enterLogin(e.target.value)}
+          className={
+            s.input +
+            " " +
+            (errorMes && s.inputError) +
+            " " +
+            (success && s.inputSuccess)
+          }
         />
       </p>
-      <p className={s.errorMessage}>{errorMes && errorMes + "*"}</p>
+      <p className={s.errorMessage}>{errorMes && errorMes + " *"}</p>
     </div>
   );
 };
