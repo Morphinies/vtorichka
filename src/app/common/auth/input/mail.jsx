@@ -13,21 +13,39 @@ const Mail = ({ formValues, setFormValues }) => {
   };
   console.log(errorMes);
 
-  // const mailRegExp = new RegExp();
+  const mailRegExp = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
 
   const error = (value, rules) => {
     for (let rule of rules) {
-      //empty error
+      // empty
       if (rule === "empty") {
-        value === "" ? setErrorMes("заполните стороку") : setErrorMes("");
-        break;
-      } else if (rule === "mailFormat") {
-        value === ""
-          ? setErrorMes("не соответстует формату эл. почты")
-          : setErrorMes("");
+        if (value === "") {
+          setErrorMes("заполните стороку");
+          break;
+        } else {
+          setErrorMes("");
+        }
+      }
+      // mailFormat
+      if (rule === "mailFormat") {
+        if (!mailRegExp.test(value)) {
+          setErrorMes("Неверный формат почты");
+          break;
+        } else {
+          setErrorMes("");
+        }
       }
     }
   };
+
+  // empty error
+  // if (rule === "empty") {
+  //   value === "" ? setErrorMes("заполните стороку") : setErrorMes("");
+  // } else if (rule === "mailFormat") {
+  //   mailRegExp.test(value)
+  //     ? setErrorMes("")
+  //     : setErrorMes("не соответстует формату эл. почты");
+  // }
 
   useEffect(() => {
     error(formValues.login, ["empty", "mailFormat"]);
