@@ -1,15 +1,14 @@
 import React from "react";
+import Section from "./section";
 import s from "../personalArea.module.css";
 
 const UserSections = () => {
   return (
-    <ul>
-      <li>
-        <button className={"btn " + s.sectionBtn}>избранное</button>
-      </li>
-      <li>
-        <button className={"btn " + s.sectionBtn}>мои объявления</button>
-      </li>
+    <ul className={s.sectionsList}>
+      <Section name="мои объявления" />
+      <Section name="избранное" />
+      <Section name="диалоги" />
+      <Section name="отзывы" />
     </ul>
   );
 };

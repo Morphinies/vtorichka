@@ -8,6 +8,7 @@ import ProdAboutBlock from "./prodAboutBlock";
 import React, { useEffect, useState } from "react";
 
 const ProductCardInfo = ({ product }) => {
+  console.log(product);
   // избранные товары
   const [isFavorite, setIsFavorite] = useState(
     localStorage.getItem("favoriteProduct").includes(product.id)

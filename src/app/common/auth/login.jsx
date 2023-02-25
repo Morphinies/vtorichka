@@ -38,6 +38,7 @@ const Login = () => {
       <h1 className={s.title}>вход</h1>
       <form className={s.form} action="">
         <TextField
+          type="email"
           label="почта"
           fieldName="login"
           error={errors.login}
@@ -47,6 +48,7 @@ const Login = () => {
 
         <TextField
           label="пароль"
+          type="password"
           fieldName="password"
           error={errors.password}
           setFormValues={setFormValues}
