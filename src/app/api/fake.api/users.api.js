@@ -8,6 +8,8 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
   {
     id: 2,
@@ -16,6 +18,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
   {
     id: 3,
@@ -24,6 +27,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
   {
     id: 4,
@@ -32,6 +36,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
   {
     id: 5,
@@ -40,6 +45,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
   {
     id: 6,
@@ -48,6 +54,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
   {
     id: 7,
@@ -56,6 +63,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
   {
     id: 8,
@@ -64,6 +72,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
   {
     id: 9,
@@ -72,6 +81,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
   {
     id: 10,
@@ -80,6 +90,7 @@ const users = [
     password: "Murphy123",
     phone: "+79108309115",
     email: "ilya-novyy@mail.ru",
+    about: "I'm a good seller, I sell bananas!",
   },
 ];
 

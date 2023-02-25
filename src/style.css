@@ -91,7 +91,7 @@ input[type="number"]:focus {
 }
 
 .disabled:hover {
-  border: none;
+  /* border: none; */
 }
 
 /* sidebarWrap */

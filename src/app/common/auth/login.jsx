@@ -1,54 +1,66 @@
-import api from "../../api";
-import Mail from "./input/mail";
+// import Mail from "./input/mail";
+// import Password from "./input/password";
+import handleError from "../../utils/handleError";
 import BtnLogin from "./btnLogin";
 import s from "./auth.module.css";
 import ResponseMes from "./responseMes";
-import Password from "./input/password";
 import Loading from "../loading/loading.jsx";
-import React, { useEffect, useState } from "react";
 import BtnForgotPassword from "./btnForgotPassword";
+import React, { useEffect, useState } from "react";
+import TextField from "./input/textField";
 
 const Login = () => {
-  const [formValues, setFormValues] = useState({ login: "", password: "" });
-  const [responseMes, setResponseMes] = useState();
+  const [user, setUser] = useState();
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [setUser] = useState({});
+  const [responseMes, setResponseMes] = useState();
+  const [formValues, setFormValues] = useState({ login: "", password: "" });
 
-  // ответ на кнопку войти
-  const response = (user) => {
-    user
-      ? setResponseMes("Добро пожаловать, " + user.name + "!")
-      : setResponseMes("Логин или пароль не верен!");
-  };
   useEffect(() => {
-    responseMes && setTimeout(() => setResponseMes(), 2000);
-  });
+    console.log(user);
+    localStorage.removeItem("user_vt");
+    user && localStorage.setItem("user_vt", JSON.stringify(user));
+  }, [user]);
 
-  // отправка введённых данных и поиск на сервере
-  const sendData = ({ login, password }) => {
-    setLoading(true);
-    api.usersList.fetchAll().then((data) => {
-      const user = data.find(
-        (user) => user.password === password && user.email === login
-      );
-      user && setUser(user);
-      setLoading(false);
-      response(user);
+  // проверка полей на валидность
+  useEffect(() => {
+    setErrors((prevState) => {
+      return {
+        ...prevState,
+        login: handleError(formValues.login, ["empty", "mailFormat"]),
+        password: handleError(formValues.password, ["empty"]),
+      };
     });
-  };
+  }, [formValues]);
 
   return (
     <div className={s.wrap}>
       <h1 className={s.title}>вход</h1>
       <form className={s.form} action="">
-        {/* Почта */}
-        <Mail formValues={formValues} setFormValues={setFormValues} />
+        <TextField
+          label="почта"
+          fieldName="login"
+          error={errors.login}
+          formValue={formValues.login}
+          setFormValues={setFormValues}
+        />
 
-        {/* Пароль */}
-        <Password formValues={formValues} setFormValues={setFormValues} />
+        <TextField
+          label="пароль"
+          fieldName="password"
+          error={errors.password}
+          setFormValues={setFormValues}
+          formValue={formValues.password}
+        />
 
         {/* кнопка войти */}
-        <BtnLogin sendData={sendData} formValues={formValues} />
+        <BtnLogin
+          setUser={setUser}
+          formValues={formValues}
+          setLoading={setLoading}
+          errors={Object.values(errors)}
+          setResponseMes={setResponseMes}
+        />
 
         {/* ссылка на восстановление пароля */}
         <BtnForgotPassword />
