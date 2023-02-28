@@ -1,16 +1,7 @@
-.main {
-}
-
 /* avatar */
 
-.user {
-  width: 60%;
-  display: grid;
-  margin: 2rem auto;
-  row-gap: 2rem;
-}
-
 .avatar {
+  margin-top: 2rem;
   align-self: center;
 }
 
@@ -35,12 +26,15 @@
 
 .avatarName {
   font-weight: 400;
-  font-size: 1.3rem;
   margin: 0.2rem 0;
+  font-size: 1.3rem;
   text-align: center;
 }
 
 .about {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2rem;
   border-radius: 5px;
   padding: 1rem 2rem;
   border: 1px solid #2d3436;

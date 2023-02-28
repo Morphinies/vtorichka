@@ -1,7 +1,7 @@
 import React from "react";
 import s from "../personalArea.module.css";
 
-const About = ({ text }) => {
+const UserAbout = ({ text }) => {
   return (
     <div className={s.about}>
       <p className={s.textAbout}>{text}</p>
@@ -9,4 +9,4 @@ const About = ({ text }) => {
   );
 };
 
-export default About;
+export default UserAbout;

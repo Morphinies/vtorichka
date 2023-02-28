@@ -1,18 +1,17 @@
 import React from "react";
-import About from "./about";
-import Avatar from "./avatar";
+import UserName from "./userName";
+import UserAvatar from "./userAvatar";
+import UserRaiting from "./userRaiting";
 import s from "../personalArea.module.css";
+import UserReviews from "./userReviews";
 
-const User = ({ user }) => {
+const User = ({ photo, name, rating, reviewsNumb }) => {
   return (
-    <div className={s.user}>
-      <Avatar
-        photo={user.avatar}
-        name={user.name}
-        reviewsNumb={24}
-        rating={1.5}
-      />
-      <About text={user.about} />
+    <div className={s.avatar}>
+      <UserAvatar photo={photo} />
+      <UserName name={name} />
+      <UserRaiting rating={rating} />
+      <UserReviews reviewsNumb={reviewsNumb} />
     </div>
   );
 };
