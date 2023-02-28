@@ -1,6 +1,5 @@
 import React from "react";
 import User from "./user/user";
-import UserAbout from "./user/userAbout";
 import s from "./personalArea.module.css";
 
 const PersonalArea = () => {
@@ -14,8 +13,8 @@ const PersonalArea = () => {
         name={user.name}
         reviewsNumb={24}
         rating={1.5}
+        about={user.about}
       />
-      <UserAbout text={user.about} />
     </main>
   );
 };
