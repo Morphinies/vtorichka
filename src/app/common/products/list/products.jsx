@@ -1,7 +1,7 @@
 import s from "../products.module.css";
 import ProductsNav from "../nav/productsNav";
 import React, { useState, useEffect } from "react";
-import productsList from "../../../api/fake.api/products.api";
+import api from "../../../api";
 import ProductsList from "./productsList";
 
 const Products = ({
@@ -46,7 +46,7 @@ const Products = ({
   //загрузка списка товаров
   useEffect(() => {
     !localStorage.getItem("products") &&
-      productsList.fetchAll().then((data) => {
+      api.products.fetchAll().then((data) => {
         localStorage.setItem("products", JSON.stringify(data));
         localStorage.getItem("products") &&
           setAllProducts(JSON.parse(localStorage.getItem("products")));

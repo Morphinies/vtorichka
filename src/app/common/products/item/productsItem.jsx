@@ -6,6 +6,7 @@ import ProductInfo from "./productInfo";
 const ProductsItem = ({
   i,
   maxVal,
+  openEditor,
   showProduct,
   favoriteProduct,
   setFavoriteProduct,
@@ -21,7 +22,6 @@ const ProductsItem = ({
             .concat(prevState.slice(favoriteProduct.indexOf(obj) + 1))
         );
   };
-
   return (
     <li className={s.productCard}>
       <ProductPhoto
@@ -34,6 +34,7 @@ const ProductsItem = ({
       <ProductInfo
         i={i}
         s={s}
+        openEditor={openEditor}
         addFavorite={addFavorite}
         favoriteProduct={favoriteProduct}
       />

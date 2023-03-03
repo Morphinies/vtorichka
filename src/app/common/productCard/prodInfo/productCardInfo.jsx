@@ -7,8 +7,8 @@ import s from "../productCard.module.css";
 import ProdAboutBlock from "./prodAboutBlock";
 import React, { useEffect, useState } from "react";
 
-const ProductCardInfo = ({ product }) => {
-  console.log(product);
+const ProductCardInfo = ({ product, openEditor }) => {
+  // console.log(product);
   // избранные товары
   const [isFavorite, setIsFavorite] = useState(
     localStorage.getItem("favoriteProduct").includes(product.id)
@@ -44,6 +44,8 @@ const ProductCardInfo = ({ product }) => {
       <ProdAboutBlock textAbout={product.textAbout} />
       <ProdSeller seller={product.seller} />
       <BtnsOfProd
+        productId={product.id}
+        openEditor={openEditor}
         seller={product.seller}
         isFavorite={isFavorite}
         setIsFavorite={setIsFavorite}

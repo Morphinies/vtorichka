@@ -5,6 +5,7 @@ const TextField = ({
   type,
   error,
   label,
+  maxLength,
   fieldName,
   formValue,
   setFormValues,
@@ -21,7 +22,7 @@ const TextField = ({
       clearTimeout(timer.current);
       setHandling(true);
       const resValue = enterValue ? matchArr.join("") : "";
-      enterValue.length <= 30 &&
+      enterValue.length <= maxLength &&
         setFormValues((prevState) => {
           return { ...prevState, [fieldName]: resValue };
         });
@@ -40,7 +41,7 @@ const TextField = ({
         <input
           type={type}
           id={fieldName}
-          maxLength={30}
+          maxLength={maxLength}
           name={fieldName}
           value={formValue}
           onChange={(e) => updateField(e.target.value)}

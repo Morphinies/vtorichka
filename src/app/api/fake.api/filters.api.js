@@ -14,6 +14,7 @@ const fetchAll = () =>
       resolve(filters);
     }, 500);
   });
+
 const filtersList = { fetchAll };
 
 export default filtersList;

@@ -1,8 +1,9 @@
 import React from "react";
 import heart from "../../../img/heart.svg";
 import heartFill from "../../../img/heartFill.svg";
+import settings from "../../../img/settings.svg";
 
-const ProductInfo = ({ s, i, addFavorite, favoriteProduct }) => {
+const ProductInfo = ({ s, i, addFavorite, favoriteProduct, openEditor }) => {
   // из числового в строчное представление месяца
   const getMonth = (monthNumb) => {
     switch (monthNumb) {
@@ -39,7 +40,8 @@ const ProductInfo = ({ s, i, addFavorite, favoriteProduct }) => {
   const regExpPrice = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
-
+  let publicTime = new Date();
+  publicTime.setTime(Date.parse(i.time));
   return (
     <div className={s.productInfoWrap}>
       <button className={s.productName}>{i.name}</button>
@@ -47,20 +49,31 @@ const ProductInfo = ({ s, i, addFavorite, favoriteProduct }) => {
       <div className={s.moreInfoWrap}>
         <p className={s.place}> {i.place} </p>
         <p className={s.time}>
-          {i.time.slice(8, 10) +
+          {publicTime.getDate() +
             " " +
-            getMonth(Number(i.time.slice(5, 7))) +
-            (String(i.time.slice(11, 13)).length === 1 ? " 0" : " ") +
-            i.time.slice(11, 13) +
-            (String(i.time.slice(14, 16)).length === 1 ? ":0" : ":") +
-            i.time.slice(14, 16)}
+            getMonth(publicTime.getMonth() + 1) +
+            " " +
+            publicTime.getHours() +
+            ":" +
+            publicTime.getMinutes()}
         </p>
-        <img
-          src={favoriteProduct.includes(i.id) ? heartFill : heart}
-          onClick={() => addFavorite(i.id)}
-          alt=""
-          className={s.likeImg}
-        />
+        {favoriteProduct ? (
+          <img
+            alt="в избранное"
+            title="в избранное"
+            className={s.likeImg}
+            onClick={() => addFavorite(i.id)}
+            src={favoriteProduct.includes(i.id) ? heartFill : heart}
+          />
+        ) : (
+          <img
+            src={settings}
+            alt="редактировать"
+            title="редактировать"
+            className={s.likeImg}
+            onClick={() => openEditor(i.id)}
+          />
+        )}
       </div>
     </div>
   );

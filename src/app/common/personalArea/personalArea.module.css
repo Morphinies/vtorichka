@@ -1,7 +1,12 @@
 /* avatar */
 
+.main {
+  padding-top: 2rem;
+  position: relative;
+}
+
 .avatar {
-  margin-top: 2rem;
+  padding: 0 5rem;
   align-self: center;
 }
 
@@ -82,4 +87,64 @@
 .reviews:hover,
 .reviews:active {
   opacity: 1;
+}
+
+/* aside */
+
+.aside {
+  position: absolute;
+}
+
+/*~~~~~~~~~~~~~~~~~~~ personal btn ~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.btnOpenBlock {
+  border: none;
+  display: grid;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 2rem 0.7rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0 5px 5px 0;
+  grid-template-columns: 1fr auto;
+  background: linear-gradient(180deg, #353d3f 0%, #16191a 100%);
+}
+
+.btnOpenBlock:last-child {
+  margin-bottom: 0;
+}
+
+.btnOpenBlock:hover {
+  padding-left: 1.2rem;
+  opacity: 0.9;
+}
+
+.btnOpenBlock:active {
+  opacity: 0.8;
+}
+
+.openedBlockBtn {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.openedBlockBtn:hover {
+  opacity: 0.6;
+  padding-left: 0.7rem;
+}
+
+.btnOpenBlockText {
+  color: #f6f6f6;
+  writing-mode: vertical-lr;
+}
+
+/* prod List */
+
+.prodList {
+  display: grid;
+  row-gap: 1rem;
+  padding: 0 5rem;
+  column-gap: 1rem;
+  justify-content: center;
+  grid-template-rows: repeat(auto-fill, 350px);
+  grid-template-columns: repeat(auto-fill, 300px);
 }

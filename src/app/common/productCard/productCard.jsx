@@ -4,12 +4,12 @@ import ProductCardImg from "./prodImg/productCardImg";
 import ProductCardInfo from "./prodInfo/productCardInfo";
 import BtnCloseProduct from "./btnCloseProduct";
 
-const ProductCard = ({ closeCard, product }) => {
+const ProductCard = ({ closeCard, product, openEditor }) => {
   return (
     <div className={s.productCard}>
       <BtnCloseProduct closeCard={closeCard} />
       <ProductCardImg product={product} />
-      <ProductCardInfo product={product} />
+      <ProductCardInfo product={product} openEditor={openEditor} />
     </div>
   );
 };

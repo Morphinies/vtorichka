@@ -40,6 +40,7 @@ const Login = () => {
         <TextField
           type="email"
           label="почта"
+          maxLength={30}
           fieldName="login"
           error={errors.login}
           formValue={formValues.login}
@@ -47,6 +48,7 @@ const Login = () => {
         />
 
         <TextField
+          maxLength={30}
           label="пароль"
           type="password"
           fieldName="password"

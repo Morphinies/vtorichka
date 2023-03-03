@@ -1,0 +1,66 @@
+/* editor */
+
+.editWrap {
+  width: 60%;
+  margin: auto;
+  position: relative;
+  border-radius: 5px;
+  background-color: #16191a;
+}
+
+.editTitle {
+  padding: 1rem;
+  font-size: 2rem;
+  color: #f6f6f6;
+  text-align: center;
+}
+
+.btnCancel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  background-color: rgba(0, 0, 0, 0);
+}
+.btnCancel img {
+  transition: transform 0.5s;
+}
+
+.btnCancel:hover img {
+  transform: rotate(180deg);
+}
+
+.editHr {
+  width: 60%;
+  margin: auto;
+}
+
+/* form */
+
+.editForm {
+  margin: auto;
+  display: flex;
+  padding: 2rem 2rem;
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+  padding: 0.5rem;
+  justify-content: space-between;
+}
+
+.labelText {
+  font-weight: 400;
+  color: #f6f6f6;
+  align-self: center;
+}
+
+.input {
+  border-radius: 3px;
+  width: 80%;
+  padding: 0.5rem 1rem;
+}

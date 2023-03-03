@@ -17,7 +17,7 @@ Lorem Ipsum, "Lorem ipsum dolor sit amet..", происходит от одно�
 строк в разделе 1.10.32 Классический текст Lorem Ipsum, используемый с
 XVI века, приведён ниже. `;
 
-const products = [
+const allProducts = [
   {
     id: 1,
     type: "б/у",
@@ -28,7 +28,7 @@ const products = [
     textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
     seller: { id: 1, phone: "+79108309115", name: "Иван", avatar: avatar },
-    time: new Date(2000, 0, 23, 11, 12, 50, 0),
+    time: new Date("August 19, 1975 23:15:30"),
   },
   {
     id: 2,
@@ -143,10 +143,21 @@ const products = [
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(products);
+      resolve(allProducts);
     }, 500);
   });
 
-const productsList = { fetchAll };
+const fetchById = (userId) =>
+  new Promise((resolve) => {
+    window.setTimeout(() => {
+      resolve(
+        allProducts.filter(
+          (product) => Number(product.seller.id) === Number(userId)
+        )
+      );
+    }, 2000);
+  });
 
-export default productsList;
+const products = { fetchAll, fetchById };
+
+export default products;

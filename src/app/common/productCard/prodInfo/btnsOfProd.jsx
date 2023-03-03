@@ -3,13 +3,31 @@ import BtnWrite from "./btnWrite";
 import BtnFavorite from "./btnFavorite";
 import s from "../productCard.module.css";
 import BtnCall from "./btnCall";
+import { useLocation } from "react-router-dom";
+import BtnEdit from "./btnEdit";
 
-const BtnsOfProd = ({ isFavorite, setIsFavorite, seller }) => {
+const BtnsOfProd = ({
+  seller,
+  productId,
+  openEditor,
+  isFavorite,
+  setIsFavorite,
+}) => {
+  let currentPage = useLocation().pathname;
+
   return (
     <div className={s.prodBtns}>
-      <BtnWrite sellerId={seller.id} />
-      <BtnFavorite isFavorite={isFavorite} setIsFavorite={setIsFavorite} />
-      <BtnCall phone={seller.phone} />
+      {currentPage !== "/personalArea" ? (
+        <>
+          <BtnWrite sellerId={seller.id} />
+          <BtnFavorite isFavorite={isFavorite} setIsFavorite={setIsFavorite} />
+          <BtnCall phone={seller.phone} />
+        </>
+      ) : (
+        <>
+          <BtnEdit openEditor={openEditor} productId={productId} />
+        </>
+      )}
     </div>
   );
 };

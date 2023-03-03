@@ -233,6 +233,14 @@
   border-color: #ff0800;
 }
 
+.btnSetting {
+  border: 2px outset #1b9cfc;
+}
+
+.btnSetting:hover {
+  background-color: #e4f3ff;
+}
+
 .prodBtn * {
   align-self: center;
   justify-self: center;
