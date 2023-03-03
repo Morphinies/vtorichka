@@ -11,8 +11,28 @@ const TextField = ({
 }) => {
   // заполнение поля
 
-  const updateField = (enterValue) => {
-    setFormValues(enterValue);
+  const regExpPrice = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
+  const fieldValue = fieldId === "price" ? regExpPrice(formValue) : formValue;
+
+  const updateField = (value) => {
+    // price field
+    fieldId === "price" &&
+      setFormValues((prevState) => {
+        return {
+          ...prevState,
+          [fieldId]:
+            (value && value.match(/\d/g) && value.match(/\d/g).join("")) || "",
+        };
+      });
+
+    // text field
+    fieldId !== "price" &&
+      setFormValues((prevState) => {
+        return { ...prevState, [fieldId]: value };
+      });
   };
 
   return (
@@ -22,7 +42,7 @@ const TextField = ({
         type={type}
         id={fieldId}
         name={fieldId}
-        value={fieldId !== "price" && formValue} //!!!!!
+        value={fieldValue}
         className={s.input}
         maxLength={maxLength}
         onChange={(e) => updateField(e.target.value)}

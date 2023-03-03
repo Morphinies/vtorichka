@@ -2,10 +2,11 @@ import s from "./editor.module.css";
 import React, { useState } from "react";
 import cancel from "../../img/cancel.svg";
 import TextField from "./textField";
+import RadioField from "./radioField";
 
 const Editor = ({ editableProd, closeEditor }) => {
   const [formValue, setFormValue] = useState(editableProd);
-  console.log(editableProd);
+
   return (
     <div className={s.editWrap}>
       <button onClick={() => closeEditor()} className={s.btnCancel}>
@@ -16,21 +17,26 @@ const Editor = ({ editableProd, closeEditor }) => {
       <form className={s.editForm}>
         <TextField
           type="text"
-          //   error
-          maxLength={70}
-          label="название"
+          maxLength={40}
           fieldId="name"
+          label="название"
           formValue={formValue.name}
           setFormValues={setFormValue}
         />
+
         <TextField
-          type="number"
-          //   error
-          maxLength={20}
+          type="text"
           label="цена"
+          maxLength={12}
           fieldId="price"
           formValue={formValue.price}
           setFormValues={setFormValue}
+        />
+
+        <RadioField
+          label="категория"
+          fieldId="category"
+          formValue={formValue.category}
         />
       </form>
     </div>

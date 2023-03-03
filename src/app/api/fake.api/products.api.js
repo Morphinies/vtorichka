@@ -155,7 +155,7 @@ const fetchById = (userId) =>
           (product) => Number(product.seller.id) === Number(userId)
         )
       );
-    }, 2000);
+    }, 500);
   });
 
 const products = { fetchAll, fetchById };
