@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
 import api from "../../api/index";
 import s from "./editor.module.css";
+import arrowDown from "../../img/arrowDown.svg";
+import React, { useEffect, useState } from "react";
 
 const RadioField = ({ label, fieldId, formValue }) => {
   const [catList, setCatList] = useState();
@@ -19,9 +20,10 @@ const RadioField = ({ label, fieldId, formValue }) => {
           onClick={() => {
             setOpenList(!openList);
           }}
-          className={s.btn + " " + s.formValue}
+          className={s.btn + " " + (openList && s.formValue)}
         >
-          {formValue}
+          <p>{formValue}</p>
+          <img className={s.arrowDown} src={arrowDown} alt="" />
         </button>
         <ul className={s.list} id={fieldId}>
           {catList &&
@@ -29,7 +31,8 @@ const RadioField = ({ label, fieldId, formValue }) => {
             catList.map((catItem) => (
               <li>
                 <button type="button" className={s.btn}>
-                  {catItem.name}
+                  <p>{catItem.name}</p>
+                  <img className={s.arrowDown} src={arrowDown} alt="" />
                 </button>
               </li>
             ))}

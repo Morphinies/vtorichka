@@ -56,7 +56,7 @@
 .labelText {
   font-weight: 400;
   color: #f6f6f6;
-  align-self: center;
+  padding-top: 0.5rem;
 }
 
 .input {
@@ -79,21 +79,26 @@
 
 .formValue {
   overflow: hidden;
-  padding: 0.5rem 1rem;
-}
-
-.list {
-  position: absolute;
+  background-color: #ccc;
 }
 
 .btn {
   width: 100%;
   border: none;
+  display: flex;
   cursor: pointer;
   text-align: left;
   overflow: hidden;
+  padding: 0.5rem 1rem;
+  justify-content: space-between;
 }
 
 .btn:hover {
   background-color: #ccc;
+}
+
+.arrowDown {
+  width: 1rem;
+  align-self: flex-end;
+  filter: invert(1);
 }
