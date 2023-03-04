@@ -1,7 +1,8 @@
 import api from "../../api/index";
 import s from "./editor.module.css";
-import arrowDown from "../../img/arrowDown.svg";
 import React, { useEffect, useState } from "react";
+import RadioFieldBtn from "./radioFieldBtn";
+import RadioFieldList from "./radioFieldList";
 
 const RadioField = ({ label, fieldId, formValue }) => {
   const [catList, setCatList] = useState();
@@ -15,28 +16,19 @@ const RadioField = ({ label, fieldId, formValue }) => {
     <label className={s.label} htmlFor={fieldId}>
       <p className={s.labelText}>{label}:</p>
       <div className={s.radioWrap}>
-        <button
-          type="button"
-          onClick={() => {
-            setOpenList(!openList);
-          }}
-          className={s.btn + " " + (openList && s.formValue)}
-        >
-          <p>{formValue}</p>
-          <img className={s.arrowDown} src={arrowDown} alt="" />
-        </button>
-        <ul className={s.list} id={fieldId}>
-          {catList &&
-            openList &&
-            catList.map((catItem) => (
-              <li>
-                <button type="button" className={s.btn}>
-                  <p>{catItem.name}</p>
-                  <img className={s.arrowDown} src={arrowDown} alt="" />
-                </button>
-              </li>
-            ))}
-        </ul>
+        <RadioFieldBtn
+          name={formValue}
+          openList={openList}
+          formValue={formValue}
+          setOpenList={setOpenList}
+        />
+        <RadioFieldList
+          fieldId={fieldId}
+          catList={catList}
+          openList={openList}
+          formValue={formValue}
+          setOpenList={setOpenList}
+        />
       </div>
     </label>
   );

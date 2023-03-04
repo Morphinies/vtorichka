@@ -1,16 +1,9 @@
 import s from "../products.module.css";
 import ProductsNav from "../nav/productsNav";
 import React, { useState, useEffect } from "react";
-import api from "../../../api";
 import ProductsList from "./productsList";
 
-const Products = ({
-  conditions,
-  allProducts,
-  showProduct,
-  setAllProducts,
-  searchProducts,
-}) => {
+const Products = ({ conditions, products, showProduct, searchProducts }) => {
   const [visibleProd, setVisibleProd] = useState([]);
   const [choosedPage, setChoosedPage] = useState(1);
   const [sortProducts, setSortProducts] = useState([]);
@@ -43,23 +36,13 @@ const Products = ({
     }
   };
 
-  //загрузка списка товаров
-  useEffect(() => {
-    !localStorage.getItem("products") &&
-      api.products.fetchAll().then((data) => {
-        localStorage.setItem("products", JSON.stringify(data));
-        localStorage.getItem("products") &&
-          setAllProducts(JSON.parse(localStorage.getItem("products")));
-      });
-  }, [setAllProducts]);
-
   useEffect(() => {
     if (searchProducts.length) {
       setVisibleProd(searchProducts);
     } else {
-      setVisibleProd(allProducts);
+      setVisibleProd(products);
     }
-  }, [searchProducts, allProducts]);
+  }, [searchProducts, products]);
 
   //обновления списка товаров в зависимости от задания сортировки
   useEffect(() => {
@@ -127,7 +110,6 @@ const Products = ({
     <div className={s.productsWrap}>
       {/*список товаров на странице*/}
       <ProductsList showProduct={showProduct} productsOnPage={productsOnPage} />
-
       <ProductsNav
         choosedPage={choosedPage}
         pageNumbersArr={pageNumbersArr}

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import PossibleGoods from "./possibleGoods";
 
 const SearchLine = ({
-  allProducts,
+  products,
   chooseProduct,
   searchProducts,
   setSearchProducts,
@@ -22,8 +22,8 @@ const SearchLine = ({
   // изменение отобранных товаров
   useEffect(() => {
     !regex && setSelected([]);
-    regex && setSelected(allProducts.filter((prod) => regex.test(prod.name)));
-  }, [regex, allProducts]);
+    regex && setSelected(products.filter((prod) => regex.test(prod.name)));
+  }, [regex, products]);
 
   return (
     <nav className={s.nav}>

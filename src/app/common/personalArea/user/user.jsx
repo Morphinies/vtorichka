@@ -1,10 +1,10 @@
 import React from "react";
 import UserName from "./userName";
+import UserAbout from "./userAbout";
 import UserAvatar from "./userAvatar";
 import UserRaiting from "./userRaiting";
-import s from "../personalArea.module.css";
 import UserReviews from "./userReviews";
-import UserAbout from "./userAbout";
+import s from "../personalArea.module.css";
 
 const User = ({ photo, name, rating, reviewsNumb, about }) => {
   return (

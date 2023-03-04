@@ -82,6 +82,14 @@
   background-color: #ccc;
 }
 
+.formValue img {
+  transform: rotate(180deg);
+}
+
+.btn img {
+  transition: transform 0.3s;
+}
+
 .btn {
   width: 100%;
   border: none;

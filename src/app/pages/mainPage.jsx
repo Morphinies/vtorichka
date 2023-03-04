@@ -1,5 +1,5 @@
 import api from "../api";
-import Main from "../common/main/main";
+import Main from "../private/main/main";
 import Footer from "../common/footer/footer";
 import Header from "../common/header/header";
 import Loading from "../common/loading/loading";
