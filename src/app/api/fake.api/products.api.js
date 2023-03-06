@@ -140,19 +140,23 @@ const allProducts = [
   },
 ];
 
+if (!localStorage.getItem("products")) {
+  localStorage.setItem("products", JSON.stringify(allProducts));
+}
+
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(allProducts);
-    }, 500);
+      resolve(JSON.parse(localStorage.getItsem("products")));
+    }, 1500);
   });
 
-const fetchById = (userId) =>
+const fetchById = (id) =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(
-        allProducts.filter(
-          (product) => Number(product.seller.id) === Number(userId)
+        JSON.parse(localStorage.getItem("products")).findIndex(
+          (prod) => prod.id === id
         )
       );
     }, 500);

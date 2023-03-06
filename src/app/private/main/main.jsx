@@ -18,15 +18,17 @@ const Main = ({ defaultConditions }) => {
 
   // assign loaded "productsOnLS" value to var "products"
   useEffect(() => {
-    const productsOnLS = localStorage.getItem("products");
-    const parsedProd = JSON.parse(productsOnLS);
-    productsOnLS
-      ? setProducts(parsedProd)
-      : api.products.fetchAll().then((data) => {
-          localStorage.setItem("products", JSON.stringify(data));
-          productsOnLS && setProducts(parsedProd);
-        });
+    api.products.fetchAll().then((data) => setProducts(data));
+    // const productsOnLS = localStorage.getItem("products");
+    // const parsedProd = JSON.parse(productsOnLS);
+    // productsOnLS
+    //   ? setProducts(parsedProd)
+    //   : api.products.fetchAll().then((data) => {
+    //       localStorage.setItem("products", JSON.stringify(data));
+    //       productsOnLS && setProducts(parsedProd);
+    //     });
   }, []);
+  console.log(products);
 
   const showProduct = (product) => {
     setOpenedProduct(product);
