@@ -62,7 +62,7 @@ const Products = ({ conditions, products, showProduct, searchProducts }) => {
     }
   }, [sortProducts, conditions.category.name]);
 
-  //обновления списка товаров в зависимости от задания сортировки
+  //обновления списка товаров в зависимости от задания фильтров
   useEffect(() => {
     conditions.filters.map((filter) => {
       filter.name === "тип" &&

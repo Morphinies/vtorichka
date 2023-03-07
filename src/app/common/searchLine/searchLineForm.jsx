@@ -6,33 +6,39 @@ import SearchInput from "./searchInput";
 
 const SearchLineForm = ({
   selected,
+  handling,
   textSearch,
   setTextSearch,
   searchProducts,
   setSearchProducts,
 }) => {
   const search = (e) => {
-    selected.length && setSearchProducts(selected);
+    if (selected.length) {
+      setSearchProducts(selected);
+      setTextSearch("");
+    }
     e.preventDefault();
   };
 
   return (
     <form
       onSubmit={search}
-      className={
-        s.form +
-        (searchProducts.length ? " " + s.formWithRes : "") +
-        (textSearch ? " " + s.formWithText : "")
-      }
+      className={s.form + " " + (!handling && textSearch ? s.formWithRes : "")}
     >
-      <SearchInput textSearch={textSearch} setTextSearch={setTextSearch} />
-      <BtnReset
+      <SearchInput
+        handling={handling}
         textSearch={textSearch}
         setTextSearch={setTextSearch}
-        searchProducts={searchProducts}
-        setSearchProducts={setSearchProducts}
       />
-      <BtnFind textSearch={textSearch} search={search} />
+      {!handling && textSearch && (
+        <BtnReset
+          textSearch={textSearch}
+          setTextSearch={setTextSearch}
+          searchProducts={searchProducts}
+          setSearchProducts={setSearchProducts}
+        />
+      )}
+      <BtnFind textSearch={textSearch} handling={handling} search={search} />
     </form>
   );
 };

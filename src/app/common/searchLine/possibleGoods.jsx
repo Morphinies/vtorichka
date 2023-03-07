@@ -1,26 +1,31 @@
 import React from "react";
 import s from "./searchLine.module.css";
 
-const PossibleGoods = ({ selected, textSearch, chooseProduct }) => {
+const PossibleGoods = ({ selected, showProduct, handling, textSearch }) => {
+  const errorMessage = "по вашему запросу товаров не найдено :/";
+
   return (
     <div className={s.selectedWrap}>
       <ul className={s.selectedList}>
         {/* товаров не найдено */}
-        {textSearch && !selected.length && (
+        {!handling && textSearch && !selected.length && (
           <li className={s.selectedItem + " " + s.selectedItemDis}>
-            по вашему запросу товаров не найдено :/
+            {errorMessage}
           </li>
         )}
-        {/* предлагаемые товары */}
-        {selected.map((option) => (
-          <li
-            onClick={() => chooseProduct(option)}
-            key={option.id}
-            className={s.selectedItem}
-          >
-            {option.name}
-          </li>
-        ))}
+        {/* подходящие товары */}
+        {!handling &&
+          textSearch &&
+          selected.length > 0 &&
+          selected.map((option) => (
+            <li
+              key={option.id}
+              className={s.selectedItem}
+              onClick={() => showProduct(option)}
+            >
+              {option.name}
+            </li>
+          ))}
       </ul>
     </div>
   );

@@ -1,6 +1,6 @@
 import avatar from "../../img/avatar.jpg";
 
-const users = [
+const usersList = [
   {
     id: 1,
     name: "Иван",
@@ -95,7 +95,7 @@ const users = [
 ];
 
 if (!localStorage.getItem("users")) {
-  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("users", JSON.stringify(usersList));
 }
 
 const fetchAll = () =>
@@ -105,6 +105,17 @@ const fetchAll = () =>
     }, 1500);
   });
 
-const usersList = { fetchAll };
+const login = ({ login, password }) =>
+  new Promise((resolve) => {
+    const user = JSON.parse(localStorage.getItem("users")).find(
+      (user) => user.login === login && user.password === password
+    );
+    window.setTimeout(() => {
+      localStorage.setItem("user", user);
+      resolve(user.id ? user : {});
+    }, 1000);
+  });
 
-export default usersList;
+const users = { fetchAll, login };
+
+export default users;

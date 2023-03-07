@@ -16,19 +16,9 @@ const Main = ({ defaultConditions }) => {
     ...defaultConditions,
   });
 
-  // assign loaded "productsOnLS" value to var "products"
   useEffect(() => {
     api.products.fetchAll().then((data) => setProducts(data));
-    // const productsOnLS = localStorage.getItem("products");
-    // const parsedProd = JSON.parse(productsOnLS);
-    // productsOnLS
-    //   ? setProducts(parsedProd)
-    //   : api.products.fetchAll().then((data) => {
-    //       localStorage.setItem("products", JSON.stringify(data));
-    //       productsOnLS && setProducts(parsedProd);
-    //     });
   }, []);
-  console.log(products);
 
   const showProduct = (product) => {
     setOpenedProduct(product);
@@ -44,8 +34,7 @@ const Main = ({ defaultConditions }) => {
       ) : (
         <>
           <SearchLine
-            products={products}
-            chooseProduct={showProduct}
+            showProduct={showProduct}
             searchProducts={searchProducts}
             setSearchProducts={setSearchProducts}
           />

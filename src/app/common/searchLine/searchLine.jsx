@@ -1,33 +1,31 @@
 import s from "./searchLine.module.css";
 import SearchLineForm from "./searchLineForm";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PossibleGoods from "./possibleGoods";
+import api from "../../api";
 
-const SearchLine = ({
-  products,
-  chooseProduct,
-  searchProducts,
-  setSearchProducts,
-}) => {
-  const [regex, setRegex] = useState(); // условное выражение, по которому происходит поиск
-  const [selected, setSelected] = useState([]);
-  const [textSearch, setTextSearch] = useState(""); // то, что сейчас находится в поиск. строке
+const SearchLine = ({ showProduct, searchProducts, setSearchProducts }) => {
+  const [handling, setHandling] = useState(false); // обработка ввода, поиск товаров
+  const [selected, setSelected] = useState([]); // товары удовлетворяющие условиям запроса
+  const [textSearch, setTextSearch] = useState(""); // то, что сейчас находится в поисковой строке
+  const timerId = useRef();
 
-  // изменение условия поиска
   useEffect(() => {
-    !textSearch && setRegex();
-    textSearch && setRegex(new RegExp(`${textSearch}`, "gi"));
+    setSelected([]);
+    setHandling(true);
+    clearTimeout(timerId.current);
+    timerId.current = setTimeout(() => {
+      api.products.fetchByName(textSearch).then((data) => {
+        setSelected(data);
+        setHandling(false);
+      });
+    }, 1000);
   }, [textSearch]);
-
-  // изменение отобранных товаров
-  useEffect(() => {
-    !regex && setSelected([]);
-    regex && setSelected(products.filter((prod) => regex.test(prod.name)));
-  }, [regex, products]);
 
   return (
     <nav className={s.nav}>
       <SearchLineForm
+        handling={handling}
         selected={selected}
         textSearch={textSearch}
         setTextSearch={setTextSearch}
@@ -35,9 +33,10 @@ const SearchLine = ({
         setSearchProducts={setSearchProducts}
       />
       <PossibleGoods
+        handling={handling}
         selected={selected}
         textSearch={textSearch}
-        chooseProduct={chooseProduct}
+        showProduct={showProduct}
       />
     </nav>
   );

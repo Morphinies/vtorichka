@@ -1,13 +1,13 @@
-// import Mail from "./input/mail";
-// import Password from "./input/password";
 import handleError from "../../utils/handleError";
 import BtnLogin from "./btnLogin";
 import s from "./auth.module.css";
+import api from "../../api";
 import ResponseMes from "./responseMes";
 import Loading from "../loading/loading.jsx";
 import BtnForgotPassword from "./btnForgotPassword";
 import React, { useEffect, useState } from "react";
 import TextField from "./input/textField";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState();
@@ -16,8 +16,9 @@ const Login = () => {
   const [responseMes, setResponseMes] = useState();
   const [formValues, setFormValues] = useState({ login: "", password: "" });
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    console.log(user);
     localStorage.removeItem("user_vt");
     user && localStorage.setItem("user_vt", JSON.stringify(user));
   }, [user]);
@@ -33,10 +34,35 @@ const Login = () => {
     });
   }, [formValues]);
 
+  // ответ на кнопку войти
+  const response = (user) => {
+    !user
+      ? setResponseMes("Логин или пароль не верен!")
+      : setResponseMes("Добро пожаловать, " + user.name + "!");
+
+    setTimeout(() => {
+      setResponseMes();
+      user && navigate("/");
+    }, 1000);
+  };
+
+  // отправка введённых данных на сервер
+  const sendData = ({ login, password }) => {
+    setLoading(true);
+    api.usersList.fetchAll().then((data) => {
+      const user = data.find(
+        (user) => user.password === password && user.email === login
+      );
+      user && setUser(user);
+      setLoading(false);
+      response(user);
+    });
+  };
+
   return (
     <div className={s.wrap}>
       <h1 className={s.title}>вход</h1>
-      <form className={s.form} action="">
+      <form className={s.form} onSubmit="">
         <TextField
           type="email"
           label="почта"
@@ -60,6 +86,7 @@ const Login = () => {
         {/* кнопка войти */}
         <BtnLogin
           setUser={setUser}
+          sendData={sendData}
           formValues={formValues}
           setLoading={setLoading}
           errors={Object.values(errors)}

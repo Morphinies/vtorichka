@@ -14,10 +14,7 @@ const BtnReset = ({
         searchProducts.length && setSearchProducts([]);
         textSearch && setTextSearch("");
       }}
-      className={
-        s.btnReset +
-        (searchProducts.length || textSearch ? "" : " " + s.btnResetHide)
-      }
+      className={s.btnReset}
     >
       сброс
     </button>

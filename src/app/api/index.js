@@ -1,4 +1,4 @@
-import usersList from "./fake.api/users.api";
+import users from "./fake.api/users.api";
 import products from "./fake.api/products.api";
 import filterList from "./fake.api/filters.api";
 import sortingList from "./fake.api/sortings.api";
@@ -7,7 +7,7 @@ import defaultConditions from "./fake.api/defaultConditions.api";
 
 const api = {
   products,
-  usersList,
+  users,
   filterList,
   sortingList,
   categoryList,

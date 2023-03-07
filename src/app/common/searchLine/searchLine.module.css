@@ -18,12 +18,11 @@
   grid-template-columns: 1fr auto;
 }
 
-.formWithRes,
-.formWithText {
+.formWithRes {
   grid-template-columns: 1fr auto auto;
 }
 
-.formWithText {
+.formWithRes {
   border-radius: 0;
 }
 
@@ -123,10 +122,6 @@
 }
 .btnReset:hover {
   background-color: #ffffff;
-}
-
-.btnResetHide {
-  display: none;
 }
 
 /* ************************ media ************************ */

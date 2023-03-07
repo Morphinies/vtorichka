@@ -147,8 +147,8 @@ if (!localStorage.getItem("products")) {
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(JSON.parse(localStorage.getItsem("products")));
-    }, 1500);
+      resolve(JSON.parse(localStorage.getItem("products")));
+    }, 500);
   });
 
 const fetchById = (id) =>
@@ -162,6 +162,20 @@ const fetchById = (id) =>
     }, 500);
   });
 
-const products = { fetchAll, fetchById };
+const fetchByName = (name) =>
+  new Promise((resolve) => {
+    const regExp = new RegExp(`${name}`, "gi");
+    window.setTimeout(() => {
+      resolve(
+        name
+          ? JSON.parse(localStorage.getItem("products")).filter((prod) =>
+              regExp.test(prod.name)
+            )
+          : []
+      );
+    }, 500);
+  });
+
+const products = { fetchAll, fetchById, fetchByName };
 
 export default products;
