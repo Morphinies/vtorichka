@@ -3,8 +3,7 @@ import ProductsNav from "../nav/productsNav";
 import React, { useState, useEffect } from "react";
 import ProductsList from "./productsList";
 
-const Products = ({ conditions, products, showProduct, searchProducts }) => {
-  const [visibleProd, setVisibleProd] = useState([]);
+const Products = ({ conditions, products, showProduct }) => {
   const [choosedPage, setChoosedPage] = useState(1);
   const [sortProducts, setSortProducts] = useState([]);
   const [productsOnPage, setProductsOnPage] = useState([]);
@@ -36,18 +35,10 @@ const Products = ({ conditions, products, showProduct, searchProducts }) => {
     }
   };
 
-  useEffect(() => {
-    if (searchProducts.length) {
-      setVisibleProd(searchProducts);
-    } else {
-      setVisibleProd(products);
-    }
-  }, [searchProducts, products]);
-
   //обновления списка товаров в зависимости от задания сортировки
   useEffect(() => {
-    setSortProducts([...sortArrBy(visibleProd, conditions.sorting.value)]);
-  }, [visibleProd, conditions.sorting.value]);
+    setSortProducts([...sortArrBy(products, conditions.sorting.value)]);
+  }, [products, conditions.sorting.value]);
 
   //обновления списка товаров в зависимости от задания категории
   useEffect(() => {

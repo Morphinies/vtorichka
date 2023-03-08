@@ -5,37 +5,42 @@ import s from "./searchLine.module.css";
 import SearchInput from "./searchInput";
 
 const SearchLineForm = ({
-  selected,
   handling,
   textSearch,
+  setHandling,
+  searchActive,
   setTextSearch,
-  searchProducts,
-  setSearchProducts,
+  setConditionsApplied,
 }) => {
   const search = (e) => {
-    if (selected.length) {
-      setSearchProducts(selected);
-      setTextSearch("");
-    }
+    setConditionsApplied((prevState) => {
+      return { ...prevState, search: textSearch };
+    });
+    setTextSearch("");
     e.preventDefault();
   };
 
   return (
     <form
       onSubmit={search}
-      className={s.form + " " + (!handling && textSearch ? s.formWithRes : "")}
+      className={
+        s.form +
+        " " +
+        (textSearch || searchActive ? s.formWithText : "") +
+        " " +
+        (!handling && textSearch ? s.formWithRes : "")
+      }
     >
       <SearchInput
         handling={handling}
         textSearch={textSearch}
+        setHandling={setHandling}
         setTextSearch={setTextSearch}
       />
-      {!handling && textSearch && (
+      {(textSearch || searchActive) && (
         <BtnReset
-          textSearch={textSearch}
           setTextSearch={setTextSearch}
-          searchProducts={searchProducts}
-          setSearchProducts={setSearchProducts}
+          setConditionsApplied={setConditionsApplied}
         />
       )}
       <BtnFind textSearch={textSearch} handling={handling} search={search} />

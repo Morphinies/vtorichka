@@ -38,7 +38,7 @@ const Conditions = ({
         };
       });
     }
-  }, [conditionsApplied, defaultConditions]);
+  }, [conditionsApplied.category, defaultConditions]);
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ условие по сортировке
   useEffect(() => {
@@ -60,7 +60,7 @@ const Conditions = ({
         return { ...prevState, sorting: null };
       });
     }
-  }, [conditionsApplied, defaultConditions]);
+  }, [conditionsApplied.sorting, defaultConditions]);
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ условие по фильтрам
   useEffect(() => {
@@ -127,7 +127,29 @@ const Conditions = ({
         return { ...prevState, type: null, minPrice: {}, maxPrice: {} };
       });
     }
-  }, [conditionsApplied, defaultConditions]);
+  }, [conditionsApplied.filters, defaultConditions]);
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ условие по поисковой строке
+  useEffect(() => {
+    if (!equalObjects(conditionsApplied.search, defaultConditions.search)) {
+      setConditions((prevState) => {
+        return {
+          ...prevState,
+          search: {
+            name: "поиск: " + conditionsApplied.search,
+            value: "search",
+          },
+        };
+      });
+    } else {
+      setConditions((prevState) => {
+        return {
+          ...prevState,
+          search: { name: null, value: null },
+        };
+      });
+    }
+  }, [conditionsApplied.search, defaultConditions]);
 
   return (
     <div className={s.conditions}>
@@ -138,7 +160,6 @@ const Conditions = ({
             <ConditionBtn
               cond={cond}
               key={cond.name}
-              btnName={cond.name}
               defaultConditions={defaultConditions}
               conditionsApplied={conditionsApplied}
               setConditionsApplied={setConditionsApplied}

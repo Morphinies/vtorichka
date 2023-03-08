@@ -144,33 +144,32 @@ if (!localStorage.getItem("products")) {
   localStorage.setItem("products", JSON.stringify(allProducts));
 }
 
+const prodsOnLS = JSON.parse(localStorage.getItem("products"));
+
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(JSON.parse(localStorage.getItem("products")));
+      resolve(prodsOnLS);
     }, 500);
   });
 
 const fetchById = (id) =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(
-        JSON.parse(localStorage.getItem("products")).findIndex(
-          (prod) => prod.id === id
-        )
-      );
+      resolve(prodsOnLS.findIndex((prod) => prod.id === id));
     }, 500);
   });
 
-const fetchByName = (name) =>
+const fetchByName = (name, maxLength) =>
   new Promise((resolve) => {
     const regExp = new RegExp(`${name}`, "gi");
+    const filtredProds = prodsOnLS.filter((prod) => regExp.test(prod.name));
     window.setTimeout(() => {
       resolve(
         name
-          ? JSON.parse(localStorage.getItem("products")).filter((prod) =>
-              regExp.test(prod.name)
-            )
+          ? maxLength
+            ? filtredProds.slice(0, maxLength)
+            : filtredProds
           : []
       );
     }, 500);

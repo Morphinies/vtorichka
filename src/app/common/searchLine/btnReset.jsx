@@ -1,18 +1,15 @@
 import React from "react";
 import s from "./searchLine.module.css";
 
-const BtnReset = ({
-  textSearch,
-  setTextSearch,
-  searchProducts,
-  setSearchProducts,
-}) => {
+const BtnReset = ({ setTextSearch, setConditionsApplied }) => {
   return (
     <button
       type="button"
       onClick={() => {
-        searchProducts.length && setSearchProducts([]);
-        textSearch && setTextSearch("");
+        setConditionsApplied((prevState) => {
+          return { ...prevState, search: "" };
+        });
+        setTextSearch("");
       }}
       className={s.btnReset}
     >

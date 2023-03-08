@@ -18,7 +18,7 @@
   grid-template-columns: 1fr auto;
 }
 
-.formWithRes {
+.formWithText {
   grid-template-columns: 1fr auto auto;
 }
 
@@ -122,6 +122,14 @@
 }
 .btnReset:hover {
   background-color: #ffffff;
+}
+
+.btnDisabled {
+  cursor: default;
+}
+
+.btnDisabled:hover {
+  background-color: #f6f6f6 !important;
 }
 
 /* ************************ media ************************ */

@@ -98,18 +98,21 @@ if (!localStorage.getItem("users")) {
   localStorage.setItem("users", JSON.stringify(usersList));
 }
 
+const usersOnLS = JSON.parse(localStorage.getItem("users"));
+
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(JSON.parse(localStorage.getItem("users")));
+      resolve(usersOnLS);
     }, 1500);
   });
 
 const login = ({ login, password }) =>
   new Promise((resolve) => {
-    const user = JSON.parse(localStorage.getItem("users")).find(
+    const user = usersOnLS.find(
       (user) => user.login === login && user.password === password
     );
+    localStorage.getItem("user") && localStorage.removeItem("user");
     window.setTimeout(() => {
       localStorage.setItem("user", user);
       resolve(user.id ? user : {});

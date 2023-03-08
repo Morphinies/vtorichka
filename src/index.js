@@ -1,7 +1,7 @@
 import "./style.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import MainPage from "./app/pages/mainPage";
+import MainPage from "./app/pages/mainPage/mainPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./app/pages/loginPage";
 import SignUpPage from "./app/pages/signUpPage";

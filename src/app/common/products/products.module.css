@@ -14,6 +14,14 @@
   grid-template-columns: repeat(auto-fill, 300px);
 }
 
+.noProdsText {
+  color: red;
+  padding: 2rem;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~ переход по страницам ~~~~~~~~~~~~~~~~~~~~~*/
 
 .pageNumber {

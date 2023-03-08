@@ -1,7 +1,14 @@
 import React from "react";
 import s from "./searchLine.module.css";
 
-const PossibleGoods = ({ selected, showProduct, handling, textSearch }) => {
+const PossibleGoods = ({
+  selected,
+  handling,
+  allResults,
+  textSearch,
+  showProduct,
+  showAllResults,
+}) => {
   const errorMessage = "по вашему запросу товаров не найдено :/";
 
   return (
@@ -26,6 +33,16 @@ const PossibleGoods = ({ selected, showProduct, handling, textSearch }) => {
               {option.name}
             </li>
           ))}
+        {/* Показать все результаты поиска */}
+        {allResults && (
+          <li
+            key="allResults"
+            className={s.selectedItem}
+            onClick={() => showAllResults()}
+          >
+            Показать все результаты
+          </li>
+        )}
       </ul>
     </div>
   );

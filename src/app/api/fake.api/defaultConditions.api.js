@@ -13,6 +13,7 @@ const defaultValues = {
     value: "c новых",
   },
   category: { name: "", value: "" },
+  search: "",
 };
 
 const fetchAll = () =>

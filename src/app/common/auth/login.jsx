@@ -1,13 +1,13 @@
-import handleError from "../../utils/handleError";
+import api from "../../api";
 import BtnLogin from "./btnLogin";
 import s from "./auth.module.css";
-import api from "../../api";
 import ResponseMes from "./responseMes";
-import Loading from "../loading/loading.jsx";
-import BtnForgotPassword from "./btnForgotPassword";
-import React, { useEffect, useState } from "react";
 import TextField from "./input/textField";
+import Loading from "../loading/loading.jsx";
 import { useNavigate } from "react-router-dom";
+import handleError from "../../utils/handleError";
+import React, { useEffect, useState } from "react";
+import BtnForgotPassword from "./btnForgotPassword";
 
 const Login = () => {
   const [user, setUser] = useState();
@@ -17,11 +17,6 @@ const Login = () => {
   const [formValues, setFormValues] = useState({ login: "", password: "" });
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    localStorage.removeItem("user_vt");
-    user && localStorage.setItem("user_vt", JSON.stringify(user));
-  }, [user]);
 
   // проверка полей на валидность
   useEffect(() => {
@@ -49,13 +44,10 @@ const Login = () => {
   // отправка введённых данных на сервер
   const sendData = ({ login, password }) => {
     setLoading(true);
-    api.usersList.fetchAll().then((data) => {
-      const user = data.find(
-        (user) => user.password === password && user.email === login
-      );
-      user && setUser(user);
+    api.users.login(login, password).then((data) => {
+      setUser(data);
+      response(data);
       setLoading(false);
-      response(user);
     });
   };
 

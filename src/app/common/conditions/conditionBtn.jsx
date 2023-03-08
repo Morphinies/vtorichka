@@ -4,7 +4,6 @@ import s from "./conditions.module.css";
 
 const ConditionBtn = ({
   cond,
-  btnName,
   defaultConditions,
   conditionsApplied,
   setConditionsApplied,
@@ -55,6 +54,13 @@ const ConditionBtn = ({
           category: defaultConditions.category,
         };
       });
+    } else if (condition.value === "search") {
+      setConditionsApplied((prevState) => {
+        return {
+          ...prevState,
+          search: defaultConditions.search,
+        };
+      });
     }
   };
 
@@ -65,7 +71,7 @@ const ConditionBtn = ({
       }}
       className={"btn " + s.conditionBtn}
     >
-      <p className={s.conditionBtnText}>{btnName}</p>
+      <p className={s.conditionBtnText}>{cond.name}</p>
       <img className={s.conditionBtnImg} src={del} alt="" />
     </button>
   );

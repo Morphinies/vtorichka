@@ -1,8 +1,8 @@
-import api from "../api";
-import Main from "../private/main/main";
-import Footer from "../common/footer/footer";
-import Header from "../common/header/header";
-import Loading from "../common/loading/loading";
+import Main from "./main";
+import api from "../../api";
+import Footer from "../../common/footer/footer";
+import Header from "../../common/header/header";
+import Loading from "../../common/loading/loading";
 import React, { useEffect, useState } from "react";
 
 const MainPage = () => {
