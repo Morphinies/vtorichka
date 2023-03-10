@@ -108,14 +108,17 @@ const fetchAll = () =>
   });
 
 const login = ({ login, password }) =>
-  new Promise((resolve) => {
+  new Promise((resolve, reject) => {
     const user = usersOnLS.find(
-      (user) => user.login === login && user.password === password
+      (userOnLs) => userOnLs.email === login && userOnLs.password === password
     );
-    localStorage.getItem("user") && localStorage.removeItem("user");
     window.setTimeout(() => {
-      localStorage.setItem("user", user);
-      resolve(user.id ? user : {});
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+        resolve("Добро пожаловать, " + user.name + "!");
+      } else {
+        reject("Логин или пароль не верен!");
+      }
     }, 1000);
   });
 

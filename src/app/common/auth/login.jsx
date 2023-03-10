@@ -10,13 +10,15 @@ import React, { useEffect, useState } from "react";
 import BtnForgotPassword from "./btnForgotPassword";
 
 const Login = () => {
-  const [user, setUser] = useState();
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [responseMes, setResponseMes] = useState();
+  const [errorsHidden, setErrorsHidden] = useState(true);
   const [formValues, setFormValues] = useState({ login: "", password: "" });
 
-  const navigate = useNavigate();
+  // валидность формы
+  const formIsValid = !Object.values(errors).find((error) => error.name);
 
   // проверка полей на валидность
   useEffect(() => {
@@ -29,40 +31,51 @@ const Login = () => {
     });
   }, [formValues]);
 
-  // ответ на кнопку войти
-  const response = (user) => {
-    !user
-      ? setResponseMes("Логин или пароль не верен!")
-      : setResponseMes("Добро пожаловать, " + user.name + "!");
-
-    setTimeout(() => {
-      setResponseMes();
-      user && navigate("/");
-    }, 1000);
-  };
+  // автоматическое скрытие сообщения о входе/ошибке
+  useEffect(() => {
+    responseMes &&
+      setTimeout(() => {
+        setResponseMes();
+      }, 1000);
+  }, [responseMes]);
 
   // отправка введённых данных на сервер
-  const sendData = ({ login, password }) => {
-    setLoading(true);
-    api.users.login(login, password).then((data) => {
-      setUser(data);
-      response(data);
-      setLoading(false);
-    });
+  const sendData = (formValues, e) => {
+    e.preventDefault();
+    if (formIsValid) {
+      setLoading(true);
+      api.users
+        .login(formValues)
+        .then((message) => {
+          setLoading(false);
+          setResponseMes(message);
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
+        })
+        .catch((err) => {
+          setLoading(false);
+          setResponseMes(err);
+        });
+    } else {
+      setErrorsHidden(false);
+    }
   };
 
   return (
     <div className={s.wrap}>
       <h1 className={s.title}>вход</h1>
-      <form className={s.form} onSubmit="">
+      <form className={s.form} onSubmit={(e) => sendData(formValues, e)}>
         <TextField
           type="email"
           label="почта"
           maxLength={30}
           fieldName="login"
           error={errors.login}
+          errorsHidden={errorsHidden}
           formValue={formValues.login}
           setFormValues={setFormValues}
+          setErrorsHidden={setErrorsHidden}
         />
 
         <TextField
@@ -71,19 +84,14 @@ const Login = () => {
           type="password"
           fieldName="password"
           error={errors.password}
+          errorsHidden={errorsHidden}
           setFormValues={setFormValues}
           formValue={formValues.password}
+          setErrorsHidden={setErrorsHidden}
         />
 
         {/* кнопка войти */}
-        <BtnLogin
-          setUser={setUser}
-          sendData={sendData}
-          formValues={formValues}
-          setLoading={setLoading}
-          errors={Object.values(errors)}
-          setResponseMes={setResponseMes}
-        />
+        <BtnLogin name="войти" sendData={sendData} formValues={formValues} />
 
         {/* ссылка на восстановление пароля */}
         <BtnForgotPassword />

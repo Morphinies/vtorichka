@@ -1,4 +1,4 @@
-export default function handleError(value, rules) {
+export default function handleError(value, rules, comparisonValue) {
   const error = {};
   for (let rule of rules) {
     // empty
@@ -15,6 +15,36 @@ export default function handleError(value, rules) {
       if (!mailRegExp.test(value)) {
         error.name = "mailFormat";
         error.message = "неверный формат почты";
+        break;
+      }
+    }
+    if (rule === "min") {
+      if (value.length < 4) {
+        error.name = "min";
+        error.message = "минимум 4 символа";
+        break;
+      }
+    }
+    if (rule === "min") {
+      if (value.length < 4) {
+        error.name = "min";
+        error.message = "минимум 4 символа";
+        break;
+      }
+    }
+    if (rule === "equal") {
+      if (comparisonValue !== value) {
+        error.name = "equal";
+        error.message = "пароли не совпадают";
+        break;
+      }
+    }
+    if (rule === "indent") {
+      const indentExp1 = new RegExp(/^\s+/);
+      const indentExp2 = new RegExp(/\s+$/);
+      if (indentExp1.test(value) || indentExp2.test(value)) {
+        error.name = "indent";
+        error.message = "поле не должно начинаться/заканчиваться пробелом";
         break;
       }
     }

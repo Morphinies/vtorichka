@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import s from "./auth.module.css";
 
-const BtnLogin = ({
-  errors,
-  setUser,
-  sendData,
-  formValues,
-  setLoading,
-  setResponseMes,
-}) => {
-  // проверка валидности
-  const [formIsValid, setFormIsValid] = useState(false);
-  useEffect(() => {
-    const error = errors.find((error) => error.name);
-    error ? setFormIsValid(false) : setFormIsValid(true);
-  }, [errors]);
-
+const BtnLogin = ({ sendData, formValues, name }) => {
   return (
     <button
-      type="button"
-      onClick={() => formIsValid && sendData(formValues)}
-      className={"btn " + s.button + " " + (!formIsValid && "disabled")}
+      type="submit"
+      onClick={(e) => sendData(formValues, e)}
+      className={"btn " + s.button}
     >
-      войти
+      {name}
     </button>
   );
 };

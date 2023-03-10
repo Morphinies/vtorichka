@@ -4,10 +4,10 @@ import HeadBtn from "./headBtn";
 import s from "./header.module.css";
 
 const HeadNav = () => {
-  const user = JSON.parse(localStorage.getItem("user_vt"));
+  const user = JSON.parse(localStorage.getItem("user"));
   let currentPage = useLocation().pathname;
   const output = () => {
-    localStorage.removeItem("user_vt");
+    localStorage.removeItem("user");
   };
 
   switch (currentPage) {

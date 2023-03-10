@@ -1,5 +1,5 @@
 import s from "../auth.module.css";
-import React, { useRef, useState } from "react";
+import React from "react";
 
 const TextField = ({
   type,
@@ -8,28 +8,17 @@ const TextField = ({
   maxLength,
   fieldName,
   formValue,
+  errorsHidden,
   setFormValues,
+  setErrorsHidden,
 }) => {
-  // заполнение поля
-  const [handling, setHandling] = useState(true);
-  const fieldIsValid = !error || !error.message;
-  const timer = useRef();
-
+  // обновление поля
   const updateField = (enterValue) => {
-    const regExp = new RegExp(/[A-Z1-9_%+@.-]/gi);
-    const matchArr = enterValue.match(regExp);
-    if (matchArr || enterValue === "") {
-      clearTimeout(timer.current);
-      setHandling(true);
-      const resValue = enterValue ? matchArr.join("") : "";
-      enterValue.length <= maxLength &&
-        setFormValues((prevState) => {
-          return { ...prevState, [fieldName]: resValue };
-        });
-      timer.current = setTimeout(() => {
-        setHandling(false);
-      }, 1000);
-    }
+    setErrorsHidden(true);
+    enterValue.length <= maxLength &&
+      setFormValues((prevState) => {
+        return { ...prevState, [fieldName]: enterValue };
+      });
   };
 
   return (
@@ -41,21 +30,21 @@ const TextField = ({
         <input
           type={type}
           id={fieldName}
-          maxLength={maxLength}
           name={fieldName}
           value={formValue}
+          maxLength={maxLength}
           onChange={(e) => updateField(e.target.value)}
           className={
             s.input +
             " " +
-            (!fieldIsValid && !handling && s.inputError) +
+            (!errorsHidden && error.message && s.inputError) +
             " " +
-            (fieldIsValid && !handling && s.inputSuccess)
+            (!errorsHidden && !error.message && s.inputSuccess)
           }
         />
       </p>
       <p className={s.errorMessage}>
-        {!fieldIsValid && !handling && error.message + " *"}
+        {!errorsHidden && error.message ? error.message + " *" : ""}
       </p>
     </div>
   );
