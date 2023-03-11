@@ -13,9 +13,10 @@ const SignUp = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [responseMes, setResponseMes] = useState();
+  const [errorsHidden, setErrorsHidden] = useState(true);
   const [formValues, setFormValues] = useState({
     name: "",
-    login: "",
+    email: "",
     password: "",
     rePassword: "",
   });
@@ -29,11 +30,15 @@ const SignUp = () => {
       return {
         ...prevState,
         name: handleError(formValues.name, ["empty", "min", "indent"]),
-        password: handleError(formValues.password, ["empty", "min"]),
-        login: handleError(formValues.login, ["empty", "mailFormat"]),
+        password: handleError(formValues.password, [
+          "empty",
+          "indent",
+          "password",
+        ]),
+        email: handleError(formValues.email, ["empty", "mailFormat", "indent"]),
         rePassword: handleError(
           formValues.rePassword,
-          ["equal"],
+          ["empty", "equal"],
           formValues.password
         ),
       };
@@ -54,7 +59,7 @@ const SignUp = () => {
     if (formIsValid) {
       setLoading(true);
       api.users
-        .login(formValues)
+        .signup(formValues)
         .then((message) => {
           setLoading(false);
           setResponseMes(message);
@@ -66,6 +71,8 @@ const SignUp = () => {
           setLoading(false);
           setResponseMes(err);
         });
+    } else {
+      setErrorsHidden(false);
     }
   };
 
@@ -80,8 +87,10 @@ const SignUp = () => {
           maxLength={20}
           fieldName="name"
           error={errors.name}
+          errorsHidden={errorsHidden}
           formValue={formValues.name}
           setFormValues={setFormValues}
+          setErrorsHidden={setErrorsHidden}
         />
 
         {/* Почта */}
@@ -89,10 +98,12 @@ const SignUp = () => {
           type="email"
           label="почта"
           maxLength={30}
-          fieldName="login"
-          error={errors.login}
-          formValue={formValues.login}
+          fieldName="email"
+          error={errors.email}
+          errorsHidden={errorsHidden}
+          formValue={formValues.email}
           setFormValues={setFormValues}
+          setErrorsHidden={setErrorsHidden}
         />
 
         {/* Пароль */}
@@ -102,19 +113,23 @@ const SignUp = () => {
           type="password"
           fieldName="password"
           error={errors.password}
+          errorsHidden={errorsHidden}
           setFormValues={setFormValues}
           formValue={formValues.password}
+          setErrorsHidden={setErrorsHidden}
         />
 
         {/* Повторение пароля */}
         <TextField
-          label="повторите пароль"
           maxLength={30}
           type="password"
           fieldName="rePassword"
+          label="повторите пароль"
           error={errors.rePassword}
+          errorsHidden={errorsHidden}
           setFormValues={setFormValues}
           formValue={formValues.rePassword}
+          setErrorsHidden={setErrorsHidden}
         />
 
         {/* кнопка войти */}
@@ -122,7 +137,6 @@ const SignUp = () => {
           sendData={sendData}
           formValues={formValues}
           name="зарегистрироваться"
-          formIsValid={formIsValid}
         />
       </form>
 

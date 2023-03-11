@@ -10,7 +10,7 @@ export default function handleError(value, rules, comparisonValue) {
       }
     }
     // mailFormat
-    if (rule === "mailFormat") {
+    else if (rule === "mailFormat") {
       const mailRegExp = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$/i);
       if (!mailRegExp.test(value)) {
         error.name = "mailFormat";
@@ -18,33 +18,43 @@ export default function handleError(value, rules, comparisonValue) {
         break;
       }
     }
-    if (rule === "min") {
+    // min symbols
+    else if (rule === "min") {
       if (value.length < 4) {
         error.name = "min";
         error.message = "минимум 4 символа";
         break;
       }
     }
-    if (rule === "min") {
-      if (value.length < 4) {
-        error.name = "min";
-        error.message = "минимум 4 символа";
-        break;
-      }
-    }
-    if (rule === "equal") {
+    // password equals
+    else if (rule === "equal") {
       if (comparisonValue !== value) {
         error.name = "equal";
         error.message = "пароли не совпадают";
         break;
       }
     }
-    if (rule === "indent") {
+    // password equals
+    else if (rule === "indent") {
       const indentExp1 = new RegExp(/^\s+/);
       const indentExp2 = new RegExp(/\s+$/);
       if (indentExp1.test(value) || indentExp2.test(value)) {
         error.name = "indent";
         error.message = "поле не должно начинаться/заканчиваться пробелом";
+        break;
+      }
+    } // password requirements
+    else if (rule === "password") {
+      const minSymbols = 5;
+      const pasExp = new RegExp(/[^A-Za-z1-9.!_-]/);
+      if (value <= minSymbols) {
+        error.name = "password";
+        error.message = "пароль должен содержать минимум 5 символов";
+        break;
+      } else if (pasExp.test(value)) {
+        error.name = "password";
+        error.message =
+          "необходимо использовать латинские буквы, цифры, знаки (.!_-)";
         break;
       }
     }

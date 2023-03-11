@@ -6,8 +6,8 @@ import categoryList from "./fake.api/categories.api";
 import defaultConditions from "./fake.api/defaultConditions.api";
 
 const api = {
-  products,
   users,
+  products,
   filterList,
   sortingList,
   categoryList,

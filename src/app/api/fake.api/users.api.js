@@ -94,6 +94,8 @@ const usersList = [
   },
 ];
 
+// localStorage.clear();
+
 if (!localStorage.getItem("users")) {
   localStorage.setItem("users", JSON.stringify(usersList));
 }
@@ -122,6 +124,28 @@ const login = ({ login, password }) =>
     }, 1000);
   });
 
-const users = { fetchAll, login };
+const signup = ({ name, email, password }) =>
+  new Promise((resolve, reject) => {
+    const userExists = !!usersOnLS.find((userOnLS) => userOnLS.email === email);
+    window.setTimeout(() => {
+      if (!userExists) {
+        usersOnLS.push({
+          id: usersOnLS.length,
+          name: name,
+          avatar: avatar,
+          email: email,
+          password: password,
+          phone: "+79108309115",
+          about: "I'm a good seller, I sell bananas!",
+        });
+        localStorage.setItem("users", JSON.stringify(usersOnLS));
+        resolve("Регистрация прошла успешно!");
+      } else {
+        reject("Пользователь с такой почтой уже зарегистрирован");
+      }
+    }, 1000);
+  });
+
+const users = { fetchAll, login, signup };
 
 export default users;

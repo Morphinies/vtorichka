@@ -16,6 +16,7 @@ const Login = () => {
   const [responseMes, setResponseMes] = useState();
   const [errorsHidden, setErrorsHidden] = useState(true);
   const [formValues, setFormValues] = useState({ login: "", password: "" });
+  console.log(formValues);
 
   // валидность формы
   const formIsValid = !Object.values(errors).find((error) => error.name);
@@ -25,8 +26,8 @@ const Login = () => {
     setErrors((prevState) => {
       return {
         ...prevState,
-        login: handleError(formValues.login, ["empty", "mailFormat"]),
-        password: handleError(formValues.password, ["empty"]),
+        login: handleError(formValues.login, ["empty", "mailFormat", "indent"]),
+        password: handleError(formValues.password, ["empty", "indent"]),
       };
     });
   }, [formValues]);
