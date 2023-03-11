@@ -16,7 +16,6 @@ const Login = () => {
   const [responseMes, setResponseMes] = useState();
   const [errorsHidden, setErrorsHidden] = useState(true);
   const [formValues, setFormValues] = useState({ login: "", password: "" });
-  console.log(formValues);
 
   // валидность формы
   const formIsValid = !Object.values(errors).find((error) => error.name);
@@ -70,7 +69,7 @@ const Login = () => {
         <TextField
           type="email"
           label="почта"
-          maxLength={30}
+          maxLength={300}
           fieldName="login"
           error={errors.login}
           errorsHidden={errorsHidden}

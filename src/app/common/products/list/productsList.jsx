@@ -1,19 +1,16 @@
+import api from "../../../api";
 import s from "../products.module.css";
 import ProductsItem from "../item/productsItem";
 import React, { useEffect, useState } from "react";
 
 const ProductsList = ({ productsOnPage, showProduct }) => {
   // избранные товары
-  const [favoriteProduct, setFavoriteProduct] = useState(
-    localStorage.getItem("favoriteProduct")
-      ? JSON.parse(localStorage.getItem("favoriteProduct"))
-      : []
-  );
+  const [favoriteProduct, setFavoriteProduct] = useState([]);
 
-  // обновление избранного в LS
+  // обновление избранного
   useEffect(() => {
-    localStorage.setItem("favoriteProduct", JSON.stringify(favoriteProduct));
-  }, [favoriteProduct]);
+    api.favorites.fetchAll().then((data) => setFavoriteProduct(data));
+  }, []);
 
   return productsOnPage.length > 0 ? (
     <ul className={s.products}>

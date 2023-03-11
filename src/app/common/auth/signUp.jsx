@@ -84,7 +84,7 @@ const SignUp = () => {
         <TextField
           type="name"
           label="имя"
-          maxLength={20}
+          maxLength={30}
           fieldName="name"
           error={errors.name}
           errorsHidden={errorsHidden}
@@ -97,7 +97,7 @@ const SignUp = () => {
         <TextField
           type="email"
           label="почта"
-          maxLength={30}
+          maxLength={300}
           fieldName="email"
           error={errors.email}
           errorsHidden={errorsHidden}
