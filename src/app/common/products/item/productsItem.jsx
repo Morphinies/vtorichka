@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import s from "../products.module.css";
-import ProductPhoto from "./productPhoto";
+import React, { useState } from "react";
 import ProductInfo from "./productInfo";
+import ProductPhoto from "./productPhoto";
 
 const ProductsItem = ({
   i,
@@ -9,19 +9,10 @@ const ProductsItem = ({
   openEditor,
   showProduct,
   favoriteProduct,
-  setFavoriteProduct,
+  updateFavorites,
 }) => {
   const [x, setX] = useState(0);
-  // обновление избранного - функция
-  const addFavorite = (obj) => {
-    !favoriteProduct.includes(obj)
-      ? setFavoriteProduct((prevState) => [...prevState, obj])
-      : setFavoriteProduct((prevState) =>
-          prevState
-            .slice(0, favoriteProduct.indexOf(obj))
-            .concat(prevState.slice(favoriteProduct.indexOf(obj) + 1))
-        );
-  };
+
   return (
     <li className={s.productCard}>
       <ProductPhoto
@@ -35,8 +26,8 @@ const ProductsItem = ({
         i={i}
         s={s}
         openEditor={openEditor}
-        addFavorite={addFavorite}
         favoriteProduct={favoriteProduct}
+        updateFavorites={updateFavorites}
       />
     </li>
   );

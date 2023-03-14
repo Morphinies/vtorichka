@@ -31,17 +31,25 @@ if (!localStorage.getItem("users")) {
   localStorage.setItem("users", JSON.stringify(usersList));
 }
 
-const usersOnLS = JSON.parse(localStorage.getItem("users"));
-
 const fetchAll = () =>
   new Promise((resolve) => {
+    const usersOnLS = JSON.parse(localStorage.getItem("users"));
     window.setTimeout(() => {
       resolve(usersOnLS);
     }, 1500);
   });
 
+const fetchById = (id) =>
+  new Promise((resolve) => {
+    const usersOnLS = JSON.parse(localStorage.getItem("users"));
+    window.setTimeout(() => {
+      resolve(usersOnLS.find((user) => user.id === id));
+    }, 100);
+  });
+
 const login = ({ login, password }) =>
   new Promise((resolve, reject) => {
+    const usersOnLS = JSON.parse(localStorage.getItem("users"));
     const user = usersOnLS.find(
       (userOnLs) => userOnLs.email === login && userOnLs.password === password
     );
@@ -57,6 +65,7 @@ const login = ({ login, password }) =>
 
 const signup = ({ name, email, password }) =>
   new Promise((resolve, reject) => {
+    const usersOnLS = JSON.parse(localStorage.getItem("users"));
     const userExists = !!usersOnLS.find((userOnLS) => userOnLS.email === email);
     const newUser = {
       id: usersOnLS.length,
@@ -80,6 +89,6 @@ const signup = ({ name, email, password }) =>
     }, 1000);
   });
 
-const users = { fetchAll, login, signup };
+const users = { fetchAll, login, signup, fetchById };
 
 export default users;

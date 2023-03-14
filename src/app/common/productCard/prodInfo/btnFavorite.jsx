@@ -3,10 +3,10 @@ import s from "../productCard.module.css";
 import heart from "../../../img/heart.svg";
 import heartFill from "../../../img/heartFill.svg";
 
-const BtnFavorite = ({ isFavorite, setIsFavorite }) => {
+const BtnFavorite = ({ isFavorite, updateFavorite }) => {
   return (
     <button
-      onClick={() => setIsFavorite(!isFavorite)}
+      onClick={() => updateFavorite()}
       className={s.prodBtn + " " + s.btnFavorite}
     >
       <img

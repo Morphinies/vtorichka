@@ -11,7 +11,7 @@ const BtnsOfProd = ({
   productId,
   openEditor,
   isFavorite,
-  setIsFavorite,
+  updateFavorite,
 }) => {
   let currentPage = useLocation().pathname;
 
@@ -20,7 +20,10 @@ const BtnsOfProd = ({
       {currentPage !== "/personalArea" ? (
         <>
           <BtnWrite sellerId={seller.id} />
-          <BtnFavorite isFavorite={isFavorite} setIsFavorite={setIsFavorite} />
+          <BtnFavorite
+            isFavorite={isFavorite}
+            updateFavorite={updateFavorite}
+          />
           <BtnCall phone={seller.phone} />
         </>
       ) : (

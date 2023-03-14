@@ -3,7 +3,15 @@ import heart from "../../../img/heart.svg";
 import heartFill from "../../../img/heartFill.svg";
 import settings from "../../../img/settings.svg";
 
-const ProductInfo = ({ s, i, addFavorite, favoriteProduct, openEditor }) => {
+const ProductInfo = ({
+  s,
+  i,
+  openEditor,
+  updateFavorites,
+  favoriteProduct,
+}) => {
+  // console.log(favoriteProduct);
+
   // из числового в строчное представление месяца
   const getMonth = (monthNumb) => {
     switch (monthNumb) {
@@ -62,7 +70,7 @@ const ProductInfo = ({ s, i, addFavorite, favoriteProduct, openEditor }) => {
             alt="в избранное"
             title="в избранное"
             className={s.likeImg}
-            onClick={() => addFavorite(i.id)}
+            onClick={() => updateFavorites(i.id)}
             src={favoriteProduct.includes(i.id) ? heartFill : heart}
           />
         ) : (

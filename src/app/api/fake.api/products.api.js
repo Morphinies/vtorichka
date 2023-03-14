@@ -1,4 +1,3 @@
-import avatar from "../../img/avatar.jpg";
 import adidas from "../../img/productImg/adidas.jpg";
 import jordans from "../../img/productImg/jordans.jpg";
 import newBalance from "../../img/productImg/newBalance.png";
@@ -117,12 +116,12 @@ const allProducts = [
   {
     id: 9,
     type: "б/у",
+    sellerId: 2,
     place: "г. Торопец",
     time: new Date(2000, 8, 23, 11, 12, 50, 0),
     name: "джорданы 1",
     category: "кеды",
     price: 8500,
-    seller: { id: 9, phone: "+79108309115", name: "Иван", avatar: avatar },
     textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
@@ -134,12 +133,12 @@ const allProducts = [
     name: "джорданы 1",
     category: "кеды",
     price: 2700,
-    seller: { id: 10, phone: "+79108309115", name: "Иван", avatar: avatar },
+    sellerId: 2,
     textAbout: textAbout,
     photo: [jordans, adidas, newBalance],
   },
   {
-    id: 9,
+    id: 11,
     type: "б/у",
     price: 2000,
     sellerId: 1,
@@ -151,7 +150,7 @@ const allProducts = [
     time: new Date("August 19, 1975 23:15:30"),
   },
   {
-    id: 10,
+    id: 12,
     type: "б/у",
     price: 2500,
     sellerId: 2,
@@ -180,7 +179,7 @@ const fetchAll = () =>
 const fetchById = (id) =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(prodsOnLS.findIndex((prod) => prod.id === id));
+      resolve(prodsOnLS.filter((prod) => prod.sellerId === id));
     }, 500);
   });
 
@@ -199,6 +198,21 @@ const fetchByName = (name, maxLength) =>
     }, 500);
   });
 
-const products = { fetchAll, fetchById, fetchByName };
+const editProd = (prod) =>
+  new Promise((resolve, reject) => {
+    window.setTimeout(() => {
+      const index = prodsOnLS.findIndex((prodOnLs) => prodOnLs.id === prod.id);
+      if (index) {
+        const editedProds = prodsOnLS;
+        editedProds[index] = prod;
+        localStorage.setItem("products", JSON.stringify(editedProds));
+        resolve("Изменения сохранены!");
+      } else {
+        reject("что-то пошло не так :/");
+      }
+    }, 1000);
+  });
+
+const products = { fetchAll, fetchById, fetchByName, editProd };
 
 export default products;

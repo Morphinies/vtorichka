@@ -7,6 +7,7 @@ import ProductCard from "../../productCard/productCard";
 import Editor from "../../editor/editor";
 
 const MyProducts = ({ userID }) => {
+  console.log(userID);
   const [myProducts, setMyProducts] = useState();
   const [editableProd, setEditableProd] = useState({});
   const [openedProduct, setOpenedProduct] = useState({});
@@ -16,6 +17,7 @@ const MyProducts = ({ userID }) => {
   };
   useEffect(() => {
     api.products.fetchById(userID).then((data) => {
+      console.log(data);
       setMyProducts(data);
     });
   }, [userID]);

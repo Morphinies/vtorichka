@@ -1,23 +1,35 @@
 import TextField from "./textField";
 import s from "./editor.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cancel from "../../img/cancel.svg";
 import CatField from "./categoryField/catField";
 import SelectField from "./selectField";
 import TextareaField from "./textareaField";
 import FileField from "./fileField";
 import BtnApplyChanges from "./btnApplyChanges";
+import api from "../../api";
+import ResponseMes from "../auth/responseMes";
+import Loading from "../loading/loading";
 
 const Editor = ({ editableProd, closeEditor }) => {
   const [formValue, setFormValue] = useState(editableProd);
+  const [responseMes, setResponseMes] = useState();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    responseMes && setTimeout(() => setResponseMes(), 1000);
+  }, [responseMes]);
 
   const handleSubmit = (event) => {
+    setLoading(true);
     event.preventDefault();
-    const products = JSON.parse(localStorage.getItem("products"));
-    const idOfEditProd = products.findIndex((prod) => prod.id === formValue.id);
-    products[idOfEditProd] = formValue;
-    localStorage.removeItem("products");
-    localStorage.setItem("products", JSON.stringify(products));
+    api.products
+      .editProd(formValue)
+      .then((data) => {
+        setResponseMes(data);
+        setLoading(false);
+      })
+      .catch((errMes) => setResponseMes(errMes));
   };
 
   return (
@@ -71,6 +83,9 @@ const Editor = ({ editableProd, closeEditor }) => {
           setFormValues={setFormValue}
         />
         <BtnApplyChanges name="применить изменения" />
+
+        {loading && <Loading />}
+        {responseMes && <ResponseMes message={responseMes} />}
       </form>
     </div>
   );
