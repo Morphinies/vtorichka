@@ -1,5 +1,5 @@
-import api from "../../../api/index";
-import s from "../editor.module.css";
+import api from "../../../../../../api";
+import s from "../../editor.module.css";
 import CatFieldList from "./catFieldList";
 import React, { useEffect, useState } from "react";
 import CatFieldBtnOpenList from "./catFieldBtnOpenList";

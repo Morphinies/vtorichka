@@ -6,13 +6,7 @@ import BtnCall from "./btnCall";
 import { useLocation } from "react-router-dom";
 import BtnEdit from "./btnEdit";
 
-const BtnsOfProd = ({
-  seller,
-  productId,
-  openEditor,
-  isFavorite,
-  updateFavorite,
-}) => {
+const BtnsOfProd = ({ seller, productId, isFavorite, updateFavorite }) => {
   let currentPage = useLocation().pathname;
 
   return (
@@ -28,7 +22,7 @@ const BtnsOfProd = ({
         </>
       ) : (
         <>
-          <BtnEdit openEditor={openEditor} productId={productId} />
+          <BtnEdit />
         </>
       )}
     </div>

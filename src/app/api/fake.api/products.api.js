@@ -177,6 +177,18 @@ const fetchAll = () =>
   });
 
 const fetchById = (id) =>
+  new Promise((resolve, reject) => {
+    window.setTimeout(() => {
+      const findedProd = prodsOnLS.find(
+        (prod) => Number(prod.id) === Number(id)
+      );
+      findedProd
+        ? resolve(findedProd)
+        : reject(`Товара под номером ${id} не найдено :/`);
+    }, 500);
+  });
+
+const fetchBySeller = (id) =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(prodsOnLS.filter((prod) => prod.sellerId === id));
@@ -213,6 +225,6 @@ const editProd = (prod) =>
     }, 1000);
   });
 
-const products = { fetchAll, fetchById, fetchByName, editProd };
+const products = { fetchAll, fetchById, fetchBySeller, fetchByName, editProd };
 
 export default products;

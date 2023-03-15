@@ -25,7 +25,7 @@ const fetchAll = () =>
           resolve([]);
         }
       }
-    }, 1000);
+    }, 100);
   });
 
 const update = (id) =>

@@ -2,10 +2,10 @@ import React from "react";
 import s from "../productCard.module.css";
 import setting from "../../../img/settings.svg";
 
-const BtnEdit = ({ openEditor, productId }) => {
+const BtnEdit = () => {
   return (
     <button
-      onClick={() => openEditor(productId)}
+      onClick={() => console.log("openEditor")}
       className={s.prodBtn + " " + s.btnSetting}
     >
       <img

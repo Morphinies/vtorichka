@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import s from "../editor.module.css";
+import s from "../../editor.module.css";
 import CatFieldBtn from "./catFieldBtn";
 
 const CatFieldList = ({ catList, formValue, hideCatalog, setFormValue }) => {

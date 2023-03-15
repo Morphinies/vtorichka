@@ -1,15 +1,15 @@
-import TextField from "./textField";
+import TextField from "../../../../common/auth/input/textField";
 import s from "./editor.module.css";
 import React, { useEffect, useState } from "react";
-import cancel from "../../img/cancel.svg";
-import CatField from "./categoryField/catField";
-import SelectField from "./selectField";
-import TextareaField from "./textareaField";
-import FileField from "./fileField";
+import cancel from "../../../../img/cancel.svg";
+import CatField from "./fields/categoryField/catField";
+import SelectField from "./fields/selectField";
+import TextareaField from "./fields/textareaField";
+import FileField from "./fields/fileField";
 import BtnApplyChanges from "./btnApplyChanges";
-import api from "../../api";
-import ResponseMes from "../auth/responseMes";
-import Loading from "../loading/loading";
+import api from "../../../../api";
+import ResponseMes from "../../../../common/auth/responseMes";
+import Loading from "../../../../common/loading/loading";
 
 const Editor = ({ editableProd, closeEditor }) => {
   const [formValue, setFormValue] = useState(editableProd);

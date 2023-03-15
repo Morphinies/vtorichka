@@ -92,7 +92,10 @@
 /* aside */
 
 .aside {
+  display: flex;
+  row-gap: 0.5rem;
   position: absolute;
+  flex-direction: column;
 }
 
 /*~~~~~~~~~~~~~~~~~~~ personal btn ~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -103,14 +106,8 @@
   cursor: pointer;
   transition: all 0.3s;
   padding: 2rem 0.7rem;
-  margin-bottom: 0.5rem;
   border-radius: 0 5px 5px 0;
-  grid-template-columns: 1fr auto;
   background: linear-gradient(180deg, #353d3f 0%, #16191a 100%);
-}
-
-.btnOpenBlock:last-child {
-  margin-bottom: 0;
 }
 
 .btnOpenBlock:hover {
@@ -122,7 +119,17 @@
   opacity: 0.8;
 }
 
-.openedBlockBtn {
+.activeLink .btnOpenBlock {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.activeLink:hover .btnOpenBlock {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* .openedBlockBtn {
   opacity: 0.6;
   cursor: default;
 }
@@ -130,7 +137,7 @@
 .openedBlockBtn:hover {
   opacity: 0.6;
   padding-left: 0.7rem;
-}
+} */
 
 .btnOpenBlockText {
   color: #f6f6f6;

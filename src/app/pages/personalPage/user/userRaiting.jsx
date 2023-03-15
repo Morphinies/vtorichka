@@ -1,6 +1,6 @@
 import React from "react";
 import star from "../../../img/star.svg";
-import s from "../personalArea.module.css";
+import s from "../personalPage.module.css";
 import starFill from "../../../img/starFill.svg";
 
 const UserRaiting = ({ rating }) => {

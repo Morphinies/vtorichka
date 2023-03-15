@@ -1,7 +1,7 @@
 import React from "react";
-import s from "./editor.module.css";
-import plus from "../../img/plus.svg";
-import cancel from "../../img/cancel.svg";
+import s from "../editor.module.css";
+import plus from "../../../../../img/plus.svg";
+import cancel from "../../../../../img/cancel.svg";
 
 const FileField = ({ label, fieldId, maxLength, formValue, setFormValues }) => {
   const delPhoto = (delPhoto) => {

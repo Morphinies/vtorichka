@@ -3,30 +3,16 @@ import React, { useState } from "react";
 import ProductInfo from "./productInfo";
 import ProductPhoto from "./productPhoto";
 
-const ProductsItem = ({
-  i,
-  maxVal,
-  openEditor,
-  showProduct,
-  favoriteProduct,
-  updateFavorites,
-}) => {
+const ProductsItem = ({ prod, maxVal, isFavorite, updateFavorites }) => {
   const [x, setX] = useState(0);
 
   return (
     <li className={s.productCard}>
-      <ProductPhoto
-        x={x}
-        i={i}
-        setX={setX}
-        maxVal={maxVal}
-        showProduct={showProduct}
-      />
+      <ProductPhoto x={x} prod={prod} setX={setX} maxVal={maxVal} />
       <ProductInfo
-        i={i}
+        prod={prod}
         s={s}
-        openEditor={openEditor}
-        favoriteProduct={favoriteProduct}
+        isFavorite={isFavorite}
         updateFavorites={updateFavorites}
       />
     </li>

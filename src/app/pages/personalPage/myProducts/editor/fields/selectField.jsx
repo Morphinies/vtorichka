@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CatFieldBtnOpenList from "./categoryField/catFieldBtnOpenList";
-import s from "./editor.module.css";
+import s from "../editor.module.css";
 
 const SelectField = ({ list, label, fieldId, formValue, setFormValue }) => {
   const [listOpened, setListOpened] = useState(false);

@@ -1,3 +1,4 @@
+import api from "../../../api";
 import ProdName from "./prodName";
 import ProdPrice from "./prodPrice";
 import ProdSeller from "./prodSeller";
@@ -6,9 +7,8 @@ import ProdMainInfo from "./prodMainInfo";
 import s from "../productCard.module.css";
 import ProdAboutBlock from "./prodAboutBlock";
 import React, { useEffect, useState } from "react";
-import api from "../../../api";
 
-const ProductCardInfo = ({ product, openEditor }) => {
+const ProductCardInfo = ({ product }) => {
   // избранные товары
   const [seller, setSeller] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
@@ -51,7 +51,6 @@ const ProductCardInfo = ({ product, openEditor }) => {
         <ProdSeller seller={seller} />
         <BtnsOfProd
           productId={product.id}
-          openEditor={openEditor}
           seller={seller}
           isFavorite={isFavorite}
           updateFavorite={() => setFavoritesIsUpdating(product.id)}

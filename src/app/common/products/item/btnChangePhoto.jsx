@@ -4,8 +4,8 @@ import arrowBack from "../../../img/arrowBack.svg";
 import arrowNext from "../../../img/arrowNext.svg";
 import { useEffect } from "react";
 
-const BtnChangePhoto = ({ i, x, setX, maxVal, change }) => {
-  const id = "slide_" + i.id;
+const BtnChangePhoto = ({ prod, x, setX, maxVal, change }) => {
+  const id = "slide_" + prod.id;
 
   useEffect(() => {
     const slides = document.getElementById(id);
@@ -14,7 +14,7 @@ const BtnChangePhoto = ({ i, x, setX, maxVal, change }) => {
         slides.childNodes[slide].style.right = `${x}%`;
       }
     }
-  }, [x, i, id]);
+  }, [x, prod, id]);
 
   return (
     <>

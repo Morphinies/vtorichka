@@ -4,7 +4,7 @@ import UserAbout from "./userAbout";
 import UserAvatar from "./userAvatar";
 import UserRaiting from "./userRaiting";
 import UserReviews from "./userReviews";
-import s from "../personalArea.module.css";
+import s from "../personalPage.module.css";
 
 const User = ({ photo, name, rating, reviewsNumb, about }) => {
   return (

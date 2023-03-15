@@ -3,36 +3,30 @@ import s from "../products.module.css";
 import BtnChangePhoto from "./btnChangePhoto";
 import ProductPhotoBtn from "./productPhotoBtn";
 
-const ProductPhoto = ({ i, maxVal, x, setX, showProduct }) => {
+const ProductPhoto = ({ prod, maxVal, x, setX }) => {
   return (
-    <div id={"slide_" + i.id} className={s.productPhotosWrap}>
-      {i.photo.map((img) => {
-        return (
-          <ProductPhotoBtn
-            showProduct={() => showProduct(i)}
-            img={img}
-            key={img}
-          />
-        );
+    <div id={"slide_" + prod.id} className={s.productPhotosWrap}>
+      {prod.photo.map((img) => {
+        return <ProductPhotoBtn prodId={prod.id} img={img} key={img} />;
       })}
 
       {x < maxVal - 100 && (
         <BtnChangePhoto
-          i={i}
           x={x}
-          setX={(val) => setX(val)}
+          prod={prod}
           maxVal={maxVal}
           change={"next"}
+          setX={(val) => setX(val)}
         />
       )}
 
       {x > 0 && (
         <BtnChangePhoto
-          i={i}
           x={x}
-          setX={(val) => setX(val)}
+          prod={prod}
           maxVal={maxVal}
           change={"prev"}
+          setX={(val) => setX(val)}
         />
       )}
     </div>

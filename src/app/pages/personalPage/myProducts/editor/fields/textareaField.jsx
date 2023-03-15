@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./editor.module.css";
+import s from "../editor.module.css";
 
 const TextareaField = ({
   label,

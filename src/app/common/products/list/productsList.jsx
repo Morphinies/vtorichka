@@ -3,7 +3,7 @@ import s from "../products.module.css";
 import ProductsItem from "../item/productsItem";
 import React, { useEffect, useState } from "react";
 
-const ProductsList = ({ productsOnPage, showProduct }) => {
+const ProductsList = ({ productsOnPage }) => {
   // избранные товары
   const [favoriteProduct, setFavoriteProduct] = useState([]);
   const [favoritesIsUpdating, setFavoritesIsUpdating] = useState(false);
@@ -24,15 +24,14 @@ const ProductsList = ({ productsOnPage, showProduct }) => {
 
   return productsOnPage.length > 0 ? (
     <ul className={s.products}>
-      {productsOnPage.map((i) => {
-        const maxVal = i.photo.length * 100;
+      {productsOnPage.map((prod) => {
+        const maxVal = prod.photo.length * 100;
         return (
           <ProductsItem
-            i={i}
-            key={i.id}
+            prod={prod}
+            key={prod.id}
             maxVal={maxVal}
-            showProduct={showProduct}
-            favoriteProduct={favoriteProduct}
+            isFavorite={favoriteProduct.includes(prod.id)}
             updateFavorites={(id) => setFavoritesIsUpdating(id)}
           />
         );

@@ -23,7 +23,7 @@ const HeadNav = () => {
         </nav>
       ) : (
         <nav className={s.navBlock}>
-          <HeadBtn name={"личный кабинет"} link={"/personalArea"} />
+          <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />
           <HeadBtn name={"выход"} link={"/"} action={output} />
         </nav>
       );
@@ -41,7 +41,9 @@ const HeadNav = () => {
           <HeadBtn name={"вход"} link={"/login"} />
         </nav>
       );
-    case "/personalArea":
+    case "/personal/bio":
+    case "/personal/sales":
+    case "/personal/products":
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />

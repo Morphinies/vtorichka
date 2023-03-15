@@ -2,7 +2,7 @@ import api from "../../api";
 import Loading from "../../common/loading/loading";
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../common/sidebar/sidebar";
-import Products from "../../common/products/list/products";
+import Products from "../../common/products/products";
 import Conditions from "../../common/conditions/conditions";
 import SearchLine from "../../common/searchLine/searchLine";
 import ProductCard from "../../common/productCard/productCard";

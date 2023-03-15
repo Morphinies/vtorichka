@@ -1,7 +1,7 @@
-import s from "../products.module.css";
-import ProductsNav from "../nav/productsNav";
+import s from "./products.module.css";
+import ProductsNav from "./nav/productsNav";
 import React, { useState, useEffect } from "react";
-import ProductsList from "./productsList";
+import ProductsList from "./list/productsList";
 
 const Products = ({ conditions, products, showProduct }) => {
   const [choosedPage, setChoosedPage] = useState(1);
@@ -100,7 +100,7 @@ const Products = ({ conditions, products, showProduct }) => {
   return (
     <div className={s.productsWrap}>
       {/*список товаров на странице*/}
-      <ProductsList showProduct={showProduct} productsOnPage={productsOnPage} />
+      <ProductsList productsOnPage={productsOnPage} />
       <ProductsNav
         choosedPage={choosedPage}
         pageNumbersArr={pageNumbersArr}

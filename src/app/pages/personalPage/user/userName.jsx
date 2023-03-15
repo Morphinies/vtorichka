@@ -1,5 +1,5 @@
 import React from "react";
-import s from "../personalArea.module.css";
+import s from "../personalPage.module.css";
 
 const UserName = ({ name }) => {
   return <h1 className={s.avatarName}>{name}</h1>;

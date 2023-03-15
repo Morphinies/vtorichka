@@ -1,16 +1,15 @@
+// import api from "../../../api";
 import React from "react";
 import heart from "../../../img/heart.svg";
+// import settings from "../../../img/settings.svg";
 import heartFill from "../../../img/heartFill.svg";
-import settings from "../../../img/settings.svg";
 
-const ProductInfo = ({
-  s,
-  i,
-  openEditor,
-  updateFavorites,
-  favoriteProduct,
-}) => {
-  // console.log(favoriteProduct);
+const ProductInfo = ({ s, prod, isFavorite, updateFavorites }) => {
+  // const [isFavorite, setIsFavorite] = useState(isFavorite);
+
+  // api.favorites
+  //   .fetchAll()
+  //   .then((favorites) => favorites.includes(i.id) && setIsFavorite(true));
 
   // из числового в строчное представление месяца
   const getMonth = (monthNumb) => {
@@ -49,13 +48,14 @@ const ProductInfo = ({
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
   let publicTime = new Date();
-  publicTime.setTime(Date.parse(i.time));
+  publicTime.setTime(Date.parse(prod.time));
+
   return (
     <div className={s.productInfoWrap}>
-      <button className={s.productName}>{i.name}</button>
-      <p className={s.productPrice}>{regExpPrice(i.price)} р.</p>
+      <button className={s.productName}>{prod.name}</button>
+      <p className={s.productPrice}>{regExpPrice(prod.price)} р.</p>
       <div className={s.moreInfoWrap}>
-        <p className={s.place}> {i.place} </p>
+        <p className={s.place}> {prod.place} </p>
         <p className={s.time}>
           {publicTime.getDate() +
             " " +
@@ -65,23 +65,20 @@ const ProductInfo = ({
             ":" +
             publicTime.getMinutes()}
         </p>
-        {favoriteProduct ? (
-          <img
-            alt="в избранное"
-            title="в избранное"
-            className={s.likeImg}
-            onClick={() => updateFavorites(i.id)}
-            src={favoriteProduct.includes(i.id) ? heartFill : heart}
-          />
-        ) : (
-          <img
+        <img
+          alt="в избранное"
+          title="в избранное"
+          className={s.likeImg}
+          onClick={() => updateFavorites(prod.id)}
+          src={isFavorite ? heartFill : heart}
+        />
+        {/* <img
             src={settings}
             alt="редактировать"
             title="редактировать"
             className={s.likeImg}
-            onClick={() => openEditor(i.id)}
-          />
-        )}
+            onClick={() => console.log("openEditor(i.id)")}
+          /> */}
       </div>
     </div>
   );
