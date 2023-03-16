@@ -127,6 +127,7 @@
 .activeLink:hover .btnOpenBlock {
   opacity: 0.6;
   cursor: default;
+  padding-left: 0.7rem;
 }
 
 /* .openedBlockBtn {

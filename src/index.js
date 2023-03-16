@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MyProducts from "./app/pages/personalPage/myProducts/myProducts";
 import User from "./app/pages/personalPage/user/user";
 import ProductCard from "./app/common/productCard/productCard";
+import Editor from "./app/pages/personalPage/myProducts/editor/editor";
 
 const router = createBrowserRouter([
   { path: "/", element: <MainPage /> },
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/products/:id", element: <ProductCard /> },
+  {
+    path: "/editor/:id",
+    element: <Editor />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

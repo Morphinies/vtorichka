@@ -3,9 +3,11 @@ import heart from "../../../img/heart.svg";
 import settings from "../../../img/settings.svg";
 import React, { useEffect, useState } from "react";
 import heartFill from "../../../img/heartFill.svg";
+import {  useNavigate } from "react-router-dom";
 
 const ProductInfo = ({ s, prod, isFavorite, updateFavorites }) => {
   const [myProd, setMyProd] = useState();
+  const navigate = useNavigate()
 
   useEffect(() => {
     api.products
@@ -82,8 +84,8 @@ const ProductInfo = ({ s, prod, isFavorite, updateFavorites }) => {
             src={settings}
             alt="редактировать"
             title="редактировать"
+            onClick={()=>{navigate(`/editor/${prod.id}`)}}
             className={s.likeImg}
-            onClick={() => console.log("openEditor(i.id)")}
           />
         )}
       </div>

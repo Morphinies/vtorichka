@@ -31,7 +31,7 @@ const TextField = ({
           type={type}
           id={fieldName}
           name={fieldName}
-          value={formValue}
+          value={formValue ? formValue : ""}
           maxLength={maxLength}
           onChange={(e) => updateField(e.target.value)}
           className={
@@ -43,6 +43,7 @@ const TextField = ({
           }
         />
       </p>
+      
       <p className={s.errorMessage}>
         {!errorsHidden && error.message ? error.message + " *" : ""}
       </p>
