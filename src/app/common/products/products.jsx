@@ -3,7 +3,7 @@ import ProductsNav from "./nav/productsNav";
 import React, { useState, useEffect } from "react";
 import ProductsList from "./list/productsList";
 
-const Products = ({ conditions, products, showProduct }) => {
+const Products = ({ conditions, products }) => {
   const [choosedPage, setChoosedPage] = useState(1);
   const [sortProducts, setSortProducts] = useState([]);
   const [productsOnPage, setProductsOnPage] = useState([]);

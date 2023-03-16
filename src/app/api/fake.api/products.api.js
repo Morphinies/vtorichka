@@ -225,6 +225,25 @@ const editProd = (prod) =>
     }, 1000);
   });
 
-const products = { fetchAll, fetchById, fetchBySeller, fetchByName, editProd };
+const isMyProd = (id) =>
+  new Promise((resolve, reject) => {
+    window.setTimeout(() => {
+      const userOnLS = JSON.parse(localStorage.getItem("user"));
+      if (userOnLS && userOnLS.products.includes(id)) {
+        resolve(true);
+      } else {
+        reject(false);
+      }
+    });
+  });
+
+const products = {
+  fetchAll,
+  fetchById,
+  fetchBySeller,
+  fetchByName,
+  editProd,
+  isMyProd,
+};
 
 export default products;

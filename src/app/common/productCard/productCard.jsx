@@ -5,6 +5,8 @@ import ProductCardInfo from "./prodInfo/productCardInfo";
 import BtnCloseProduct from "./btnCloseProduct";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../../api";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 
 const ProductCard = () => {
   const [product, setProduct] = useState();
@@ -23,13 +25,19 @@ const ProductCard = () => {
   }, [prodId, navigate]);
 
   return (
-    product && (
-      <div className={s.productCard}>
-        <BtnCloseProduct />
-        <ProductCardImg product={product} />
-        <ProductCardInfo product={product} />
-      </div>
-    )
+    <div className="wrapper">
+      <Header />
+      <main className={s.main}>
+        {product && (
+          <div className={s.productCard}>
+            <BtnCloseProduct />
+            <ProductCardImg product={product} />
+            <ProductCardInfo product={product} />
+          </div>
+        )}
+      </main>
+      <Footer />
+    </div>
   );
 };
 

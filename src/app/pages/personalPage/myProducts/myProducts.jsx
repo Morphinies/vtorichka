@@ -17,7 +17,7 @@ const MyProducts = ({ userID }) => {
     <ul className={s.prodList}>
       {myProducts.map((product) => (
         <ProductsItem
-          i={product}
+          prod={product}
           key={product.id}
           maxVal={product.photo.length * 100}
         />

@@ -9,7 +9,7 @@ const usersList = [
     phone: "+79108309115",
     email: "ilya@mail.ru",
     about: "I'm a good seller, I sell bananas!",
-    products: [],
+    products: [1, 3, 5, 7, 11],
     favorites: [],
   },
   {
@@ -20,7 +20,7 @@ const usersList = [
     phone: "",
     email: "ivan@mail.ru",
     about: "I'm a good seller, I sell bananas!",
-    products: [],
+    products: [2, 4, 6, 8, 9, 10],
     favorites: [],
   },
 ];

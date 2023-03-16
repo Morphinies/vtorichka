@@ -11,6 +11,10 @@
   letter-spacing: 0.05rem;
 }
 
+a {
+  text-decoration: none;
+}
+
 input {
   border: none;
   outline: none;

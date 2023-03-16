@@ -6,10 +6,8 @@ import ProductPhotoBtn from "./productPhotoBtn";
 const ProductPhoto = ({ prod, maxVal, x, setX }) => {
   return (
     <div id={"slide_" + prod.id} className={s.productPhotosWrap}>
-      {prod.photo.map((img) => {
-        return <ProductPhotoBtn prodId={prod.id} img={img} key={img} />;
-      })}
-
+      {/* sad */}
+      <ProductPhotoBtn prod={prod} />;
       {x < maxVal - 100 && (
         <BtnChangePhoto
           x={x}
@@ -19,7 +17,6 @@ const ProductPhoto = ({ prod, maxVal, x, setX }) => {
           setX={(val) => setX(val)}
         />
       )}
-
       {x > 0 && (
         <BtnChangePhoto
           x={x}

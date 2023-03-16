@@ -1,15 +1,18 @@
-// import api from "../../../api";
-import React from "react";
+import api from "../../../api";
 import heart from "../../../img/heart.svg";
-// import settings from "../../../img/settings.svg";
+import settings from "../../../img/settings.svg";
+import React, { useEffect, useState } from "react";
 import heartFill from "../../../img/heartFill.svg";
 
 const ProductInfo = ({ s, prod, isFavorite, updateFavorites }) => {
-  // const [isFavorite, setIsFavorite] = useState(isFavorite);
+  const [myProd, setMyProd] = useState();
 
-  // api.favorites
-  //   .fetchAll()
-  //   .then((favorites) => favorites.includes(i.id) && setIsFavorite(true));
+  useEffect(() => {
+    api.products
+      .isMyProd(prod.id)
+      .then((data) => setMyProd(data))
+      .catch((reason) => setMyProd(reason));
+  }, [prod.id]);
 
   // из числового в строчное представление месяца
   const getMonth = (monthNumb) => {
@@ -65,20 +68,24 @@ const ProductInfo = ({ s, prod, isFavorite, updateFavorites }) => {
             ":" +
             publicTime.getMinutes()}
         </p>
-        <img
-          alt="в избранное"
-          title="в избранное"
-          className={s.likeImg}
-          onClick={() => updateFavorites(prod.id)}
-          src={isFavorite ? heartFill : heart}
-        />
-        {/* <img
+        {!myProd && (
+          <img
+            alt="в избранное"
+            title="в избранное"
+            className={s.likeImg}
+            onClick={() => updateFavorites(prod.id)}
+            src={isFavorite ? heartFill : heart}
+          />
+        )}
+        {myProd && (
+          <img
             src={settings}
             alt="редактировать"
             title="редактировать"
             className={s.likeImg}
             onClick={() => console.log("openEditor(i.id)")}
-          /> */}
+          />
+        )}
       </div>
     </div>
   );

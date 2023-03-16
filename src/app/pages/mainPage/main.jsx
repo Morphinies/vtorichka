@@ -5,13 +5,11 @@ import Sidebar from "../../common/sidebar/sidebar";
 import Products from "../../common/products/products";
 import Conditions from "../../common/conditions/conditions";
 import SearchLine from "../../common/searchLine/searchLine";
-import ProductCard from "../../common/productCard/productCard";
 
 const Main = ({ defaultConditions }) => {
   // states
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [openedProduct, setOpenedProduct] = useState({}); // открытая карточка товара
   const [openedSideBar, setOpenedSideBar] = useState(""); // имя открытого бок. меню
   const [conditionsApplied, setConditionsApplied] = useState({
     ...defaultConditions,
@@ -33,41 +31,27 @@ const Main = ({ defaultConditions }) => {
 
   return (
     <>
-      {openedProduct.id ? (
-        <ProductCard
-          product={openedProduct}
-          closeCard={() => setOpenedProduct({})}
-        />
+      <SearchLine
+        searchActive={!!conditionsApplied.search}
+        setConditionsApplied={setConditionsApplied}
+      />
+      <Conditions
+        defaultConditions={defaultConditions}
+        conditionsApplied={conditionsApplied}
+        setConditionsApplied={setConditionsApplied}
+      />
+      {!loading ? (
+        <Products products={products} conditions={conditionsApplied} />
       ) : (
-        <>
-          <SearchLine
-            searchActive={!!conditionsApplied.search}
-            setConditionsApplied={setConditionsApplied}
-            showProduct={(product) => setOpenedProduct(product)}
-          />
-          <Conditions
-            defaultConditions={defaultConditions}
-            conditionsApplied={conditionsApplied}
-            setConditionsApplied={setConditionsApplied}
-          />
-          {!loading ? (
-            <Products
-              products={products}
-              conditions={conditionsApplied}
-              showProduct={(product) => setOpenedProduct(product)}
-            />
-          ) : (
-            <Loading />
-          )}
-          <Sidebar
-            openedSideBar={openedSideBar}
-            setOpenedSideBar={setOpenedSideBar}
-            defaultConditions={defaultConditions}
-            conditionsApplied={conditionsApplied}
-            setConditionsApplied={setConditionsApplied}
-          />
-        </>
+        <Loading />
       )}
+      <Sidebar
+        openedSideBar={openedSideBar}
+        setOpenedSideBar={setOpenedSideBar}
+        defaultConditions={defaultConditions}
+        conditionsApplied={conditionsApplied}
+        setConditionsApplied={setConditionsApplied}
+      />
     </>
   );
 };

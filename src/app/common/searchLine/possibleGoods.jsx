@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import s from "./searchLine.module.css";
 
 const PossibleGoods = ({
@@ -6,7 +7,6 @@ const PossibleGoods = ({
   handling,
   allResults,
   textSearch,
-  showProduct,
   showAllResults,
 }) => {
   const errorMessage = "по вашему запросу товаров не найдено :/";
@@ -25,13 +25,13 @@ const PossibleGoods = ({
           textSearch &&
           selected.length > 0 &&
           selected.map((option) => (
-            <li
+            <Link
               key={option.id}
               className={s.selectedItem}
-              onClick={() => showProduct(option)}
+              to={`/products/${option.id}`}
             >
               {option.name}
-            </li>
+            </Link>
           ))}
         {/* Показать все результаты поиска */}
         {allResults && (

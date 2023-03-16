@@ -5,6 +5,7 @@ import s from "./searchLine.module.css";
 import SearchInput from "./searchInput";
 
 const SearchLineForm = ({
+  timerId,
   handling,
   textSearch,
   setHandling,
@@ -13,6 +14,7 @@ const SearchLineForm = ({
   setConditionsApplied,
 }) => {
   const search = (e) => {
+    clearTimeout(timerId.current);
     setConditionsApplied((prevState) => {
       return { ...prevState, search: textSearch };
     });

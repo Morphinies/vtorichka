@@ -10,8 +10,8 @@ const ProductsItem = ({ prod, maxVal, isFavorite, updateFavorites }) => {
     <li className={s.productCard}>
       <ProductPhoto x={x} prod={prod} setX={setX} maxVal={maxVal} />
       <ProductInfo
-        prod={prod}
         s={s}
+        prod={prod}
         isFavorite={isFavorite}
         updateFavorites={updateFavorites}
       />

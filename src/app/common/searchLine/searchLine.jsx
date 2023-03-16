@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PossibleGoods from "./possibleGoods";
 import api from "../../api";
 
-const SearchLine = ({ searchActive, showProduct, setConditionsApplied }) => {
+const SearchLine = ({ searchActive, setConditionsApplied }) => {
   const [allResults, setAllResults] = useState(false);
   const [handling, setHandling] = useState(false); // обработка ввода, поиск товаров
   const [selected, setSelected] = useState([]); // товары удовлетворяющие условиям запроса
@@ -42,6 +42,7 @@ const SearchLine = ({ searchActive, showProduct, setConditionsApplied }) => {
   return (
     <nav className={s.nav}>
       <SearchLineForm
+        timerId={timerId}
         handling={handling}
         textSearch={textSearch}
         setHandling={setHandling}
@@ -54,7 +55,6 @@ const SearchLine = ({ searchActive, showProduct, setConditionsApplied }) => {
         selected={selected}
         textSearch={textSearch}
         allResults={allResults}
-        showProduct={showProduct}
         showAllResults={showAllResults}
       />
     </nav>
