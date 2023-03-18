@@ -50,8 +50,8 @@ const ProductCardInfo = ({ product }) => {
         <ProdAboutBlock textAbout={product.textAbout} />
         <ProdSeller seller={seller} />
         <BtnsOfProd
-          productId={product.id}
           seller={seller}
+          product={product}
           isFavorite={isFavorite}
           updateFavorite={() => setFavoritesIsUpdating(product.id)}
         />

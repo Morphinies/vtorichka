@@ -5,13 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 const BtnCloseProduct = () => {
   const navigate = useNavigate();
+
   return (
-    <button
-      className={s.closeCard}
-      onClick={() => {
-        navigate(-1);
-      }}
-    >
+    <button className={s.closeCard} onClick={() => navigate(-1)}>
       <img src={cancelImg} alt="cancel" className={s.cancelImg} />
     </button>
   );

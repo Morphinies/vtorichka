@@ -2,15 +2,15 @@ import "./style.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import MainPage from "./app/pages/mainPage/mainPage";
+import User from "./app/pages/personalPage/user/user";
 import LoginPage from "./app/pages/authPage/loginPage";
 import SignUpPage from "./app/pages/authPage/signUpPage";
+import ProductCard from "./app/common/productCard/productCard";
 import MySales from "./app/pages/personalPage/mySales/mySales";
 import PersonalPage from "./app/pages/personalPage/personalPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MyProducts from "./app/pages/personalPage/myProducts/myProducts";
-import User from "./app/pages/personalPage/user/user";
-import ProductCard from "./app/common/productCard/productCard";
-import Editor from "./app/pages/personalPage/myProducts/editor/editor";
+import Editor from "./app/common/editor/editor";
 
 const router = createBrowserRouter([
   { path: "/", element: <MainPage /> },
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
   },
   { path: "/products/:id", element: <ProductCard /> },
   {
-    path: "/editor/:id",
+    path: "/prodEditor/:id",
     element: <Editor />,
   },
 ]);

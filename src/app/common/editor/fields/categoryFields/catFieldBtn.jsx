@@ -1,6 +1,6 @@
 import React from "react";
 import s from "../../editor.module.css";
-import arrowDown from "../../../../../../img/arrowDown.svg";
+import arrowDown from "../../../../img/arrowDown.svg";
 
 const CatFieldBtn = ({
   curCat,

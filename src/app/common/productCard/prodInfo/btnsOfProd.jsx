@@ -1,17 +1,26 @@
-import React from "react";
+import api from "../../../api";
+import BtnCall from "./btnCall";
+import BtnEdit from "./btnEdit";
 import BtnWrite from "./btnWrite";
 import BtnFavorite from "./btnFavorite";
 import s from "../productCard.module.css";
-import BtnCall from "./btnCall";
-import { useLocation } from "react-router-dom";
-import BtnEdit from "./btnEdit";
+import React, { useEffect, useState } from "react";
 
-const BtnsOfProd = ({ seller, productId, isFavorite, updateFavorite }) => {
-  let currentPage = useLocation().pathname;
+const BtnsOfProd = ({ product, isFavorite, updateFavorite, seller }) => {
+  const [myProd, setMyProd] = useState();
+
+  // проверка на "своё" объявление
+  useEffect(() => {
+    product &&
+      api.products
+        .isMyProd(product.id)
+        .then((data) => setMyProd(data))
+        .catch((reason) => setMyProd(reason));
+  }, [product]);
 
   return (
     <div className={s.prodBtns}>
-      {currentPage !== "/personalArea" ? (
+      {!myProd ? (
         <>
           <BtnWrite sellerId={seller.id} />
           <BtnFavorite
@@ -22,7 +31,7 @@ const BtnsOfProd = ({ seller, productId, isFavorite, updateFavorite }) => {
         </>
       ) : (
         <>
-          <BtnEdit />
+          <BtnEdit productId={product.id} />
         </>
       )}
     </div>

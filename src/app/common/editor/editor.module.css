@@ -2,9 +2,11 @@
 
 .editWrap {
   width: 60%;
-  margin: auto;
+  margin: 2rem 0;
   position: relative;
   border-radius: 5px;
+  align-self: flex-start;
+  justify-self: center;
   background-color: #16191a;
 }
 
@@ -48,6 +50,7 @@
 /* form */
 
 .editForm {
+  row-gap: 0.5rem;
   margin: auto;
   display: flex;
   padding: 2rem 2rem;
@@ -56,7 +59,6 @@
 
 .label {
   display: flex;
-  padding: 0.5rem;
   justify-content: space-between;
 }
 
@@ -205,4 +207,34 @@
 
 .submit:hover {
   background-color: #ccc;
+}
+
+/* errors */
+
+.errorMessage {
+  color: red;
+  font-size: 0.8rem;
+  text-align: right;
+  padding-top: 0.1rem;
+}
+
+.inputError {
+  animation-name: shaking;
+  animation-duration: 0.5s;
+  background-color: rgb(255, 200, 200);
+}
+
+@keyframes shaking {
+  0% {
+    transform: translateX(0rem);
+  }
+  30% {
+    transform: translateX(-0.5rem);
+  }
+  60% {
+    transform: translateX(0.5rem);
+  }
+  100% {
+    transform: translateX(0rem);
+  }
 }

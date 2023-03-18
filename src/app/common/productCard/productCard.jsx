@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from "react";
-import s from "./productCard.module.css";
-import ProductCardImg from "./prodImg/productCardImg";
-import ProductCardInfo from "./prodInfo/productCardInfo";
-import BtnCloseProduct from "./btnCloseProduct";
-import { useLocation, useNavigate } from "react-router-dom";
 import api from "../../api";
 import Header from "../header/header";
 import Footer from "../footer/footer";
+import s from "./productCard.module.css";
+import BtnCloseProduct from "./btnCloseProduct";
+import { useKeyPress } from "../hooks/useKeyPress";
+import React, { useEffect, useState } from "react";
+import ProductCardImg from "./prodImg/productCardImg";
+import ProductCardInfo from "./prodInfo/productCardInfo";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ProductCard = () => {
-  const [product, setProduct] = useState();
-  const prodId = useLocation().pathname.slice(10);
   const navigate = useNavigate();
+  const [product, setProduct] = useState();
+  const isEscPressed = useKeyPress("Escape");
+  const prodId = useLocation().pathname.slice(10);
 
+  // выход на "Escape"
+  useEffect(() => {
+    isEscPressed && navigate(-1);
+  }, [isEscPressed, navigate]);
+
+  // установка товара
   useEffect(() => {
     api.products
       .fetchById(prodId)
