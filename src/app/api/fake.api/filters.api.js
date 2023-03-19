@@ -12,7 +12,7 @@ const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(filters);
-    }, 500);
+    }, 100);
   });
 
 const filtersList = { fetchAll };

@@ -5,22 +5,27 @@ import React, { useEffect, useState } from "react";
 
 const ProductsList = ({ productsOnPage }) => {
   // избранные товары
-  const [favoriteProduct, setFavoriteProduct] = useState([]);
-  const [favoritesIsUpdating, setFavoritesIsUpdating] = useState(false);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
+  const [updatingFavorite, setUpdatingFavorite] = useState();
+
+  // localStorage.clear();
 
   // установка избранного
   useEffect(() => {
-    api.favorites.fetchAll().then((data) => setFavoriteProduct(data));
+    api.favorites.fetchAll().then((data) => setFavoriteProducts(data));
   }, []);
 
   // обновление избранного
   useEffect(() => {
-    Number(favoritesIsUpdating) &&
-      api.favorites.update(favoritesIsUpdating).then((data) => {
-        setFavoriteProduct(data);
-        setFavoritesIsUpdating(false);
+    Number(updatingFavorite) &&
+      api.favorites.update(updatingFavorite).then((data) => {
+        setFavoriteProducts(data);
+        setUpdatingFavorite();
       });
-  }, [favoritesIsUpdating]);
+  }, [updatingFavorite]);
+  const updateFavorites = (id) => {
+    !updatingFavorite && setUpdatingFavorite(id);
+  };
 
   return productsOnPage.length > 0 ? (
     <ul className={s.products}>
@@ -31,8 +36,8 @@ const ProductsList = ({ productsOnPage }) => {
             prod={prod}
             key={prod.id}
             maxVal={maxVal}
-            isFavorite={favoriteProduct.includes(prod.id)}
-            updateFavorites={(id) => setFavoritesIsUpdating(id)}
+            isFavorite={favoriteProducts.includes(prod.id)}
+            updateFavorites={updateFavorites}
           />
         );
       })}

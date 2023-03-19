@@ -28,7 +28,7 @@ const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(categories);
-    }, 500);
+    }, 100);
   });
 const categoryList = { fetchAll };
 

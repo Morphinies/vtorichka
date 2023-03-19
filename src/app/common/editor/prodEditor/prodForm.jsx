@@ -60,9 +60,9 @@ const ProdForm = ({ editorProd }) => {
     responseMes &&
       setTimeout(() => {
         setResponseMes();
-        navigate(-1);
+        formIsValid && navigate(-1);
       }, 1000);
-  }, [responseMes, errors, navigate]);
+  }, [responseMes, formIsValid, navigate]);
 
   return (
     <form onSubmit={handleSubmit} className={s.editForm}>

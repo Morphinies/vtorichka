@@ -59,7 +59,7 @@ const login = ({ login, password }) =>
       } else {
         reject("Логин или пароль не верен!");
       }
-    }, 1000);
+    }, 100);
   });
 
 const signup = ({ name, email, password }) =>
@@ -84,7 +84,7 @@ const signup = ({ name, email, password }) =>
       } else {
         reject("Пользователь с такой почтой уже зарегистрирован");
       }
-    }, 1000);
+    }, 100);
   });
 
 const users = { fetchAll, login, signup, fetchById };

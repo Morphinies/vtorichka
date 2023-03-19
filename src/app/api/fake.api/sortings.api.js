@@ -12,7 +12,7 @@ const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(sortings);
-    }, 500);
+    }, 100);
   });
 const sortingList = { fetchAll };
 

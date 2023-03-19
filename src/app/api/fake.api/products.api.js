@@ -172,7 +172,7 @@ const fetchAll = () =>
     window.setTimeout(() => {
       const prodsOnLS = JSON.parse(localStorage.getItem("products"));
       resolve(prodsOnLS);
-    }, 500);
+    }, 100);
   });
 
 const fetchById = (id) =>
@@ -185,7 +185,7 @@ const fetchById = (id) =>
       findedProd
         ? resolve(findedProd)
         : reject(`Товара под номером ${id} не найдено :/`);
-    }, 500);
+    }, 100);
   });
 
 const fetchBySeller = (id) =>
@@ -193,7 +193,7 @@ const fetchBySeller = (id) =>
     window.setTimeout(() => {
       const prodsOnLS = JSON.parse(localStorage.getItem("products"));
       resolve(prodsOnLS.filter((prod) => prod.sellerId === id));
-    }, 500);
+    }, 100);
   });
 
 const fetchByName = (name, maxLength) =>
@@ -209,7 +209,7 @@ const fetchByName = (name, maxLength) =>
             : filtredProds
           : []
       );
-    }, 500);
+    }, 100);
   });
 
 const editProd = (prod) =>
@@ -217,7 +217,7 @@ const editProd = (prod) =>
     window.setTimeout(() => {
       const prodsOnLS = JSON.parse(localStorage.getItem("products"));
       const index = prodsOnLS.findIndex((prodOnLs) => prodOnLs.id === prod.id);
-      if (index) {
+      if (index >= 0) {
         const editedProds = prodsOnLS;
         editedProds[index] = prod;
         localStorage.setItem("products", JSON.stringify(editedProds));
@@ -225,7 +225,7 @@ const editProd = (prod) =>
       } else {
         reject("что-то пошло не так :/");
       }
-    }, 1000);
+    }, 100);
   });
 
 const isMyProd = (id) =>
@@ -237,7 +237,7 @@ const isMyProd = (id) =>
       } else {
         reject(false);
       }
-    });
+    }, 100);
   });
 
 const products = {
