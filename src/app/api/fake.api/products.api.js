@@ -167,11 +167,10 @@ if (!localStorage.getItem("products")) {
   localStorage.setItem("products", JSON.stringify(allProducts));
 }
 
-const prodsOnLS = JSON.parse(localStorage.getItem("products"));
-
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
+      const prodsOnLS = JSON.parse(localStorage.getItem("products"));
       resolve(prodsOnLS);
     }, 500);
   });
@@ -179,6 +178,7 @@ const fetchAll = () =>
 const fetchById = (id) =>
   new Promise((resolve, reject) => {
     window.setTimeout(() => {
+      const prodsOnLS = JSON.parse(localStorage.getItem("products"));
       const findedProd = prodsOnLS.find(
         (prod) => Number(prod.id) === Number(id)
       );
@@ -191,12 +191,14 @@ const fetchById = (id) =>
 const fetchBySeller = (id) =>
   new Promise((resolve) => {
     window.setTimeout(() => {
+      const prodsOnLS = JSON.parse(localStorage.getItem("products"));
       resolve(prodsOnLS.filter((prod) => prod.sellerId === id));
     }, 500);
   });
 
 const fetchByName = (name, maxLength) =>
   new Promise((resolve) => {
+    const prodsOnLS = JSON.parse(localStorage.getItem("products"));
     const regExp = new RegExp(`${name}`, "gi");
     const filtredProds = prodsOnLS.filter((prod) => regExp.test(prod.name));
     window.setTimeout(() => {
@@ -213,6 +215,7 @@ const fetchByName = (name, maxLength) =>
 const editProd = (prod) =>
   new Promise((resolve, reject) => {
     window.setTimeout(() => {
+      const prodsOnLS = JSON.parse(localStorage.getItem("products"));
       const index = prodsOnLS.findIndex((prodOnLs) => prodOnLs.id === prod.id);
       if (index) {
         const editedProds = prodsOnLS;

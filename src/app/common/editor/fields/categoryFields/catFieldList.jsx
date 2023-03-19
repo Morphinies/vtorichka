@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import s from "../../editor.module.css";
 import CatFieldBtn from "./catFieldBtn";
 
-const CatFieldList = ({ catList, formValue, hideCatalog, setFormValue }) => {
+const CatFieldList = ({ catList, formValue, hideCatalog, setFormValues }) => {
   const [curCat, setCurCat] = useState([]); // current opened category
   const [visableCatList, setVisableCatList] = useState(catList); // current categories list
 
@@ -17,7 +17,7 @@ const CatFieldList = ({ catList, formValue, hideCatalog, setFormValue }) => {
               formValue={formValue}
               setCurCat={setCurCat}
               hideCatalog={hideCatalog}
-              setFormValue={setFormValue}
+              setFormValues={setFormValues}
               visableCatList={visableCatList}
               setVisableCatList={setVisableCatList}
               setVisableCatListDefault={() => setVisableCatList(catList)}

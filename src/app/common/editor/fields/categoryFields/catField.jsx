@@ -4,7 +4,7 @@ import CatFieldList from "./catFieldList";
 import React, { useEffect, useState } from "react";
 import CatFieldBtnOpenList from "./catFieldBtnOpenList";
 
-const CatField = ({ label, formValue, setFormValue }) => {
+const CatField = ({ label, formValue, setFormValues }) => {
   const [catList, setCatList] = useState();
   const [listOpened, setListOpened] = useState(false);
 
@@ -27,7 +27,7 @@ const CatField = ({ label, formValue, setFormValue }) => {
             <CatFieldList
               catList={catList}
               formValue={formValue}
-              setFormValue={setFormValue}
+              setFormValues={setFormValues}
               hideCatalog={() => setListOpened(false)}
             />
           )}

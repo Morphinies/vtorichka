@@ -8,7 +8,7 @@ const CatFieldBtn = ({
   setCurCat,
   formValue,
   hideCatalog,
-  setFormValue,
+  setFormValues,
   visableCatList,
   setVisableCatList,
   setVisableCatListDefault,
@@ -27,7 +27,7 @@ const CatFieldBtn = ({
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор/смена категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     else if (!catItem.value) {
-      setFormValue((prevState) => {
+      setFormValues((prevState) => {
         return {
           ...prevState,
           category: catItem.name,
