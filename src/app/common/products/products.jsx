@@ -56,13 +56,15 @@ const Products = ({ conditions, products }) => {
   //обновления списка товаров в зависимости от задания фильтров
   useEffect(() => {
     conditions.filters.map((filter) => {
+      const includedTypes = [];
       filter.name === "тип" &&
         filter.value.map(
-          (type) =>
-            type.value &&
-            setFiltByFiltProducts(
-              filtByCatProducts.filter((product) => product.type === type.name)
-            )
+          (type) => type.value && includedTypes.push(type.name)
+        ) &&
+        setFiltByFiltProducts(
+          filtByCatProducts.filter((product) =>
+            includedTypes.includes(product.type)
+          )
         );
       filter.name === "цена" &&
         filter.id === "от" &&
@@ -77,6 +79,7 @@ const Products = ({ conditions, products }) => {
       return "";
     });
   }, [filtByCatProducts, conditions.filters]);
+  // console.log(filtByFiltProducts);
 
   //обновления списка товаров одной страницы в зависимости от товара/страницы/кол-ва товаров
   useEffect(() => {

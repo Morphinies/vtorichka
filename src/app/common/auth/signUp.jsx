@@ -1,12 +1,13 @@
+import api from "../../api";
 import s from "./auth.module.css";
 import BtnLogin from "./btnLogin";
 import ResponseMes from "./responseMes";
-import React, { useEffect, useState } from "react";
 import Loading from "../loading/loading";
 import TextField from "./input/textField";
+import AvatarField from "./input/avatarField";
 import { useNavigate } from "react-router-dom";
-import api from "../../api";
 import handleError from "../../utils/handleError";
+import React, { useEffect, useState } from "react";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const SignUp = () => {
   const [responseMes, setResponseMes] = useState();
   const [errorsHidden, setErrorsHidden] = useState(true);
   const [formValues, setFormValues] = useState({
+    avatar: "",
     name: "",
     email: "",
     password: "",
@@ -80,6 +82,9 @@ const SignUp = () => {
     <div className={s.wrap}>
       <h1 className={s.title}>регистрация</h1>
       <form className={s.form} onSubmit={(e) => sendData(formValues, e)}>
+        {/* аватар */}
+        <AvatarField />
+
         {/* имя */}
         <TextField
           type="name"

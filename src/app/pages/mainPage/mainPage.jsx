@@ -13,7 +13,6 @@ const MainPage = () => {
   }, [defaultConditions]);
 
   // localStorage.clear(); // отключить запоминание действий
-  // console.log(JSON.parse(localStorage.getItem("products")));
 
   return (
     <div className="wrapper">

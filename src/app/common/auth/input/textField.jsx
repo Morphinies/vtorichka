@@ -1,5 +1,5 @@
-import s from "../auth.module.css";
 import React from "react";
+import s from "../auth.module.css";
 
 const TextField = ({
   type,
@@ -43,7 +43,7 @@ const TextField = ({
           }
         />
       </p>
-      
+
       <p className={s.errorMessage}>
         {!errorsHidden && error.message ? error.message + " *" : ""}
       </p>
