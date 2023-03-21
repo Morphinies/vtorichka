@@ -43,7 +43,7 @@ const fetchAll = () =>
 const fetchById = (id) =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(usersOnLS.find((user) => user.id === id));
+      resolve(usersOnLS.find((user) => Number(user.id) === Number(id)));
     }, 100);
   });
 
@@ -87,6 +87,20 @@ const signup = ({ name, email, password }) =>
     }, 100);
   });
 
-const users = { fetchAll, login, signup, fetchById };
+const editUser = (user) =>
+  new Promise((resolve, reject) => {
+    window.setTimeout(() => {
+      const updatedUsers = usersOnLS.map((userOnLS) =>
+        userOnLS.id === user.id ? user : userOnLS
+      );
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      updatedUsers.length
+        ? resolve("Редактирование успешно завершено!")
+        : reject("Что-то пошло не так :/ Попробуйте ещё раз");
+    }, 500);
+  });
+
+const users = { fetchAll, login, signup, fetchById, editUser };
 
 export default users;

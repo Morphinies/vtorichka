@@ -23,6 +23,7 @@ const PersonalPage = () => {
               {location === "/bio" && (
                 <User
                   rating={1.5}
+                  userID={user.id}
                   name={user.name}
                   reviewsNumb={24}
                   about={user.about}

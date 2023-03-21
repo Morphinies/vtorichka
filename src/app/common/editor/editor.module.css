@@ -238,3 +238,58 @@
     transform: translateX(0rem);
   }
 }
+
+/* avatar field */
+
+.avatarField {
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+  border-radius: 100px;
+  background-color: #fff;
+  border: 1px solid #16191a;
+  cursor: pointer;
+}
+
+.avatarInput {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.avatarImgAdd {
+  width: 60%;
+  align-self: center;
+  justify-self: center;
+}
+
+.avatarImgChange {
+  width: 100%;
+}
+
+.avatarField:hover {
+  opacity: 0.7;
+}
+
+.avatarField:hover .avatarImgAdd {
+  animation-name: pop;
+  animation-duration: 0.5s;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  0% {
+    transform: scale(1);
+  }
+}

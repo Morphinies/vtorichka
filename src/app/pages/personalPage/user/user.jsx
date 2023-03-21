@@ -5,8 +5,9 @@ import UserAvatar from "./userAvatar";
 import UserRaiting from "./userRaiting";
 import UserReviews from "./userReviews";
 import s from "../personalPage.module.css";
+import BtnEditBio from "./btnEditBio";
 
-const User = ({ photo, name, rating, reviewsNumb, about }) => {
+const User = ({ photo, name, rating, reviewsNumb, about, userID }) => {
   return (
     <div className={s.avatar}>
       <UserAvatar photo={photo} />
@@ -14,6 +15,7 @@ const User = ({ photo, name, rating, reviewsNumb, about }) => {
       <UserRaiting rating={rating} />
       <UserReviews reviewsNumb={reviewsNumb} />
       <UserAbout text={about} />
+      <BtnEditBio userID={userID} />
     </div>
   );
 };
