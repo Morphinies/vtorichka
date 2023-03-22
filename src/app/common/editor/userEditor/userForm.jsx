@@ -61,6 +61,8 @@ const UserForm = ({ editorUser }) => {
       }, 1000);
   }, [responseMes, formIsValid, navigate]);
 
+  console.log(formValues.phone);
+
   return (
     <form onSubmit={handleSubmit} className={s.editForm}>
       <AvatarField avatar={formValues.avatar} />
@@ -73,6 +75,18 @@ const UserForm = ({ editorUser }) => {
         error={errors.name}
         formValue={formValues.name}
         errorsHidden={errorsHidden}
+        setFormValues={setFormValues}
+        setErrorsHidden={setErrorsHidden}
+      />
+
+      <TextField
+        type="tel"
+        label="телефон"
+        maxLength={17}
+        fieldId="phone"
+        error={errors.phone}
+        errorsHidden={errorsHidden}
+        formValue={formValues.phone}
         setFormValues={setFormValues}
         setErrorsHidden={setErrorsHidden}
       />

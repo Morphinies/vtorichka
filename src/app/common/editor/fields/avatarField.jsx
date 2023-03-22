@@ -3,7 +3,6 @@ import s from "../editor.module.css";
 import plus from "../../../img/plus.svg";
 
 const AvatarField = ({ avatar }) => {
-  console.log(avatar);
   return (
     <div className={s.avatarField}>
       <input
