@@ -121,7 +121,7 @@
 }
 
 .textarea {
-  height: 8rem;
+  height: 12rem;
   resize: none;
 }
 
@@ -292,4 +292,13 @@
   0% {
     transform: scale(1);
   }
+}
+
+.changePasBtn {
+  margin: auto;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  width: max-content;
+  background-color: rgba(0, 0, 0, 0);
 }

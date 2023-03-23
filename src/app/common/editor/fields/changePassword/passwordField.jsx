@@ -1,7 +1,7 @@
 import React from "react";
-import s from "../editor.module.css";
+import s from "../../editor.module.css";
 
-const TextareaField = ({
+const PasswordField = ({
   error,
   label,
   fieldId,
@@ -17,24 +17,24 @@ const TextareaField = ({
         return { ...prevState, [fieldId]: value };
       });
   };
-
   return (
     <div className={s.inputField}>
       <label className={s.label} htmlFor={fieldId}>
         <p className={s.labelText}>{label}:</p>
-        <textarea
-          id={fieldId}
-          name={fieldId}
+        <input
+          type={"password"}
           value={formValue}
+          name={fieldId}
+          id={fieldId}
           className={
             s.input +
             " " +
-            s.textarea +
+            s.password +
             " " +
             (!errorsHidden && error.message ? s.inputError : "")
           }
           onChange={(e) => updateField(e.target.value)}
-        ></textarea>
+        />
       </label>
       <p className={s.errorMessage}>
         {!errorsHidden && error.message ? error.message + " *" : ""}
@@ -43,4 +43,4 @@ const TextareaField = ({
   );
 };
 
-export default TextareaField;
+export default PasswordField;

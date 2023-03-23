@@ -46,7 +46,10 @@
 }
 
 .textAbout {
+  width: 100%;
+  height: auto;
   font-size: 1.3rem;
+  white-space: pre-wrap;
 }
 
 /* starsList */

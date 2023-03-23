@@ -7,6 +7,7 @@ import Loading from "../../loading/loading";
 import BtnApplyChanges from "../btns/btnApplyChanges";
 import s from "../editor.module.css";
 import AvatarField from "../fields/avatarField";
+import ChangePassword from "../fields/changePassword/changePassword";
 import TextareaField from "../fields/textareaField";
 import TextField from "../fields/textField";
 
@@ -14,6 +15,7 @@ const UserForm = ({ editorUser }) => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [pasField, setPasField] = useState(false);
   const [responseMes, setResponseMes] = useState();
   const [errorsHidden, setErrorsHidden] = useState(true);
   const [formValues, setFormValues] = useState(editorUser);
@@ -62,6 +64,8 @@ const UserForm = ({ editorUser }) => {
       }, 1000);
   }, [responseMes, formIsValid, navigate]);
 
+  console.log(formValues);
+
   return (
     <form onSubmit={handleSubmit} className={s.editForm}>
       <AvatarField avatar={formValues.avatar} />
@@ -95,6 +99,15 @@ const UserForm = ({ editorUser }) => {
         error={errors.about}
         errorsHidden={errorsHidden}
         formValue={formValues.about}
+        setFormValues={setFormValues}
+      />
+
+      <ChangePassword
+        errors={errors}
+        pasField={pasField}
+        formValues={formValues}
+        setPasField={setPasField}
+        errorsHidden={errorsHidden}
         setFormValues={setFormValues}
       />
 
