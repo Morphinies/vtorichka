@@ -7,12 +7,14 @@ import UserForm from "./userForm";
 
 const UserEditor = ({ userId }) => {
   const [editorUser, setEditorUser] = useState({});
+  console.log(editorUser);
   const userOnLS = JSON.parse(localStorage.getItem("user"));
   const accessToEdit = Number(userOnLS.id) === Number(userId);
 
   // установка редактируемого товара
   useEffect(() => {
     api.users.fetchById(userId).then((data) => {
+      console.log(data);
       setEditorUser(data);
     });
   }, [userId]);
@@ -22,7 +24,7 @@ const UserEditor = ({ userId }) => {
       {editorUser.id && accessToEdit && (
         <>
           <BtnExit />
-          <EditorTitle name={"Редактор объявлений"} />
+          <EditorTitle name={"Редактор профиля"} />
           <UserForm editorUser={editorUser} />
         </>
       )}

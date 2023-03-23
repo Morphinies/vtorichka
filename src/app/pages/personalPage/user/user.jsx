@@ -12,9 +12,9 @@ const User = ({ photo, name, rating, reviewsNumb, about, userID }) => {
     <div className={s.avatar}>
       <UserAvatar photo={photo} />
       <UserName name={name} />
-      <UserRaiting rating={rating} />
-      <UserReviews reviewsNumb={reviewsNumb} />
-      <UserAbout text={about} />
+      {rating && <UserRaiting rating={rating} />}
+      {reviewsNumb && <UserReviews reviewsNumb={reviewsNumb} />}
+      {about && <UserAbout text={about} />}
       <BtnEditBio userID={userID} />
     </div>
   );

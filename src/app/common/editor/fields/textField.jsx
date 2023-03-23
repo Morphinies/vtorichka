@@ -11,25 +11,26 @@ const TextField = ({
   errorsHidden,
   setFormValues,
 }) => {
-  // заполнение поля
+  const errors = !errorsHidden && error && error.message;
   let fieldValue;
 
+  // регулярка оформления ввода цены товара
   const regExpPrice = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
 
+  // регулярка оформления ввода тел. номера
   const regExpPhone = (number) => {
-    const phoneRegEx = /^\+7/;
-    const arr = phoneRegEx.test(number)
-      ? number.split("").slice(1)
-      : number.split("");
-    arr[0] = "+7(";
-    arr.length >= 4 && arr.splice(4, 0, ")-");
-    arr.length >= 8 && arr.splice(8, 0, "-");
-    arr.length >= 11 && arr.splice(11, 0, "-");
+    const arr = number.split("").slice(1);
+    arr.length > 0 && arr.splice(0, 1, "+7");
+    arr.length > 1 && arr.splice(1, 0, "(");
+    arr.length > 5 && arr.splice(5, 0, ")-");
+    arr.length > 9 && arr.splice(9, 0, "-");
+    arr.length > 12 && arr.splice(12, 0, "-");
     return arr.join("");
   };
 
+  // оформление отображаемых данных формы в зависимости от поля
   switch (fieldId) {
     case "price":
       fieldValue = regExpPrice(formValue);
@@ -41,8 +42,8 @@ const TextField = ({
       fieldValue = formValue;
   }
 
+  // контролируемый input
   const updateField = (value) => {
-    console.log(value);
     switch (fieldId) {
       case "price":
         setFormValues((prevState) => {
@@ -59,8 +60,6 @@ const TextField = ({
 
       case "phone":
         setFormValues((prevState) => {
-          const phoneNumb = value.match(/\d/g).join("");
-          console.log(phoneNumb);
           return {
             ...prevState,
             [fieldId]:
@@ -78,6 +77,7 @@ const TextField = ({
         });
     }
   };
+
   return (
     <div className={s.inputField}>
       <label className={s.label} htmlFor={fieldId}>
@@ -88,16 +88,12 @@ const TextField = ({
           name={fieldId}
           title={fieldId}
           value={fieldValue}
-          className={
-            s.input + " " + (!errorsHidden && error.message ? s.inputError : "")
-          }
+          className={s.input + " " + (errors ? s.inputError : "")}
           maxLength={maxLength}
           onChange={(e) => updateField(e.target.value)}
         />
       </label>
-      <p className={s.errorMessage}>
-        {!errorsHidden && error.message ? error.message + " *" : ""}
-      </p>
+      <p className={s.errorMessage}>{errors ? error.message + " *" : ""}</p>
     </div>
   );
 };

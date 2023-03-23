@@ -7,6 +7,7 @@ import Loading from "../../loading/loading";
 import BtnApplyChanges from "../btns/btnApplyChanges";
 import s from "../editor.module.css";
 import AvatarField from "../fields/avatarField";
+import TextareaField from "../fields/textareaField";
 import TextField from "../fields/textField";
 
 const UserForm = ({ editorUser }) => {
@@ -47,7 +48,7 @@ const UserForm = ({ editorUser }) => {
         category: handleError(formValues.categoty, []),
         name: handleError(formValues.name, ["empty", "indent"]),
         price: handleError(formValues.price, ["empty", "indent"]),
-        textAbout: handleError(formValues.textAbout, ["empty", "indent"]),
+        about: handleError(formValues.about, ["indent"]),
       };
     });
   }, [formValues]);
@@ -60,8 +61,6 @@ const UserForm = ({ editorUser }) => {
         formIsValid && navigate(-1);
       }, 1000);
   }, [responseMes, formIsValid, navigate]);
-
-  console.log(formValues.phone);
 
   return (
     <form onSubmit={handleSubmit} className={s.editForm}>
@@ -76,7 +75,6 @@ const UserForm = ({ editorUser }) => {
         formValue={formValues.name}
         errorsHidden={errorsHidden}
         setFormValues={setFormValues}
-        setErrorsHidden={setErrorsHidden}
       />
 
       <TextField
@@ -88,7 +86,16 @@ const UserForm = ({ editorUser }) => {
         errorsHidden={errorsHidden}
         formValue={formValues.phone}
         setFormValues={setFormValues}
-        setErrorsHidden={setErrorsHidden}
+      />
+
+      <TextareaField
+        fieldId="about"
+        label="обо мне"
+        maxLength={600}
+        error={errors.about}
+        errorsHidden={errorsHidden}
+        formValue={formValues.about}
+        setFormValues={setFormValues}
       />
 
       <BtnApplyChanges name="применить изменения" />

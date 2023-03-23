@@ -31,11 +31,12 @@ if (!localStorage.getItem("users")) {
   localStorage.setItem("users", JSON.stringify(usersList));
 }
 
-const usersOnLS = JSON.parse(localStorage.getItem("users"));
+// const usersOnLS = JSON.parse(localStorage.getItem("users"));
 
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
+      const usersOnLS = JSON.parse(localStorage.getItem("users"));
       resolve(usersOnLS);
     }, 1500);
   });
@@ -43,16 +44,18 @@ const fetchAll = () =>
 const fetchById = (id) =>
   new Promise((resolve) => {
     window.setTimeout(() => {
+      const usersOnLS = JSON.parse(localStorage.getItem("users"));
       resolve(usersOnLS.find((user) => Number(user.id) === Number(id)));
     }, 100);
   });
 
 const login = ({ login, password }) =>
   new Promise((resolve, reject) => {
-    const user = usersOnLS.find(
-      (userOnLs) => userOnLs.email === login && userOnLs.password === password
-    );
     window.setTimeout(() => {
+      const usersOnLS = JSON.parse(localStorage.getItem("users"));
+      const user = usersOnLS.find(
+        (userOnLs) => userOnLs.email === login && userOnLs.password === password
+      );
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
         resolve("Добро пожаловать, " + user.name + "!");
@@ -64,18 +67,21 @@ const login = ({ login, password }) =>
 
 const signup = ({ name, email, password }) =>
   new Promise((resolve, reject) => {
-    const userExists = !!usersOnLS.find((userOnLS) => userOnLS.email === email);
-    const newUser = {
-      id: usersOnLS.length,
-      name: name,
-      avatar: avatar,
-      email: email,
-      password: password,
-      phone: "+79108309115",
-      about: "I'm a good seller, I sell bananas!",
-      favorites: [],
-    };
     window.setTimeout(() => {
+      const usersOnLS = JSON.parse(localStorage.getItem("users"));
+      const userExists = !!usersOnLS.find(
+        (userOnLS) => userOnLS.email === email
+      );
+      const newUser = {
+        id: usersOnLS.length,
+        name: name,
+        avatar: avatar,
+        email: email,
+        password: password,
+        phone: "+79108309115",
+        about: "I'm a good seller, I sell bananas!",
+        favorites: [],
+      };
       if (!userExists) {
         usersOnLS.push(newUser);
         localStorage.setItem("users", JSON.stringify(usersOnLS));
@@ -90,6 +96,7 @@ const signup = ({ name, email, password }) =>
 const editUser = (user) =>
   new Promise((resolve, reject) => {
     window.setTimeout(() => {
+      const usersOnLS = JSON.parse(localStorage.getItem("users"));
       const updatedUsers = usersOnLS.map((userOnLS) =>
         userOnLS.id === user.id ? user : userOnLS
       );
