@@ -96,11 +96,16 @@ const signup = ({ name, email, password }) =>
 const editUser = (user) =>
   new Promise((resolve, reject) => {
     window.setTimeout(() => {
+      const updatedUser = user.newPas
+        ? { ...user, password: user.newPas }
+        : user;
+      delete updatedUser.oldPas;
+      delete updatedUser.newPas;
       const usersOnLS = JSON.parse(localStorage.getItem("users"));
       const updatedUsers = usersOnLS.map((userOnLS) =>
-        userOnLS.id === user.id ? user : userOnLS
+        userOnLS.id === user.id ? updatedUser : userOnLS
       );
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(updatedUser));
       localStorage.setItem("users", JSON.stringify(updatedUsers));
       updatedUsers.length
         ? resolve("Редактирование успешно завершено!")

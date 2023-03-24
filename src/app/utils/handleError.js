@@ -34,10 +34,10 @@ export default function handleError(value, rules, comparisonValue) {
         break;
       }
     } else if (rule === "oldPas") {
-      const oldPas = JSON.parse(localStorage.getItem("user"));
-      if (oldPas.password !== value) {
-        error.name = "oldPas";
+      if (comparisonValue !== value) {
+        error.name = "equal";
         error.message = "неправильный пароль";
+        break;
       }
     }
 

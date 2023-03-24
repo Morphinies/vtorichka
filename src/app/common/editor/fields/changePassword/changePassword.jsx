@@ -20,6 +20,11 @@ const ChangePassword = ({
       });
     } else {
       setPasField(!stateOfPasField);
+      setFormValues((prevState) => {
+        prevState.oldPas = "";
+        prevState.newPas = "";
+        return { ...prevState };
+      });
     }
   };
 
@@ -28,28 +33,28 @@ const ChangePassword = ({
       <button
         type="button"
         className={s.changePasBtn}
-        onClick={() => setPasField((prevState) => switchPasField(prevState))}
+        onClick={() => switchPasField(pasField)}
       >
         {!pasField ? "сменить пароль" : "оставить старый пароль"}
       </button>
       {pasField && (
         <>
           <PasswordField
-            error={errors}
             maxLength={30}
             fieldId="oldPas"
             label="старый пароль"
+            error={errors.oldPas}
             errorsHidden={errorsHidden}
-            formValue={formValues.oldPas}
+            formValue={formValues.oldPas || ""}
             setFormValues={setFormValues}
           />
           <PasswordField
-            error={errors}
             maxLength={30}
             fieldId="newPas"
             label="новый пароль"
+            error={errors.newPas}
             errorsHidden={errorsHidden}
-            formValue={formValues.newPas}
+            formValue={formValues.newPas || ""}
             setFormValues={setFormValues}
           />
         </>
