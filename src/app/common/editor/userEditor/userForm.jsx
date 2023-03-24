@@ -21,6 +21,8 @@ const UserForm = ({ editorUser }) => {
   const [formValues, setFormValues] = useState(editorUser);
   const formIsValid = Object.values(errors).every((value) => !value.name);
 
+  console.log(errors);
+
   // обработка формы
   const handleForm = () => {
     setLoading(true);
@@ -42,18 +44,25 @@ const UserForm = ({ editorUser }) => {
   // проверка полей на валидность
   useEffect(() => {
     setErrorsHidden(true);
+
     setErrors((prevState) => {
       return {
         ...prevState,
         type: handleError(formValues.type, []),
         photo: handleError(formValues.photo, []),
         category: handleError(formValues.categoty, []),
+        about: handleError(formValues.about, ["indent"]),
         name: handleError(formValues.name, ["empty", "indent"]),
         price: handleError(formValues.price, ["empty", "indent"]),
-        about: handleError(formValues.about, ["indent"]),
+        oldPas: pasField
+          ? handleError(formValues.oldPas, ["empty", "oldPas"])
+          : {},
+        newPas: pasField
+          ? handleError(formValues.newPas, ["empty", "password", "indent"])
+          : {},
       };
     });
-  }, [formValues]);
+  }, [formValues, pasField]);
 
   // сворачивание сообщения об ошибке
   useEffect(() => {
@@ -63,8 +72,6 @@ const UserForm = ({ editorUser }) => {
         formIsValid && navigate(-1);
       }, 1000);
   }, [responseMes, formIsValid, navigate]);
-
-  console.log(formValues);
 
   return (
     <form onSubmit={handleSubmit} className={s.editForm}>

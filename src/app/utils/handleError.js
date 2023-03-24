@@ -33,7 +33,14 @@ export default function handleError(value, rules, comparisonValue) {
         error.message = "пароли не совпадают";
         break;
       }
+    } else if (rule === "oldPas") {
+      const oldPas = JSON.parse(localStorage.getItem("user"));
+      if (oldPas.password !== value) {
+        error.name = "oldPas";
+        error.message = "неправильный пароль";
+      }
     }
+
     // password equals
     else if (rule === "indent") {
       const indentExp1 = new RegExp(/^\s+/);
