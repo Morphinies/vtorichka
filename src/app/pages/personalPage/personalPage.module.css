@@ -178,3 +178,15 @@
 .btnToEdit img {
   width: 2rem;
 }
+
+.addProdBtn {
+  display: block;
+  margin: 2rem auto;
+  width: max-content;
+  background-color: #16191a;
+}
+
+.addProdBtn:hover,
+.addProdBtn:active {
+  background-color: #2d3436;
+}

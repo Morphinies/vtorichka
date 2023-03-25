@@ -10,6 +10,7 @@ const Editor = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isEscPressed = useKeyPress("Escape");
+  console.log(location);
 
   // отслеживание нажатия на "Escape"
   useEffect(() => {

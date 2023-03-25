@@ -40,6 +40,10 @@ const router = createBrowserRouter([
     element: <Editor />,
   },
   {
+    path: "/prodEditor/addProd",
+    element: <Editor />,
+  },
+  {
     path: "/userEditor/:id",
     element: <Editor />,
   },

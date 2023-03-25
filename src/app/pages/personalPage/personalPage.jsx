@@ -6,7 +6,7 @@ import MySidebar from "./mySidebar/mySidebar";
 import { useLocation } from "react-router-dom";
 import Header from "../../common/header/header";
 import Footer from "../../common/footer/footer";
-import UserProducts from "./myProducts/myProducts";
+import MyProducts from "./myProducts/myProducts";
 
 const PersonalPage = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -30,7 +30,7 @@ const PersonalPage = () => {
                   photo={user.avatar}
                 />
               )}
-              {location === "/products" && <UserProducts userID={user.id} />}
+              {location === "/products" && <MyProducts userID={user.id} />}
               {location === "/sales" && <MySales userID={user.id} />}
             </>
           )}
