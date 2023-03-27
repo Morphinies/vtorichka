@@ -4,7 +4,7 @@ import CatFieldList from "./catFieldList";
 import React, { useEffect, useState } from "react";
 import CatFieldBtnOpenList from "./catFieldBtnOpenList";
 
-const CatField = ({ label, formValue, setFormValues }) => {
+const CatField = ({ label, formValue, setFormValues, error, errorsHidden }) => {
   const [catList, setCatList] = useState();
   const [listOpened, setListOpened] = useState(false);
 

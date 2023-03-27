@@ -6,13 +6,21 @@ import EditorTitle from "../editorTitle";
 import React, { useEffect, useState } from "react";
 
 const ProdEditor = ({ prodId }) => {
-  const [editorProd, setEditorProd] = useState();
+  const [editorProd, setEditorProd] = useState({
+    type: "",
+    price: "",
+    name: "",
+    photo: [],
+    category: "",
+    textAbout: "",
+  });
 
   // установка редактируемого товара
   useEffect(() => {
-    api.products.fetchById(prodId).then((data) => {
-      setEditorProd(data);
-    });
+    prodId &&
+      api.products.fetchById(prodId).then((data) => {
+        setEditorProd(data);
+      });
   }, [prodId]);
 
   return (

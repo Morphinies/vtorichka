@@ -228,6 +228,37 @@ const editProd = (prod) =>
     }, 100);
   });
 
+const addProd = (prod) =>
+  new Promise((resolve, reject) => {
+    window.setTimeout(() => {
+      const prodsOnLS = JSON.parse(localStorage.getItem("products"));
+      const userOnLS = JSON.parse(localStorage.getItem("user"));
+      console.log(userOnLS);
+      const newProd = {
+        ...prod,
+        time: new Date(),
+        sellerId: userOnLS.id,
+        place: "г. Торопец",
+        id: prodsOnLS.length + 1,
+        photo: [jordans, adidas, newBalance],
+      };
+      if (newProd) {
+        const updatedUser = {
+          ...userOnLS,
+          products: [...userOnLS.products, newProd.id],
+        };
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        localStorage.setItem(
+          "products",
+          JSON.stringify([...prodsOnLS, newProd])
+        );
+        resolve("Товар успешно добавлен!");
+      } else {
+        reject("что-то пошло не так :/");
+      }
+    }, 1000);
+  });
+
 const isMyProd = (id) =>
   new Promise((resolve, reject) => {
     window.setTimeout(() => {
@@ -247,6 +278,7 @@ const products = {
   fetchByName,
   editProd,
   isMyProd,
+  addProd,
 };
 
 export default products;

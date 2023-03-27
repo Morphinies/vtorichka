@@ -10,7 +10,6 @@ const Editor = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isEscPressed = useKeyPress("Escape");
-  console.log(location);
 
   // отслеживание нажатия на "Escape"
   useEffect(() => {
@@ -19,16 +18,21 @@ const Editor = () => {
 
   // проверка url для определения на какой редактор перенаправить user`a
   const prodId =
-    /^\/prodEditor\//.test(location.pathname) && location.pathname.slice(12);
+    /^\/prodEditor\/\d+/.test(location.pathname) && location.pathname.slice(12);
 
   const userId =
     /^\/userEditor\//.test(location.pathname) && location.pathname.slice(12);
+
+  const addProd =
+    /^\/prodEditor\/addProd/.test(location.pathname) &&
+    location.pathname.slice(12);
 
   return (
     <div className="wrapper">
       <Header />
       {prodId && <ProdEditor prodId={prodId} />}
       {userId && <UserEditor userId={userId} />}
+      {addProd && <ProdEditor />}
       <Footer />
     </div>
   );

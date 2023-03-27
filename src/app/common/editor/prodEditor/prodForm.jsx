@@ -24,13 +24,21 @@ const ProdForm = ({ editorProd }) => {
   // обработка формы
   const handleForm = () => {
     setLoading(true);
-    api.products
-      .editProd(formValues)
-      .then((data) => {
-        setResponseMes(data);
-        setLoading(false);
-      })
-      .catch((errMes) => setResponseMes(errMes));
+    editorProd.id
+      ? api.products
+          .editProd(formValues)
+          .then((data) => {
+            setResponseMes(data);
+            setLoading(false);
+          })
+          .catch((errMes) => setResponseMes(errMes))
+      : api.products
+          .addProd(formValues)
+          .then((data) => {
+            setResponseMes(data);
+            setLoading(false);
+          })
+          .catch((errMes) => setResponseMes(errMes));
   };
 
   // кнопка редактировать
@@ -43,11 +51,12 @@ const ProdForm = ({ editorProd }) => {
   useEffect(() => {
     setErrorsHidden(true);
     setErrors((prevState) => {
+      console.log(prevState);
       return {
         ...prevState,
-        type: handleError(formValues.type, []),
         photo: handleError(formValues.photo, []),
-        category: handleError(formValues.categoty, []),
+        type: handleError(formValues.type, ["empty"]),
+        category: handleError(formValues.category, ["empty"]),
         name: handleError(formValues.name, ["empty", "indent"]),
         price: handleError(formValues.price, ["empty", "indent"]),
         textAbout: handleError(formValues.textAbout, ["empty", "indent"]),
@@ -90,6 +99,8 @@ const ProdForm = ({ editorProd }) => {
       />
       <CatField
         label="категория"
+        error={errors.price}
+        errorsHidden={errorsHidden}
         setFormValues={setFormValues}
         formValue={formValues.category}
         setErrorsHidden={setErrorsHidden}
