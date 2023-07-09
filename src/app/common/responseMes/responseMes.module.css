@@ -1,0 +1,22 @@
+/* Response message */
+
+.message {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.messageText {
+  padding: 1rem 0;
+  color: #16191a;
+  font-size: 1.5rem;
+  text-align: center;
+  align-self: center;
+  border-top: 1px solid #16191a;
+  border-bottom: 1px solid #16191a;
+  background-color: rgb(255, 255, 255);
+}

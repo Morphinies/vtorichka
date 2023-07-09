@@ -89,13 +89,10 @@ input[type="number"]:focus {
 
 /* disabled */
 
-.disabled {
+*:disabled {
   cursor: default !important;
-  opacity: 10% !important;
-}
-
-.disabled:hover {
-  /* border: none; */
+  opacity: 90% !important;
+  pointer-events: none;
 }
 
 /* sidebarWrap */
@@ -110,6 +107,12 @@ input[type="number"]:focus {
   display: flex;
   position: absolute;
   flex-direction: column;
+}
+
+/* loading */
+
+.loading {
+  opacity: 0.9;
 }
 
 /* ************************ fonts ************************ */

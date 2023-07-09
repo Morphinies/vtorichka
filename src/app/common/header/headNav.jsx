@@ -10,44 +10,61 @@ const HeadNav = () => {
 
   const output = () => {
     navigate("/");
-    window.location.reload();
     localStorage.removeItem("user");
   };
 
   switch (currentPage) {
+    // главная
     case "/":
-      return !user ? (
+      return (
         <nav className={s.navBlock}>
-          <HeadBtn name={"вход"} link={"/login"} />
-          <HeadBtn name={"регистрация"} link={"/signUp"} />
-        </nav>
-      ) : (
-        <nav className={s.navBlock}>
-          <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />
-          <HeadBtn name={"выход"} link={"/"} action={output} />
+          {!user ? (
+            <>
+              <HeadBtn name={"регистрация"} link={"/signup"} />
+              <HeadBtn name={"вход"} link={"/logup"} />
+            </>
+          ) : (
+            <>
+              <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />
+              <HeadBtn name={"выход"} link={"/"} action={output} />
+            </>
+          )}
         </nav>
       );
-    case "/login":
+
+    // продукт
+    case currentPage.match(/^\/\w{24}$/)?.input:
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          <HeadBtn name={"регистрация"} link={"/signUp"} />
+          {user && <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />}
         </nav>
       );
-    case "/signUp":
+
+    // авторизация
+    case "/logup":
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          <HeadBtn name={"вход"} link={"/login"} />
+          {!user && <HeadBtn name={"регистрация"} link={"/signup"} />}
         </nav>
       );
-    case "/personal/bio":
-    case "/personal/sales":
-    case "/personal/products":
+
+    // регистрация
+    case "/signup":
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          <HeadBtn name={"выход"} link={"/"} action={output} />
+          {!user && <HeadBtn name={"вход"} link={"/logup"} />}
+        </nav>
+      );
+
+    // личная страница
+    case currentPage.match(/^\/personal/)?.input:
+      return (
+        <nav className={s.navBlock}>
+          <HeadBtn name={"на главную"} link={"/"} />
+          {user && <HeadBtn name={"выход"} link={"/"} action={output} />}
         </nav>
       );
     default:

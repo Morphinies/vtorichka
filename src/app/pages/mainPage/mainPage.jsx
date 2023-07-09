@@ -1,32 +1,38 @@
-import Main from "./main";
 import api from "../../api";
-import Footer from "../../common/footer/footer";
-import Header from "../../common/header/header";
-import Loading from "../../common/loading/loading";
+import Sidebar from "./sidebar/sidebar";
+import Conditions from "./conditions/conditions";
 import React, { useEffect, useState } from "react";
+import Products from "../../common/prodList/products";
+import {
+  useLoaderData,
+  useNavigation,
+  useSearchParams,
+} from "react-router-dom";
+import Search from "./search/search";
 
 const MainPage = () => {
-  //дефолтные значения подбора товаров
-  const [defaultConditions, setDefaultConditions] = useState();
-  useEffect(() => {
-    api.defaultConditions.fetchAll().then((data) => setDefaultConditions(data));
-  }, [defaultConditions]);
+  const navigation = useNavigation();
+  const defProducts = useLoaderData();
+  const [searchParams] = useSearchParams();
+  const [prodList, setProdList] = useState(defProducts);
 
-  // localStorage.clear(); // отключить запоминание действий
-  // console.log(JSON.parse(localStorage.getItem("user")));
+  // установка параметров поиска товаров
+  useEffect(() => {
+    const paramsStr = `?${searchParams.toString()}`;
+    paramsStr !== "?"
+      ? api.products.fetchByParams(paramsStr).then((data) => setProdList(data))
+      : setProdList(defProducts);
+  }, [searchParams, defProducts]);
 
   return (
-    <div className="wrapper">
-      <Header />
-      <main className="main">
-        {defaultConditions ? (
-          <Main defaultConditions={defaultConditions} />
-        ) : (
-          <Loading />
-        )}
-      </main>
-      <Footer />
-    </div>
+    <main
+      className={"main " + (navigation.state === "loading" ? "loading" : "")}
+    >
+      <Search />
+      <Conditions />
+      <Products prodList={prodList} />
+      <Sidebar />
+    </main>
   );
 };
 

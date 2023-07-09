@@ -1,0 +1,32 @@
+import React from "react";
+import s from "../products.module.css";
+import BtnChangePhoto from "./btnChangePhoto";
+import ProductPhotoBtn from "./prodPhotoBtn";
+
+const ProdPhoto = ({ prod, maxVal, x, setX }) => {
+  return (
+    <div id={"slide_" + prod.id} className={s.productPhotosWrap}>
+      <ProductPhotoBtn prod={prod} />;
+      {x < maxVal - 100 && (
+        <BtnChangePhoto
+          x={x}
+          prod={prod}
+          maxVal={maxVal}
+          change={"next"}
+          setX={(val) => setX(val)}
+        />
+      )}
+      {x > 0 && (
+        <BtnChangePhoto
+          x={x}
+          prod={prod}
+          maxVal={maxVal}
+          change={"prev"}
+          setX={(val) => setX(val)}
+        />
+      )}
+    </div>
+  );
+};
+
+export default ProdPhoto;

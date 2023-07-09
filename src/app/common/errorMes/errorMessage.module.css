@@ -1,0 +1,14 @@
+.errorBlock {
+  width: 100%;
+  height: 100%;
+  display: grid;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: 500;
+  font-size: 1.5rem;
+  align-self: center;
+  text-align: center;
+  justify-self: center;
+}

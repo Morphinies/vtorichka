@@ -1,51 +1,100 @@
 import "./style.css";
+import Root from "./root";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import MyPage from "./app/pages/myPage/myPage";
+import User from "./app/pages/myPage/user/user";
 import MainPage from "./app/pages/mainPage/mainPage";
-import User from "./app/pages/personalPage/user/user";
-import LoginPage from "./app/pages/authPage/loginPage";
-import SignUpPage from "./app/pages/authPage/signUpPage";
-import ProductCard from "./app/common/productCard/productCard";
-import MySales from "./app/pages/personalPage/mySales/mySales";
-import PersonalPage from "./app/pages/personalPage/personalPage";
+import ProdPage from "./app/pages/prodPage/prodPage";
+import Logup from "./app/pages/authPage/logup/logup";
+import ErrorPage from "./app/pages/errorPage/errorPage";
+import Signup from "./app/pages/authPage/signup/signup";
+import MySales from "./app/pages/myPage/mySales/mySales";
+import { prodLoader } from "./app/loaders/prodLoader";
+import { curUserloader } from "./app/loaders/curUserLoader";
+import { prodListLoader } from "./app/loaders/prodListLoader";
+import ProdCard from "./app/pages/prodPage/prodCard/prodCard";
+import MyProducts from "./app/pages/myPage/myProducts/myProducts";
+import ProdEditor from "./app/pages/editPage/prodEditor/prodEditor";
+import UserEditor from "./app/pages/editPage/userEditor/userEditor";
+import { userProductsLoader } from "./app/loaders/userProductsLoader";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MyProducts from "./app/pages/personalPage/myProducts/myProducts";
-import Editor from "./app/common/editor/editor";
 
 const router = createBrowserRouter([
-  { path: "/", element: <MainPage /> },
-  { path: "/login", element: <LoginPage /> },
-  { path: "/signUp", element: <SignUpPage /> },
   {
-    path: "/personal",
-    element: <PersonalPage />,
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
+      // регистрация
       {
-        path: "/personal/bio",
-        element: <User />,
+        path: "signup",
+        loader: curUserloader,
+        element: <Signup />,
       },
+      // авторизация
+      { path: "logup", loader: curUserloader, element: <Logup /> },
+      // главная
       {
-        path: "/personal/products",
-        element: <MyProducts />,
+        path: "",
+        loader: prodListLoader,
+        element: <MainPage />,
       },
+      // карточка объявления
       {
-        path: "/personal/sales",
-        element: <MySales />,
+        path: ":prodId",
+        loader: prodLoader,
+        element: <ProdPage />,
+      },
+      // страница пользователя
+      {
+        path: "personal",
+        element: <MyPage />,
+        loader: curUserloader,
+        children: [
+          // объявления пользователя
+          {
+            path: "products",
+            loader: userProductsLoader,
+            element: <MyProducts />,
+          },
+          // карточка объявления
+          {
+            path: "products/:prodId",
+            loader: prodLoader,
+            element: <ProdCard />,
+          },
+          // редактор объявления
+          {
+            path: "products/editor/:prodId",
+            loader: prodLoader,
+            element: <ProdEditor />,
+          },
+          // редактор добавления объявления
+          {
+            path: "products/addProd",
+            element: <ProdEditor />,
+          },
+          // закрытые объявления пользователя
+          {
+            path: "sales",
+            element: <MySales />,
+          },
+          // данные пользователя
+          {
+            path: "bio",
+            element: <User />,
+            loader: curUserloader,
+          },
+          // редактор пользователя
+          {
+            path: "bio/editor",
+            loader: curUserloader,
+            element: <UserEditor />,
+          },
+        ],
       },
     ],
-  },
-  { path: "/products/:id", element: <ProductCard /> },
-  {
-    path: "/prodEditor/:id",
-    element: <Editor />,
-  },
-  {
-    path: "/prodEditor/addProd",
-    element: <Editor />,
-  },
-  {
-    path: "/userEditor/:id",
-    element: <Editor />,
   },
 ]);
 

@@ -1,5 +1,6 @@
 .footer {
   display: grid;
+  grid-row-start: 3;
   padding: 0.5rem 2rem;
   background: linear-gradient(180deg, #16191a 100%, #353d3f 0%);
 }

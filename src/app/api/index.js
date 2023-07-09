@@ -1,10 +1,10 @@
-import users from "./fake.api/users.api";
-import products from "./fake.api/products.api";
-import filterList from "./fake.api/filters.api";
-import favorites from "./fake.api/favorites.api";
-import sortingList from "./fake.api/sortings.api";
-import categoryList from "./fake.api/categories.api";
-import defaultConditions from "./fake.api/defaultConditions.api";
+import users from "./api/users.api";
+import products from "./api/products.api";
+import filterList from "./api/filters.api";
+import favorites from "./api/favorites.api";
+import sortingList from "./api/sortings.api";
+import categoryList from "./api/categories.api";
+import defaultConditions from "./api/defaultConditions.api";
 
 const api = {
   users,

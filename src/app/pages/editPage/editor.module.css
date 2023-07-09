@@ -1,0 +1,303 @@
+/* editor */
+
+.editWrap {
+  width: 60%;
+  position: relative;
+  border-radius: 5px;
+  align-self: flex-start;
+  justify-self: center;
+  background-color: #16191a;
+}
+
+.editTitle {
+  padding: 1rem;
+  font-size: 2rem;
+  color: #f6f6f6;
+  text-align: center;
+}
+
+.btnCancel {
+  top: 0;
+  right: 0;
+  width: 2rem;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.smallBtn {
+  width: 1rem;
+  padding: 0.1rem;
+  filter: invert(1);
+}
+
+.btnCancel img {
+  transition: transform 0.5s;
+}
+
+.btnCancel:hover img {
+  transform: rotate(180deg);
+}
+
+.editHr {
+  width: 60%;
+  margin: auto;
+}
+
+/* form */
+
+.editForm {
+  row-gap: 0.5rem;
+  margin: auto;
+  display: flex;
+  padding: 2rem 2rem;
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.labelText {
+  font-weight: 400;
+  color: #f6f6f6;
+  padding-top: 0.5rem;
+}
+
+.input {
+  width: 80%;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+}
+
+/* list */
+
+.radioWrap {
+  width: 80%;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  border-radius: 3px;
+  position: relative;
+}
+
+.formValue {
+  overflow: hidden;
+  background-color: #ccc;
+}
+
+.formValue img {
+  transform: rotate(180deg);
+}
+
+.btn img {
+  transition: transform 0.3s;
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  display: flex;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  padding: 0.5rem 1rem;
+  justify-content: space-between;
+}
+
+.btn:hover {
+  background-color: #ccc;
+}
+
+.arrowDown {
+  width: 1rem;
+  align-self: flex-end;
+  filter: invert(1);
+}
+
+.textarea {
+  height: 12rem;
+  resize: none;
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.photosList {
+  display: flex;
+  column-gap: 0.25rem;
+}
+
+.photoItem {
+  width: 5rem;
+  height: 5rem;
+  overflow: hidden;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #16191a;
+}
+
+.photo {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+}
+
+.fileField {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fileInputWrap {
+  width: 5rem;
+  height: 5rem;
+  overflow: hidden;
+  border-radius: 3px;
+  position: relative;
+  border: 1px solid #16191a;
+}
+
+.fileInputWrap:hover {
+  animation-name: pop;
+  animation-duration: 0.5s;
+}
+
+.fileInput {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  0% {
+    transform: scale(1);
+  }
+}
+
+.imgPlus {
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.submit {
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin: 1.5rem auto 0 auto;
+}
+
+.submit:hover {
+  background-color: #ccc;
+}
+
+/* errors */
+
+.errorMessage {
+  color: red;
+  font-size: 0.8rem;
+  text-align: right;
+  padding-top: 0.1rem;
+}
+
+.inputError {
+  animation-name: shaking;
+  animation-duration: 0.5s;
+  background-color: rgb(255, 200, 200);
+}
+
+@keyframes shaking {
+  0% {
+    transform: translateX(0rem);
+  }
+  30% {
+    transform: translateX(-0.5rem);
+  }
+  60% {
+    transform: translateX(0.5rem);
+  }
+  100% {
+    transform: translateX(0rem);
+  }
+}
+
+/* avatar field */
+
+.avatarField {
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+  border-radius: 100px;
+  background-color: #fff;
+  border: 1px solid #16191a;
+  cursor: pointer;
+}
+
+.avatarInput {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.avatarImgAdd {
+  width: 60%;
+  align-self: center;
+  justify-self: center;
+}
+
+.avatarImgChange {
+  width: 100%;
+}
+
+.avatarField:hover {
+  opacity: 0.7;
+}
+
+.avatarField:hover .avatarImgAdd {
+  animation-name: pop;
+  animation-duration: 0.5s;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  0% {
+    transform: scale(1);
+  }
+}
+
+.changePasBtn {
+  margin: auto;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  width: max-content;
+  background-color: rgba(0, 0, 0, 0);
+}

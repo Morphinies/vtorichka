@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const HeadLogo = () => {
   return (
-    <Link to={"/"}>
+    <Link to={""}>
       <div className={s.logoBlock}>
         <img className={s.logoImg} src={logo} alt="logo" />
         <h1 className={s.logoName}>вторичка</h1>
