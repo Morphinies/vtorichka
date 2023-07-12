@@ -3,9 +3,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import HeadBtn from "./headBtn";
 import s from "./header.module.css";
 
-const HeadNav = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+const HeadNav = (): JSX.Element | undefined => {
+  const userIdLS = localStorage.getItem("user");
+  const userId: string | null = userIdLS ? JSON.parse(userIdLS) : null;
+
   let currentPage = useLocation().pathname;
+
   const navigate = useNavigate();
 
   const output = () => {
@@ -18,7 +21,7 @@ const HeadNav = () => {
     case "/":
       return (
         <nav className={s.navBlock}>
-          {!user ? (
+          {!userId ? (
             <>
               <HeadBtn name={"регистрация"} link={"/signup"} />
               <HeadBtn name={"вход"} link={"/logup"} />
@@ -37,7 +40,7 @@ const HeadNav = () => {
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          {user && <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />}
+          {userId && <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />}
         </nav>
       );
 
@@ -46,7 +49,7 @@ const HeadNav = () => {
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          {!user && <HeadBtn name={"регистрация"} link={"/signup"} />}
+          {!userId && <HeadBtn name={"регистрация"} link={"/signup"} />}
         </nav>
       );
 
@@ -55,7 +58,7 @@ const HeadNav = () => {
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          {!user && <HeadBtn name={"вход"} link={"/logup"} />}
+          {!userId && <HeadBtn name={"вход"} link={"/logup"} />}
         </nav>
       );
 
@@ -64,7 +67,7 @@ const HeadNav = () => {
       return (
         <nav className={s.navBlock}>
           <HeadBtn name={"на главную"} link={"/"} />
-          {user && <HeadBtn name={"выход"} link={"/"} action={output} />}
+          {userId && <HeadBtn name={"выход"} link={"/"} action={output} />}
         </nav>
       );
     default:

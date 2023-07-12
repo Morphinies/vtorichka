@@ -1,7 +1,11 @@
-import React from "react";
+import * as React from "react";
 import s from "./errorMessage.module.css";
 
-const ErrorMessage = ({ message }) => {
+interface IErrorMessage {
+  message: string;
+}
+
+const ErrorMessage = ({ message }: IErrorMessage): JSX.Element => {
   return (
     <div className={s.errorBlock}>
       <h1 className={s.errorMessage}>{message}</h1>

@@ -2,7 +2,7 @@ import s from "./products.module.css";
 import ProductsList from "./productsList";
 import ProductsNav from "./nav/productsNav";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 
 const Products = ({ prodList }) => {
   const [choosedPage, setChoosedPage] = useState(1);

@@ -3,7 +3,7 @@ import HeadNav from "./headNav";
 import s from "./header.module.css";
 import HeadLogo from "./headLogo";
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <header className={s.header}>
       <HeadLogo />
