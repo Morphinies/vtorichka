@@ -1,17 +1,17 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import * as React from "react";
 import HeadBtn from "./headBtn";
 import s from "./header.module.css";
+import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
 
 const HeadNav = (): JSX.Element | undefined => {
   const userIdLS = localStorage.getItem("user");
   const userId: string | null = userIdLS ? JSON.parse(userIdLS) : null;
 
-  let currentPage = useLocation().pathname;
+  let currentPage: string = useLocation().pathname;
 
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
-  const output = () => {
+  const output = (): void => {
     navigate("/");
     localStorage.removeItem("user");
   };

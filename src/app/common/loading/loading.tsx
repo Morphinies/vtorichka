@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import * as React from "react";
 import s from "./loading.module.css";
+import { useState, useEffect } from "react";
 
-const Loading = () => {
-  const [pointsNumb, setPointsNumb] = useState(1);
+const Loading = (): JSX.Element => {
+  const [pointsNumb, setPointsNumb] = useState<number>(1);
 
   useEffect(() => {
     pointsNumb === 4 && setPointsNumb(1);

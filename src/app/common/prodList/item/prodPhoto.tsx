@@ -1,12 +1,14 @@
-import React from "react";
+import * as React from "react";
 import s from "../products.module.css";
 import BtnChangePhoto from "./btnChangePhoto";
 import ProductPhotoBtn from "./prodPhotoBtn";
+import { ProdPhotoType } from "../../../../types/types";
 
-const ProdPhoto = ({ prod, maxVal, x, setX }) => {
+const ProdPhoto = ({ prod, maxVal, x, setX }: ProdPhotoType): JSX.Element => {
   return (
-    <div id={"slide_" + prod.id} className={s.productPhotosWrap}>
-      <ProductPhotoBtn prod={prod} />;
+    <div id={"slide_" + prod._id} className={s.productPhotosWrap}>
+      <ProductPhotoBtn prod={prod} />
+
       {x < maxVal - 100 && (
         <BtnChangePhoto
           x={x}

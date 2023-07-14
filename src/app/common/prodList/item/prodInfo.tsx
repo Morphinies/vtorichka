@@ -1,13 +1,20 @@
-import heart from "../../../img/heart.svg";
-import settings from "../../../img/settings.svg";
-import { bin } from "../../../img/pictures";
-import React, { useEffect, useState } from "react";
-import heartFill from "../../../img/heartFill.svg";
-import { useNavigate } from "react-router-dom";
+import * as React from "react";
 import api from "../../../api";
+import s from "../products.module.css";
+import heart from "../../../img/heart.svg";
+import { bin } from "../../../img/pictures";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import settings from "../../../img/settings.svg";
+import heartFill from "../../../img/heartFill.svg";
+import { IProdInfo } from "../../../../types/types";
 
-const ProdInfo = ({ s, prod, isFavorite, updateFavorites }) => {
-  const [myProd, setMyProd] = useState(false);
+const ProdInfo = ({
+  prod,
+  isFavorite,
+  updateFavorites,
+}: IProdInfo): JSX.Element => {
+  const [myProd, setMyProd] = useState<boolean>(false);
   const navigate = useNavigate();
 
   // проверка на myProduct
@@ -20,7 +27,7 @@ const ProdInfo = ({ s, prod, isFavorite, updateFavorites }) => {
   }, [prod.seller]);
 
   // из числового в строчное представление месяца
-  const getMonth = (monthNumb) => {
+  const getMonth = (monthNumb: number) => {
     switch (monthNumb) {
       case 1:
         return "янв";
@@ -51,7 +58,7 @@ const ProdInfo = ({ s, prod, isFavorite, updateFavorites }) => {
     }
   };
 
-  const delProd = (id) => {
+  const delProd = (id: string) => {
     console.log(id);
     api.products
       .deleteById(id)
@@ -59,7 +66,7 @@ const ProdInfo = ({ s, prod, isFavorite, updateFavorites }) => {
   };
 
   // удобочитаемое представление суммы
-  const regExpPrice = (number) => {
+  const regExpPrice = (number: number) => {
     return Number(number)
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -92,12 +99,12 @@ const ProdInfo = ({ s, prod, isFavorite, updateFavorites }) => {
               title="в избранное"
               className={s.likeImg}
               onClick={() => updateFavorites(prod._id)}
-              src={isFavorite ? heartFill : heart}
+              src={String(isFavorite ? heartFill : heart)}
             />
           )}
           {myProd && (
             <img
-              src={settings}
+              src={String(settings)}
               alt="редактировать"
               title="редактировать"
               onClick={() => {
@@ -108,7 +115,7 @@ const ProdInfo = ({ s, prod, isFavorite, updateFavorites }) => {
           )}
           {myProd && (
             <img
-              src={bin}
+              src={String(bin)}
               alt="удалить"
               title="удалить"
               onClick={() => delProd(prod._id)}

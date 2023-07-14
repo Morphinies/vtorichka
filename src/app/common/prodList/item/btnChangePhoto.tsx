@@ -1,14 +1,21 @@
-import React from "react";
+import * as React from "react";
+import { useEffect } from "react";
 import s from "../products.module.css";
 import arrowBack from "../../../img/arrowBack.svg";
 import arrowNext from "../../../img/arrowNext.svg";
-import { useEffect } from "react";
+import { IBtnChangePhoto } from "../../../../types/types";
 
-const BtnChangePhoto = ({ prod, x, setX, maxVal, change }) => {
-  const id = "slide_" + prod.id;
+const BtnChangePhoto = ({
+  prod,
+  x,
+  setX,
+  maxVal,
+  change,
+}: IBtnChangePhoto): JSX.Element => {
+  const id = "slide_" + prod._id;
 
   useEffect(() => {
-    const slides = document.getElementById(id);
+    const slides: any = document.getElementById(id); //////!!!!!!!!!!!!!! добавить тип когда реализуется добавление фото
     for (let slide in slides.childNodes) {
       if (slides.childNodes[slide].className === s.productPhotoBtn) {
         slides.childNodes[slide].style.right = `${x}%`;
@@ -27,7 +34,7 @@ const BtnChangePhoto = ({ prod, x, setX, maxVal, change }) => {
           }}
           className={s.btnChangeImg + " " + s.btnArrowBack}
         >
-          <img alt="" src={arrowBack} className={s.arrowChangeImg} />
+          <img alt="" src={String(arrowBack)} className={s.arrowChangeImg} />
         </button>
       )}
 
@@ -40,7 +47,7 @@ const BtnChangePhoto = ({ prod, x, setX, maxVal, change }) => {
           }}
           className={s.btnChangeImg + " " + s.btnArrowNext}
         >
-          <img alt="" src={arrowNext} className={s.arrowChangeImg} />
+          <img alt="" src={String(arrowNext)} className={s.arrowChangeImg} />
         </button>
       )}
     </>
