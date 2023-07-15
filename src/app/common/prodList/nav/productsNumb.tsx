@@ -1,14 +1,19 @@
-import React from "react";
+import * as React from "react";
 import s from "../products.module.css";
 
+interface IProductsNumb {
+  setChoosedPage: (val: number) => void;
+  productsNumbOnPage: number;
+  setProductsNumbOnPage: (val: number) => void;
+}
 const ProductsNumb = ({
   setChoosedPage,
   productsNumbOnPage,
   setProductsNumbOnPage,
-}) => {
-  const handleClick = (numb) => {
+}: IProductsNumb): JSX.Element => {
+  const handleClick = (numb: number) => {
     if (productsNumbOnPage !== numb) {
-      window.scrollTo(0, "offsetTop");
+      window.scrollTo(0, 0);
       setProductsNumbOnPage(numb);
       setChoosedPage(1);
     }

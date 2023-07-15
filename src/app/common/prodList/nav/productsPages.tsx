@@ -1,17 +1,23 @@
-import React from "react";
+import * as React from "react";
 import s from "../products.module.css";
 import { useSearchParams } from "react-router-dom";
 
-const ProductsPages = ({ choosedPage, setChoosedPage }) => {
-  //, pageNumbersArr
+interface IProductsPages {
+  choosedPage: number;
+  setChoosedPage: (val: number) => void;
+  pageNumbersArr: number[];
+}
+const ProductsPages = ({
+  choosedPage,
+  setChoosedPage,
+  pageNumbersArr,
+}: IProductsPages): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const pageNumbersArr = [1, 2];
-
-  const handleClick = (pageNumb) => {
-    window.scrollTo(0, "offsetTop");
+  const handleClick = (pageNumb: number) => {
+    window.scrollTo(0, 0);
     setChoosedPage(pageNumb);
-    searchParams.set("page", pageNumb);
+    searchParams.set("page", String(pageNumb));
     setSearchParams(searchParams);
   };
 

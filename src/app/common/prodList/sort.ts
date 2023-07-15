@@ -1,4 +1,5 @@
-export function sort(arr, by) {
+type arrType = { time: string; price: number };
+export function sort(arr: arrType[], by: string) {
   switch (by) {
     case "c новых":
       return arr.sort(function (a, b) {

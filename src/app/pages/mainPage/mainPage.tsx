@@ -1,26 +1,31 @@
 import api from "../../api";
 import Sidebar from "./sidebar/sidebar";
 import Conditions from "./conditions/conditions";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import Products from "../../common/prodList/products";
 import {
+  Navigation,
   useLoaderData,
   useNavigation,
   useSearchParams,
 } from "react-router-dom";
 import Search from "./search/search";
+import { Iprod } from "../../../types/types";
 
 const MainPage = () => {
-  const navigation = useNavigation();
-  const defProducts = useLoaderData();
+  const navigation: Navigation = useNavigation();
+  const defProducts = useLoaderData() as Iprod[];
   const [searchParams] = useSearchParams();
   const [prodList, setProdList] = useState(defProducts);
 
   // установка параметров поиска товаров
   useEffect(() => {
-    const paramsStr = `?${searchParams.toString()}`;
+    const paramsStr: string = `?${searchParams.toString()}`;
     paramsStr !== "?"
-      ? api.products.fetchByParams(paramsStr).then((data) => setProdList(data))
+      ? api.products
+          .fetchByParams(paramsStr)
+          .then((data: Iprod[]) => setProdList(data))
       : setProdList(defProducts);
   }, [searchParams, defProducts]);
 

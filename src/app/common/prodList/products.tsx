@@ -1,24 +1,29 @@
+import * as React from "react";
 import s from "./products.module.css";
 import ProductsList from "./productsList";
 import ProductsNav from "./nav/productsNav";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Iprod } from "../../../types/types";
 // import { useSearchParams } from "react-router-dom";
 
-const Products = ({ prodList }) => {
-  const [choosedPage, setChoosedPage] = useState(1);
-  const [productsNumbOnPage, setProductsNumbOnPage] = useState(5);
-  const [productsOnPage, setProductsOnPage] = useState([]);
+interface IprodList {
+  prodList: Iprod[];
+}
+const Products = ({ prodList }: IprodList): JSX.Element => {
+  const [choosedPage, setChoosedPage] = useState<number>(1);
+  const [productsNumbOnPage, setProductsNumbOnPage] = useState<number>(5);
+  const [productsOnPage, setProductsOnPage] = useState<Iprod[]>([]);
 
   // обновление продуктов на странице
   useEffect(() => {
-    const startIndex = (choosedPage - 1) * productsNumbOnPage;
-    const endIndex = startIndex + productsNumbOnPage;
-    const arraysPiece = prodList.slice(startIndex, endIndex);
+    const startIndex: number = (choosedPage - 1) * productsNumbOnPage;
+    const endIndex: number = startIndex + productsNumbOnPage;
+    const arraysPiece: Iprod[] = prodList.slice(startIndex, endIndex);
     setProductsOnPage(arraysPiece);
   }, [prodList, choosedPage, productsNumbOnPage]);
 
   // массив номеров страниц
-  const pageNumbersArr = [];
+  const pageNumbersArr: number[] = [];
   (() => {
     const pagesNumbers = Math.ceil(prodList.length / productsNumbOnPage);
     for (let i = 1; i <= pagesNumbers; i++) {

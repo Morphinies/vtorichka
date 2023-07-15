@@ -1,11 +1,16 @@
 import api from "../../api";
 import s from "./products.module.css";
 import ProdItem from "./item/prodItem";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { Iprod } from "../../../types/types";
 
-const ProductsList = ({ productsOnPage }) => {
+interface IProductsList {
+  productsOnPage: Iprod[];
+}
+const ProductsList = ({ productsOnPage }: IProductsList): JSX.Element => {
   // избранные товары
-  const [favoriteProducts, setFavoriteProducts] = useState();
+  const [favoriteProducts, setFavoriteProducts] = useState<string>();
 
   // обозначение "избранного" у user'a
   useEffect(() => {
@@ -13,7 +18,7 @@ const ProductsList = ({ productsOnPage }) => {
   }, []);
 
   // обновление избранного
-  const updateFavorites = (id) => {
+  const updateFavorites = (id: string) => {
     api.favorites
       .update(id)
       .then((data) => setFavoriteProducts(data))
@@ -22,7 +27,7 @@ const ProductsList = ({ productsOnPage }) => {
 
   return productsOnPage.length > 0 ? (
     <ul className={s.products}>
-      {productsOnPage.map((prod) => {
+      {productsOnPage.map((prod: Iprod) => {
         const maxVal = prod.photo.length * 100;
         return (
           <ProdItem
