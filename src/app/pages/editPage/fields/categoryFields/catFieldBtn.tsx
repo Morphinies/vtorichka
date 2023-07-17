@@ -1,6 +1,7 @@
-import React from "react";
+import * as React from "react";
 import s from "../../editor.module.css";
 import arrowDown from "../../../../img/arrowDown.svg";
+import { ICatFieldBtn, IcatItem } from "../../../../../types/types";
 
 const CatFieldBtn = ({
   curCat,
@@ -12,9 +13,9 @@ const CatFieldBtn = ({
   visableCatList,
   setVisableCatList,
   setVisableCatListDefault,
-}) => {
+}: ICatFieldBtn): JSX.Element => {
   // handle click on category button
-  const displayCat = (catItem) => {
+  const displayCat = (catItem: IcatItem) => {
     let allSumOpenCat = 0;
     const catItemCats = catItem.value;
     const lIndexOfCurCat = curCat.length - 1;
@@ -27,12 +28,10 @@ const CatFieldBtn = ({
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор/смена категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
     else if (!catItem.value) {
-      setFormValues((prevState) => {
-        return {
-          ...prevState,
-          category: catItem.name,
-        };
-      });
+      setFormValues((prevState) => ({
+        ...prevState,
+        category: catItem.name,
+      }));
       hideCatalog();
     }
 
@@ -75,7 +74,7 @@ const CatFieldBtn = ({
       curCat[0] === catItem
     ) {
       setVisableCatListDefault();
-      setCurCat([]);
+      setCurCat(() => []);
     }
   };
 
@@ -91,7 +90,9 @@ const CatFieldBtn = ({
       }
     >
       <p>{catItem.name}</p>
-      {catItem.value && <img className={s.arrowDown} src={arrowDown} alt="" />}
+      {catItem.value && (
+        <img className={s.arrowDown} src={String(arrowDown)} alt="" />
+      )}
     </button>
   );
 };

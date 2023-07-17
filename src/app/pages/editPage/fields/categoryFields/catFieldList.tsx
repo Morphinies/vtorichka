@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import s from "../../editor.module.css";
 import CatFieldBtn from "./catFieldBtn";
+import { ICatFieldList, IcatItem } from "../../../../../types/types";
 
-const CatFieldList = ({ catList, formValue, hideCatalog, setFormValues }) => {
-  const [curCat, setCurCat] = useState([]); // current opened category
-  const [visableCatList, setVisableCatList] = useState(catList); // current categories list
+const CatFieldList = ({
+  catList,
+  formValue,
+  hideCatalog,
+  setFormValues,
+}: ICatFieldList) => {
+  const [curCat, setCurCat] = useState<IcatItem[]>([]); // current opened category
+  const [visableCatList, setVisableCatList] = useState<IcatItem[]>(catList); // current categories list
 
   return (
     visableCatList && (

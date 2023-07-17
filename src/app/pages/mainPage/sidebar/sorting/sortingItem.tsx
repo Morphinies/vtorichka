@@ -1,9 +1,21 @@
-import React from "react";
+import * as React from "react";
 import s from "./sorting.module.css";
 import v from "../sidebar.module.css";
 
-const SortingItem = ({ sort, sortingItem, activeSort }) => {
-  const sortingIsActive = activeSort === sortingItem.name;
+interface ISortingItem {
+  sort: (val: string) => void;
+  sortingItem: {
+    name: string;
+    img: string;
+  };
+  activeSort: string;
+}
+const SortingItem = ({
+  sort,
+  sortingItem,
+  activeSort,
+}: ISortingItem): JSX.Element => {
+  const sortingIsActive: boolean = activeSort === sortingItem.name;
 
   return (
     <li

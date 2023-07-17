@@ -3,11 +3,8 @@ import s from "./products.module.css";
 import ProdItem from "./item/prodItem";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Iprod } from "../../../types/types";
+import { IProductsList, Iprod } from "../../../types/types";
 
-interface IProductsList {
-  productsOnPage: Iprod[];
-}
 const ProductsList = ({ productsOnPage }: IProductsList): JSX.Element => {
   // избранные товары
   const [favoriteProducts, setFavoriteProducts] = useState<string>();

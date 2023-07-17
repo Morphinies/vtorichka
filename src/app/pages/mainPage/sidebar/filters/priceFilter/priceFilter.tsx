@@ -1,8 +1,20 @@
-import React from "react";
+import * as React from "react";
 import InputPrice from "./inputPrice";
 import BtnOpenFilter from "../btns/btnOpenFilter";
+import { IfiltersForm } from "../../../../../../types/types";
 
-const PriceFilter = ({ isOpen, formData, openFilter, setFormData }) => {
+interface IPriceFilter {
+  isOpen: boolean;
+  formData: IfiltersForm;
+  openFilter: () => void;
+  setFormData: (v: IfiltersForm) => void;
+}
+const PriceFilter = ({
+  isOpen,
+  formData,
+  openFilter,
+  setFormData,
+}: IPriceFilter) => {
   return (
     <>
       <BtnOpenFilter name="цена" action={openFilter} isOpen={isOpen} />

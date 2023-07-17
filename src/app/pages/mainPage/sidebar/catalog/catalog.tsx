@@ -1,6 +1,7 @@
-import React from "react";
+import * as React from "react";
 import v from "../sidebar.module.css";
 import CatalogItem from "./catalogItem";
+import { ICatalog, IcatItem } from "../../../../../types/types";
 
 const Catalog = ({
   curCat,
@@ -11,9 +12,9 @@ const Catalog = ({
   searchParams,
   setSearchParams,
   setCatListDefault,
-}) => {
+}: ICatalog) => {
   // handle click on category button
-  const displayCat = (catItem) => {
+  const displayCat = (catItem: IcatItem) => {
     const curCategory = searchParams.get("category");
     //
     let allSumOpenCat = 0;
@@ -73,7 +74,7 @@ const Catalog = ({
       curCat[0] === catItem
     ) {
       setCatListDefault();
-      setCurCat([]);
+      setCurCat(() => []);
     }
   };
 

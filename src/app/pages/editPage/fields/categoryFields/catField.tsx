@@ -1,10 +1,18 @@
+import * as React from "react";
 import api from "../../../../api";
 import s from "../../editor.module.css";
 import CatFieldList from "./catFieldList";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CatFieldBtnOpenList from "./catFieldBtnOpenList";
+import { ICatField } from "../../../../../types/types";
 
-const CatField = ({ label, formValue, setFormValues, error, errorsHidden }) => {
+const CatField = ({
+  label,
+  formValue,
+  setFormValues,
+  error,
+  errorsHidden,
+}: ICatField): JSX.Element => {
   const [catList, setCatList] = useState();
   const [listOpened, setListOpened] = useState(false);
 
@@ -34,7 +42,7 @@ const CatField = ({ label, formValue, setFormValues, error, errorsHidden }) => {
         </div>
       </div>
 
-      <p className={s.errorMessage}></p>
+      <p className={s.errorMessage}>{!errorsHidden && error}</p>
     </div>
   );
 };

@@ -1,8 +1,13 @@
-import React from "react";
+import * as React from "react";
 import v from "./sidebar.module.css";
 import { cancelImg } from "../../../img/pictures";
+import { IBtnDisplayBlock } from "../../../../types/types";
 
-const BtnDisplayBlock = ({ btnName, blockHidden, hideBlock }) => {
+const BtnDisplayBlock = ({
+  btnName,
+  blockHidden,
+  hideBlock,
+}: IBtnDisplayBlock) => {
   return (
     <button
       type="button"
@@ -12,7 +17,7 @@ const BtnDisplayBlock = ({ btnName, blockHidden, hideBlock }) => {
     >
       <p className={v.btnDisplayCatText}>{btnName} </p>
       {!blockHidden && (
-        <img className={v.imgDisplayCat} src={cancelImg} alt="" />
+        <img className={v.imgDisplayCat} src={String(cancelImg)} alt="" />
       )}
     </button>
   );

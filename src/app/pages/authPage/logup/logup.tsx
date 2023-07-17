@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import LogupWindow from "./logupWindow";
 import { useLoaderData } from "react-router-dom";
 import ErrorMessage from "../../../common/errorMes/errorMessage";
 
-const Logup = () => {
+const Logup = (): JSX.Element => {
   const curUser = useLoaderData();
 
   return !curUser ? (

@@ -1,7 +1,9 @@
+import * as React from "react";
 import Filters from "./filters";
 import v from "../sidebar.module.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
+import { IFiltersBlock, IfiltersForm } from "../../../../../types/types";
 
 const FiltersBlock = ({
   id,
@@ -10,18 +12,18 @@ const FiltersBlock = ({
   openedSideBar,
   setSearchParams,
   changeOpenedSideBar,
-}) => {
-  const filtersList = ["minPrice", "maxPrice", "type"];
-  const [formData, setFormData] = useState({});
-  const [openedFilter, setOpenedFilter] = useState();
-  const filtersIsOpened = openedSideBar === btnName;
+}: IFiltersBlock): JSX.Element => {
+  const filtersList: string[] = ["minPrice", "maxPrice", "type"];
+  const [formData, setFormData] = useState<IfiltersForm>({});
+  const [openedFilter, setOpenedFilter] = useState<undefined | string>();
+  const filtersIsOpened: boolean = openedSideBar === btnName;
 
   useEffect(() => {
-    const filtersList = ["minPrice", "maxPrice", "type"];
-    const updatedForm = {};
-    filtersList.map((filter) => {
+    const filtersList: string[] = ["minPrice", "maxPrice", "type"];
+    const updatedForm: IfiltersForm = {};
+    filtersList.map((filter: string) => {
       if (searchParams.get(filter)) {
-        updatedForm[filter] = searchParams.get(filter);
+        updatedForm[filter as keyof IfiltersForm] = searchParams.get(filter);
       }
       return "";
     });
@@ -29,7 +31,7 @@ const FiltersBlock = ({
   }, [searchParams]);
 
   // открыть/закрыть фильтр
-  const openFilter = (item) => {
+  const openFilter = (item: string): void => {
     if (openedFilter === item) {
       setOpenedFilter(undefined);
     } else {
@@ -37,23 +39,23 @@ const FiltersBlock = ({
     }
   };
 
-  const clearParams = () => {
+  const clearParams = (): void => {
     filtersList.map((item) => {
       searchParams.delete(item);
       return setSearchParams(searchParams);
     });
   };
 
-  const applyFilters = () => {
+  const applyFilters = (): void => {
     clearParams();
     for (let param in formData) {
-      searchParams.set(param, formData[param]);
+      searchParams.set(param, formData[param as keyof IfiltersForm]);
       setSearchParams(searchParams);
     }
     changeOpenedSideBar("");
   };
 
-  const clearFilters = () => {
+  const clearFilters = (): void => {
     clearParams();
     setFormData({});
     changeOpenedSideBar("");

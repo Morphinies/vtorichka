@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import SortingItem from "./sortingItem";
 import api from "../../../../api";
 
-const Sorting = ({ sort, activeSort }) => {
+interface ISorting {
+  sort: (val: string) => void;
+  activeSort: string;
+}
+const Sorting = ({ sort, activeSort }: ISorting) => {
   const [sortingList, setSortingList] = useState([]);
 
   useEffect(() => {

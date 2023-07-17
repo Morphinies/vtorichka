@@ -1,5 +1,6 @@
-import React from "react";
+import * as React from "react";
 import s from "../auth.module.css";
+import { ITextField, Iform } from "../../../../types/types";
 
 const TextField = ({
   type,
@@ -10,13 +11,11 @@ const TextField = ({
   maxLength,
   formValue,
   setFormValues,
-}) => {
+}: ITextField): JSX.Element => {
   // обновление поля
-  const updateField = (value) => {
+  const updateField = (value: string) => {
     clearErr(formName);
-    setFormValues((prevState) => {
-      return { ...prevState, [formName]: value };
-    });
+    setFormValues((prevState: Iform) => ({ ...prevState, [formName]: value }));
   };
 
   return (
