@@ -1,10 +1,20 @@
-import React from "react";
+import * as React from "react";
 import s from "./search.module.css";
 import { Link, useSearchParams } from "react-router-dom";
+import { Iprod } from "../../../../types/types";
 
-const DropDownList = ({ selectedList, textSearch, setTextSearch }) => {
+interface IDropDownList {
+  selectedList: Iprod[];
+  textSearch: string;
+  setTextSearch: (v: string) => void;
+}
+const DropDownList = ({
+  selectedList,
+  textSearch,
+  setTextSearch,
+}: IDropDownList): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const errorMessage = "по вашему запросу товаров не найдено :/";
+  const errorMessage: string = "по вашему запросу товаров не найдено :/";
 
   const showAllResults = () => {
     searchParams.set("name", textSearch);

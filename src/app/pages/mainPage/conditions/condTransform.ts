@@ -1,7 +1,10 @@
-export default function condTransform(searchParams) {
-  const conditions = [];
+type condType = { key?: string; value?: string; name?: string };
+export default function condTransform(
+  searchParams: URLSearchParams
+): condType[] {
+  const conditions: condType[] = [];
   for (let [key, value] of searchParams.entries()) {
-    const cond = {};
+    const cond: condType = {};
     cond.key = key;
     cond.value = value;
     switch (key) {

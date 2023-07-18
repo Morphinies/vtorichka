@@ -14,24 +14,23 @@ const PriceFilter = ({
   formData,
   openFilter,
   setFormData,
-}: IPriceFilter) => {
+}: IPriceFilter): JSX.Element => {
   return (
     <>
       <BtnOpenFilter name="цена" action={openFilter} isOpen={isOpen} />
-
       {isOpen && (
         <>
           <InputPrice
             name="от"
             value="minPrice"
             formData={formData}
-            setFormData={setFormData}
+            setFormData={() => setFormData}
           />
           <InputPrice
             name="до"
             value="maxPrice"
             formData={formData}
-            setFormData={setFormData}
+            setFormData={() => setFormData}
           />
         </>
       )}

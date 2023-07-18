@@ -3,11 +3,13 @@ import s from "../editor.module.css";
 import BtnExit from "../btns/btnExit";
 import EditorTitle from "../editorTitle";
 import { useLoaderData } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import * as React from "react";
+import { Iprod } from "../../../../types/types";
 
 const ProdEditor = () => {
-  const product = useLoaderData();
-  const [editorProd, setEditorProd] = useState();
+  const product: Iprod = useLoaderData();
+  const [editorProd, setEditorProd] = useState<Iprod>();
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
   // установка редактируемого товара
@@ -17,7 +19,7 @@ const ProdEditor = () => {
       : setEditorProd({
           type: "",
           name: "",
-          price: "",
+          price: 0,
           category: "",
           description: "",
           seller: currentUser,

@@ -1,7 +1,16 @@
-import React from "react";
+import * as React from "react";
 import s from "../filters.module.css";
 
-const BtnApplyFilters = ({ action, img, name }) => {
+interface IBtnApplyFilters {
+  action: () => void;
+  img: string;
+  name: string;
+}
+const BtnApplyFilters = ({
+  action,
+  img,
+  name,
+}: IBtnApplyFilters): JSX.Element => {
   return (
     <button
       type="button"

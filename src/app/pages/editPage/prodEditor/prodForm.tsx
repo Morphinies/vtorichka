@@ -4,15 +4,17 @@ import TextField from "../fields/textField";
 import FileField from "../fields/fileField";
 import { useNavigate } from "react-router-dom";
 import SelectField from "../fields/selectField";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import TextareaField from "../fields/textareaField";
 import handleError from "../../../utils/handleError";
 import Loading from "../../../common/loading/loading";
 import BtnApplyChanges from "../btns/btnApplyChanges";
 import CatField from "../fields/categoryFields/catField";
 import ResponseMes from "../../../common/responseMes/responseMes";
+import { Iprod } from "../../../../types/types";
 
-const ProdForm = ({ editorProd }) => {
+const ProdForm = ({ editorProd }: Iprod) => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);

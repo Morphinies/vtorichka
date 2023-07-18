@@ -16,8 +16,8 @@ const InputPrice = ({
   setFormData,
 }: IPriceFilter): JSX.Element => {
   // регулярное выражение для представления цены
-  const regExpPrice = (number: number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const regExpPrice = (number: string) => {
+    return number.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
 
   const clearFilter = (key: string) => {
@@ -27,9 +27,9 @@ const InputPrice = ({
     });
   };
 
-  const changePrice = (input) => {
+  const changePrice = (input: string) => {
     const regExpNumber = /\d/g;
-    const inputSymbols = input.match(regExpNumber) || [];
+    const inputSymbols: string[] = input.match(regExpNumber) || [];
     if (!inputSymbols.length) {
       return clearFilter(value);
     }
@@ -48,7 +48,7 @@ const InputPrice = ({
           maxLength={12}
           placeholder={name}
           className={s.priceInput}
-          value={formData[value] || ""}
+          value={formData[value as keyof IfiltersForm] || ""}
           onChange={(e) => changePrice(e.target.value)}
         />
         <BtnClearInput value={value} clearFilter={clearFilter} />

@@ -1,8 +1,16 @@
-import React from "react";
+import * as React from "react";
 import s from "./conditions.module.css";
 import { cancelImg } from "../../../img/pictures";
 
-const ConditionBtn = ({ cond, clearCondition }) => {
+interface IConditionBtn {
+  cond: {
+    key: string;
+    name: string;
+    value: string;
+  };
+  clearCondition: (v: string) => void;
+}
+const ConditionBtn = ({ cond, clearCondition }: IConditionBtn): JSX.Element => {
   return (
     <button
       title="сбросить"
@@ -12,7 +20,7 @@ const ConditionBtn = ({ cond, clearCondition }) => {
       <p className={s.conditionBtnText}>
         {cond.name}: {cond.value}
       </p>
-      <img className={s.conditionBtnImg} src={cancelImg} alt="" />
+      <img className={s.conditionBtnImg} src={String(cancelImg)} alt="" />
     </button>
   );
 };

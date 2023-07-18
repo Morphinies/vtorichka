@@ -1,15 +1,19 @@
-import React from "react";
+import * as React from "react";
 import BtnFind from "./btnFind";
 import BtnReset from "./btnReset";
 import s from "./search.module.css";
 import SearchInput from "./searchInput";
 import { useSearchParams } from "react-router-dom";
 
-const SearchForm = ({ textSearch, setTextSearch }) => {
+interface ISearchForm {
+  textSearch: string;
+  setTextSearch: (v: string) => void;
+}
+const SearchForm = ({ textSearch, setTextSearch }: ISearchForm) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchedName = searchParams.get("name");
 
-  const search = (e) => {
+  const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setTextSearch("");
     if (textSearch) searchParams.set("name", textSearch);
@@ -25,7 +29,7 @@ const SearchForm = ({ textSearch, setTextSearch }) => {
 
   return (
     <form
-      onSubmit={search}
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => search(e)}
       className={
         s.form +
         " " +
@@ -37,7 +41,7 @@ const SearchForm = ({ textSearch, setTextSearch }) => {
       <SearchInput textSearch={textSearch} setTextSearch={setTextSearch} />
 
       {(textSearch || searchedName) && <BtnReset resetSearch={resetSearch} />}
-      <BtnFind isDisabled={!textSearch} search={search} />
+      <BtnFind isDisabled={!textSearch} />
     </form>
   );
 };

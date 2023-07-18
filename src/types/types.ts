@@ -1,15 +1,15 @@
 export interface Iprod {
-  category: string;
-  data: string;
-  description: string;
-  name: string;
+  category?: string;
+  data?: string;
+  description?: string;
+  name?: string;
   photo?: [];
-  place: string;
-  price: number;
-  seller: string;
-  type: string;
+  place?: string;
+  price?: number;
+  seller?: string;
+  type?: string;
   __v?: number;
-  _id: string;
+  _id?: string;
 }
 
 export interface IBtnChangePhoto {
