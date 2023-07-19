@@ -19,7 +19,7 @@ const ProdEditor = () => {
       : setEditorProd({
           type: "",
           name: "",
-          price: 0,
+          price: "",
           category: "",
           description: "",
           seller: currentUser,

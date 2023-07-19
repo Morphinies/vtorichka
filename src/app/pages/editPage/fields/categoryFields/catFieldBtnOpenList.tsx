@@ -1,16 +1,12 @@
 import * as React from "react";
 import s from "../../editor.module.css";
 import arrowDown from "../../../../img/arrowDown.svg";
+import { ICatFieldBtnOpenList } from "../../../../../types/types";
 
-interface ICatFieldBtnOpenList {
-  setListOpened: (v: (t: boolean) => boolean) => void;
-  listOpened: boolean;
-  name: string;
-}
 const CatFieldBtnOpenList = ({
   setListOpened,
   listOpened,
-  name,
+  catValue,
 }: ICatFieldBtnOpenList) => {
   return (
     <button
@@ -20,7 +16,7 @@ const CatFieldBtnOpenList = ({
       }}
       className={s.btn + " " + (listOpened && s.formValue)}
     >
-      <p>{name}</p>
+      <p>{catValue}</p>
       <img className={s.arrowDown} src={String(arrowDown)} alt="" />
     </button>
   );

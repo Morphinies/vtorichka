@@ -5,7 +5,7 @@ export interface Iprod {
   name?: string;
   photo?: [];
   place?: string;
-  price?: number;
+  price?: string;
   seller?: string;
   type?: string;
   __v?: number;
@@ -21,8 +21,8 @@ export interface IBtnChangePhoto {
 }
 
 export interface IProdInfo {
-  isFavorite: boolean;
-  updateFavorites: (id: string) => void;
+  isFavorite?: boolean;
+  updateFavorites?: (id: string) => void;
   prod: Iprod;
 }
 
@@ -50,12 +50,12 @@ export interface IBtnAuth {
 export interface ITextField {
   type: string;
   label: string;
-  error: string;
-  formName: string;
+  error: IProdFormErr;
+  formName?: string;
   maxLength: number;
   formValue: string;
-  clearErr: (val: string) => void;
-  setFormValues: (val: (prevState: Iform) => Iform) => void;
+  clearErr?: (val: string) => void;
+  setFormValues: React.Dispatch<React.SetStateAction<Iprod>>;
 }
 
 export interface IProductsList {
@@ -65,9 +65,9 @@ export interface IProductsList {
 export interface ICatField {
   label: string;
   error: string;
-  formValue: Iform;
+  catValue: string;
   errorsHidden: boolean;
-  setFormValues: (val: (prevState: Iform) => Iform) => void;
+  setFormValues: React.Dispatch<React.SetStateAction<Iprod>>;
 }
 
 export interface IcatItem {
@@ -139,4 +139,93 @@ export interface IfiltersForm {
   minPrice?: string;
   maxPrice?: string;
   type?: string;
+}
+
+export interface IProdForm {
+  editorProd: Iprod;
+}
+
+export interface IProdFormErr {
+  name?: string;
+  message?: string;
+}
+
+export interface IProdFormErrors {
+  name?: IProdFormErr;
+  type?: IProdFormErr;
+  photo?: IProdFormErr;
+  price?: IProdFormErr;
+  category?: IProdFormErr;
+  description?: IProdFormErr;
+}
+
+export interface Iseller {
+  _id?: string;
+  phone?: string;
+  name?: string;
+  avatar?: string;
+  rating?: number;
+  about?: string;
+}
+
+export interface IBtnsChangeImg {
+  imgTotal: number;
+  showedImg: number;
+  imgBack: () => void;
+  imgForward: () => void;
+}
+
+export interface ICatFieldBtnOpenList {
+  setListOpened: (v: (t: boolean) => boolean) => void;
+  listOpened: boolean;
+  catValue: string;
+}
+
+//fields
+
+export interface IdefFieldProps {
+  label: string;
+  fieldId: string;
+  formValue: string;
+  setFormValues: React.Dispatch<React.SetStateAction<Iprod>>;
+}
+
+export interface ITextareaField extends IdefFieldProps {
+  maxLength: number;
+  error: IProdFormErr;
+  errorsHidden: boolean;
+}
+
+export interface ITextField extends ITextareaField {
+  type: string;
+}
+
+export interface ISelectField extends IdefFieldProps {
+  list: string[];
+}
+
+export interface IFileField extends Omit<IdefFieldProps, "formValue"> {
+  formValue: string[];
+}
+
+export interface IChangePasswordFormErr {
+  oldPas: IProdFormErr;
+  newPas: IProdFormErr;
+}
+export interface IChangePasswordForm {
+  oldPas?: string;
+  newPas: string;
+}
+
+export interface IChangePassword {
+  pasField: string;
+  errorsHidden: boolean;
+  errors: IChangePasswordFormErr;
+  formValues: IChangePasswordForm;
+  setPasField: React.Dispatch<React.SetStateAction<boolean>>;
+  setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
+}
+
+export interface IPasswordField extends Omit<ITextareaField, "setFormValues"> {
+  setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
 }

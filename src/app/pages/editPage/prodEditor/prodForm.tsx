@@ -12,19 +12,26 @@ import Loading from "../../../common/loading/loading";
 import BtnApplyChanges from "../btns/btnApplyChanges";
 import CatField from "../fields/categoryFields/catField";
 import ResponseMes from "../../../common/responseMes/responseMes";
-import { Iprod } from "../../../../types/types";
+import {
+  IProdForm,
+  IProdFormErr,
+  IProdFormErrors,
+  Iprod,
+} from "../../../../types/types";
 
-const ProdForm = ({ editorProd }: Iprod) => {
+const ProdForm = ({ editorProd }: IProdForm): JSX.Element => {
   const navigate = useNavigate();
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [responseMes, setResponseMes] = useState();
-  const [errorsHidden, setErrorsHidden] = useState(true);
-  const [formValues, setFormValues] = useState(editorProd);
-  const formIsValid = Object.values(errors).every((value) => !value.name);
+  const [errors, setErrors] = useState<IProdFormErrors>({});
+  const [loading, setLoading] = useState<boolean>(false);
+  const [responseMes, setResponseMes] = useState<string>();
+  const [errorsHidden, setErrorsHidden] = useState<boolean>(true);
+  const [formValues, setFormValues] = useState<Iprod>(editorProd);
+  const formIsValid: boolean = Object.values(errors).every(
+    (err: IProdFormErr) => !err.name
+  );
 
   // обработка формы
-  const handleForm = () => {
+  const handleForm = (): void => {
     setLoading(true);
     if (editorProd._id) {
       api.products.editProd(formValues).then((data) => {
@@ -46,18 +53,18 @@ const ProdForm = ({ editorProd }: Iprod) => {
   };
 
   // кнопка редактировать
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    formIsValid ? handleForm(event) : setErrorsHidden(false);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    formIsValid ? handleForm() : setErrorsHidden(false);
   };
-
+  console.log(errors);
   // проверка полей на валидность
   useEffect(() => {
     setErrorsHidden(true);
     setErrors((prevState) => {
       return {
         ...prevState,
-        photo: handleError(formValues.photo, []),
+        photo: {}, //handleError(formValues.photo, [])
         type: handleError(formValues.type, ["empty"]),
         category: handleError(formValues.category, ["empty"]),
         name: handleError(formValues.name, ["empty", "indent"]),
@@ -71,13 +78,13 @@ const ProdForm = ({ editorProd }: Iprod) => {
   useEffect(() => {
     responseMes &&
       setTimeout(() => {
-        setResponseMes();
+        setResponseMes("");
         formIsValid && navigate(-1);
       }, 1500);
   }, [responseMes, formIsValid, navigate]);
 
   return (
-    <form onSubmit={handleSubmit} className={s.editForm}>
+    <form onSubmit={(e) => handleSubmit(e)} className={s.editForm}>
       <TextField
         type="text"
         label="имя"
@@ -87,7 +94,7 @@ const ProdForm = ({ editorProd }: Iprod) => {
         formValue={formValues.name}
         errorsHidden={errorsHidden}
         setFormValues={setFormValues}
-        setErrorsHidden={setErrorsHidden}
+        // setErrorsHidden={setErrorsHidden}
       />
       <TextField
         type="text"
@@ -98,15 +105,15 @@ const ProdForm = ({ editorProd }: Iprod) => {
         errorsHidden={errorsHidden}
         formValue={formValues.price}
         setFormValues={setFormValues}
-        setErrorsHidden={setErrorsHidden}
+        // setErrorsHidden={setErrorsHidden}
       />
       <CatField
         label="категория"
-        error={errors.category}
         errorsHidden={errorsHidden}
         setFormValues={setFormValues}
-        formValue={formValues.category}
-        setErrorsHidden={setErrorsHidden}
+        error={errors.category?.message}
+        catValue={formValues.category}
+        // setErrorsHidden={setErrorsHidden}
       />
       <SelectField
         fieldId="type"
@@ -126,7 +133,6 @@ const ProdForm = ({ editorProd }: Iprod) => {
       />
       <FileField
         label="фото"
-        maxLength={8}
         fieldId="photo"
         formValue={formValues.photo}
         setFormValues={setFormValues}

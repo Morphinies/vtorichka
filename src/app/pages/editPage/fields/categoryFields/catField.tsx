@@ -8,10 +8,10 @@ import { ICatField } from "../../../../../types/types";
 
 const CatField = ({
   label,
-  formValue,
-  setFormValues,
   error,
+  catValue,
   errorsHidden,
+  setFormValues,
 }: ICatField): JSX.Element => {
   const [catList, setCatList] = useState();
   const [listOpened, setListOpened] = useState(false);
@@ -26,7 +26,7 @@ const CatField = ({
         <p className={s.labelText}>{label}:</p>
         <div className={s.radioWrap}>
           <CatFieldBtnOpenList
-            name={formValue}
+            catValue={catValue}
             listOpened={listOpened}
             setListOpened={setListOpened}
           />
@@ -34,8 +34,8 @@ const CatField = ({
           {listOpened && (
             <CatFieldList
               catList={catList}
-              formValue={formValue}
-              setFormValues={setFormValues}
+              formValue={catValue}
+              setFormValues={() => setFormValues}
               hideCatalog={() => setListOpened(false)}
             />
           )}
