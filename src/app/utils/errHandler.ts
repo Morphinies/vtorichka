@@ -6,7 +6,7 @@ export function errHandler(form: Iform): Ierror {
 
   const emptyCheck = (key: string, value: string): void => {
     if (!value) {
-      errors[key as keyof Ierror] = "заполните поле";
+      errors[key as keyof Ierror] = { name: key, message: "заполните поле" };
     }
   };
 
@@ -29,45 +29,59 @@ export function errHandler(form: Iform): Ierror {
   const minLenght = (key: string, value: string, length: number): void => {
     const symbols = symbolsOnRus(length);
     if (value.length < length) {
-      errors[key as keyof Ierror] = `минимум ${length} ${symbols}`;
+      errors[key as keyof Ierror] = {
+        name: key,
+        message: `минимум ${length} ${symbols}`,
+      };
     }
   };
 
   const maxLenght = (key: string, value: string, length: number): void => {
     const symbols = symbolsOnRus(length);
     if (value.length > length) {
-      errors[key as keyof Ierror] = `максимум ${length} ${symbols}`;
+      errors[key as keyof Ierror] = {
+        name: key,
+        message: `максимум ${length} ${symbols}`,
+      };
     }
   };
 
   const nameChars = (key: string, value: string): void => {
     const nameRegExp = /^[А-ЯЁA-Z ]+$/i;
     if (!nameRegExp.test(value)) {
-      errors[
-        key as keyof Ierror
-      ] = `разрешены русские/английские буквы и пробел`;
+      errors[key as keyof Ierror] = {
+        name: key,
+        message: `разрешены русские/английские буквы и пробел`,
+      };
     }
   };
 
   const emailChars = (key: string, value: string): void => {
     const emailRegExp = /^[A-Z][A-Z0-9._-]+@[A-Z0-9-]+\.[A-Z]{2,4}$/i;
     if (!emailRegExp.test(value)) {
-      errors[key as keyof Ierror] = `почтовый адрес введён некорректно`;
+      errors[key as keyof Ierror] = {
+        name: key,
+        message: `почтовый адрес введён некорректно`,
+      };
     }
   };
 
   const pasChars = (key: string, value: string): void => {
     const pasRegExp = /^[A-Z0-9!._-]+$/i;
     if (!pasRegExp.test(value)) {
-      errors[
-        key as keyof Ierror
-      ] = `разрешены английские буквы, цифры и символы(!._-)`;
+      errors[key as keyof Ierror] = {
+        name: key,
+        message: `разрешены английские буквы, цифры и символы(!._-)`,
+      };
     }
   };
 
   const repeatPas = (key: string, value: string, password: string): void => {
     if (value !== password) {
-      errors[key as keyof Ierror] = `пароли не совпадают`;
+      errors[key as keyof Ierror] = {
+        name: key,
+        message: `пароли не совпадают`,
+      };
     }
   };
 

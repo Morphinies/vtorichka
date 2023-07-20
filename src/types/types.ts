@@ -33,13 +33,16 @@ export interface IProdItem extends IProdInfo {
 export type ProdPhotoType = Omit<IBtnChangePhoto, "change">;
 
 export interface Ierror {
-  login?: string;
-  password?: string;
+  name?: IProdFormErr;
+  login?: IProdFormErr;
+  email?: IProdFormErr;
+  password?: IProdFormErr;
+  rePassword?: IProdFormErr;
 }
 
 export interface Iform {
-  login: string;
-  password: string;
+  login?: string;
+  password?: string;
 }
 
 export interface IBtnAuth {
@@ -162,10 +165,12 @@ export interface IProdFormErrors {
 export interface Iseller {
   _id?: string;
   phone?: string;
+  photo?: string;
   name?: string;
   avatar?: string;
   rating?: number;
   about?: string;
+  password?: string;
 }
 
 export interface IBtnsChangeImg {
@@ -185,7 +190,7 @@ export interface ICatFieldBtnOpenList {
 
 export interface IdefFieldProps {
   label: string;
-  fieldId: string;
+  fieldId?: string;
   formValue: string;
   setFormValues: React.Dispatch<React.SetStateAction<Iprod>>;
 }
@@ -193,7 +198,7 @@ export interface IdefFieldProps {
 export interface ITextareaField extends IdefFieldProps {
   maxLength: number;
   error: IProdFormErr;
-  errorsHidden: boolean;
+  errorsHidden?: boolean;
 }
 
 export interface ITextField extends ITextareaField {
@@ -228,4 +233,31 @@ export interface IChangePassword {
 
 export interface IPasswordField extends Omit<ITextareaField, "setFormValues"> {
   setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
+}
+
+//userForm
+
+export interface IUserFormValues {
+  _id?: string;
+  phone?: string;
+  photo?: string;
+  name?: string;
+  avatar?: string;
+  rating?: number;
+  about?: string;
+  password?: string;
+  oldPas?: string;
+  newPas?: string;
+}
+export interface IUserFormValuesErrors {
+  _id?: IProdFormErr;
+  phone?: IProdFormErr;
+  photo?: IProdFormErr;
+  name?: IProdFormErr;
+  avatar?: IProdFormErr;
+  rating?: IProdFormErr;
+  about?: IProdFormErr;
+  password?: IProdFormErr;
+  oldPas?: IProdFormErr;
+  newPas?: IProdFormErr;
 }

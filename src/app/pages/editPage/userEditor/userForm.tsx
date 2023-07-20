@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import * as React from "react";
 import api from "../../../api";
+import s from "../editor.module.css";
+import TextField from "../fields/textField";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AvatarField from "../fields/avatarField";
+import {
+  IUserFormValues,
+  IUserFormValuesErrors,
+  Iseller,
+} from "../../../../types/types";
+import TextareaField from "../fields/textareaField";
 import handleError from "../../../utils/handleError";
 import BtnApplyChanges from "../btns/btnApplyChanges";
-import s from "../editor.module.css";
-import AvatarField from "../fields/avatarField";
-import ChangePassword from "../fields/changePassword/changePassword";
-import TextareaField from "../fields/textareaField";
-import TextField from "../fields/textField";
 import Loading from "../../../common/loading/loading";
 import ResponseMes from "../../../common/responseMes/responseMes";
+import ChangePassword from "../fields/changePassword/changePassword";
 
-const UserForm = ({ editorUser }) => {
+const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
   const navigate = useNavigate();
-  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [pasField, setPasField] = useState(false);
-  const [responseMes, setResponseMes] = useState();
   const [errorsHidden, setErrorsHidden] = useState(true);
-  const [formValues, setFormValues] = useState(editorUser);
+  const [responseMes, setResponseMes] = useState<string>();
+  const [errors, setErrors] = useState<IUserFormValuesErrors>({});
+  const [formValues, setFormValues] = useState<IUserFormValues>(editorUser);
   const formIsValid = Object.values(errors).every((value) => !value.name);
 
   // обработка формы
@@ -38,9 +44,9 @@ const UserForm = ({ editorUser }) => {
   };
 
   // кнопка редактировать
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    formIsValid ? handleForm(event) : setErrorsHidden(false);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    formIsValid ? handleForm() : setErrorsHidden(false);
   };
 
   // проверка полей на валидность
@@ -49,12 +55,9 @@ const UserForm = ({ editorUser }) => {
     setErrors((prevState) => {
       return {
         ...prevState,
-        type: handleError(formValues.type, []),
         photo: handleError(formValues.photo, []),
-        category: handleError(formValues.categoty, []),
         about: handleError(formValues.about, ["indent"]),
         name: handleError(formValues.name, ["empty", "indent"]),
-        price: handleError(formValues.price, ["empty", "indent"]),
         oldPas: pasField
           ? handleError(
               formValues.oldPas,
@@ -73,13 +76,13 @@ const UserForm = ({ editorUser }) => {
   useEffect(() => {
     responseMes &&
       setTimeout(() => {
-        setResponseMes();
+        setResponseMes("");
         formIsValid && navigate(-1);
       }, 1000);
   }, [responseMes, formIsValid, navigate]);
 
   return (
-    <form onSubmit={handleSubmit} className={s.editForm}>
+    <form onSubmit={(e) => handleSubmit(e)} className={s.editForm}>
       <AvatarField avatar={formValues.avatar} />
 
       <TextField

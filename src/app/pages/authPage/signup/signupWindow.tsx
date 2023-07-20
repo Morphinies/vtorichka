@@ -1,29 +1,51 @@
 import api from "../../../api";
+import * as React from "react";
+import { useState } from "react";
 import BtnAuth from "../btnAuth";
 import s from "../auth.module.css";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "../formFields/textField";
 import Loading from "../../../common/loading/loading";
 import { errHandler } from "../../../utils/errHandler";
 import ResponseMes from "../../../common/responseMes/responseMes";
+import { IProdFormErr } from "../../../../types/types";
 
+interface ISignupForm {
+  name?: string;
+  email?: string;
+  password?: string;
+  rePassword?: string;
+}
+interface ISignupFormErrors {
+  name?: IProdFormErr;
+  email?: IProdFormErr;
+  password?: IProdFormErr;
+  rePassword?: IProdFormErr;
+}
 const SignupWindow = () => {
-  const defForm = { name: "", email: "", password: "", rePassword: "" };
-  const [formValues, setFormValues] = useState(defForm);
-  const [responseMes, setResponseMes] = useState();
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
+  const defForm: ISignupForm = {
+    name: "",
+    email: "",
+    password: "",
+    rePassword: "",
+  };
+  const [formValues, setFormValues] = useState<ISignupForm>(defForm);
+  const [responseMes, setResponseMes] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState<ISignupFormErrors>({});
   const navigate = useNavigate();
 
   // удаление ошибок по ключу поля
-  const clearErr = (key) => {
+  const clearErr = (key: keyof ISignupForm) => {
     delete errors[key];
     setErrors(errors);
   };
 
   // отправка данных
-  const sendData = (formValues, e) => {
+  const sendData = (
+    formValues: ISignupForm,
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
     setLoading(true);
     const errors = errHandler(formValues);
@@ -38,9 +60,9 @@ const SignupWindow = () => {
         })
         .catch((err) => {
           setResponseMes(err);
-          setTimeout(() => setResponseMes(), 2000);
+          setTimeout(() => setResponseMes(""), 2000);
         })
-        .finally(setLoading(false));
+        .finally(() => setLoading(false));
     } else {
       setLoading(false);
     }
@@ -100,10 +122,8 @@ const SignupWindow = () => {
 
         {/* кнопка зарегистрироваться */}
         <BtnAuth
-          sendData={sendData}
-          formValues={formValues}
           name="зарегистрироваться"
-          error={Object.keys(errors).length}
+          isValid={Boolean(Object.keys(errors).length)}
         />
       </form>
 
