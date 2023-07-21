@@ -1,4 +1,22 @@
-const defaultValues = {
+interface IdefaultValues {
+  filters: {
+    name: string;
+    value: {
+      name: string;
+      value: boolean;
+    }[];
+  }[];
+  sorting: {
+    name: string;
+    value: string;
+  };
+  category: {
+    name: string;
+    value: string;
+  };
+  search: string;
+}
+const defaultValues: IdefaultValues = {
   filters: [
     {
       name: "тип",
@@ -16,7 +34,7 @@ const defaultValues = {
   search: "",
 };
 
-const fetchAll = () =>
+const fetchAll = (): Promise<IdefaultValues> =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(defaultValues);

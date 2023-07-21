@@ -1,29 +1,31 @@
-async function fetchAll() {
+import { Iprod } from "../../../types/types";
+
+async function fetchAll(): Promise<Iprod[]> {
   const response = await fetch("http://localhost:7000/api/products", {
     method: "GET",
     headers: { Accept: "application/json" },
   });
   if (response.ok === true) {
-    const products = await response.json();
+    const products: Iprod[] = await response.json();
     return products;
   }
 }
 
-async function fetchById(id) {
+async function fetchById(id: string): Promise<Iprod> {
   const response = await fetch("http://localhost:7000/api/products/" + id, {
     method: "GET",
     headers: { Accept: "application/json" },
   });
   if (response.ok === true) {
-    const product = await response.json();
+    const product: Iprod = await response.json();
     return product;
   } else {
-    const err = await response.text();
+    const err: string = await response.text();
     return Promise.reject(err);
   }
 }
 
-async function deleteById(id) {
+async function deleteById(id: string) {
   const response = await fetch("http://localhost:7000/api/products/" + id, {
     method: "DELETE",
     headers: { Accept: "application/json" },
@@ -37,7 +39,7 @@ async function deleteById(id) {
   }
 }
 
-async function fetchBySeller(userID) {
+async function fetchBySeller(userID: string) {
   const response = await fetch(
     "http://localhost:7000/api/products/bySeller/" + userID,
     { method: "GET", headers: { Accept: "application/json" } }
@@ -48,7 +50,7 @@ async function fetchBySeller(userID) {
   }
 }
 
-async function fetchByName(name) {
+async function fetchByName(name: string) {
   const response = await fetch(
     "http://localhost:7000/api/products/byName/" + name,
     {
@@ -62,7 +64,7 @@ async function fetchByName(name) {
   }
 }
 
-async function fetchByParams(searchStr) {
+async function fetchByParams(searchStr: string) {
   let url = "http://localhost:7000/api/products/" + searchStr;
 
   const response = await fetch(url, {
@@ -75,7 +77,7 @@ async function fetchByParams(searchStr) {
   }
 }
 
-async function editProd(prod) {
+async function editProd(prod: string) {
   const response = await fetch("http://localhost:7000/api/products/editProd", {
     method: "PUT",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -87,7 +89,7 @@ async function editProd(prod) {
   }
 }
 
-async function addProd(prod) {
+async function addProd(prod: string) {
   const response = await fetch("http://localhost:7000/api/products/addProd", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },

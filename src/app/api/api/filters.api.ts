@@ -1,4 +1,11 @@
-const filters = [
+interface Ifilters {
+  name: string;
+  value: {
+    name: string;
+    value: boolean;
+  }[];
+}
+const filters: Ifilters[] = [
   {
     name: "тип",
     value: [
@@ -8,7 +15,7 @@ const filters = [
   },
 ];
 
-const fetchAll = () =>
+const fetchAll = (): Promise<Ifilters[]> =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(filters);

@@ -1,4 +1,6 @@
-const categories = [
+import { IcatItem } from "../../../types/types";
+
+const categories: IcatItem[] = [
   {
     name: "одежда",
     value: [
@@ -24,7 +26,7 @@ const categories = [
   { name: "украшения", value: [{ name: "кольцо" }] },
 ];
 
-const fetchAll = () =>
+const fetchAll = (): Promise<IcatItem[]> =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(categories);

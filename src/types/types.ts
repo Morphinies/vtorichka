@@ -58,7 +58,7 @@ export interface ITextField {
   maxLength: number;
   formValue: string;
   clearErr?: (val: string) => void;
-  setFormValues: React.Dispatch<React.SetStateAction<Iprod>>;
+  setFormValues: React.Dispatch<React.SetStateAction<Iprod | IUserFormValues>>;
 }
 
 export interface IProductsList {
@@ -74,7 +74,7 @@ export interface ICatField {
 }
 
 export interface IcatItem {
-  name: string;
+  name?: string;
   value?: IcatItem[];
 }
 export interface ICatFieldBtn {
@@ -171,6 +171,7 @@ export interface Iseller {
   rating?: number;
   about?: string;
   password?: string;
+  favorites?: string[];
 }
 
 export interface IBtnsChangeImg {
@@ -192,7 +193,7 @@ export interface IdefFieldProps {
   label: string;
   fieldId?: string;
   formValue: string;
-  setFormValues: React.Dispatch<React.SetStateAction<Iprod>>;
+  setFormValues: React.Dispatch<React.SetStateAction<Iprod | IUserFormValues>>;
 }
 
 export interface ITextareaField extends IdefFieldProps {
@@ -225,9 +226,9 @@ export interface IChangePasswordForm {
 export interface IChangePassword {
   pasField: string;
   errorsHidden: boolean;
-  errors: IChangePasswordFormErr;
-  formValues: IChangePasswordForm;
-  setPasField: React.Dispatch<React.SetStateAction<boolean>>;
+  errors: IChangePasswordFormErr | IUserFormValuesErrors;
+  formValues: IChangePasswordForm | IUserFormValues;
+  setPasField: React.Dispatch<React.SetStateAction<string>>;
   setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
 }
 

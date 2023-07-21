@@ -20,7 +20,7 @@ import ChangePassword from "../fields/changePassword/changePassword";
 const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [pasField, setPasField] = useState(false);
+  const [pasField, setPasField] = useState<string>();
   const [errorsHidden, setErrorsHidden] = useState(true);
   const [responseMes, setResponseMes] = useState<string>();
   const [errors, setErrors] = useState<IUserFormValuesErrors>({});

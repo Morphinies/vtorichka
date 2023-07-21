@@ -13,14 +13,14 @@ const ChangePassword = ({
 }: IChangePassword) => {
   const switchPasField = (stateOfPasField: string) => {
     if (stateOfPasField) {
-      setPasField(!stateOfPasField);
+      setPasField(stateOfPasField);
       setFormValues((prevState) => {
         delete prevState.oldPas;
         delete prevState.newPas;
         return { ...prevState };
       });
     } else {
-      setPasField(!stateOfPasField);
+      setPasField("");
       setFormValues((prevState) => {
         prevState.oldPas = "";
         prevState.newPas = "";
