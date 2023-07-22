@@ -22,7 +22,7 @@ const SelectField = ({
 
   return (
     <div className={s.inputField}>
-      <label className={s.label} htmlFor={fieldId}>
+      <div className={s.label}>
         <p className={s.labelText}>{label}:</p>
 
         <div className={s.radioWrap}>
@@ -60,7 +60,7 @@ const SelectField = ({
             </ul>
           )}
         </div>
-      </label>
+      </div>
       <p className={s.errorMessage}></p>
     </div>
   );

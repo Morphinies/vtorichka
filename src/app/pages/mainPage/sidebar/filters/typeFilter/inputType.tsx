@@ -1,12 +1,9 @@
 import * as React from "react";
 import CheckBox from "./checkBox";
-import { IfiltersForm } from "../../../../../../types/types";
+import { IInputType, IfiltersForm } from "../../../../../../types/types";
 
-interface IInputType {
-  formData: IfiltersForm;
-  setFormData: (v: (k: IfiltersForm) => IfiltersForm) => void;
-}
 const InputType = ({ formData, setFormData }: IInputType): JSX.Element => {
+  //
   const setType = (value: string): void => {
     setFormData((prevState: IfiltersForm) => ({ ...prevState, type: value }));
   };

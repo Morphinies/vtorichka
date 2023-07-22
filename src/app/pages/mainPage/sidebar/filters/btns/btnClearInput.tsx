@@ -1,11 +1,8 @@
 import * as React from "react";
 import s from "../filters.module.css";
 import { cancelImg } from "../../../../../img/pictures";
+import { IBtnClearInput } from "../../../../../../types/types";
 
-interface IBtnClearInput {
-  value: string;
-  clearFilter: (v: string) => void;
-}
 const BtnClearInput = ({ value, clearFilter }: IBtnClearInput): JSX.Element => {
   return (
     <button
@@ -16,7 +13,7 @@ const BtnClearInput = ({ value, clearFilter }: IBtnClearInput): JSX.Element => {
       <img
         className={s.imgBtnClear}
         //  + " " + (rotation ? s.rotation : "")
-        src={String(cancelImg)}
+        src={cancelImg}
         alt="сбросить"
       />
     </button>

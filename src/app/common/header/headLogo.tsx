@@ -10,7 +10,7 @@ const HeadLogo = ({ logoName }: IHeadLogo): JSX.Element => {
   return (
     <Link to={""}>
       <div className={s.logoBlock}>
-        <img className={s.logoImg} src={String(logo)} alt="logo" />
+        <img className={s.logoImg} src={logo} alt="logo" />
         <h1 className={s.logoName}>{logoName}</h1>
       </div>
     </Link>

@@ -6,9 +6,9 @@ import arrowNext from "../../../img/arrowNext.svg";
 import { IBtnChangePhoto } from "../../../../types/types";
 
 const BtnChangePhoto = ({
-  prod,
   x,
   setX,
+  prod,
   maxVal,
   change,
 }: IBtnChangePhoto): JSX.Element => {
@@ -34,7 +34,7 @@ const BtnChangePhoto = ({
           }}
           className={s.btnChangeImg + " " + s.btnArrowBack}
         >
-          <img alt="" src={String(arrowBack)} className={s.arrowChangeImg} />
+          <img alt="" src={arrowBack} className={s.arrowChangeImg} />
         </button>
       )}
 
@@ -47,7 +47,7 @@ const BtnChangePhoto = ({
           }}
           className={s.btnChangeImg + " " + s.btnArrowNext}
         >
-          <img alt="" src={String(arrowNext)} className={s.arrowChangeImg} />
+          <img alt="" src={arrowNext} className={s.arrowChangeImg} />
         </button>
       )}
     </>

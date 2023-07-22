@@ -1,11 +1,7 @@
 import * as React from "react";
 import s from "../products.module.css";
+import { IProductsNumb } from "../../../../types/types";
 
-interface IProductsNumb {
-  setChoosedPage: (val: number) => void;
-  productsNumbOnPage: number;
-  setProductsNumbOnPage: (val: number) => void;
-}
 const ProductsNumb = ({
   setChoosedPage,
   productsNumbOnPage,

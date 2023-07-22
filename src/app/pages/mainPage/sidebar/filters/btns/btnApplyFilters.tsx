@@ -1,11 +1,7 @@
 import * as React from "react";
 import s from "../filters.module.css";
+import { IBtnApplyFilters } from "../../../../../../types/types";
 
-interface IBtnApplyFilters {
-  action: () => void;
-  img: string;
-  name: string;
-}
 const BtnApplyFilters = ({
   action,
   img,

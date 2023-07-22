@@ -29,10 +29,10 @@ async function fetchAll(): Promise<string[]> {
 
 // update api request
 async function update(id: string): Promise<string[]> {
-  const user: Iseller = JSON.parse(localStorage.getItem("user"));
-  if (user) {
+  const userId: string = JSON.parse(localStorage.getItem("user"));
+  if (userId) {
     const favorites: string[] = await api.users.editUserFavorites({
-      userId: user,
+      userId: userId,
       prodId: id,
     });
     return favorites;

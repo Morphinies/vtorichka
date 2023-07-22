@@ -66,7 +66,7 @@ const ProdInfo = ({
   };
 
   // удобочитаемое представление суммы
-  const regExpPrice = (number: number) => {
+  const regExpPrice = (number: string) => {
     return Number(number)
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, " ");

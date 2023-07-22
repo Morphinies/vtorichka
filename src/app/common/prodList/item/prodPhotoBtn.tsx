@@ -2,11 +2,8 @@ import * as React from "react";
 import s from "../products.module.css";
 import { Link } from "react-router-dom";
 import { plug } from "../../../img/pictures";
-import { Iprod } from "../../../../types/types";
+import { IProdPhotoBtn } from "../../../../types/types";
 
-interface IProdPhotoBtn {
-  prod: Iprod;
-}
 const ProdPhotoBtn = ({ prod }: IProdPhotoBtn): JSX.Element => {
   return prod.photo.length ? (
     <>

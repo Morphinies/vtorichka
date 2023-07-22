@@ -1,10 +1,7 @@
 import * as React from "react";
 import s from "./search.module.css";
+import { ISearchInput } from "../../../../types/types";
 
-interface ISearchInput {
-  textSearch: string;
-  setTextSearch: (v: string) => void;
-}
 const SearchInput = ({
   textSearch,
   setTextSearch,

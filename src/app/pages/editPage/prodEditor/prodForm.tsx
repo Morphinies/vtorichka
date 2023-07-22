@@ -57,7 +57,6 @@ const ProdForm = ({ editorProd }: IProdForm): JSX.Element => {
     e.preventDefault();
     formIsValid ? handleForm() : setErrorsHidden(false);
   };
-  console.log(errors);
   // проверка полей на валидность
   useEffect(() => {
     setErrorsHidden(true);
@@ -82,7 +81,6 @@ const ProdForm = ({ editorProd }: IProdForm): JSX.Element => {
         formIsValid && navigate(-1);
       }, 1500);
   }, [responseMes, formIsValid, navigate]);
-
   return (
     <form onSubmit={(e) => handleSubmit(e)} className={s.editForm}>
       <TextField

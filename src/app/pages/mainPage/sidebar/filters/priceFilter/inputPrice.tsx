@@ -1,20 +1,14 @@
 import * as React from "react";
 import s from "../filters.module.css";
 import BtnClearInput from "../btns/btnClearInput";
-import { IfiltersForm } from "../../../../../../types/types";
+import { IInputPrice, IfiltersForm } from "../../../../../../types/types";
 
-interface IPriceFilter {
-  name: string;
-  value: string;
-  formData: IfiltersForm;
-  setFormData: (v: (t: IfiltersForm) => IfiltersForm) => void;
-}
 const InputPrice = ({
   name,
   value,
   formData,
   setFormData,
-}: IPriceFilter): JSX.Element => {
+}: IInputPrice): JSX.Element => {
   // регулярное выражение для представления цены
   const regExpPrice = (number: string) => {
     return number.replace(/\B(?=(\d{3})+(?!\d))/g, " ");

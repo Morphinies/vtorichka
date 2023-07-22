@@ -1,13 +1,8 @@
 import * as React from "react";
 import s from "./search.module.css";
+import { IDropDownList } from "../../../../types/types";
 import { Link, useSearchParams } from "react-router-dom";
-import { Iprod } from "../../../../types/types";
 
-interface IDropDownList {
-  selectedList: Iprod[];
-  textSearch: string;
-  setTextSearch: (v: string) => void;
-}
 const DropDownList = ({
   selectedList,
   textSearch,

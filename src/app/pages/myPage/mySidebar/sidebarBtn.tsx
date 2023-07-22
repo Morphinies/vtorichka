@@ -1,11 +1,8 @@
 import * as React from "react";
 import s from "../myPage.module.css";
 import { NavLink } from "react-router-dom";
+import { ISidebarBtn } from "../../../../types/types";
 
-interface ISidebarBtn {
-  link: string;
-  btnName: string;
-}
 const SidebarBtn = ({ link, btnName }: ISidebarBtn): JSX.Element => {
   return (
     <NavLink

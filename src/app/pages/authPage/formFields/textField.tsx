@@ -1,6 +1,6 @@
 import * as React from "react";
 import s from "../auth.module.css";
-import { ITextField, Iform } from "../../../../types/types";
+import { ILogupform, ITextField } from "../../../../types/types";
 
 const TextField = ({
   type,
@@ -15,7 +15,10 @@ const TextField = ({
   // обновление поля
   const updateField = (value: string) => {
     clearErr(formName);
-    setFormValues((prevState: Iform) => ({ ...prevState, [formName]: value }));
+    setFormValues((prevState: ILogupform) => ({
+      ...prevState,
+      [formName]: value,
+    }));
   };
 
   return (
@@ -26,6 +29,7 @@ const TextField = ({
         </label>
         <input
           type={type}
+          id={formName}
           name={formName}
           maxLength={maxLength}
           value={formValue ? formValue : ""}

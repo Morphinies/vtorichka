@@ -3,13 +3,9 @@ import s from "./products.module.css";
 import ProductsList from "./productsList";
 import ProductsNav from "./nav/productsNav";
 import { useEffect, useState } from "react";
-import { Iprod } from "../../../types/types";
-// import { useSearchParams } from "react-router-dom";
+import { Iprod, IProducts } from "../../../types/types";
 
-interface IprodList {
-  prodList: Iprod[];
-}
-const Products = ({ prodList }: IprodList): JSX.Element => {
+const Products = ({ prodList }: IProducts): JSX.Element => {
   const [choosedPage, setChoosedPage] = useState<number>(1);
   const [productsNumbOnPage, setProductsNumbOnPage] = useState<number>(5);
   const [productsOnPage, setProductsOnPage] = useState<Iprod[]>([]);
@@ -37,7 +33,7 @@ const Products = ({ prodList }: IprodList): JSX.Element => {
       <ProductsList productsOnPage={productsOnPage} />
       <ProductsNav
         choosedPage={choosedPage}
-        pageNumbersArr={pageNumbersArr} //назначить
+        pageNumbersArr={pageNumbersArr}
         setChoosedPage={setChoosedPage}
         productsNumbOnPage={productsNumbOnPage}
         setProductsNumbOnPage={setProductsNumbOnPage}

@@ -2,13 +2,8 @@ import * as React from "react";
 import s from "../filters.module.css";
 import v from "../../sidebar.module.css";
 import { checked } from "../../../../../img/pictures";
-import { IfiltersForm } from "../../../../../../types/types";
+import { ICheckBox } from "../../../../../../types/types";
 
-interface ICheckBox {
-  tick: (v: string) => void;
-  name: string;
-  formData: IfiltersForm;
-}
 const CheckBox = ({ tick, name, formData }: ICheckBox): JSX.Element => {
   const isActive = formData.type === name || !formData.type;
   return (
@@ -23,7 +18,7 @@ const CheckBox = ({ tick, name, formData }: ICheckBox): JSX.Element => {
         <div className={s.checkBox}>
           <img
             alt={name}
-            src={String(checked)}
+            src={checked}
             className={s.imgCheckBox + " " + (isActive ? "" : s.imgHidden)}
           />
         </div>

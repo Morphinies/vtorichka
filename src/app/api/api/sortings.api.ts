@@ -1,14 +1,18 @@
 import sortArrowImg from "../../img/arrowSort.svg";
 import sortArrowDownImg from "../../img/arrowSortDown.svg";
 
-const sortings = [
+interface Isorting {
+  name: string;
+  img: string;
+}
+const sortings: Isorting[] = [
   { name: "с новых", img: sortArrowDownImg },
   { name: "со старых", img: sortArrowImg },
   { name: "с дорогих", img: sortArrowDownImg },
   { name: "с дешевых", img: sortArrowImg },
 ];
 
-const fetchAll = () =>
+const fetchAll = (): Promise<Isorting[]> =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(sortings);

@@ -4,7 +4,7 @@ import s from "../../editor.module.css";
 import CatFieldList from "./catFieldList";
 import { useEffect, useState } from "react";
 import CatFieldBtnOpenList from "./catFieldBtnOpenList";
-import { ICatField } from "../../../../../types/types";
+import { ICatField, IcatItem } from "../../../../../types/types";
 
 const CatField = ({
   label,
@@ -13,7 +13,7 @@ const CatField = ({
   errorsHidden,
   setFormValues,
 }: ICatField): JSX.Element => {
-  const [catList, setCatList] = useState();
+  const [catList, setCatList] = useState<IcatItem[]>();
   const [listOpened, setListOpened] = useState(false);
 
   useEffect(() => {
@@ -30,12 +30,11 @@ const CatField = ({
             listOpened={listOpened}
             setListOpened={setListOpened}
           />
-
           {listOpened && (
             <CatFieldList
               catList={catList}
               formValue={catValue}
-              setFormValues={() => setFormValues}
+              setFormValues={setFormValues}
               hideCatalog={() => setListOpened(false)}
             />
           )}

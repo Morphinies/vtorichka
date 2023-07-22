@@ -1,11 +1,7 @@
 import * as React from "react";
 import s from "../prodCard.module.css";
+import { IProdMainInfo } from "../../../../../types/types";
 
-interface IProdMainInfo {
-  place: string;
-  category: string;
-  type: string;
-}
 const ProdMainInfo = ({
   place,
   category,

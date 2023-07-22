@@ -12,7 +12,7 @@ const BtnFind = ({ isDisabled }: IBtnFind) => {
       disabled={isDisabled}
       id={!isDisabled ? s.searchBtnFormNotEmpty : s.searchBtn}
     >
-      <img className={s.searchImg} src={String(searchImg)} alt="поиск" />
+      <img className={s.searchImg} src={searchImg} alt="поиск" />
     </button>
   );
 };

@@ -1,13 +1,13 @@
 import api from "../../api";
+import * as React from "react";
 import s from "./products.module.css";
 import ProdItem from "./item/prodItem";
-import * as React from "react";
 import { useEffect, useState } from "react";
 import { IProductsList, Iprod } from "../../../types/types";
 
 const ProductsList = ({ productsOnPage }: IProductsList): JSX.Element => {
   // избранные товары
-  const [favoriteProducts, setFavoriteProducts] = useState<string>();
+  const [favoriteProducts, setFavoriteProducts] = useState<string[]>();
 
   // обозначение "избранного" у user'a
   useEffect(() => {

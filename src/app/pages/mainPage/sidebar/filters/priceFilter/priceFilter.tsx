@@ -1,14 +1,8 @@
 import * as React from "react";
 import InputPrice from "./inputPrice";
 import BtnOpenFilter from "../btns/btnOpenFilter";
-import { IfiltersForm } from "../../../../../../types/types";
+import { IPriceFilter } from "../../../../../../types/types";
 
-interface IPriceFilter {
-  isOpen: boolean;
-  formData: IfiltersForm;
-  openFilter: () => void;
-  setFormData: (v: IfiltersForm) => void;
-}
 const PriceFilter = ({
   isOpen,
   formData,
@@ -24,13 +18,13 @@ const PriceFilter = ({
             name="от"
             value="minPrice"
             formData={formData}
-            setFormData={() => setFormData}
+            setFormData={setFormData}
           />
           <InputPrice
             name="до"
             value="maxPrice"
             formData={formData}
-            setFormData={() => setFormData}
+            setFormData={setFormData}
           />
         </>
       )}

@@ -1,6 +1,6 @@
-import { Ierror, Iform } from "../../types/types";
+import { Ierror } from "../../types/types";
 
-export function errHandler(form: Iform): Ierror {
+export function errHandler(form: any): Ierror {
   const password = form.password || "";
   const errors: Ierror = {};
 
@@ -87,7 +87,7 @@ export function errHandler(form: Iform): Ierror {
 
   for (let formItemKey in form) {
     const key: string = formItemKey;
-    const value: string = form[key as keyof Iform];
+    const value: string = form[key];
     switch (key) {
       case "name":
         nameChars(key, value);

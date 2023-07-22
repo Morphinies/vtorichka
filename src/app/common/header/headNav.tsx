@@ -1,78 +1,69 @@
 import * as React from "react";
 import HeadBtn from "./headBtn";
 import s from "./header.module.css";
-import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const HeadNav = (): JSX.Element | undefined => {
+const HeadNav = (): JSX.Element => {
+  const navigate = useNavigate();
   const userIdLS = localStorage.getItem("user");
-  const userId: string | null = userIdLS ? JSON.parse(userIdLS) : null;
+  const userId: string = userIdLS ? JSON.parse(userIdLS) : "";
 
-  let currentPage: string = useLocation().pathname;
-
-  const navigate: NavigateFunction = useNavigate();
+  let currentPage = useLocation().pathname;
 
   const output = (): void => {
     navigate("/");
     localStorage.removeItem("user");
   };
 
-  switch (currentPage) {
-    // главная
-    case "/":
-      return (
-        <nav className={s.navBlock}>
-          {!userId ? (
-            <>
-              <HeadBtn name={"регистрация"} link={"/signup"} />
-              <HeadBtn name={"вход"} link={"/logup"} />
-            </>
-          ) : (
-            <>
-              <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />
-              <HeadBtn name={"выход"} link={"/"} action={output} />
-            </>
-          )}
-        </nav>
-      );
+  return (
+    <nav className={s.navBlock}>
+      {/* навигация главной страницы */}
+      {currentPage === "/" &&
+        (!userId ? (
+          <>
+            <HeadBtn name={"регистрация"} link={"/signup"} />
+            <HeadBtn name={"вход"} link={"/logup"} />
+          </>
+        ) : (
+          <>
+            <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />
+            <HeadBtn name={"выход"} link={"/"} action={output} />
+          </>
+        ))}
 
-    // продукт
-    case currentPage.match(/^\/\w{24}$/)?.input:
-      return (
-        <nav className={s.navBlock}>
+      {/* навигация страницы продукта */}
+      {currentPage.match(/^\/\w{24}$/)?.input && (
+        <>
           <HeadBtn name={"на главную"} link={"/"} />
           {userId && <HeadBtn name={"личный кабинет"} link={"/personal/bio"} />}
-        </nav>
-      );
+        </>
+      )}
 
-    // авторизация
-    case "/logup":
-      return (
-        <nav className={s.navBlock}>
+      {/* навигация страницы авторизации */}
+      {currentPage === "/logup" && (
+        <>
           <HeadBtn name={"на главную"} link={"/"} />
           {!userId && <HeadBtn name={"регистрация"} link={"/signup"} />}
-        </nav>
-      );
+        </>
+      )}
 
-    // регистрация
-    case "/signup":
-      return (
-        <nav className={s.navBlock}>
+      {/* навигация страницы регистрация */}
+      {currentPage === "/signup" && (
+        <>
           <HeadBtn name={"на главную"} link={"/"} />
           {!userId && <HeadBtn name={"вход"} link={"/logup"} />}
-        </nav>
-      );
+        </>
+      )}
 
-    // личная страница
-    case currentPage.match(/^\/personal/)?.input:
-      return (
-        <nav className={s.navBlock}>
+      {/* {навигация личной страницы */}
+      {currentPage.match(/^\/personal/)?.input && (
+        <>
           <HeadBtn name={"на главную"} link={"/"} />
           {userId && <HeadBtn name={"выход"} link={"/"} action={output} />}
-        </nav>
-      );
-    default:
-      console.log();
-  }
+        </>
+      )}
+    </nav>
+  );
 };
 
 export default HeadNav;

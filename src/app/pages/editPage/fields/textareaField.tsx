@@ -21,7 +21,7 @@ const TextareaField = ({
 
   return (
     <div className={s.inputField}>
-      <label className={s.label} htmlFor={fieldId}>
+      <div className={s.label}>
         <p className={s.labelText}>{label}:</p>
         <textarea
           id={fieldId}
@@ -36,7 +36,7 @@ const TextareaField = ({
           }
           onChange={(e) => updateField(e.target.value)}
         ></textarea>
-      </label>
+      </div>
       <p className={s.errorMessage}>
         {!errorsHidden && error.message ? error.message + " *" : ""}
       </p>

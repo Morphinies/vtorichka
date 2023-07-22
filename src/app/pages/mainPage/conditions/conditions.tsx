@@ -4,8 +4,6 @@ import ConditionBtn from "./conditionBtn";
 import condTransform from "./condTransform";
 import { useSearchParams } from "react-router-dom";
 
-type condType = { name: string; value: string; key: string };
-
 const Conditions = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const conditions = condTransform(searchParams); // search params to array
@@ -17,7 +15,7 @@ const Conditions = (): JSX.Element => {
 
   return (
     <div className={s.conditions}>
-      {conditions.map((cond: condType) => (
+      {conditions.map((cond) => (
         <ConditionBtn
           cond={cond}
           key={cond.key}

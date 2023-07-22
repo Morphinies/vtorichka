@@ -1,16 +1,16 @@
 import * as React from "react";
 import UserName from "./userName";
 import UserAbout from "./userAbout";
+import s from "../myPage.module.css";
 import BtnEditBio from "./btnEditBio";
 import UserAvatar from "./userAvatar";
 import UserRaiting from "./userRaiting";
 import UserReviews from "./userReviews";
-import s from "../myPage.module.css";
 import { useLoaderData } from "react-router-dom";
 import { Iseller } from "../../../../types/types";
 
 const User = () => {
-  const user: Iseller = useLoaderData();
+  const user = useLoaderData() as Iseller;
 
   return (
     user && (

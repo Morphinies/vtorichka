@@ -4,14 +4,8 @@ import { useEffect, useState } from "react";
 import s from "./sorting.module.css";
 import v from "../sidebar.module.css";
 import BtnDisplayBlock from "../btnDisplayBlock";
+import { ISortingBlock } from "../../../../../types/types";
 
-interface ISortingBlock {
-  btnName: string;
-  searchParams: URLSearchParams;
-  openedSideBar: string;
-  setSearchParams: (v: URLSearchParams) => void;
-  changeOpenedSideBar: (v: string) => void;
-}
 const SortingBlock = ({
   btnName,
   searchParams,
@@ -19,7 +13,7 @@ const SortingBlock = ({
   setSearchParams,
   changeOpenedSideBar,
 }: ISortingBlock): JSX.Element => {
-  const defSort: string = "с новых";
+  const defSort = "с новых";
   const blockIsOpen: boolean = openedSideBar === btnName;
   const [activeSort, setActiveSort] = useState<string>(defSort);
 

@@ -1,12 +1,8 @@
 import * as React from "react";
 import s from "../products.module.css";
 import { useSearchParams } from "react-router-dom";
+import { IProductsPages } from "../../../../types/types";
 
-interface IProductsPages {
-  choosedPage: number;
-  setChoosedPage: (val: number) => void;
-  pageNumbersArr: number[];
-}
 const ProductsPages = ({
   choosedPage,
   setChoosedPage,

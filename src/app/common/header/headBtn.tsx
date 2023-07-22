@@ -1,12 +1,7 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import s from "./header.module.css";
-
-interface IHeadBtn {
-  name: string;
-  link: string;
-  action?: () => void;
-}
+import { Link } from "react-router-dom";
+import { IHeadBtn } from "../../../types/types";
 
 const HeadBtn = ({ name, link, action }: IHeadBtn): JSX.Element => {
   return (

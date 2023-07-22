@@ -8,20 +8,8 @@ import TextField from "../formFields/textField";
 import Loading from "../../../common/loading/loading";
 import { errHandler } from "../../../utils/errHandler";
 import ResponseMes from "../../../common/responseMes/responseMes";
-import { IProdFormErr } from "../../../../types/types";
+import { ISignupForm, ISignupFormErrors } from "../../../../types/types";
 
-interface ISignupForm {
-  name?: string;
-  email?: string;
-  password?: string;
-  rePassword?: string;
-}
-interface ISignupFormErrors {
-  name?: IProdFormErr;
-  email?: IProdFormErr;
-  password?: IProdFormErr;
-  rePassword?: IProdFormErr;
-}
 const SignupWindow = () => {
   const defForm: ISignupForm = {
     name: "",

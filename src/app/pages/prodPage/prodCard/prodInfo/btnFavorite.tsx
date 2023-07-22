@@ -2,11 +2,8 @@ import * as React from "react";
 import s from "../prodCard.module.css";
 import { heart } from "../../../../img/pictures";
 import { heartFill } from "../../../../img/pictures";
+import { IBtnFavorite } from "../../../../../types/types";
 
-interface IBtnFavorite {
-  isFavorite: boolean;
-  updateFavorite: () => void;
-}
 const BtnFavorite = ({
   isFavorite,
   updateFavorite,
@@ -20,7 +17,7 @@ const BtnFavorite = ({
         alt=""
         title="избранное"
         className={s.prodBtnImg}
-        src={String(isFavorite ? heartFill : heart)}
+        src={isFavorite ? heartFill : heart}
       />
     </button>
   );

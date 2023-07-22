@@ -4,11 +4,8 @@ import BtnReset from "./btnReset";
 import s from "./search.module.css";
 import SearchInput from "./searchInput";
 import { useSearchParams } from "react-router-dom";
+import { ISearchForm } from "../../../../types/types";
 
-interface ISearchForm {
-  textSearch: string;
-  setTextSearch: (v: string) => void;
-}
 const SearchForm = ({ textSearch, setTextSearch }: ISearchForm) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchedName = searchParams.get("name");

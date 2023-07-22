@@ -20,7 +20,7 @@ const AvatarField = ({ avatar }: { avatar: string }) => {
         />
       ) : (
         <img
-          src={String(plus)}
+          src={plus}
           alt="avatar"
           title="выбрать аватар"
           className={s.avatarImgAdd}

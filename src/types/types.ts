@@ -1,3 +1,72 @@
+// buttons
+
+export interface IHeadBtn {
+  name: string;
+  link: string;
+  action?: () => void;
+}
+export interface IBtnDisplayBlock {
+  btnName: string;
+  blockHidden: boolean;
+  hideBlock: () => void;
+}
+
+export interface IBtnsChangeImg {
+  imgTotal: number;
+  showedImg: number;
+  imgBack: () => void;
+  imgForward: () => void;
+}
+
+export interface IBtnFavorite {
+  isFavorite: boolean;
+  updateFavorite: () => void;
+}
+
+export interface IBtnsOfProd {
+  product: Iprod;
+  seller: Iseller;
+  isFavorite: boolean;
+  updateFavorite: () => void;
+}
+
+export interface IBtnChangePhoto {
+  x: number;
+  prod: Iprod;
+  maxVal: number;
+  change: "prev" | "next";
+  setX: (x: number) => void;
+}
+
+export type ProdPhotoType = Omit<IBtnChangePhoto, "change">;
+
+export interface IProdPhotoBtn {
+  prod: Iprod;
+}
+
+export interface IBtnAuth {
+  name: string;
+  isValid: boolean;
+}
+
+export interface ICatFieldBtnOpenList {
+  setListOpened: (v: (t: boolean) => boolean) => void;
+  listOpened: boolean;
+  catValue: string;
+}
+
+export interface IConditionBtn {
+  cond: IcondType;
+  clearCondition: (v: string) => void;
+}
+
+export interface ISidebarBtn {
+  link: string;
+  btnName: string;
+}
+
+// products
+
 export interface Iprod {
   category?: string;
   data?: string;
@@ -12,58 +81,87 @@ export interface Iprod {
   _id?: string;
 }
 
-export interface IBtnChangePhoto {
-  x: number;
-  setX: (x: number) => void;
-  maxVal: number;
-  change: "prev" | "next";
-  prod: Iprod;
-}
-
 export interface IProdInfo {
+  prod: Iprod;
   isFavorite?: boolean;
   updateFavorites?: (id: string) => void;
-  prod: Iprod;
 }
 
 export interface IProdItem extends IProdInfo {
   maxVal: number;
 }
 
-export type ProdPhotoType = Omit<IBtnChangePhoto, "change">;
-
-export interface Ierror {
-  name?: IProdFormErr;
-  login?: IProdFormErr;
-  email?: IProdFormErr;
-  password?: IProdFormErr;
-  rePassword?: IProdFormErr;
+export interface IProductsNumb {
+  setChoosedPage: (val: number) => void;
+  productsNumbOnPage: number;
+  setProductsNumbOnPage: (val: number) => void;
 }
 
-export interface Iform {
-  login?: string;
-  password?: string;
+export interface IProductsNav extends IProductsNumb {
+  choosedPage: number;
+  pageNumbersArr: number[];
 }
 
-export interface IBtnAuth {
-  name: string;
-  isValid: boolean;
+export interface IProductsPages {
+  choosedPage: number;
+  setChoosedPage: (val: number) => void;
+  pageNumbersArr: number[];
 }
 
-export interface ITextField {
-  type: string;
-  label: string;
-  error: IProdFormErr;
-  formName?: string;
-  maxLength: number;
-  formValue: string;
-  clearErr?: (val: string) => void;
-  setFormValues: React.Dispatch<React.SetStateAction<Iprod | IUserFormValues>>;
+export interface IProducts {
+  prodList: Iprod[];
 }
 
 export interface IProductsList {
   productsOnPage: Iprod[];
 }
+
+export interface IProdMainInfo {
+  place: string;
+  category: string;
+  type: string;
+}
+
+// authorization
+
+export interface ILogupform {
+  login?: string;
+  password?: string;
+}
+
+export interface ILogupError {
+  login?: IProdFormErr;
+  password?: IProdFormErr;
+}
+
+export interface ISignupForm {
+  name?: string;
+  email?: string;
+  password?: string;
+  rePassword?: string;
+}
+
+export interface ISignupFormErrors {
+  name?: IProdFormErr;
+  email?: IProdFormErr;
+  password?: IProdFormErr;
+  rePassword?: IProdFormErr;
+}
+
+// auth input fields
+
+export interface ITextField {
+  type: string;
+  label: string;
+  formName?: string;
+  maxLength: number;
+  formValue: string;
+  error: IProdFormErr;
+  clearErr?: (val: string) => void;
+  setFormValues: React.Dispatch<React.SetStateAction<Iprod | IUserFormValues>>;
+}
+
+// edit input fields
 
 export interface ICatField {
   label: string;
@@ -73,121 +171,18 @@ export interface ICatField {
   setFormValues: React.Dispatch<React.SetStateAction<Iprod>>;
 }
 
-export interface IcatItem {
-  name?: string;
-  value?: IcatItem[];
-}
-export interface ICatFieldBtn {
-  curCat: IcatItem[];
-  catItem: IcatItem;
-  setCurCat: (t: (k: IcatItem[]) => IcatItem[]) => void;
-  formValue: string;
-  hideCatalog: () => void;
-  setFormValues: (t: (k: IcatItem[]) => IcatItem[]) => void;
-  visableCatList: IcatItem[];
-  setVisableCatList: (v: IcatItem[]) => void;
-  setVisableCatListDefault: () => void;
+export interface IChangePassword {
+  pasField: string;
+  errorsHidden: boolean;
+  formValues: IChangePasswordForm | IUserFormValues;
+  errors: IChangePasswordFormErr | IUserFormValuesErrors;
+  setPasField: React.Dispatch<React.SetStateAction<string>>;
+  setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
 }
 
-export interface ICatFieldList {
-  catList: IcatItem[];
-  formValue: string;
-  hideCatalog: () => void;
-  setFormValues: (t: (k: IcatItem[]) => IcatItem[]) => void;
+export interface IPasswordField extends Omit<ITextareaField, "setFormValues"> {
+  setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
 }
-
-export interface IBtnDisplayBlock {
-  btnName: string;
-  blockHidden: boolean;
-  hideBlock: () => void;
-}
-
-export interface ICatalog {
-  curCat: IcatItem[];
-  catList: IcatItem[];
-  hideCatalog: () => void;
-  searchParams: URLSearchParams;
-  setCatListDefault: () => void;
-  setCatList: (v: IcatItem[]) => void;
-  setSearchParams: (v: URLSearchParams) => void;
-  setCurCat: (v: (k: IcatItem[]) => IcatItem[]) => void;
-}
-
-export interface ICatalogBlock {
-  id: string;
-  btnName: string;
-  searchParams: URLSearchParams;
-  openedSideBar: string;
-  setSearchParams: (v: URLSearchParams) => void;
-  changeOpenedSideBar: (v: string) => void;
-}
-
-export interface ICatalogItem {
-  curCat: IcatItem[];
-  catItem: IcatItem;
-  displayCat: (v: IcatItem) => void;
-  choosedCat: string;
-}
-
-export interface IFiltersBlock {
-  id: string;
-  btnName: string;
-  openedSideBar: string;
-  searchParams: URLSearchParams;
-  changeOpenedSideBar: (v: string) => void;
-  setSearchParams: (v: URLSearchParams) => void;
-}
-
-export interface IfiltersForm {
-  minPrice?: string;
-  maxPrice?: string;
-  type?: string;
-}
-
-export interface IProdForm {
-  editorProd: Iprod;
-}
-
-export interface IProdFormErr {
-  name?: string;
-  message?: string;
-}
-
-export interface IProdFormErrors {
-  name?: IProdFormErr;
-  type?: IProdFormErr;
-  photo?: IProdFormErr;
-  price?: IProdFormErr;
-  category?: IProdFormErr;
-  description?: IProdFormErr;
-}
-
-export interface Iseller {
-  _id?: string;
-  phone?: string;
-  photo?: string;
-  name?: string;
-  avatar?: string;
-  rating?: number;
-  about?: string;
-  password?: string;
-  favorites?: string[];
-}
-
-export interface IBtnsChangeImg {
-  imgTotal: number;
-  showedImg: number;
-  imgBack: () => void;
-  imgForward: () => void;
-}
-
-export interface ICatFieldBtnOpenList {
-  setListOpened: (v: (t: boolean) => boolean) => void;
-  listOpened: boolean;
-  catValue: string;
-}
-
-//fields
 
 export interface IdefFieldProps {
   label: string;
@@ -214,29 +209,13 @@ export interface IFileField extends Omit<IdefFieldProps, "formValue"> {
   formValue: string[];
 }
 
-export interface IChangePasswordFormErr {
-  oldPas: IProdFormErr;
-  newPas: IProdFormErr;
-}
-export interface IChangePasswordForm {
-  oldPas?: string;
-  newPas: string;
+// edit form
+
+export interface IProdForm {
+  editorProd: Iprod;
 }
 
-export interface IChangePassword {
-  pasField: string;
-  errorsHidden: boolean;
-  errors: IChangePasswordFormErr | IUserFormValuesErrors;
-  formValues: IChangePasswordForm | IUserFormValues;
-  setPasField: React.Dispatch<React.SetStateAction<string>>;
-  setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
-}
-
-export interface IPasswordField extends Omit<ITextareaField, "setFormValues"> {
-  setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
-}
-
-//userForm
+//user edit form
 
 export interface IUserFormValues {
   _id?: string;
@@ -261,4 +240,229 @@ export interface IUserFormValuesErrors {
   password?: IProdFormErr;
   oldPas?: IProdFormErr;
   newPas?: IProdFormErr;
+}
+
+// conditions to choose goods
+
+export interface IcondType {
+  name?: string;
+  value?: string;
+  key?: string;
+}
+
+// search
+
+export interface ISearchInput {
+  textSearch: string;
+  setTextSearch: (v: string) => void;
+}
+
+export interface ISearchForm extends ISearchInput {}
+
+export interface IDropDownList extends ISearchInput {
+  selectedList: Iprod[];
+}
+
+// catalog
+
+export interface IcatItem {
+  name?: string;
+  value?: IcatItem[];
+}
+
+export interface ICatFieldList {
+  catList: IcatItem[];
+  formValue: string;
+  hideCatalog: () => void;
+  setFormValues: React.Dispatch<React.SetStateAction<Iprod>>;
+}
+
+export interface ICatFieldBtn extends Omit<ICatFieldList, "catList"> {
+  catItem: IcatItem;
+  curCat: IcatItem[];
+  visableCatList: IcatItem[];
+  setVisableCatListDefault: () => void;
+  setVisableCatList: (v: IcatItem[]) => void;
+  setCurCat: React.Dispatch<React.SetStateAction<IcatItem[]>>;
+}
+
+export interface ICatalog {
+  curCat: IcatItem[];
+  catList: IcatItem[];
+  hideCatalog: () => void;
+  searchParams: URLSearchParams;
+  setCatListDefault: () => void;
+  setCatList: (v: IcatItem[]) => void;
+  setSearchParams: (v: URLSearchParams) => void;
+  setCurCat: React.Dispatch<React.SetStateAction<IcatItem[]>>;
+}
+
+export interface ICatalogBlock {
+  id: string;
+  btnName: string;
+  searchParams: URLSearchParams;
+  openedSideBar: string;
+  setSearchParams: (v: URLSearchParams) => void;
+  changeOpenedSideBar: (v: string) => void;
+}
+
+export interface ICatalogItem {
+  curCat: IcatItem[];
+  catItem: IcatItem;
+  displayCat: (v: IcatItem) => void;
+  choosedCat: string;
+}
+
+// filters
+
+export interface IBtnApplyFilters {
+  img: string;
+  name: string;
+  action: () => void;
+}
+
+export interface IBtnClearInput {
+  value: string;
+  clearFilter: (v: string) => void;
+}
+
+export interface IBtnOpenFilter {
+  name: string;
+  isOpen: boolean;
+  action: (v: string) => void;
+}
+
+export interface IBtnsApplyFilters {
+  applyFilters: () => void;
+  clearFilters: () => void;
+}
+
+export interface IInputPrice {
+  name: string;
+  value: string;
+  formData: IfiltersForm;
+  setFormData: React.Dispatch<React.SetStateAction<IfiltersForm>>;
+}
+
+export interface IPriceFilter {
+  isOpen: boolean;
+  formData: IfiltersForm;
+  openFilter: (v: string) => void;
+  setFormData: (v: IfiltersForm) => void;
+}
+
+export interface ICheckBox {
+  name: string;
+  formData: IfiltersForm;
+  tick: (v: string) => void;
+}
+
+export interface IInputType {
+  formData: IfiltersForm;
+  setFormData: (v: (k: IfiltersForm) => IfiltersForm) => void;
+}
+
+export interface ITypeFilter {
+  isOpen: boolean;
+  formData: IfiltersForm;
+  openFilter: (v: string) => void;
+  setFormData: React.Dispatch<React.SetStateAction<IfiltersForm>>;
+}
+
+export interface IFilters {
+  openedFilter: string;
+  formData: IfiltersForm;
+  clearFilters: () => void;
+  applyFilters: () => void;
+  openFilter: (v: string) => void;
+  setFormData: React.Dispatch<React.SetStateAction<IfiltersForm>>;
+}
+
+// sorting
+
+export interface IFiltersBlock {
+  id: string;
+  btnName: string;
+  openedSideBar: string;
+  searchParams: URLSearchParams;
+  changeOpenedSideBar: (v: string) => void;
+  setSearchParams: (v: URLSearchParams) => void;
+}
+
+export interface IfiltersForm {
+  minPrice?: string;
+  maxPrice?: string;
+  type?: string;
+}
+
+export interface ISorting {
+  sort: (val: string) => void;
+  activeSort: string;
+}
+
+export interface ISortingBlock {
+  btnName: string;
+  searchParams: URLSearchParams;
+  openedSideBar: string;
+  setSearchParams: (v: URLSearchParams) => void;
+  changeOpenedSideBar: (v: string) => void;
+}
+
+export interface ISortingItem {
+  sort: (val: string) => void;
+  sortingItem: {
+    name: string;
+    img: string;
+  };
+  activeSort: string;
+}
+
+// seller
+export interface Iseller {
+  _id?: string;
+  phone?: string;
+  photo?: string;
+  name?: string;
+  avatar?: string;
+  rating?: number;
+  about?: string;
+  email?: string;
+  password?: string;
+  products: string[];
+  favorites?: string[];
+}
+
+// errors
+export interface Ierror {
+  name?: IProdFormErr;
+  login?: IProdFormErr;
+  email?: IProdFormErr;
+  password?: IProdFormErr;
+  rePassword?: IProdFormErr;
+}
+
+export interface IProdFormErr {
+  name?: string;
+  message?: string;
+}
+
+export interface IProdFormErrors {
+  name?: IProdFormErr;
+  type?: IProdFormErr;
+  photo?: IProdFormErr;
+  price?: IProdFormErr;
+  category?: IProdFormErr;
+  description?: IProdFormErr;
+}
+
+//forms
+
+export interface IChangePasswordFormErr {
+  oldPas: IProdFormErr;
+  newPas: IProdFormErr;
+}
+
+export interface IChangePasswordForm {
+  oldPas?: string;
+  newPas: string;
 }

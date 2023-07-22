@@ -3,11 +3,8 @@ import s from "../filters.module.css";
 import BtnApplyFilters from "./btnApplyFilters";
 import { apply } from "../../../../../img/pictures";
 import { reset } from "../../../../../img/pictures";
+import { IBtnsApplyFilters } from "../../../../../../types/types";
 
-interface IBtnsApplyFilters {
-  applyFilters: () => void;
-  clearFilters: () => void;
-}
 const BtnsApplyFilters = ({
   applyFilters,
   clearFilters,

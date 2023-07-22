@@ -1,20 +1,19 @@
 import api from "../../api";
-import Sidebar from "./sidebar/sidebar";
-import Conditions from "./conditions/conditions";
 import * as React from "react";
+import Search from "./search/search";
+import Sidebar from "./sidebar/sidebar";
 import { useEffect, useState } from "react";
+import { Iprod } from "../../../types/types";
+import Conditions from "./conditions/conditions";
 import Products from "../../common/prodList/products";
 import {
-  Navigation,
   useLoaderData,
   useNavigation,
   useSearchParams,
 } from "react-router-dom";
-import Search from "./search/search";
-import { Iprod } from "../../../types/types";
 
 const MainPage = () => {
-  const navigation: Navigation = useNavigation();
+  const navigation = useNavigation();
   const defProducts = useLoaderData() as Iprod[];
   const [searchParams] = useSearchParams();
   const [prodList, setProdList] = useState(defProducts);

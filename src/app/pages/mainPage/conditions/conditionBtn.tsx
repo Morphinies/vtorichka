@@ -1,15 +1,8 @@
 import * as React from "react";
 import s from "./conditions.module.css";
 import { cancelImg } from "../../../img/pictures";
+import { IConditionBtn } from "../../../../types/types";
 
-interface IConditionBtn {
-  cond: {
-    key: string;
-    name: string;
-    value: string;
-  };
-  clearCondition: (v: string) => void;
-}
 const ConditionBtn = ({ cond, clearCondition }: IConditionBtn): JSX.Element => {
   return (
     <button

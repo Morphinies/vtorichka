@@ -3,6 +3,7 @@ import s from "./loading.module.css";
 import { useState, useEffect } from "react";
 
 const Loading = (): JSX.Element => {
+  //анимация загрузки "Точки"
   const [pointsNumb, setPointsNumb] = useState<number>(1);
 
   useEffect(() => {

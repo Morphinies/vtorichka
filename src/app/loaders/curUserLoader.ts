@@ -1,22 +1,13 @@
+import { Iseller } from "../../types/types";
 import api from "../api";
 
-interface Iuser {
-  _id: string;
-  name: string;
-  about: string;
-  phone: string;
-  email: string;
-  avatar: string;
-  products: string[];
-  favorites: string[];
-}
-export async function curUserloader(): Promise<Iuser> {
+export async function curUserloader(): Promise<Iseller | string> {
   const currentUserId: string = JSON.parse(localStorage.getItem("user"));
-  let curUserData: null | Iuser;
+  let curUserData: string | Iseller;
   if (currentUserId) {
     curUserData = await api.users.fetchById(currentUserId);
   } else {
-    curUserData = null;
+    curUserData = "";
   }
   return curUserData;
 }

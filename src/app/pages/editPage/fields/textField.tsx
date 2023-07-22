@@ -79,7 +79,7 @@ const TextField = ({
 
   return (
     <div className={s.inputField}>
-      <label className={s.label} htmlFor={fieldId}>
+      <div className={s.label}>
         <p className={s.labelText}>{label}:</p>
         <input
           type={type}
@@ -91,7 +91,7 @@ const TextField = ({
           maxLength={maxLength}
           onChange={(e) => updateField(e.target.value)}
         />
-      </label>
+      </div>
       <p className={s.errorMessage}>{errors ? error.message + " *" : ""}</p>
     </div>
   );

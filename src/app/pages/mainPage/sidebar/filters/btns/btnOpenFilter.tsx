@@ -1,12 +1,8 @@
 import * as React from "react";
 import v from "../../sidebar.module.css";
 import { arrowDown } from "../../../../../img/pictures";
+import { IBtnOpenFilter } from "../../../../../../types/types";
 
-interface IBtnOpenFilter {
-  name: string;
-  action: (v: string) => void;
-  isOpen: boolean;
-}
 const BtnOpenFilter = ({
   name,
   action,
@@ -20,7 +16,7 @@ const BtnOpenFilter = ({
       id={isOpen ? v.openCatItem : ""}
     >
       <p className={v.btnDisplayCatText}>{name}</p>
-      <img className={v.imgArrowDown} alt="" src={String(arrowDown)} />
+      <img className={v.imgArrowDown} alt="" src={arrowDown} />
     </button>
   );
 };

@@ -5,14 +5,8 @@ import BtnWrite from "./btnWrite";
 import s from "../prodCard.module.css";
 import BtnFavorite from "./btnFavorite";
 import { useEffect, useState } from "react";
-import { Iprod, Iseller } from "../../../../../types/types";
+import { IBtnsOfProd } from "../../../../../types/types";
 
-interface IBtnsOfProd {
-  product: Iprod;
-  isFavorite: boolean;
-  updateFavorite: () => void;
-  seller: Iseller;
-}
 const BtnsOfProd = ({
   product,
   isFavorite,

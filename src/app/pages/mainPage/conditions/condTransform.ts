@@ -1,10 +1,11 @@
-type condType = { key?: string; value?: string; name?: string };
+import { IcondType } from "../../../../types/types";
+
 export default function condTransform(
   searchParams: URLSearchParams
-): condType[] {
-  const conditions: condType[] = [];
+): IcondType[] {
+  const conditions: IcondType[] = [];
   for (let [key, value] of searchParams.entries()) {
-    const cond: condType = {};
+    const cond: IcondType = {};
     cond.key = key;
     cond.value = value;
     switch (key) {

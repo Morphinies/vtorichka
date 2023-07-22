@@ -1,15 +1,8 @@
 import * as React from "react";
 import s from "./sorting.module.css";
 import v from "../sidebar.module.css";
+import { ISortingItem } from "../../../../../types/types";
 
-interface ISortingItem {
-  sort: (val: string) => void;
-  sortingItem: {
-    name: string;
-    img: string;
-  };
-  activeSort: string;
-}
 const SortingItem = ({
   sort,
   sortingItem,

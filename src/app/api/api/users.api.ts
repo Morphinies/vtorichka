@@ -1,17 +1,24 @@
+import {
+  ILogupform,
+  ISignupForm,
+  IUserFormValues,
+  Iseller,
+} from "../../../types/types";
+
 // updated
-async function fetchAll() {
+async function fetchAll(): Promise<Iseller[]> {
   const response = await fetch("http://localhost:7000/api/users", {
     method: "GET",
     headers: { Accept: "application/json" },
   });
   if (response.ok === true) {
-    const users = await response.json();
+    const users: Iseller[] = await response.json();
     return users;
   }
 }
 
 // user by id api request
-async function fetchById(userId) {
+async function fetchById(userId: string): Promise<Iseller> {
   if (!userId) {
     return Promise.reject("id не указан");
   }
@@ -20,16 +27,16 @@ async function fetchById(userId) {
     headers: { Accept: "application/json" },
   });
   if (response.ok === true) {
-    const user = await response.json();
+    const user: Iseller = await response.json();
     return user;
   } else {
-    const err = await response.text();
+    const err: string = await response.text();
     return Promise.reject(err);
   }
 }
 
 // user edit api request
-async function editUser(user) {
+async function editUser(user: IUserFormValues): Promise<Iseller | string> {
   console.log(user);
   const response = await fetch("http://localhost:7000/api/users/editUser", {
     method: "PUT",
@@ -37,16 +44,19 @@ async function editUser(user) {
     body: JSON.stringify(user),
   });
   if (response.ok === true) {
-    const user = await response.json();
+    const user: Iseller = await response.json();
     return user;
   } else {
-    const err = await response.text();
+    const err: string = await response.text();
     return Promise.reject(err);
   }
 }
 
 // user favorites edit api request
-async function editUserFavorites(data) {
+async function editUserFavorites(data: {
+  userId: string;
+  prodId: string;
+}): Promise<string[]> {
   const response = await fetch(
     "http://localhost:7000/api/users/editUserFavorites",
     {
@@ -59,16 +69,16 @@ async function editUserFavorites(data) {
     }
   );
   if (response.ok === true) {
-    const favorites = await response.json();
+    const favorites: string[] = await response.json();
     return favorites;
   } else {
-    const err = await response.text();
+    const err: string = await response.text();
     return Promise.reject(err);
   }
 }
 
 // login api request
-async function logup(user) {
+async function logup(user: ILogupform): Promise<string> {
   const response = await fetch("http://localhost:7000/api/users/logup/", {
     method: "POST",
     headers: {
@@ -78,29 +88,29 @@ async function logup(user) {
     body: JSON.stringify(user),
   });
   if (response.ok === true) {
-    const user = await response.json();
+    const user: Iseller = await response.json();
     localStorage.setItem("user", JSON.stringify(user._id));
-    const message = `Добро пожаловать, ${user.name}!`;
+    const message: string = `Добро пожаловать, ${user.name}!`;
     return Promise.resolve(message);
   } else {
-    const err = await response.text();
+    const err: string = await response.text();
     return Promise.reject(err);
   }
 }
 
 // registration api request
-async function signup(user) {
+async function signup(user: ISignupForm): Promise<string> {
   const response = await fetch("http://localhost:7000/api/users/signup", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
     body: JSON.stringify(user),
   });
   if (response.ok === true) {
-    const userId = await response.text();
+    const userId: string = await response.text();
     localStorage.setItem("user", userId);
     return Promise.resolve("Регистрация прошла успешно!");
   } else {
-    const err = await response.text();
+    const err: string = await response.text();
     return Promise.reject(err);
   }
 }

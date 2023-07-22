@@ -9,26 +9,29 @@ import BtnForgotPassword from "./btnForgotPassword";
 import Loading from "../../../common/loading/loading";
 import { errHandler } from "../../../utils/errHandler";
 import ResponseMes from "../../../common/responseMes/responseMes";
-import { Ierror, Iform } from "../../../../types/types";
+import { ILogupError, ILogupform } from "../../../../types/types";
 
-const LogupWindow = () => {
+const LogupWindow = (): JSX.Element => {
   const navigate = useNavigate();
-  const [errors, setErrors] = useState<Ierror>({});
+  const [errors, setErrors] = useState<ILogupError>({});
   const [loading, setLoading] = useState<boolean>(false);
   const [responseMes, setResponseMes] = useState<string>();
-  const [formValues, setFormValues] = useState<Iform>({
+  const [formValues, setFormValues] = useState<ILogupform>({
     login: "",
     password: "",
   });
 
   // удаление ошибок по ключу поля
   const clearErr = (key: string): void => {
-    delete errors[key as keyof Ierror];
+    delete errors[key as keyof ILogupError];
     setErrors(errors);
   };
 
   // отправка данных
-  const sendData = (formValue: Iform, e: React.FormEvent<HTMLFormElement>) => {
+  const sendData = (
+    formValue: ILogupform,
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
     setLoading(true);
     const errors = errHandler(formValues);
