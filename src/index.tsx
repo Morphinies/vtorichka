@@ -12,13 +12,15 @@ import ErrorPage from "./app/pages/errorPage/errorPage";
 import Signup from "./app/pages/authPage/signup/signup";
 import MySales from "./app/pages/myPage/mySales/mySales";
 import { curUserloader } from "./app/loaders/curUserLoader";
-import { prodListLoader } from "./app/loaders/prodListLoader";
+// import { prodListLoader } from "./app/loaders/prodListLoader";
 import ProdCard from "./app/pages/prodPage/prodCard/prodCard";
 import MyProducts from "./app/pages/myPage/myProducts/myProducts";
 import ProdEditor from "./app/pages/editPage/prodEditor/prodEditor";
 import UserEditor from "./app/pages/editPage/userEditor/userEditor";
 import { userProductsLoader } from "./app/loaders/userProductsLoader";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +39,7 @@ const router = createBrowserRouter([
       // главная
       {
         path: "",
-        loader: prodListLoader,
+        // loader: prodListLoader,
         element: <MainPage />,
       },
       // карточка объявления
@@ -101,6 +103,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

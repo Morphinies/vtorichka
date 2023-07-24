@@ -21,6 +21,7 @@ const HeadNav = (): JSX.Element => {
       {currentPage === "/" &&
         (!userId ? (
           <>
+            <HeadBtn name={"избранное"} link={`/?favorites=true`} />
             <HeadBtn name={"регистрация"} link={"/signup"} />
             <HeadBtn name={"вход"} link={"/logup"} />
           </>

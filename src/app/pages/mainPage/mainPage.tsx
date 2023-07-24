@@ -6,27 +6,19 @@ import { useEffect, useState } from "react";
 import { Iprod } from "../../../types/types";
 import Conditions from "./conditions/conditions";
 import Products from "../../common/prodList/products";
-import {
-  useLoaderData,
-  useNavigation,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigation, useSearchParams } from "react-router-dom";
 
 const MainPage = () => {
   const navigation = useNavigation();
-  const defProducts = useLoaderData() as Iprod[];
   const [searchParams] = useSearchParams();
-  const [prodList, setProdList] = useState(defProducts);
+  const [prodList, setProdList] = useState<Iprod[]>([]);
 
-  // установка параметров поиска товаров
   useEffect(() => {
     const paramsStr: string = `?${searchParams.toString()}`;
-    paramsStr !== "?"
-      ? api.products
-          .fetchByParams(paramsStr)
-          .then((data: Iprod[]) => setProdList(data))
-      : setProdList(defProducts);
-  }, [searchParams, defProducts]);
+    api.products
+      .fetchByParams(paramsStr)
+      .then((data: Iprod[]) => setProdList(data));
+  }, [searchParams]);
 
   return (
     <main
