@@ -66,15 +66,15 @@ const SignupWindow = () => {
           label="имя"
           maxLength={30}
           formName="name"
-          error={errors.name}
           clearErr={clearErr}
+          error={errors.name}
           formValue={formValues.name}
           setFormValues={setFormValues}
         />
 
         {/* Почта */}
         <TextField
-          type="email"
+          type="name"
           label="почта"
           maxLength={300}
           formName="email"
@@ -111,10 +111,9 @@ const SignupWindow = () => {
         {/* кнопка зарегистрироваться */}
         <BtnAuth
           name="зарегистрироваться"
-          isValid={Boolean(Object.keys(errors).length)}
+          isValid={!Object.keys(errors).length}
         />
       </form>
-
       {loading && <Loading />}
       {responseMes && <ResponseMes message={responseMes} />}
     </div>

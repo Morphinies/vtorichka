@@ -1,6 +1,7 @@
 // buttons
 
 export interface IHeadBtn {
+  icon?: string;
   name: string;
   link: string;
   action?: () => void;

@@ -37,7 +37,7 @@ const TextField = ({
           className={s.input + " " + (error && s.inputError)}
         />
       </p>
-      <p className={s.errorMessage}>{error && error + " *"}</p>
+      <p className={s.errorMessage}>{error && error.message + " *"}</p>
     </div>
   );
 };
