@@ -5,6 +5,7 @@ import Products from "../../common/prodList/products";
 import { Iprod } from "../../../types/types";
 import api from "../../api";
 import { useDispatch, useSelector } from "react-redux";
+import { addCustomerAction } from "../../../store/customerReducer";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Favorites = () => {
   };
 
   const addCustomer = (name: string) => {
-    dispatch({ type: "ADD_CUSTOMER", payload: { name, id: Date.now() } });
+    dispatch(addCustomerAction({ name, id: Date.now() }));
   };
 
   const delCustomer = (id: number) => {
