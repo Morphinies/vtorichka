@@ -19,6 +19,7 @@ import ProdEditor from "./app/pages/editPage/prodEditor/prodEditor";
 import UserEditor from "./app/pages/editPage/userEditor/userEditor";
 import { userProductsLoader } from "./app/loaders/userProductsLoader";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Favorites from "./app/pages/favoritesPage/favorites";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
         path: "",
         // loader: prodListLoader,
         element: <MainPage />,
+      },
+      // избранное
+      {
+        path: "/favorites",
+        element: <Favorites />,
       },
       // карточка объявления
       {

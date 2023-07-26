@@ -20,6 +20,7 @@ import star from "./star.svg";
 import starFill from "./starFill.svg";
 import message from "./message.svg";
 import bin from "./bin.svg";
+import favorites from "./favorites.svg";
 
 export {
   plug,
@@ -44,4 +45,5 @@ export {
   star,
   starFill,
   bin,
+  favorites,
 };

@@ -47,21 +47,41 @@
 }
 
 .headerBtn {
+  padding: 0;
+  max-height: 100%;
   border: none;
-  color: #eee;
+  display: flex;
   align-self: flex-start;
   border: 1px solid #eee;
   border-radius: 0 0 5px 5px;
   border-top: none;
 }
 
+.headerBtn * {
+  transition: all 0.3s;
+}
+
+.headerBtn:hover * {
+  margin-top: 0.9rem;
+}
+
 .headerBtn:hover {
-  padding-top: 1rem;
   background-color: rgba(238, 238, 238, 0.1);
 }
 
 .headerBtn:active {
   background-color: rgba(238, 238, 238, 0.15);
+}
+
+.btnName {
+  color: #eee;
+  margin: 0.5rem 2rem;
+}
+
+.btnIcon {
+  height: 1.1875rem;
+  display: block;
+  margin: 0.5rem;
 }
 
 /* ************************ media ************************ */

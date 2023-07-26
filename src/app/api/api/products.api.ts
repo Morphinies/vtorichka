@@ -1,4 +1,5 @@
 import { Iprod } from "../../../types/types";
+import favorites from "./favorites.api";
 
 async function fetchAll(): Promise<Iprod[]> {
   const response = await fetch("http://localhost:7000/api/products", {
@@ -8,6 +9,20 @@ async function fetchAll(): Promise<Iprod[]> {
   if (response.ok === true) {
     const products: Iprod[] = await response.json();
     return products;
+  }
+}
+
+async function fetchFavorites(): Promise<Iprod[]> {
+  const favoritesList = await favorites.fetchAll();
+  if (!favoritesList.length) return [];
+  const response = await fetch("http://localhost:7000/api/products/favorites", {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify(favoritesList),
+  });
+  if (response.ok === true) {
+    const favoriteProdList: Iprod[] = await response.json();
+    return favoriteProdList;
   }
 }
 
@@ -106,10 +121,11 @@ const products = {
   fetchAll,
   editProd,
   fetchById,
+  deleteById,
   fetchByName,
   fetchBySeller,
   fetchByParams,
-  deleteById,
+  fetchFavorites,
 };
 
 export default products;

@@ -18,6 +18,14 @@ const ProdCardInfo = ({ product }: IProdCardInfo): JSX.Element => {
   const [seller, setSeller] = useState<Iseller>();
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
+  useEffect(() => {
+    api.favorites
+      .fetchAll()
+      .then((data) =>
+        data.includes(product._id) ? setIsFavorite(true) : setIsFavorite(false)
+      );
+  });
+
   // установка продавца
   useEffect(() => {
     api.users.fetchById(product.seller).then((data) => {

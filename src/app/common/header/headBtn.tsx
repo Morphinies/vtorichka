@@ -5,10 +5,12 @@ import { IHeadBtn } from "../../../types/types";
 
 const HeadBtn = ({ icon, name, link, action }: IHeadBtn): JSX.Element => {
   return (
-    <Link to={link}>
-      <button onClick={action} className={"btn " + s.headerBtn}>
-        {icon ? <img src={icon} alt={name} title={name} /> : name}
-      </button>
+    <Link to={link} onClick={action} className={"btn " + s.headerBtn}>
+      {icon ? (
+        <img className={s.btnIcon} src={icon} alt={name} title={name} />
+      ) : (
+        <p className={s.btnName}>{name}</p>
+      )}
     </Link>
   );
 };
