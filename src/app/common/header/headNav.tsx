@@ -2,7 +2,7 @@ import * as React from "react";
 import HeadBtn from "./headBtn";
 import s from "./header.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { heartFill } from "../../img/pictures";
+import { favorites } from "../../img/pictures";
 
 const HeadNav = (): JSX.Element => {
   const navigate = useNavigate();
@@ -19,8 +19,9 @@ const HeadNav = (): JSX.Element => {
   return (
     <nav className={s.navBlock}>
       {/* навигация главной страницы */}
-      <HeadBtn icon={heartFill} name={"избранное"} link={`/?favorites=true`} />
-      {currentPage === "/" &&
+      <HeadBtn icon={favorites} name={"избранное"} link={"/favorites"} />
+
+      {(currentPage === "/" || currentPage === "/favorites") &&
         (!userId ? (
           <>
             <HeadBtn name={"регистрация"} link={"/signup"} />
