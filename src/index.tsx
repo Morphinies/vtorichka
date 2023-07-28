@@ -20,6 +20,8 @@ import UserEditor from "./app/pages/editPage/userEditor/userEditor";
 import { userProductsLoader } from "./app/loaders/userProductsLoader";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Favorites from "./app/pages/favoritesPage/favorites";
+import { Provider } from "react-redux";
+import store from "./app/store/store";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +109,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

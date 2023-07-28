@@ -4,11 +4,15 @@ import ProductsList from "./productsList";
 import ProductsNav from "./nav/productsNav";
 import { useEffect, useState } from "react";
 import { Iprod, IProducts } from "../../../types/types";
+import { useSelector } from "react-redux";
 
 const Products = ({ prodList }: IProducts): JSX.Element => {
   const [choosedPage, setChoosedPage] = useState<number>(1);
   const [productsNumbOnPage, setProductsNumbOnPage] = useState<number>(5);
   const [productsOnPage, setProductsOnPage] = useState<Iprod[]>([]);
+  // choosedPage => pageNumb
+  const pageNumb = useSelector((state: any) => state.pageNumbReducer.value);
+  console.log(pageNumb);
 
   // обновление продуктов на странице
   useEffect(() => {
