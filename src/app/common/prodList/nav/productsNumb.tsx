@@ -1,17 +1,20 @@
 import * as React from "react";
 import s from "../products.module.css";
 import { IProductsNumb } from "../../../../types/types";
+import { useAppDispatch } from "../../../redux/hooks/hooks";
+import { setValue } from "../../../redux/slices/pageNumbSlice";
 
 const ProductsNumb = ({
-  setChoosedPage,
   productsNumbOnPage,
   setProductsNumbOnPage,
 }: IProductsNumb): JSX.Element => {
+  const dispatch = useAppDispatch();
+
   const handleClick = (numb: number) => {
     if (productsNumbOnPage !== numb) {
       window.scrollTo(0, 0);
       setProductsNumbOnPage(numb);
-      setChoosedPage(1);
+      dispatch(setValue(1));
     }
   };
 

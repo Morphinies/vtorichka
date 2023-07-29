@@ -20,8 +20,8 @@ import UserEditor from "./app/pages/editPage/userEditor/userEditor";
 import { userProductsLoader } from "./app/loaders/userProductsLoader";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Favorites from "./app/pages/favoritesPage/favorites";
+import { store } from "./app/redux/store/store";
 import { Provider } from "react-redux";
-import store from "./app/store/store";
 
 const router = createBrowserRouter([
   {

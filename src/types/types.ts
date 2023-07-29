@@ -93,19 +93,15 @@ export interface IProdItem extends IProdInfo {
 }
 
 export interface IProductsNumb {
-  setChoosedPage: (val: number) => void;
   productsNumbOnPage: number;
   setProductsNumbOnPage: (val: number) => void;
 }
 
 export interface IProductsNav extends IProductsNumb {
-  choosedPage: number;
   pageNumbersArr: number[];
 }
 
 export interface IProductsPages {
-  choosedPage: number;
-  setChoosedPage: (val: number) => void;
   pageNumbersArr: number[];
 }
 

@@ -2,19 +2,19 @@ import * as React from "react";
 import s from "../products.module.css";
 import { useSearchParams } from "react-router-dom";
 import { IProductsPages } from "../../../../types/types";
+import { selectPage, setValue } from "../../../redux/slices/pageNumbSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
 
-const ProductsPages = ({
-  choosedPage,
-  setChoosedPage,
-  pageNumbersArr,
-}: IProductsPages): JSX.Element => {
+const ProductsPages = ({ pageNumbersArr }: IProductsPages): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const choosedPage = useAppSelector(selectPage);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleClick = (pageNumb: number) => {
     window.scrollTo(0, 0);
-    setChoosedPage(pageNumb);
-    searchParams.set("page", String(pageNumb));
+    dispatch(setValue(pageNumb));
     setSearchParams(searchParams);
+    searchParams.set("page", String(pageNumb));
   };
 
   return (
