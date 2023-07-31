@@ -21,8 +21,11 @@ import starFill from "./starFill.svg";
 import message from "./message.svg";
 import bin from "./bin.svg";
 import favorites from "./favorites.svg";
+import favoritesFull from "./favoritesFull.svg";
+import cloud from "./cloud.svg";
 
 export {
+  cloud,
   plug,
   apply,
   arrowBack,
@@ -46,4 +49,5 @@ export {
   starFill,
   bin,
   favorites,
+  favoritesFull,
 };

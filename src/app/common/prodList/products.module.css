@@ -14,14 +14,6 @@
   grid-template-columns: repeat(auto-fill, 300px);
 }
 
-.noProdsText {
-  color: red;
-  padding: 2rem;
-  font-weight: 500;
-  text-align: center;
-  font-size: 1.25rem;
-}
-
 /*~~~~~~~~~~~~~~~~~~~~~ переход по страницам ~~~~~~~~~~~~~~~~~~~~~*/
 
 .pageNumber {
@@ -249,6 +241,27 @@
 
 .btnArrowNext:hover {
   padding-right: 0.2rem;
+}
+
+/* no Prods Message */
+
+.noProdsWrapper {
+  display: flex;
+  margin-top: 5rem;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.noProdsText {
+  color: red;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.cloudIcon {
+  width: 10rem;
 }
 
 @media (max-width: 480px) {

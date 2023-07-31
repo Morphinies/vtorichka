@@ -2,13 +2,12 @@ import * as React from "react";
 import HeadBtn from "./headBtn";
 import s from "./header.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { favorites } from "../../img/pictures";
+import { favorites, favoritesFull } from "../../img/pictures";
 
 const HeadNav = (): JSX.Element => {
   const navigate = useNavigate();
   const userIdLS = localStorage.getItem("user");
   const userId: string = userIdLS ? JSON.parse(userIdLS) : "";
-
   let currentPage = useLocation().pathname;
 
   const output = (): void => {
@@ -19,7 +18,11 @@ const HeadNav = (): JSX.Element => {
   return (
     <nav className={s.navBlock}>
       {/* навигация главной страницы */}
-      <HeadBtn icon={favorites} name={"избранное"} link={"/favorites"} />
+      {currentPage === "/favorites" ? (
+        <HeadBtn icon={favoritesFull} name={"избранное"} link={"/"} />
+      ) : (
+        <HeadBtn icon={favorites} name={"избранное"} link={"/favorites"} />
+      )}
 
       {(currentPage === "/" || currentPage === "/favorites") &&
         (!userId ? (

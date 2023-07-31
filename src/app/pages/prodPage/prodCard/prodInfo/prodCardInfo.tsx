@@ -9,22 +9,20 @@ import ProdMainInfo from "./prodMainInfo";
 import { useEffect, useState } from "react";
 import ProdAboutBlock from "./prodAboutBlock";
 import { Iprod, Iseller } from "../../../../../types/types";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hooks";
+import {
+  selectFavorites,
+  toggleFavoritesAsync,
+} from "../../../../redux/slices/favoritesSlice";
 
 interface IProdCardInfo {
   product: Iprod;
 }
 const ProdCardInfo = ({ product }: IProdCardInfo): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const isFavorite = useAppSelector(selectFavorites).includes(product._id);
   // избранные товары
   const [seller, setSeller] = useState<Iseller>();
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
-
-  useEffect(() => {
-    api.favorites
-      .fetchAll()
-      .then((data) =>
-        data.includes(product._id) ? setIsFavorite(true) : setIsFavorite(false)
-      );
-  });
 
   // установка продавца
   useEffect(() => {
@@ -33,27 +31,9 @@ const ProdCardInfo = ({ product }: IProdCardInfo): JSX.Element => {
     });
   }, [product.seller]);
 
-  // установка избранного
-  useEffect(() => {
-    api.favorites
-      .fetchAll()
-      .then(
-        (favorites) =>
-          favorites.includes(product._id) &&
-          setIsFavorite((prevState) => !prevState)
-      );
-  }, [product]);
-
   // обновление избранного
   const updateFavorites = (id: string) => {
-    api.favorites
-      .update(id)
-      .then((favorites) =>
-        favorites.includes(product._id)
-          ? setIsFavorite(true)
-          : setIsFavorite(false)
-      )
-      .catch((err) => console.log(err));
+    dispatch(toggleFavoritesAsync(id));
   };
 
   return (

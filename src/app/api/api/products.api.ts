@@ -1,5 +1,4 @@
 import { Iprod } from "../../../types/types";
-import favorites from "./favorites.api";
 
 async function fetchAll(): Promise<Iprod[]> {
   const response = await fetch("http://localhost:7000/api/products", {
@@ -12,8 +11,7 @@ async function fetchAll(): Promise<Iprod[]> {
   }
 }
 
-async function fetchFavorites(): Promise<Iprod[]> {
-  const favoritesList = await favorites.fetchAll();
+async function fetchFavorites(favoritesList: string[]): Promise<Iprod[]> {
   if (!favoritesList.length) return [];
   const response = await fetch("http://localhost:7000/api/products/favorites", {
     method: "POST",

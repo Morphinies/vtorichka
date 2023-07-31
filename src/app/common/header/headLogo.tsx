@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 interface IHeadLogo {
   logoName: string;
 }
+
 const HeadLogo = ({ logoName }: IHeadLogo): JSX.Element => {
   return (
     <Link to={""}>

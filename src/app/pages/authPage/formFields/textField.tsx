@@ -42,4 +42,9 @@ const TextField = ({
   );
 };
 
+TextField.defaultProps = {
+  type: "text",
+  maxLength: 30,
+};
+
 export default TextField;

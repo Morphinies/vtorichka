@@ -62,9 +62,7 @@ const SignupWindow = () => {
       <form className={s.form} onSubmit={(e) => sendData(formValues, e)}>
         {/* имя */}
         <TextField
-          type="name"
           label="имя"
-          maxLength={30}
           formName="name"
           clearErr={clearErr}
           error={errors.name}
@@ -74,7 +72,6 @@ const SignupWindow = () => {
 
         {/* Почта */}
         <TextField
-          type="name"
           label="почта"
           maxLength={300}
           formName="email"
@@ -87,7 +84,6 @@ const SignupWindow = () => {
         {/* Пароль */}
         <TextField
           label="пароль"
-          maxLength={30}
           type="password"
           formName="password"
           clearErr={clearErr}
@@ -98,7 +94,6 @@ const SignupWindow = () => {
 
         {/* Повторение пароля */}
         <TextField
-          maxLength={30}
           type="password"
           clearErr={clearErr}
           formName="rePassword"

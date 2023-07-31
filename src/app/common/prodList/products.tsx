@@ -1,40 +1,30 @@
 import * as React from "react";
+import { useState } from "react";
 import s from "./products.module.css";
 import ProductsList from "./productsList";
 import ProductsNav from "./nav/productsNav";
-import { useEffect, useState } from "react";
-import { Iprod, IProducts } from "../../../types/types";
+import { IProducts } from "../../../types/types";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { selectPage } from "../../redux/slices/pageNumbSlice";
+import { arrayFromNumber } from "../../utils/arrFromNumb";
 
 const Products = ({ prodList }: IProducts): JSX.Element => {
   const choosedPage = useAppSelector(selectPage);
-  const [productsOnPage, setProductsOnPage] = useState<Iprod[]>([]);
   const [productsNumbOnPage, setProductsNumbOnPage] = useState<number>(5);
-
-  // обновление продуктов на странице
-  useEffect(() => {
-    const startIndex: number = (choosedPage - 1) * productsNumbOnPage;
-    const endIndex: number = startIndex + productsNumbOnPage;
-    const arraysPiece: Iprod[] = prodList.slice(startIndex, endIndex);
-    setProductsOnPage(arraysPiece);
-  }, [prodList, choosedPage, productsNumbOnPage]);
-
-  // массив номеров страниц
-  const pageNumbersArr: number[] = [];
-  (() => {
-    const pagesNumbers = Math.ceil(prodList.length / productsNumbOnPage);
-    for (let i = 1; i <= pagesNumbers; i++) {
-      pageNumbersArr.push(i);
-    }
-  })();
+  const startLimit = (choosedPage - 1) * productsNumbOnPage;
+  const limits = {
+    start: startLimit,
+    end: startLimit + productsNumbOnPage,
+  };
+  const pagesNumber = Math.ceil(prodList.length / productsNumbOnPage);
+  const pagesNumbersArr = arrayFromNumber(pagesNumber);
 
   return (
     <div className={s.productsWrap}>
       {/*список товаров на странице*/}
-      <ProductsList productsOnPage={productsOnPage} />
+      <ProductsList productsOnPage={prodList.slice(limits.start, limits.end)} />
       <ProductsNav
-        pageNumbersArr={pageNumbersArr}
+        pageNumbersArr={pagesNumbersArr}
         productsNumbOnPage={productsNumbOnPage}
         setProductsNumbOnPage={setProductsNumbOnPage}
       />

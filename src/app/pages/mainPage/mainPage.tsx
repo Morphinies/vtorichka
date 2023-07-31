@@ -5,28 +5,29 @@ import Sidebar from "./sidebar/sidebar";
 import { useEffect, useState } from "react";
 import { Iprod } from "../../../types/types";
 import Conditions from "./conditions/conditions";
+import Loading from "../../common/loading/loading";
+import { useSearchParams } from "react-router-dom";
 import Products from "../../common/prodList/products";
-import { useNavigation, useSearchParams } from "react-router-dom";
 
 const MainPage = () => {
-  const navigation = useNavigation();
   const [searchParams] = useSearchParams();
-  const [prodList, setProdList] = useState<Iprod[]>([]);
+  const [prodList, setProdList] = useState<Iprod[]>();
+  const [isLoading, setIsLoading] = useState<boolean>(false || !prodList);
 
   useEffect(() => {
+    setIsLoading(true);
     const paramsStr: string = `?${searchParams.toString()}`;
-    api.products
-      .fetchByParams(paramsStr)
-      .then((data: Iprod[]) => setProdList(data));
+    api.products.fetchByParams(paramsStr).then((data: Iprod[]) => {
+      setProdList(data);
+      setIsLoading(false);
+    });
   }, [searchParams]);
 
   return (
-    <main
-      className={"main " + (navigation.state === "loading" ? "loading" : "")}
-    >
+    <main className={"main "}>
       <Search />
       <Conditions />
-      <Products prodList={prodList} />
+      {!isLoading ? <Products prodList={prodList} /> : <Loading />}
       <Sidebar />
     </main>
   );

@@ -8,12 +8,22 @@ import { useNavigate } from "react-router-dom";
 import settings from "../../../img/settings.svg";
 import heartFill from "../../../img/heartFill.svg";
 import { IProdInfo } from "../../../../types/types";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
+import {
+  selectFavorites,
+  toggleFavoritesAsync,
+} from "../../../redux/slices/favoritesSlice";
 
-const ProdInfo = ({
-  prod,
-  isFavorite,
-  updateFavorites,
-}: IProdInfo): JSX.Element => {
+const ProdInfo = ({ prod }: IProdInfo): JSX.Element => {
+  const favorites = useAppSelector(selectFavorites);
+  const isFavorite = favorites.includes(prod._id);
+  const dispatch = useAppDispatch();
+
+  // обновление избранного
+  const updateFavorites = (id: string) => {
+    dispatch(toggleFavoritesAsync(id));
+  };
+
   const [myProd, setMyProd] = useState<boolean>(false);
   const navigate = useNavigate();
 
