@@ -27,4 +27,4 @@ export const pageNumbSlice = createSlice({
 
 export default pageNumbSlice.reducer;
 export const { increment, decrement, setValue } = pageNumbSlice.actions;
-export const selectPage = (state: RootState) => state.pageNumbReducer.value;
+export const selectPage = (state: RootState) => state.pageNumb.value;

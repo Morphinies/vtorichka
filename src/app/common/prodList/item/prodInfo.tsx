@@ -8,21 +8,11 @@ import { useNavigate } from "react-router-dom";
 import settings from "../../../img/settings.svg";
 import heartFill from "../../../img/heartFill.svg";
 import { IProdInfo } from "../../../../types/types";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
-import {
-  selectFavorites,
-  toggleFavoritesAsync,
-} from "../../../redux/slices/favoritesSlice";
+import { useAppDispatch } from "../../../redux/hooks/hooks";
+import { updateFavorites } from "../../../redux/slices/favoritesSlice";
 
-const ProdInfo = ({ prod }: IProdInfo): JSX.Element => {
-  const favorites = useAppSelector(selectFavorites);
-  const isFavorite = favorites.includes(prod._id);
+const ProdInfo = ({ prod, isFavorite }: IProdInfo): JSX.Element => {
   const dispatch = useAppDispatch();
-
-  // обновление избранного
-  const updateFavorites = (id: string) => {
-    dispatch(toggleFavoritesAsync(id));
-  };
 
   const [myProd, setMyProd] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -108,7 +98,7 @@ const ProdInfo = ({ prod }: IProdInfo): JSX.Element => {
               alt="в избранное"
               title="в избранное"
               className={s.likeImg}
-              onClick={() => updateFavorites(prod._id)}
+              onClick={() => dispatch(updateFavorites(prod._id))}
               src={String(isFavorite ? heartFill : heart)}
             />
           )}

@@ -12,7 +12,7 @@ import { Iprod, Iseller } from "../../../../../types/types";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hooks";
 import {
   selectFavorites,
-  toggleFavoritesAsync,
+  updateFavorites,
 } from "../../../../redux/slices/favoritesSlice";
 
 interface IProdCardInfo {
@@ -31,11 +31,6 @@ const ProdCardInfo = ({ product }: IProdCardInfo): JSX.Element => {
     });
   }, [product.seller]);
 
-  // обновление избранного
-  const updateFavorites = (id: string) => {
-    dispatch(toggleFavoritesAsync(id));
-  };
-
   return (
     seller && (
       <div className={s.productInfo}>
@@ -52,7 +47,7 @@ const ProdCardInfo = ({ product }: IProdCardInfo): JSX.Element => {
           seller={seller}
           product={product}
           isFavorite={isFavorite}
-          updateFavorite={() => updateFavorites(product._id)}
+          updateFavorite={() => dispatch(updateFavorites(product._id))}
         />
       </div>
     )

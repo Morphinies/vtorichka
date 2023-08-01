@@ -112,6 +112,7 @@ input[type="number"]:focus {
 /* loading */
 
 .loading {
+  transition: all 0.5s;
   opacity: 0.9;
 }
 

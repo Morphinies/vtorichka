@@ -1,33 +1,19 @@
-import api from "../../api";
 import * as React from "react";
 import Search from "./search/search";
 import Sidebar from "./sidebar/sidebar";
-import { useEffect, useState } from "react";
-import { Iprod } from "../../../types/types";
 import Conditions from "./conditions/conditions";
-import Loading from "../../common/loading/loading";
-import { useSearchParams } from "react-router-dom";
 import Products from "../../common/prodList/products";
+import { useAppSelector } from "../../redux/hooks/hooks";
 
 const MainPage = () => {
-  const [searchParams] = useSearchParams();
-  const [prodList, setProdList] = useState<Iprod[]>();
-  const [isLoading, setIsLoading] = useState<boolean>(false || !prodList);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const paramsStr: string = `?${searchParams.toString()}`;
-    api.products.fetchByParams(paramsStr).then((data: Iprod[]) => {
-      setProdList(data);
-      setIsLoading(false);
-    });
-  }, [searchParams]);
+  const prods = useAppSelector((store) => store.prods);
+  const isLoading = prods.status === "loading";
 
   return (
-    <main className={"main "}>
+    <main className={"main " + (isLoading ? "loading" : "")}>
       <Search />
       <Conditions />
-      {!isLoading ? <Products prodList={prodList} /> : <Loading />}
+      <Products prodList={prods.value} />
       <Sidebar />
     </main>
   );

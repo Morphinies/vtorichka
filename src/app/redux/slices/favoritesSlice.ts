@@ -1,54 +1,64 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../api";
 import { RootState } from "../store/store";
 
+export const fetchFavorites = createAsyncThunk(
+  "favorites/fetchFavorites",
+  async () => {
+    const favoritesList = await api.favorites.fetchAll();
+    return favoritesList;
+  }
+);
+
+export const updateFavorites = createAsyncThunk<any, any, any>(
+  "favorites/updateFavorites",
+  async (id) => {
+    const updatedFavorites = await api.favorites.update(id);
+    return updatedFavorites;
+  }
+);
+
 interface Ifavorites {
   value: string[];
+  status: string;
+  error: string;
 }
 const initialState: Ifavorites = {
   value: [],
+  status: "idle",
+  error: "",
 };
 
 export const favoritesSlice = createSlice({
   name: "favorites",
   initialState,
-  reducers: {
-    addFavorite: (state, action: PayloadAction<string>) => {
-      state.value.push(action.payload);
-    },
-    delFavorite: (state, action: PayloadAction<string>) => {
-      state.value.splice(state.value.indexOf(action.payload), 1);
-    },
-    setFavorites: (state, action: PayloadAction<string[]>) => {
-      state.value = action.payload;
-    },
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchFavorites.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchFavorites.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.value = action.payload;
+      })
+      .addCase(fetchFavorites.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(updateFavorites.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateFavorites.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.value = action.payload;
+      })
+      .addCase(updateFavorites.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
   },
 });
 
-export const setFavoritesAsync = () => {
-  return async (dispatch: any, state: any) => {
-    try {
-      const favorites = await api.favorites.fetchAll();
-      dispatch(favoritesSlice.actions.setFavorites(favorites));
-    } catch (e) {
-      console.log(e);
-    }
-  };
-};
-
-export const toggleFavoritesAsync = (id: string) => {
-  return async (dispatch: any, state: any) => {
-    try {
-      const updatedFavorites = await api.favorites.update(id);
-      dispatch(favoritesSlice.actions.setFavorites(updatedFavorites));
-    } catch (e) {
-      console.log(e);
-    }
-  };
-};
-
 export default favoritesSlice.reducer;
-export const { addFavorite, delFavorite, setFavorites } =
-  favoritesSlice.actions;
-export const selectFavorites = (state: RootState) =>
-  state.favoritesReducer.value;
+export const selectFavorites = (state: RootState) => state.favorites.value;

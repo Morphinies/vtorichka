@@ -21,6 +21,9 @@ async function fetchFavorites(favoritesList: string[]): Promise<Iprod[]> {
   if (response.ok === true) {
     const favoriteProdList: Iprod[] = await response.json();
     return favoriteProdList;
+  } else {
+    const err: string = await response.text();
+    return Promise.reject(err);
   }
 }
 
