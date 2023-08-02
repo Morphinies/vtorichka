@@ -5,7 +5,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import favoritesProd from "../slices/favoritesProdSlice";
 
 export const store = configureStore({
-  reducer: { pageNumb, favorites, favoritesProd, prods },
+    reducer: { pageNumb, favorites, favoritesProd, prods },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
