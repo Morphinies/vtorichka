@@ -1,192 +1,192 @@
 /* ************************ common ************************ */
 .nav {
-  display: grid;
-  grid-area: 1/1/2/3;
-  align-self: flex-start;
+    display: grid;
+    grid-area: 1/1/2/3;
+    align-self: flex-start;
 }
 
 /* ************************ search line ************************ */
 .form {
-  width: 50%;
-  display: grid;
-  column-gap: 2px;
-  justify-self: center;
-  align-self: flex-start;
-  padding: 0 2px 2px 2px;
-  border-radius: 0 0 5px 5px;
-  background-color: #16191a;
-  grid-template-columns: 1fr auto;
+    width: 50%;
+    display: grid;
+    column-gap: 2px;
+    justify-self: center;
+    align-self: flex-start;
+    padding: 0 2px 2px 2px;
+    border-radius: 0 0 5px 5px;
+    background-color: #16191a;
+    grid-template-columns: 1fr auto;
 }
 
 .formWithText {
-  grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto auto;
 }
 
 .formWithRes {
-  border-radius: 0;
+    border-radius: 0;
 }
 
 /* ************************ input ************************ */
 .input {
-  font-size: 1.2rem;
-  padding: 0.3rem 1rem;
-  border-radius: 0 0 0 3px;
-  background-color: #f6f6f6;
+    font-size: 1.2rem;
+    padding: 0.3rem 1rem;
+    border-radius: 0 0 0 3px;
+    background-color: #f6f6f6;
 }
 
 .input::placeholder {
-  color: #16191a;
+    color: #16191a;
 }
 
 .input:active,
 .input:focus {
-  color: #16191a;
-  background-color: #fff;
+    color: #16191a;
+    background-color: #fff;
 }
 
 /* ************************ input button ************************ */
 #searchBtn,
 #searchBtnFormNotEmpty {
-  border: none;
-  transition: all 0.3s;
-  border-radius: 0 0 3px 0;
-  background-color: #f6f6f6;
+    border: none;
+    transition: all 0.3s;
+    border-radius: 0 0 3px 0;
+    background-color: #f6f6f6;
 }
 
 #searchBtnFormNotEmpty {
-  border-radius: 0;
+    border-radius: 0;
 }
 
 #searchBtn:hover,
 #searchBtnFormNotEmpty:hover {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 #searchBtn:active,
 #searchBtnFormNotEmpty:active {
-  background-color: #dedede;
+    background-color: #dedede;
 }
 
 .searchImg {
-  height: auto;
-  transition: all 0.3s;
+    height: auto;
+    transition: all 0.3s;
 }
 
 /* ************************ selected ************************ */
 .selectedWrap {
-  width: 50%;
-  display: grid;
-  position: relative;
-  justify-self: center;
+    width: 50%;
+    display: grid;
+    position: relative;
+    justify-self: center;
 }
 
 .selectedList {
-  width: 100%;
-  z-index: 1;
-  overflow: hidden;
-  position: absolute;
-  border-radius: 0 0 5px 5px;
-  background-color: #16191a;
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 0 0 5px 5px;
+    background-color: #16191a;
 }
 
 .selectedItem {
-  margin: 2px;
-  margin-top: 0;
-  display: block;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  background-color: #f6f6f6;
+    margin: 2px;
+    margin-top: 0;
+    display: block;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background-color: #f6f6f6;
 }
 
 .selectedItem:last-child {
-  border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
 }
 
 .selectedItem:hover {
-  background-color: #dedede;
+    background-color: #dedede;
 }
 
 .selectedItemDis:hover {
-  cursor: default;
-  background-color: #f6f6f6;
+    cursor: default;
+    background-color: #f6f6f6;
 }
 
 .formNotEmpty {
-  border-radius: 0;
+    border-radius: 0;
 }
 
 .btnReset {
-  border: none;
-  cursor: pointer;
-  padding: 0 1rem;
-  background-color: #f6f6f6;
+    border: none;
+    cursor: pointer;
+    padding: 0 1rem;
+    background-color: #f6f6f6;
 }
 .btnReset:hover {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .btnDisabled {
-  cursor: default;
+    cursor: default;
 }
 
 .btnDisabled:hover {
-  background-color: #f6f6f6 !important;
+    background-color: #f6f6f6 !important;
 }
 
 /* ************************ media ************************ */
 
 @media (hover: none) {
-  #searchBtn:hover,
-  #searchBtnFormNotEmpty:hover {
-    border-radius: 0 0 3px 0;
-    background-color: #f6f6f6;
-  }
+    #searchBtn:hover,
+    #searchBtnFormNotEmpty:hover {
+        border-radius: 0 0 3px 0;
+        background-color: #f6f6f6;
+    }
 
-  #searchBtn:active,
-  #searchBtnFormNotEmpty:active {
-    background-color: #dedede;
-  }
+    #searchBtn:active,
+    #searchBtnFormNotEmpty:active {
+        background-color: #dedede;
+    }
 
-  #searchBtn:hover .searchImg,
-  #searchBtnFormNotEmpty:hover .searchImg {
-    filter: none;
-  }
+    #searchBtn:hover .searchImg,
+    #searchBtnFormNotEmpty:hover .searchImg {
+        filter: none;
+    }
 }
 
 @media (max-width: 980px) {
-  .form {
-    width: 70%;
-  }
+    .form {
+        width: 70%;
+    }
 }
 
 @media (max-width: 640px) {
-  .form {
-    width: 80%;
-  }
+    .form {
+        width: 80%;
+    }
 }
 
 @media (max-width: 480px) {
-  .nav {
-    display: grid;
-    padding: 0.5rem 1rem 0 1rem;
-    grid-area: 4/1/5/2;
-    align-self: flex-start;
-  }
+    .nav {
+        display: grid;
+        padding: 0.5rem 1rem 0 1rem;
+        grid-area: 4/1/5/2;
+        align-self: flex-start;
+    }
 
-  .form {
-    width: 100%;
-    padding: 2px;
-    border-radius: 5px;
-  }
+    .form {
+        width: 100%;
+        padding: 2px;
+        border-radius: 5px;
+    }
 
-  #searchBtn {
-    padding: 0 1rem;
-    border-radius: 0 3px 3px 0;
-  }
+    #searchBtn {
+        padding: 0 1rem;
+        border-radius: 0 3px 3px 0;
+    }
 
-  .input {
-    min-width: 100px;
-    padding: 1rem 1rem;
-    border-radius: 3px 0 0 3px;
-  }
+    .input {
+        min-width: 100px;
+        padding: 1rem 1rem;
+        border-radius: 3px 0 0 3px;
+    }
 }

@@ -6,15 +6,23 @@ import { reset } from "../../../../../img/pictures";
 import { IBtnsApplyFilters } from "../../../../../../types/types";
 
 const BtnsApplyFilters = ({
-  applyFilters,
-  clearFilters,
+    applyFilters,
+    clearFilters,
 }: IBtnsApplyFilters): JSX.Element => {
-  return (
-    <div className={s.btnsApplyFilters}>
-      <BtnApplyFilters action={applyFilters} img={apply} name="применить" />
-      <BtnApplyFilters action={clearFilters} img={reset} name="сбросить" />
-    </div>
-  );
+    return (
+        <div className={s.btnsApplyFilters}>
+            <BtnApplyFilters
+                action={applyFilters}
+                img={apply}
+                name="применить"
+            />
+            <BtnApplyFilters
+                action={clearFilters}
+                img={reset}
+                name="сбросить"
+            />
+        </div>
+    );
 };
 
 export default BtnsApplyFilters;

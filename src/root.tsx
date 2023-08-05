@@ -8,26 +8,26 @@ import { fetchFavorites } from "./app/redux/slices/favoritesSlice";
 import { fetchProds, updateProds } from "./app/redux/slices/prodsSlice";
 
 const Root = (): JSX.Element => {
-  const [searchParams] = useSearchParams();
-  const dispatch = useAppDispatch();
+    const [searchParams] = useSearchParams();
+    const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchFavorites());
-    dispatch(fetchProds());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchFavorites());
+        dispatch(fetchProds());
+    }, [dispatch]);
 
-  useEffect(() => {
-    const paramsStr: string = `?${searchParams.toString()}`;
-    dispatch(updateProds(paramsStr));
-  }, [dispatch, searchParams]);
+    useEffect(() => {
+        const paramsStr: string = `?${searchParams.toString()}`;
+        dispatch(updateProds(paramsStr));
+    }, [dispatch, searchParams]);
 
-  return (
-    <div className="wrapper">
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="wrapper">
+            <Header />
+            <Outlet />
+            <Footer />
+        </div>
+    );
 };
 
 export default Root;

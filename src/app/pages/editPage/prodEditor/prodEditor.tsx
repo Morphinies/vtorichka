@@ -8,36 +8,36 @@ import * as React from "react";
 import { Iprod } from "../../../../types/types";
 
 const ProdEditor = () => {
-  const product: Iprod = useLoaderData();
-  const [editorProd, setEditorProd] = useState<Iprod>();
-  const currentUser = JSON.parse(localStorage.getItem("user"));
+    const product: Iprod = useLoaderData();
+    const [editorProd, setEditorProd] = useState<Iprod>();
+    const currentUser = JSON.parse(localStorage.getItem("user"));
 
-  // установка редактируемого товара
-  useEffect(() => {
-    product && product._id
-      ? setEditorProd({ ...product })
-      : setEditorProd({
-          type: "",
-          name: "",
-          price: "",
-          category: "",
-          description: "",
-          seller: currentUser,
-          photo: [],
-        });
-  }, [product, currentUser]);
+    // установка редактируемого товара
+    useEffect(() => {
+        product && product._id
+            ? setEditorProd({ ...product })
+            : setEditorProd({
+                  type: "",
+                  name: "",
+                  price: "",
+                  category: "",
+                  description: "",
+                  seller: currentUser,
+                  photo: [],
+              });
+    }, [product, currentUser]);
 
-  return (
-    <div className={s.editWrap}>
-      {editorProd && (
-        <>
-          <BtnExit />
-          <EditorTitle name={"Редактор объявлений"} />
-          <ProdForm editorProd={editorProd} />
-        </>
-      )}
-    </div>
-  );
+    return (
+        <div className={s.editWrap}>
+            {editorProd && (
+                <>
+                    <BtnExit />
+                    <EditorTitle name={"Редактор объявлений"} />
+                    <ProdForm editorProd={editorProd} />
+                </>
+            )}
+        </div>
+    );
 };
 
 export default ProdEditor;

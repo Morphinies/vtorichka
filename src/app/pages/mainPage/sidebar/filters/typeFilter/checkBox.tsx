@@ -5,26 +5,30 @@ import { checked } from "../../../../../img/pictures";
 import { ICheckBox } from "../../../../../../types/types";
 
 const CheckBox = ({ tick, name, formData }: ICheckBox): JSX.Element => {
-  const isActive = formData.type === name || !formData.type;
-  return (
-    <div className={s.filterLine}>
-      <button
-        type="button"
-        id={s.checkBoxContainer}
-        onClick={() => tick(name)}
-        className={s.inputContainer + " " + s.checkBoxContainer}
-      >
-        <p className={v.btnDisplayCatText + " " + s.labelCheckBox}>{name}</p>
-        <div className={s.checkBox}>
-          <img
-            alt={name}
-            src={checked}
-            className={s.imgCheckBox + " " + (isActive ? "" : s.imgHidden)}
-          />
+    const isActive = formData.type === name || !formData.type;
+    return (
+        <div className={s.filterLine}>
+            <button
+                type="button"
+                id={s.checkBoxContainer}
+                onClick={() => tick(name)}
+                className={s.inputContainer + " " + s.checkBoxContainer}
+            >
+                <p className={v.btnDisplayCatText + " " + s.labelCheckBox}>
+                    {name}
+                </p>
+                <div className={s.checkBox}>
+                    <img
+                        alt={name}
+                        src={checked}
+                        className={
+                            s.imgCheckBox + " " + (isActive ? "" : s.imgHidden)
+                        }
+                    />
+                </div>
+            </button>
         </div>
-      </button>
-    </div>
-  );
+    );
 };
 
 export default CheckBox;

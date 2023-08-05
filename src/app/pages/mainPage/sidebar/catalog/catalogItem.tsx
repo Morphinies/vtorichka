@@ -5,30 +5,34 @@ import { arrowDown } from "../../../../img/pictures";
 import { ICatalogItem } from "../../../../../types/types";
 
 const CatalogItem = ({
-  curCat,
-  catItem,
-  displayCat,
-  choosedCat,
+    curCat,
+    catItem,
+    displayCat,
+    choosedCat,
 }: ICatalogItem) => {
-  return (
-    <li
-      role="button"
-      onClick={() => displayCat(catItem)}
-      className={v.btnDisplayCat}
-      id={
-        curCat.includes(catItem)
-          ? v.openCatItem
-          : catItem.name === choosedCat
-          ? s.choosedCatItem
-          : ""
-      }
-    >
-      <p className={v.btnDisplayCatText}>{catItem.name}</p>
-      {catItem.value && (
-        <img className={v.imgArrowDown} alt="" src={String(arrowDown)} />
-      )}
-    </li>
-  );
+    return (
+        <li
+            role="button"
+            onClick={() => displayCat(catItem)}
+            className={v.btnDisplayCat}
+            id={
+                curCat.includes(catItem)
+                    ? v.openCatItem
+                    : catItem.name === choosedCat
+                    ? s.choosedCatItem
+                    : ""
+            }
+        >
+            <p className={v.btnDisplayCatText}>{catItem.name}</p>
+            {catItem.value && (
+                <img
+                    className={v.imgArrowDown}
+                    alt=""
+                    src={String(arrowDown)}
+                />
+            )}
+        </li>
+    );
 };
 
 export default CatalogItem;

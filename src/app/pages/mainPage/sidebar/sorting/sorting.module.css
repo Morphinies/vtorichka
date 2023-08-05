@@ -1,25 +1,25 @@
 /*  */
 #sorting {
-  grid-area: 5/1/6/2;
+    grid-area: 5/1/6/2;
 }
 
 .sortArrowImg {
-  width: 1rem;
-  height: 1rem;
-  background-color: rgba(0, 0, 0, 0);
+    width: 1rem;
+    height: 1rem;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .choosedSorting {
-  background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .choosedSorting:hover,
 .choosedSorting:active {
-  background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 @media (max-width: 480px) {
-  #sorting {
-    grid-area: 3/1/4/2;
-  }
+    #sorting {
+        grid-area: 3/1/4/2;
+    }
 }

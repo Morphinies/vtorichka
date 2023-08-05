@@ -7,40 +7,45 @@ import { useSearchParams } from "react-router-dom";
 import { ISearchForm } from "../../../../types/types";
 
 const SearchForm = ({ textSearch, setTextSearch }: ISearchForm) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchedName = searchParams.get("name");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchedName = searchParams.get("name");
 
-  const search = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setTextSearch("");
-    if (textSearch) searchParams.set("name", textSearch);
-    else searchParams.delete("name");
-    setSearchParams(searchParams);
-  };
+    const search = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setTextSearch("");
+        if (textSearch) searchParams.set("name", textSearch);
+        else searchParams.delete("name");
+        setSearchParams(searchParams);
+    };
 
-  const resetSearch = () => {
-    searchParams.delete("name");
-    setSearchParams(searchParams);
-    setTextSearch("");
-  };
+    const resetSearch = () => {
+        searchParams.delete("name");
+        setSearchParams(searchParams);
+        setTextSearch("");
+    };
 
-  return (
-    <form
-      onSubmit={(e: React.FormEvent<HTMLFormElement>) => search(e)}
-      className={
-        s.form +
-        " " +
-        (textSearch || searchedName ? s.formWithText : "") +
-        " " +
-        (textSearch ? s.formWithRes : "")
-      }
-    >
-      <SearchInput textSearch={textSearch} setTextSearch={setTextSearch} />
+    return (
+        <form
+            onSubmit={(e: React.FormEvent<HTMLFormElement>) => search(e)}
+            className={
+                s.form +
+                " " +
+                (textSearch || searchedName ? s.formWithText : "") +
+                " " +
+                (textSearch ? s.formWithRes : "")
+            }
+        >
+            <SearchInput
+                textSearch={textSearch}
+                setTextSearch={setTextSearch}
+            />
 
-      {(textSearch || searchedName) && <BtnReset resetSearch={resetSearch} />}
-      <BtnFind isDisabled={!textSearch} />
-    </form>
-  );
+            {(textSearch || searchedName) && (
+                <BtnReset resetSearch={resetSearch} />
+            )}
+            <BtnFind isDisabled={!textSearch} />
+        </form>
+    );
 };
 
 export default SearchForm;

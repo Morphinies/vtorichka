@@ -6,33 +6,33 @@ import BtnsApplyFilters from "./btns/btnsApplyFilters";
 import { IFilters } from "../../../../../types/types";
 
 const Filters = ({
-  formData,
-  setFormData,
-  clearFilters,
-  applyFilters,
-  openedFilter,
-  openFilter,
+    formData,
+    setFormData,
+    clearFilters,
+    applyFilters,
+    openedFilter,
+    openFilter,
 }: IFilters): JSX.Element => {
-  return (
-    <form className={s.filtersForm}>
-      <PriceFilter
-        formData={formData}
-        openFilter={openFilter}
-        setFormData={setFormData}
-        isOpen={openedFilter === "цена"}
-      />
-      <TypeFilter
-        formData={formData}
-        openFilter={openFilter}
-        setFormData={setFormData}
-        isOpen={openedFilter === "тип"}
-      />
-      <BtnsApplyFilters
-        applyFilters={applyFilters}
-        clearFilters={clearFilters}
-      />
-    </form>
-  );
+    return (
+        <form className={s.filtersForm}>
+            <PriceFilter
+                formData={formData}
+                openFilter={openFilter}
+                setFormData={setFormData}
+                isOpen={openedFilter === "цена"}
+            />
+            <TypeFilter
+                formData={formData}
+                openFilter={openFilter}
+                setFormData={setFormData}
+                isOpen={openedFilter === "тип"}
+            />
+            <BtnsApplyFilters
+                applyFilters={applyFilters}
+                clearFilters={clearFilters}
+            />
+        </form>
+    );
 };
 
 export default Filters;

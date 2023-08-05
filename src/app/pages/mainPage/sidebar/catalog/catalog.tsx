@@ -4,95 +4,95 @@ import CatalogItem from "./catalogItem";
 import { ICatalog, IcatItem } from "../../../../../types/types";
 
 const Catalog = ({
-  curCat,
-  catList,
-  setCurCat,
-  setCatList,
-  hideCatalog,
-  searchParams,
-  setSearchParams,
-  setCatListDefault,
+    curCat,
+    catList,
+    setCurCat,
+    setCatList,
+    hideCatalog,
+    searchParams,
+    setSearchParams,
+    setCatListDefault,
 }: ICatalog) => {
-  // handle click on category button
-  const displayCat = (catItem: IcatItem) => {
-    const curCategory = searchParams.get("category");
-    //
-    let allSumOpenCat = 0;
-    const catItemCats = catItem.value;
-    const lIndexOfCurCat = curCat.length - 1;
-    curCat.map((category) => (allSumOpenCat += category.value.length));
+    // handle click on category button
+    const displayCat = (catItem: IcatItem) => {
+        const curCategory = searchParams.get("category");
+        //
+        let allSumOpenCat = 0;
+        const catItemCats = catItem.value;
+        const lIndexOfCurCat = curCat.length - 1;
+        curCat.map((category) => (allSumOpenCat += category.value.length));
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ убрать категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    if (catItem.name === curCategory) {
-      searchParams.delete("category");
-      setSearchParams(searchParams);
-    }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~ убрать категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        if (catItem.name === curCategory) {
+            searchParams.delete("category");
+            setSearchParams(searchParams);
+        }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор/смена категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    else if (!catItem.value) {
-      searchParams.set("category", catItem.name);
-      setSearchParams(searchParams);
-      hideCatalog();
-    }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~ выбор/смена категории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        else if (!catItem.value) {
+            searchParams.set("category", catItem.name);
+            setSearchParams(searchParams);
+            hideCatalog();
+        }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ открытие ветки категорий ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    else if (!curCat.length) {
-      (() => {
-        setCatList([catItem].concat(catItemCats));
-        setCurCat((arr) => [...arr, catItem]);
-      })();
-    }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~ открытие ветки категорий ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        else if (!curCat.length) {
+            (() => {
+                setCatList([catItem].concat(catItemCats));
+                setCurCat((arr) => [...arr, catItem]);
+            })();
+        }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ внутренняя категория ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    else if (
-      curCat.length &&
-      !curCat.includes(catItem) &&
-      curCat[lIndexOfCurCat].value.includes(catItem)
-    ) {
-      setCatList(curCat.concat([catItem], catItemCats));
-      setCurCat((arr) => [...arr, catItem]);
-    }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~ внутренняя категория ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        else if (
+            curCat.length &&
+            !curCat.includes(catItem) &&
+            curCat[lIndexOfCurCat].value.includes(catItem)
+        ) {
+            setCatList(curCat.concat([catItem], catItemCats));
+            setCurCat((arr) => [...arr, catItem]);
+        }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ повторное нажатие на категорию из истории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    else if (
-      curCat.length &&
-      curCat.includes(catItem) &&
-      curCat[0] !== catItem
-    ) {
-      setCatList(
-        catList
-          .slice(0, catList.indexOf(catItem))
-          .concat(catList[catList.indexOf(catItem) - 1].value)
-      );
-      setCurCat((arr) => [...arr.slice(0, arr.indexOf(catItem))]);
-    }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~ повторное нажатие на категорию из истории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        else if (
+            curCat.length &&
+            curCat.includes(catItem) &&
+            curCat[0] !== catItem
+        ) {
+            setCatList(
+                catList
+                    .slice(0, catList.indexOf(catItem))
+                    .concat(catList[catList.indexOf(catItem) - 1].value)
+            );
+            setCurCat((arr) => [...arr.slice(0, arr.indexOf(catItem))]);
+        }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~ возвращение к основному каталогу ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    else if (
-      curCat.length &&
-      curCat.includes(catItem) &&
-      curCat[0] === catItem
-    ) {
-      setCatListDefault();
-      setCurCat(() => []);
-    }
-  };
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~ возвращение к основному каталогу ~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        else if (
+            curCat.length &&
+            curCat.includes(catItem) &&
+            curCat[0] === catItem
+        ) {
+            setCatListDefault();
+            setCurCat(() => []);
+        }
+    };
 
-  return (
-    catList && (
-      <ul className={v.catList}>
-        {catList.map((catItem) => (
-          <CatalogItem
-            curCat={curCat}
-            catItem={catItem}
-            key={catItem.name}
-            displayCat={displayCat}
-            choosedCat={searchParams.get("category")}
-          />
-        ))}
-      </ul>
-    )
-  );
+    return (
+        catList && (
+            <ul className={v.catList}>
+                {catList.map((catItem) => (
+                    <CatalogItem
+                        curCat={curCat}
+                        catItem={catItem}
+                        key={catItem.name}
+                        displayCat={displayCat}
+                        choosedCat={searchParams.get("category")}
+                    />
+                ))}
+            </ul>
+        )
+    );
 };
 
 export default Catalog;

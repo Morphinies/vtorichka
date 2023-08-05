@@ -9,24 +9,24 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import ErrorMessage from "../../../common/errorMes/errorMessage";
 
 const ProdCard = (): JSX.Element => {
-  const product = useLoaderData();
-  const navigate = useNavigate();
-  const isEscPressed: boolean = useKeyPress("Escape");
+    const product = useLoaderData();
+    const navigate = useNavigate();
+    const isEscPressed: boolean = useKeyPress("Escape");
 
-  // выход на "Escape"
-  useEffect(() => {
-    isEscPressed && navigate(-1);
-  }, [isEscPressed, navigate]);
+    // выход на "Escape"
+    useEffect(() => {
+        isEscPressed && navigate(-1);
+    }, [isEscPressed, navigate]);
 
-  return product ? (
-    <div className={s.productCard}>
-      <BtnCloseProduct />
-      <ProdCardImg product={product} />
-      <ProdCardInfo product={product} />
-    </div>
-  ) : (
-    <ErrorMessage message="Товар по заданному id не найден" />
-  );
+    return product ? (
+        <div className={s.productCard}>
+            <BtnCloseProduct />
+            <ProdCardImg product={product} />
+            <ProdCardInfo product={product} />
+        </div>
+    ) : (
+        <ErrorMessage message="Товар по заданному id не найден" />
+    );
 };
 
 export default ProdCard;

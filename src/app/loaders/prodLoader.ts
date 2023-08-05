@@ -9,15 +9,15 @@ import api from "../api";
 // }
 
 export async function prodLoader({
-  params,
+    params,
 }: LoaderFunctionArgs): Promise<Iprod> {
-  const prodId: string = params.prodId;
-  if (!prodId) return null;
+    const prodId: string = params.prodId;
+    if (!prodId) return null;
 
-  const product: Iprod = await api.products.fetchById(prodId);
-  if (!product) {
-    return null;
-  }
+    const product: Iprod = await api.products.fetchById(prodId);
+    if (!product) {
+        return null;
+    }
 
-  return product;
+    return product;
 }

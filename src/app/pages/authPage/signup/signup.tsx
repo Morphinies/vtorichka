@@ -4,15 +4,15 @@ import { useLoaderData } from "react-router-dom";
 import ErrorMessage from "../../../common/errorMes/errorMessage";
 
 const Signup = (): JSX.Element => {
-  const curUser = useLoaderData();
+    const curUser = useLoaderData();
 
-  return !curUser ? (
-    <SignupWindow />
-  ) : (
-    <ErrorMessage
-      message={"Для начала регистрации выйдите из текущего аккаунта."}
-    />
-  );
+    return !curUser ? (
+        <SignupWindow />
+    ) : (
+        <ErrorMessage
+            message={"Для начала регистрации выйдите из текущего аккаунта."}
+        />
+    );
 };
 
 export default Signup;

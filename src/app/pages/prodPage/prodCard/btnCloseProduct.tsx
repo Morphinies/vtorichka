@@ -4,13 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { cancelDark } from "../../../img/pictures";
 
 const BtnCloseProduct = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  return (
-    <button className={s.closeCard} onClick={() => navigate(-1)}>
-      <img src={String(cancelDark)} alt="cancel" className={s.cancelImg} />
-    </button>
-  );
+    return (
+        <button className={s.closeCard} onClick={() => navigate(-1)}>
+            <img
+                src={String(cancelDark)}
+                alt="cancel"
+                className={s.cancelImg}
+            />
+        </button>
+    );
 };
 
 export default BtnCloseProduct;

@@ -1,11 +1,11 @@
 /*  ************************ choosed catalog item ************************  */
 #choosedCatItem {
-  background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /*  ************************ media queries ************************  */
 @media (max-width: 480px) {
-  #choosedCatItem {
-    padding-left: 2rem;
-  }
+    #choosedCatItem {
+        padding-left: 2rem;
+    }
 }

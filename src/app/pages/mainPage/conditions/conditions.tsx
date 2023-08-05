@@ -5,25 +5,25 @@ import condTransform from "./condTransform";
 import { useSearchParams } from "react-router-dom";
 
 const Conditions = (): JSX.Element => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const conditions = condTransform(searchParams); // search params to array
+    const [searchParams, setSearchParams] = useSearchParams();
+    const conditions = condTransform(searchParams); // search params to array
 
-  const clearCondition = (paramKey: string): void => {
-    searchParams.delete(paramKey);
-    setSearchParams(searchParams);
-  };
+    const clearCondition = (paramKey: string): void => {
+        searchParams.delete(paramKey);
+        setSearchParams(searchParams);
+    };
 
-  return (
-    <div className={s.conditions}>
-      {conditions.map((cond) => (
-        <ConditionBtn
-          cond={cond}
-          key={cond.key}
-          clearCondition={clearCondition}
-        />
-      ))}
-    </div>
-  );
+    return (
+        <div className={s.conditions}>
+            {conditions.map((cond) => (
+                <ConditionBtn
+                    cond={cond}
+                    key={cond.key}
+                    clearCondition={clearCondition}
+                />
+            ))}
+        </div>
+    );
 };
 
 export default Conditions;

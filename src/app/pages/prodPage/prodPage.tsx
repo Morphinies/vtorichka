@@ -3,11 +3,11 @@ import s from "./prodPage.module.css";
 import ProdCard from "./prodCard/prodCard";
 
 const ProdPage = (): JSX.Element => {
-  return (
-    <div className={s.prodPage}>
-      <ProdCard />
-    </div>
-  );
+    return (
+        <div className={s.prodPage}>
+            <ProdCard />
+        </div>
+    );
 };
 
 export default ProdPage;

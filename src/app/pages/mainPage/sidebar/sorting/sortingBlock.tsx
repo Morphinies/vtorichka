@@ -7,52 +7,54 @@ import BtnDisplayBlock from "../btnDisplayBlock";
 import { ISortingBlock } from "../../../../../types/types";
 
 const SortingBlock = ({
-  btnName,
-  searchParams,
-  openedSideBar,
-  setSearchParams,
-  changeOpenedSideBar,
+    btnName,
+    searchParams,
+    openedSideBar,
+    setSearchParams,
+    changeOpenedSideBar,
 }: ISortingBlock): JSX.Element => {
-  const defSort = "с новых";
-  const blockIsOpen: boolean = openedSideBar === btnName;
-  const [activeSort, setActiveSort] = useState<string>(defSort);
+    const defSort = "с новых";
+    const blockIsOpen: boolean = openedSideBar === btnName;
+    const [activeSort, setActiveSort] = useState<string>(defSort);
 
-  const handleClick = (name: string): void => {
-    if (openedSideBar === name) changeOpenedSideBar("");
-    else changeOpenedSideBar(name);
-  };
+    const handleClick = (name: string): void => {
+        if (openedSideBar === name) changeOpenedSideBar("");
+        else changeOpenedSideBar(name);
+    };
 
-  const setSortParam = (value: string): void => {
-    if (value !== defSort) {
-      searchParams.set("sort", value);
-    } else {
-      searchParams.delete("sort");
-    }
-    setSearchParams(searchParams);
-    changeOpenedSideBar("");
-  };
+    const setSortParam = (value: string): void => {
+        if (value !== defSort) {
+            searchParams.set("sort", value);
+        } else {
+            searchParams.delete("sort");
+        }
+        setSearchParams(searchParams);
+        changeOpenedSideBar("");
+    };
 
-  useEffect(() => {
-    if (searchParams.get("sort")) {
-      setActiveSort(searchParams.get("sort"));
-    } else {
-      setActiveSort(defSort);
-    }
-  }, [searchParams]);
+    useEffect(() => {
+        if (searchParams.get("sort")) {
+            setActiveSort(searchParams.get("sort"));
+        } else {
+            setActiveSort(defSort);
+        }
+    }, [searchParams]);
 
-  return (
-    <nav
-      className={v.categoriesNav + " " + (blockIsOpen && v.catNavOpened)}
-      id={s.sorting}
-    >
-      <BtnDisplayBlock
-        btnName={btnName + (activeSort !== defSort ? " *" : "")}
-        hideBlock={() => handleClick(btnName)}
-        blockHidden={openedSideBar !== btnName}
-      />
-      {blockIsOpen && <Sorting sort={setSortParam} activeSort={activeSort} />}
-    </nav>
-  );
+    return (
+        <nav
+            className={v.categoriesNav + " " + (blockIsOpen && v.catNavOpened)}
+            id={s.sorting}
+        >
+            <BtnDisplayBlock
+                btnName={btnName + (activeSort !== defSort ? " *" : "")}
+                hideBlock={() => handleClick(btnName)}
+                blockHidden={openedSideBar !== btnName}
+            />
+            {blockIsOpen && (
+                <Sorting sort={setSortParam} activeSort={activeSort} />
+            )}
+        </nav>
+    );
 };
 
 export default SortingBlock;

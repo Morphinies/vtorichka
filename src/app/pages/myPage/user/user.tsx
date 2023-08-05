@@ -10,20 +10,20 @@ import { useLoaderData } from "react-router-dom";
 import { Iseller } from "../../../../types/types";
 
 const User = () => {
-  const user = useLoaderData() as Iseller;
+    const user = useLoaderData() as Iseller;
 
-  return (
-    user && (
-      <div className={s.avatar}>
-        <UserAvatar photo={user.avatar} />
-        <UserName name={user.name} />
-        {user.rating && <UserRaiting rating={user.rating} />}
-        {user.rating && <UserReviews reviewsNumb={user.rating} />}
-        {user.about && <UserAbout text={user.about} />}
-        <BtnEditBio />
-      </div>
-    )
-  );
+    return (
+        user && (
+            <div className={s.avatar}>
+                <UserAvatar photo={user.avatar} />
+                <UserName name={user.name} />
+                {user.rating && <UserRaiting rating={user.rating} />}
+                {user.rating && <UserReviews reviewsNumb={user.rating} />}
+                {user.about && <UserAbout text={user.about} />}
+                <BtnEditBio />
+            </div>
+        )
+    );
 };
 
 export default User;

@@ -4,16 +4,16 @@ import { NavLink } from "react-router-dom";
 import { ISidebarBtn } from "../../../../types/types";
 
 const SidebarBtn = ({ link, btnName }: ISidebarBtn): JSX.Element => {
-  return (
-    <NavLink
-      to={link}
-      className={({ isActive }) => (isActive ? s.activeLink : undefined)}
-    >
-      <button type="button" className={s.btnOpenBlock}>
-        <p className={s.btnOpenBlockText}>{btnName} </p>
-      </button>
-    </NavLink>
-  );
+    return (
+        <NavLink
+            to={link}
+            className={({ isActive }) => (isActive ? s.activeLink : undefined)}
+        >
+            <button type="button" className={s.btnOpenBlock}>
+                <p className={s.btnOpenBlockText}>{btnName} </p>
+            </button>
+        </NavLink>
+    );
 };
 
 export default SidebarBtn;

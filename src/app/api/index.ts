@@ -7,13 +7,13 @@ import categoryList from "./api/categories.api";
 import defaultConditions from "./api/defaultConditions.api";
 
 const api = {
-  users,
-  products,
-  favorites,
-  filterList,
-  sortingList,
-  categoryList,
-  defaultConditions,
+    users,
+    products,
+    favorites,
+    filterList,
+    sortingList,
+    categoryList,
+    defaultConditions,
 };
 
 export default api;

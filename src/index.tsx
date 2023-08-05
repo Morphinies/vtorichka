@@ -24,93 +24,93 @@ import { store } from "./app/redux/store/store";
 import { Provider } from "react-redux";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      // регистрация
-      {
-        path: "signup",
-        loader: curUserloader,
-        element: <Signup />,
-      },
-      // авторизация
-      { path: "logup", loader: curUserloader, element: <Logup /> },
-      // главная
-      {
-        path: "",
-        // loader: prodListLoader,
-        element: <MainPage />,
-      },
-      // избранное
-      {
-        path: "/favorites",
-        element: <Favorites />,
-      },
-      // карточка объявления
-      {
-        path: ":prodId",
-        loader: prodLoader,
-        element: <ProdPage />,
-      },
-      // страница пользователя
-      {
-        path: "personal",
-        element: <MyPage />,
-        loader: curUserloader,
+    {
+        path: "/",
+        element: <Root />,
+        errorElement: <ErrorPage />,
         children: [
-          // объявления пользователя
-          {
-            path: "products",
-            loader: userProductsLoader,
-            element: <MyProducts />,
-          },
-          // карточка объявления
-          {
-            path: "products/:prodId",
-            loader: prodLoader,
-            element: <ProdCard />,
-          },
-          // редактор объявления
-          {
-            path: "products/editor/:prodId",
-            loader: prodLoader,
-            element: <ProdEditor />,
-          },
-          // редактор добавления объявления
-          {
-            path: "products/addProd",
-            element: <ProdEditor />,
-          },
-          // закрытые объявления пользователя
-          {
-            path: "sales",
-            element: <MySales />,
-          },
-          // данные пользователя
-          {
-            path: "bio",
-            element: <User />,
-            loader: curUserloader,
-          },
-          // редактор пользователя
-          {
-            path: "bio/editor",
-            loader: curUserloader,
-            element: <UserEditor />,
-          },
+            // регистрация
+            {
+                path: "signup",
+                loader: curUserloader,
+                element: <Signup />,
+            },
+            // авторизация
+            { path: "logup", loader: curUserloader, element: <Logup /> },
+            // главная
+            {
+                path: "",
+                // loader: prodListLoader,
+                element: <MainPage />,
+            },
+            // избранное
+            {
+                path: "/favorites",
+                element: <Favorites />,
+            },
+            // карточка объявления
+            {
+                path: ":prodId",
+                loader: prodLoader,
+                element: <ProdPage />,
+            },
+            // страница пользователя
+            {
+                path: "personal",
+                element: <MyPage />,
+                loader: curUserloader,
+                children: [
+                    // объявления пользователя
+                    {
+                        path: "products",
+                        loader: userProductsLoader,
+                        element: <MyProducts />,
+                    },
+                    // карточка объявления
+                    {
+                        path: "products/:prodId",
+                        loader: prodLoader,
+                        element: <ProdCard />,
+                    },
+                    // редактор объявления
+                    {
+                        path: "products/editor/:prodId",
+                        loader: prodLoader,
+                        element: <ProdEditor />,
+                    },
+                    // редактор добавления объявления
+                    {
+                        path: "products/addProd",
+                        element: <ProdEditor />,
+                    },
+                    // закрытые объявления пользователя
+                    {
+                        path: "sales",
+                        element: <MySales />,
+                    },
+                    // данные пользователя
+                    {
+                        path: "bio",
+                        element: <User />,
+                        loader: curUserloader,
+                    },
+                    // редактор пользователя
+                    {
+                        path: "bio/editor",
+                        loader: curUserloader,
+                        element: <UserEditor />,
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  },
+    },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+    </React.StrictMode>
 );
