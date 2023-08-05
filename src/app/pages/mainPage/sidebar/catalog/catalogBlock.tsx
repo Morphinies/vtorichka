@@ -1,23 +1,25 @@
-import api from "../../../../api";
+import * as React from "react";
 import Catalog from "./catalog";
+import { useState } from "react";
+import api from "../../../../api";
 import { useEffect } from "react";
 import v from "../sidebar.module.css";
-import { useState } from "react";
-import * as React from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
+import { useSearchParams } from "react-router-dom";
 import { ICatalogBlock, IcatItem } from "../../../../../types/types";
 
 const CatalogBlock = ({
     id,
     btnName,
-    searchParams,
     openedSideBar,
-    setSearchParams,
     changeOpenedSideBar,
 }: ICatalogBlock): JSX.Element => {
     const [curCat, setCurCat] = useState([]); //путь до имени категории
-    const [catList, setCatList] = useState<IcatItem[]>();
     const [categories, setCategories] = useState([]);
+    const [catList, setCatList] = useState<IcatItem[]>();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    console.log(categories);
 
     // подгрузка существующих категорий
     useEffect(() => {

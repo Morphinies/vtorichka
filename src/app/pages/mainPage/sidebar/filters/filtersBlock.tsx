@@ -4,15 +4,15 @@ import v from "../sidebar.module.css";
 import { useEffect, useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 import { IFiltersBlock, IfiltersForm } from "../../../../../types/types";
+import { useSearchParams } from "react-router-dom";
 
 const FiltersBlock = ({
     id,
     btnName,
-    searchParams,
     openedSideBar,
-    setSearchParams,
     changeOpenedSideBar,
 }: IFiltersBlock): JSX.Element => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const filtersList: string[] = ["minPrice", "maxPrice", "type"];
     const [formData, setFormData] = useState<IfiltersForm>({});
     const [openedFilter, setOpenedFilter] = useState<undefined | string>();

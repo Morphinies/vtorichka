@@ -301,9 +301,9 @@ export interface ICatalog {
 export interface ICatalogBlock {
     id: string;
     btnName: string;
-    searchParams: URLSearchParams;
+    // searchParams: URLSearchParams;
     openedSideBar: string;
-    setSearchParams: (v: URLSearchParams) => void;
+    // setSearchParams: (v: URLSearchParams) => void;
     changeOpenedSideBar: (v: string) => void;
 }
 
@@ -385,9 +385,7 @@ export interface IFiltersBlock {
     id: string;
     btnName: string;
     openedSideBar: string;
-    searchParams: URLSearchParams;
     changeOpenedSideBar: (v: string) => void;
-    setSearchParams: (v: URLSearchParams) => void;
 }
 
 export interface IfiltersForm {
@@ -403,9 +401,7 @@ export interface ISorting {
 
 export interface ISortingBlock {
     btnName: string;
-    searchParams: URLSearchParams;
     openedSideBar: string;
-    setSearchParams: (v: URLSearchParams) => void;
     changeOpenedSideBar: (v: string) => void;
 }
 

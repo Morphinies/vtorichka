@@ -9,27 +9,28 @@ import { selectPage } from "../../redux/slices/pageNumbSlice";
 import { arrayFromNumber } from "../../utils/arrFromNumb";
 
 const Products = ({ prodList }: IProducts): JSX.Element => {
-  const choosedPage = useAppSelector(selectPage);
-  const [productsNumbOnPage, setProductsNumbOnPage] = useState<number>(5);
-  const startLimit = (choosedPage - 1) * productsNumbOnPage;
-  const limits = {
-    start: startLimit,
-    end: startLimit + productsNumbOnPage,
-  };
-  const pagesNumber = Math.ceil(prodList.length / productsNumbOnPage);
-  const pagesNumbersArr = arrayFromNumber(pagesNumber);
+    const choosedPage = useAppSelector(selectPage);
+    const [productsNumbOnPage, setProductsNumbOnPage] = useState<number>(5);
+    const startLimit = (choosedPage - 1) * productsNumbOnPage;
+    const pagesNumber = Math.ceil(prodList.length / productsNumbOnPage);
+    const pagesNumbersArr = arrayFromNumber(pagesNumber);
 
-  return (
-    <div className={s.productsWrap}>
-      {/*список товаров на странице*/}
-      <ProductsList productsOnPage={prodList.slice(limits.start, limits.end)} />
-      <ProductsNav
-        pageNumbersArr={pagesNumbersArr}
-        productsNumbOnPage={productsNumbOnPage}
-        setProductsNumbOnPage={setProductsNumbOnPage}
-      />
-    </div>
-  );
+    return (
+        <div className={s.productsWrap}>
+            {/*список товаров на странице*/}
+            <ProductsList
+                productsOnPage={prodList.slice(
+                    startLimit,
+                    startLimit + productsNumbOnPage
+                )}
+            />
+            <ProductsNav
+                pageNumbersArr={pagesNumbersArr}
+                productsNumbOnPage={productsNumbOnPage}
+                setProductsNumbOnPage={setProductsNumbOnPage}
+            />
+        </div>
+    );
 };
 
 export default Products;

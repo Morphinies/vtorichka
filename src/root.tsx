@@ -6,14 +6,16 @@ import Footer from "./app/common/footer/footer";
 import { useAppDispatch } from "./app/redux/hooks/hooks";
 import { fetchFavorites } from "./app/redux/slices/favoritesSlice";
 import { fetchProds, updateProds } from "./app/redux/slices/prodsSlice";
+import { fetchSortsList } from "./app/redux/slices/sortsListSlice";
 
 const Root = (): JSX.Element => {
     const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchFavorites());
         dispatch(fetchProds());
+        dispatch(fetchFavorites());
+        dispatch(fetchSortsList());
     }, [dispatch]);
 
     useEffect(() => {

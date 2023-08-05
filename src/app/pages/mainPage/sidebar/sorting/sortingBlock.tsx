@@ -1,18 +1,18 @@
 import * as React from "react";
 import Sorting from "./sorting";
-import { useEffect, useState } from "react";
 import s from "./sorting.module.css";
 import v from "../sidebar.module.css";
+import { useEffect, useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 import { ISortingBlock } from "../../../../../types/types";
+import { useSearchParams } from "react-router-dom";
 
 const SortingBlock = ({
     btnName,
-    searchParams,
     openedSideBar,
-    setSearchParams,
     changeOpenedSideBar,
 }: ISortingBlock): JSX.Element => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const defSort = "с новых";
     const blockIsOpen: boolean = openedSideBar === btnName;
     const [activeSort, setActiveSort] = useState<string>(defSort);

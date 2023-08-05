@@ -1,28 +1,37 @@
 import * as React from "react";
-import api from "../../../../api";
+import s from "./sorting.module.css";
 import SortingItem from "./sortingItem";
-import { useEffect, useState } from "react";
 import { ISorting } from "../../../../../types/types";
+import { useAppSelector } from "../../../../redux/hooks/hooks";
+import ErrorMessage from "../../../../common/errorMes/errorMessage";
+import { selectSortsList } from "../../../../redux/slices/sortsListSlice";
 
 const Sorting = ({ sort, activeSort }: ISorting) => {
-    const [sortingList, setSortingList] = useState([]);
+    const sortsList = useAppSelector(selectSortsList);
+    const status = sortsList.status;
 
-    useEffect(() => {
-        api.sortingList.fetchAll().then((data) => setSortingList(data));
-    });
+    const content = () => {
+        switch (status) {
+            case "succeeded":
+                return sortsList.value.map((sortingItem) => (
+                    <SortingItem
+                        sort={sort}
+                        key={sortingItem.name}
+                        activeSort={activeSort}
+                        sortingItem={sortingItem}
+                    />
+                ));
+            case "loading":
+                return <p className={s.loading}>загрузка...</p>;
 
-    return (
-        <ul>
-            {sortingList.map((sortingItem) => (
-                <SortingItem
-                    sort={sort}
-                    key={sortingItem.name}
-                    activeSort={activeSort}
-                    sortingItem={sortingItem}
-                />
-            ))}
-        </ul>
-    );
+            case "failed":
+                return (
+                    <ErrorMessage message="список сортировок недоступен, попробуйте перезагрузить страицу" />
+                );
+        }
+    };
+
+    return <ul>{content()}</ul>;
 };
 
 export default Sorting;
