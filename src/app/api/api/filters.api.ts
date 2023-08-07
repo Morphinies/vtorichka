@@ -5,7 +5,7 @@ interface Ifilters {
         value: boolean;
     }[];
 }
-const filters: Ifilters[] = [
+const filtersList: Ifilters[] = [
     {
         name: "тип",
         value: [
@@ -18,10 +18,10 @@ const filters: Ifilters[] = [
 const fetchAll = (): Promise<Ifilters[]> =>
     new Promise((resolve) => {
         window.setTimeout(() => {
-            resolve(filters);
+            resolve(filtersList);
         }, 100);
     });
 
-const filtersList = { fetchAll };
+const filters = { fetchAll };
 
-export default filtersList;
+export default filters;

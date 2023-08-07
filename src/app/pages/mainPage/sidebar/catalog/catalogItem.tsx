@@ -5,18 +5,18 @@ import { arrowDown } from "../../../../img/pictures";
 import { ICatalogItem } from "../../../../../types/types";
 
 const CatalogItem = ({
-    curCat,
     catItem,
-    displayCat,
     choosedCat,
+    choosedCatList,
+    handleClickOnCatItem,
 }: ICatalogItem) => {
     return (
         <li
             role="button"
-            onClick={() => displayCat(catItem)}
+            onClick={() => handleClickOnCatItem(catItem)}
             className={v.btnDisplayCat}
             id={
-                curCat.includes(catItem)
+                choosedCatList.includes(catItem)
                     ? v.openCatItem
                     : catItem.name === choosedCat
                     ? s.choosedCatItem
@@ -26,8 +26,8 @@ const CatalogItem = ({
             <p className={v.btnDisplayCatText}>{catItem.name}</p>
             {catItem.value && (
                 <img
-                    className={v.imgArrowDown}
                     alt=""
+                    className={v.imgArrowDown}
                     src={String(arrowDown)}
                 />
             )}

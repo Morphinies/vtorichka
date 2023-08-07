@@ -288,14 +288,9 @@ export interface ICatFieldBtn extends Omit<ICatFieldList, "catList"> {
 }
 
 export interface ICatalog {
-    curCat: IcatItem[];
-    catList: IcatItem[];
     hideCatalog: () => void;
     searchParams: URLSearchParams;
-    setCatListDefault: () => void;
-    setCatList: (v: IcatItem[]) => void;
     setSearchParams: (v: URLSearchParams) => void;
-    setCurCat: React.Dispatch<React.SetStateAction<IcatItem[]>>;
 }
 
 export interface ICatalogBlock {
@@ -308,10 +303,10 @@ export interface ICatalogBlock {
 }
 
 export interface ICatalogItem {
-    curCat: IcatItem[];
     catItem: IcatItem;
-    displayCat: (v: IcatItem) => void;
     choosedCat: string;
+    choosedCatList: IcatItem[];
+    handleClickOnCatItem: (v: IcatItem) => void;
 }
 
 // filters
@@ -371,11 +366,9 @@ export interface ITypeFilter {
 }
 
 export interface IFilters {
-    openedFilter: string;
     formData: IfiltersForm;
     clearFilters: () => void;
     applyFilters: () => void;
-    openFilter: (v: string) => void;
     setFormData: React.Dispatch<React.SetStateAction<IfiltersForm>>;
 }
 

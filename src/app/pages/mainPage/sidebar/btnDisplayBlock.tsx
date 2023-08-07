@@ -5,8 +5,8 @@ import { IBtnDisplayBlock } from "../../../../types/types";
 
 const BtnDisplayBlock = ({
     btnName,
-    blockHidden,
     hideBlock,
+    blockHidden,
 }: IBtnDisplayBlock) => {
     return (
         <button
@@ -17,11 +17,7 @@ const BtnDisplayBlock = ({
         >
             <p className={v.btnDisplayCatText}>{btnName} </p>
             {!blockHidden && (
-                <img
-                    className={v.imgDisplayCat}
-                    src={String(cancelImg)}
-                    alt=""
-                />
+                <img className={v.imgDisplayCat} src={cancelImg} alt="" />
             )}
         </button>
     );

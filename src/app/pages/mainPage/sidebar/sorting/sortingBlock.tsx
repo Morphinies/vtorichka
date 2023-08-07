@@ -46,9 +46,9 @@ const SortingBlock = ({
             id={s.sorting}
         >
             <BtnDisplayBlock
-                btnName={btnName + (activeSort !== defSort ? " *" : "")}
                 hideBlock={() => handleClick(btnName)}
                 blockHidden={openedSideBar !== btnName}
+                btnName={btnName + (activeSort !== defSort ? " *" : "")}
             />
             {blockIsOpen && (
                 <Sorting sort={setSortParam} activeSort={activeSort} />

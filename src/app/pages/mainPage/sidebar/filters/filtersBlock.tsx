@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 import { IFiltersBlock, IfiltersForm } from "../../../../../types/types";
 import { useSearchParams } from "react-router-dom";
+import { useAppSelector } from "../../../../redux/hooks/hooks";
+import { selectFiltersList } from "../../../../redux/slices/filtersListSlice";
 
 const FiltersBlock = ({
     id,
@@ -12,14 +14,12 @@ const FiltersBlock = ({
     openedSideBar,
     changeOpenedSideBar,
 }: IFiltersBlock): JSX.Element => {
+    const filtersList = useAppSelector(selectFiltersList);
     const [searchParams, setSearchParams] = useSearchParams();
-    const filtersList: string[] = ["minPrice", "maxPrice", "type"];
     const [formData, setFormData] = useState<IfiltersForm>({});
-    const [openedFilter, setOpenedFilter] = useState<undefined | string>();
     const filtersIsOpened: boolean = openedSideBar === btnName;
 
     useEffect(() => {
-        const filtersList: string[] = ["minPrice", "maxPrice", "type"];
         const updatedForm: IfiltersForm = {};
         filtersList.map((filter: string) => {
             if (searchParams.get(filter)) {
@@ -29,16 +29,7 @@ const FiltersBlock = ({
             return "";
         });
         setFormData(updatedForm);
-    }, [searchParams]);
-
-    // открыть/закрыть фильтр
-    const openFilter = (item: string): void => {
-        if (openedFilter === item) {
-            setOpenedFilter(undefined);
-        } else {
-            setOpenedFilter(item);
-        }
-    };
+    }, [searchParams, filtersList]);
 
     const clearParams = (): void => {
         filtersList.map((item) => {
@@ -80,11 +71,9 @@ const FiltersBlock = ({
             {openedSideBar === btnName && (
                 <Filters
                     formData={formData}
-                    openFilter={openFilter}
                     setFormData={setFormData}
                     applyFilters={applyFilters}
                     clearFilters={clearFilters}
-                    openedFilter={openedFilter}
                 />
             )}
         </nav>

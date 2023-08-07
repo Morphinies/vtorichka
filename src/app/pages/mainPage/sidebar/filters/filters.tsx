@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import s from "./filters.module.css";
 import TypeFilter from "./typeFilter/typeFilter";
 import PriceFilter from "./priceFilter/priceFilter";
@@ -10,9 +11,18 @@ const Filters = ({
     setFormData,
     clearFilters,
     applyFilters,
-    openedFilter,
-    openFilter,
 }: IFilters): JSX.Element => {
+    const [openedFilter, setOpenedFilter] = useState<undefined | string>();
+
+    // открыть/закрыть фильтр
+    const openFilter = (item: string): void => {
+        if (openedFilter === item) {
+            setOpenedFilter(undefined);
+        } else {
+            setOpenedFilter(item);
+        }
+    };
+
     return (
         <form className={s.filtersForm}>
             <PriceFilter

@@ -25,18 +25,10 @@ const sortsListSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers(builder) {
-        builder
-            .addCase(fetchSortsList.fulfilled, (state, action) => {
-                state.value = action.payload;
-                state.status = "succeeded";
-            })
-            .addCase(fetchSortsList.pending, (state) => {
-                state.status = "loading";
-            })
-            .addCase(fetchSortsList.rejected, (state, action) => {
-                state.error = action.error.message;
-                state.status = "failed";
-            });
+        builder.addCase(fetchSortsList.fulfilled, (state, action) => {
+            state.value = action.payload;
+            state.status = "succeeded";
+        });
     },
 });
 

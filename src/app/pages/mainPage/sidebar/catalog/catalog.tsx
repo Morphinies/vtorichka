@@ -1,29 +1,29 @@
 import * as React from "react";
+import { useState } from "react";
 import v from "../sidebar.module.css";
 import CatalogItem from "./catalogItem";
+import { useAppSelector } from "../../../../redux/hooks/hooks";
 import { ICatalog, IcatItem } from "../../../../../types/types";
+import { selectCatList } from "../../../../redux/slices/catListSlice";
 
-const Catalog = ({
-    curCat,
-    catList,
-    setCurCat,
-    setCatList,
-    hideCatalog,
-    searchParams,
-    setSearchParams,
-    setCatListDefault,
-}: ICatalog) => {
+const Catalog = ({ hideCatalog, searchParams, setSearchParams }: ICatalog) => {
+    const categories = useAppSelector(selectCatList).value;
+    const [visibleCatList, setVisibleCatList] = useState(categories);
+    const [choosedCatList, setChoosedCatList] = useState<IcatItem[]>([]);
+
     // handle click on category button
-    const displayCat = (catItem: IcatItem) => {
-        const curCategory = searchParams.get("category");
+    const handleClickOnCatItem = (catItem: IcatItem) => {
+        const choosedCatListegory = searchParams.get("category");
         //
         let allSumOpenCat = 0;
         const catItemCats = catItem.value;
-        const lIndexOfCurCat = curCat.length - 1;
-        curCat.map((category) => (allSumOpenCat += category.value.length));
+        const lIndexOfchoosedCatList = choosedCatList.length - 1;
+        choosedCatList.map(
+            (category) => (allSumOpenCat += category.value.length)
+        );
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~ убрать категорию ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-        if (catItem.name === curCategory) {
+        if (catItem.name === choosedCatListegory) {
             searchParams.delete("category");
             setSearchParams(searchParams);
         }
@@ -36,58 +36,61 @@ const Catalog = ({
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~ открытие ветки категорий ~~~~~~~~~~~~~~~~~~~~~~~~~~//
-        else if (!curCat.length) {
+        else if (!choosedCatList.length) {
             (() => {
-                setCatList([catItem].concat(catItemCats));
-                setCurCat((arr) => [...arr, catItem]);
+                setVisibleCatList([catItem].concat(catItemCats));
+                setChoosedCatList((arr) => [...arr, catItem]);
             })();
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~ внутренняя категория ~~~~~~~~~~~~~~~~~~~~~~~~~~//
         else if (
-            curCat.length &&
-            !curCat.includes(catItem) &&
-            curCat[lIndexOfCurCat].value.includes(catItem)
+            choosedCatList.length &&
+            !choosedCatList.includes(catItem) &&
+            choosedCatList[lIndexOfchoosedCatList].value.includes(catItem)
         ) {
-            setCatList(curCat.concat([catItem], catItemCats));
-            setCurCat((arr) => [...arr, catItem]);
+            setVisibleCatList(choosedCatList.concat([catItem], catItemCats));
+            setChoosedCatList((arr) => [...arr, catItem]);
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~ повторное нажатие на категорию из истории ~~~~~~~~~~~~~~~~~~~~~~~~~~//
         else if (
-            curCat.length &&
-            curCat.includes(catItem) &&
-            curCat[0] !== catItem
+            choosedCatList.length &&
+            choosedCatList.includes(catItem) &&
+            choosedCatList[0] !== catItem
         ) {
-            setCatList(
-                catList
-                    .slice(0, catList.indexOf(catItem))
-                    .concat(catList[catList.indexOf(catItem) - 1].value)
+            setVisibleCatList(
+                visibleCatList
+                    .slice(0, visibleCatList.indexOf(catItem))
+                    .concat(
+                        visibleCatList[visibleCatList.indexOf(catItem) - 1]
+                            .value
+                    )
             );
-            setCurCat((arr) => [...arr.slice(0, arr.indexOf(catItem))]);
+            setChoosedCatList((arr) => [...arr.slice(0, arr.indexOf(catItem))]);
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~ возвращение к основному каталогу ~~~~~~~~~~~~~~~~~~~~~~~~~~//
         else if (
-            curCat.length &&
-            curCat.includes(catItem) &&
-            curCat[0] === catItem
+            choosedCatList.length &&
+            choosedCatList.includes(catItem) &&
+            choosedCatList[0] === catItem
         ) {
-            setCatListDefault();
-            setCurCat(() => []);
+            setVisibleCatList(categories);
+            setChoosedCatList(() => []);
         }
     };
 
     return (
-        catList && (
+        visibleCatList && (
             <ul className={v.catList}>
-                {catList.map((catItem) => (
+                {visibleCatList.map((catItem) => (
                     <CatalogItem
-                        curCat={curCat}
                         catItem={catItem}
                         key={catItem.name}
-                        displayCat={displayCat}
+                        choosedCatList={choosedCatList}
                         choosedCat={searchParams.get("category")}
+                        handleClickOnCatItem={handleClickOnCatItem}
                     />
                 ))}
             </ul>

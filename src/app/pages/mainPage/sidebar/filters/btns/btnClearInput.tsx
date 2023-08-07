@@ -10,12 +10,7 @@ const BtnClearInput = ({ value, clearFilter }: IBtnClearInput): JSX.Element => {
             className={"btn " + s.btnClear}
             onClick={() => clearFilter(value)}
         >
-            <img
-                className={s.imgBtnClear}
-                //  + " " + (rotation ? s.rotation : "")
-                src={cancelImg}
-                alt="сбросить"
-            />
+            <img className={s.imgBtnClear} src={cancelImg} alt="сбросить" />
         </button>
     );
 };
