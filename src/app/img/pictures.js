@@ -23,8 +23,10 @@ import bin from "./bin.svg";
 import favorites from "./favorites.svg";
 import favoritesFull from "./favoritesFull.svg";
 import cloud from "./cloud.svg";
+import home from "./home.svg";
 
 export {
+    home,
     cloud,
     plug,
     apply,

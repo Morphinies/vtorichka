@@ -2,7 +2,7 @@ import * as React from "react";
 import HeadBtn from "./headBtn";
 import s from "./header.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { favorites, favoritesFull } from "../../img/pictures";
+import { favorites, favoritesFull, home } from "../../img/pictures";
 
 const HeadNav = (): JSX.Element => {
     const navigate = useNavigate();
@@ -18,13 +18,11 @@ const HeadNav = (): JSX.Element => {
     return (
         <nav className={s.navBlock}>
             {/* навигация главной страницы */}
-            {currentPage === "/favorites" ? (
-                <HeadBtn icon={favoritesFull} name={"избранное"} link={"/"} />
-            ) : (
+            {currentPage !== "/favorites" && (
                 <HeadBtn
-                    icon={favorites}
                     name={"избранное"}
                     link={"/favorites"}
+                    icon={favoritesFull}
                 />
             )}
 
@@ -39,6 +37,7 @@ const HeadNav = (): JSX.Element => {
                         <HeadBtn
                             name={"личный кабинет"}
                             link={"/personal/bio"}
+                            icon={home}
                         />
                         <HeadBtn name={"выход"} link={"/"} action={output} />
                     </>
@@ -52,6 +51,7 @@ const HeadNav = (): JSX.Element => {
                         <HeadBtn
                             name={"личный кабинет"}
                             link={"/personal/bio"}
+                            icon={home}
                         />
                     )}
                 </>
