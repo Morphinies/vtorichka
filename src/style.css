@@ -23,15 +23,14 @@ input:focus {
     background-color: #fff;
 }
 
-body,
 html,
 #root,
 .wrapper {
-    height: 100%;
+    height: #f7f0f0;
 }
 
 body {
-    background-color: #eee;
+    background-color: #fff;
 }
 
 .wrapper {
