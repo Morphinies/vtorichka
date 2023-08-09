@@ -6,10 +6,8 @@ import MyPage from "./app/pages/myPage/myPage";
 import User from "./app/pages/myPage/user/user";
 import MainPage from "./app/pages/mainPage/mainPage";
 import ProdPage from "./app/pages/prodPage/prodPage";
-import Logup from "./app/pages/authPage/logup/logup";
 import { prodLoader } from "./app/loaders/prodLoader";
 import ErrorPage from "./app/pages/errorPage/errorPage";
-import Signup from "./app/pages/authPage/signup/signup";
 import MySales from "./app/pages/myPage/mySales/mySales";
 import { curUserloader } from "./app/loaders/curUserLoader";
 // import { prodListLoader } from "./app/loaders/prodListLoader";
@@ -22,6 +20,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Favorites from "./app/pages/favoritesPage/favorites";
 import { store } from "./app/redux/store/store";
 import { Provider } from "react-redux";
+import AuthPage from "./app/pages/authPage/authPage";
 
 const router = createBrowserRouter([
     {
@@ -29,14 +28,9 @@ const router = createBrowserRouter([
         element: <Root />,
         errorElement: <ErrorPage />,
         children: [
-            // регистрация
-            {
-                path: "signup",
-                loader: curUserloader,
-                element: <Signup />,
-            },
-            // авторизация
-            { path: "logup", loader: curUserloader, element: <Logup /> },
+            // // авторизация
+            { path: "auth", loader: curUserloader, element: <AuthPage /> },
+
             // главная
             {
                 path: "",

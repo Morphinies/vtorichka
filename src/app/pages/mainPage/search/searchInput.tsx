@@ -14,7 +14,7 @@ const SearchInput = ({
             onChange={(e) => {
                 setTextSearch(e.target.value);
             }}
-            className={s.input + " " + (textSearch ? s.formNotEmpty : "")}
+            className={s.input + (textSearch ? " " + s.formNotEmpty : "")}
         />
     );
 };

@@ -1,6 +1,6 @@
 import * as React from "react";
 import s from "./search.module.css";
-import { searchImg } from "../../../img/pictures";
+import { search } from "../../../img/pictures";
 
 interface IBtnFind {
     isDisabled: boolean;
@@ -8,11 +8,14 @@ interface IBtnFind {
 const BtnFind = ({ isDisabled }: IBtnFind) => {
     return (
         <button
-            className="btn"
             disabled={isDisabled}
-            id={!isDisabled ? s.searchBtnFormNotEmpty : s.searchBtn}
+            title="найти"
+            id={s.btnFind}
+            className={
+                s.searchBtn + (!isDisabled ? " " + s.searchBtnFormNotEmpty : "")
+            }
         >
-            <img className={s.searchImg} src={searchImg} alt="поиск" />
+            <img src={search} alt="поиск" />
         </button>
     );
 };

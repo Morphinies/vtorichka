@@ -27,13 +27,7 @@ const SearchForm = ({ textSearch, setTextSearch }: ISearchForm) => {
     return (
         <form
             onSubmit={(e: React.FormEvent<HTMLFormElement>) => search(e)}
-            className={
-                s.form +
-                " " +
-                (textSearch || searchedName ? s.formWithText : "") +
-                " " +
-                (textSearch ? s.formWithRes : "")
-            }
+            className={s.form + (textSearch ? " " + s.formWithRes : "")}
         >
             <SearchInput
                 textSearch={textSearch}

@@ -14,7 +14,7 @@ import heartFill from "./heartFill.svg";
 import logo from "./logo.svg";
 import plus from "./plus.svg";
 import reset from "./reset.svg";
-import searchImg from "./searchImg.svg";
+import search from "./search.svg";
 import settings from "./settings.svg";
 import star from "./star.svg";
 import starFill from "./starFill.svg";
@@ -24,8 +24,14 @@ import favorites from "./favorites.svg";
 import favoritesFull from "./favoritesFull.svg";
 import cloud from "./cloud.svg";
 import home from "./home.svg";
+import exit from "./exit.svg";
+import user from "./user.svg";
+import lock from "./lock.svg";
 
 export {
+    lock,
+    user,
+    exit,
     home,
     cloud,
     plug,
@@ -45,7 +51,7 @@ export {
     message,
     plus,
     reset,
-    searchImg,
+    search,
     settings,
     star,
     starFill,

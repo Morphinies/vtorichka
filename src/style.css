@@ -17,19 +17,22 @@ a {
 input {
     border: none;
     outline: none;
+    background-color: #00000000;
 }
+
 input:focus {
-    background-color: #fff;
+    background-color: #00000000;
 }
 
 html,
 #root,
 .wrapper {
-    height: #f7f0f0;
+    height: 100%;
+    min-height: 100vh;
 }
 
-body {
-    background-color: #fff;
+#root {
+    background-color: #f6faf7;
 }
 
 .wrapper {
@@ -46,24 +49,17 @@ body {
 }
 
 /* ************************ button ************************ */
-.btn {
+button {
+    border: none;
     cursor: pointer;
-    color: #f6f6f6;
-    border-radius: 5px;
-    padding: 0.5rem 2rem;
-    transition: all 0.3s;
-    border: 1px solid #f6f6f6;
-    background-color: rgba(246, 246, 246, 0);
+    padding: 0.5rem 1rem;
+    background: #00000000;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.btn:hover,
-.btn:focus {
+button:hover,
+button:focus {
     outline: none;
-}
-
-.btn:active {
-    background-color: rgba(238, 238, 238, 0.2);
 }
 
 /* list */
@@ -73,6 +69,7 @@ li {
 }
 
 /* input */
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;

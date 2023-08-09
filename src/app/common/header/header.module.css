@@ -39,44 +39,37 @@
 
 .navBlock {
     display: flex;
-    column-gap: 1rem;
+    column-gap: 0.5rem;
 }
 
 .headerBtn {
     display: flex;
     align-self: flex-start;
+    flex-direction: column;
+    padding: 0.25rem 0.5rem;
     background-color: #f26722;
     border-radius: 0 0 10px 10px;
 }
 
-.headerBtn * {
+.headerBtn .btnIcon {
     transition: all 0.3s;
 }
 
-.headerBtn:hover * {
-    margin-top: 1rem;
-}
-
-.headerBtn:hover {
-    /* background-color: #f7f0f0; */
-}
-
-.headerBtn:active {
-    /* background-color: #f7f0f0; */
+.headerBtn:hover .btnIcon {
+    margin-top: 0.5rem;
 }
 
 .btnName {
-    font-weight: 500;
-    margin: 0.5rem 2rem;
+    font-size: 0.75rem;
+    font-weight: 400;
 }
 
 .btnIcon {
     height: 1.1875rem;
     display: block;
-    margin: 0.5rem;
 }
 
-/* ************************ media ************************ */
+/* ************************ media (не настроено!) ************************ */
 @media (hover: none) {
     .headerBtn:hover {
         padding-top: 0.5rem;

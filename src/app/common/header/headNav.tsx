@@ -2,7 +2,7 @@ import * as React from "react";
 import HeadBtn from "./headBtn";
 import s from "./header.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { favorites, favoritesFull, home } from "../../img/pictures";
+import { favoritesFull, home, exit, user, lock } from "../../img/pictures";
 
 const HeadNav = (): JSX.Element => {
     const navigate = useNavigate();
@@ -26,61 +26,64 @@ const HeadNav = (): JSX.Element => {
                 />
             )}
 
+            {/* навигация страницы избранное */}
+            {currentPage === "/favorites" && (
+                <>
+                    <HeadBtn icon={home} name={"на главную"} link={"/"} />
+                </>
+            )}
+
             {(currentPage === "/" || currentPage === "/favorites") &&
                 (!userId ? (
                     <>
-                        <HeadBtn name={"регистрация"} link={"/signup"} />
-                        <HeadBtn name={"вход"} link={"/logup"} />
+                        <HeadBtn name={"вход"} link={"/auth"} icon={lock} />
                     </>
                 ) : (
                     <>
                         <HeadBtn
                             name={"личный кабинет"}
                             link={"/personal/bio"}
-                            icon={home}
+                            icon={user}
                         />
-                        <HeadBtn name={"выход"} link={"/"} action={output} />
+                        <HeadBtn
+                            link={"/"}
+                            icon={exit}
+                            name={"выход"}
+                            action={output}
+                        />
                     </>
                 ))}
 
             {/* навигация страницы продукта */}
             {currentPage.match(/^\/\w{24}$/)?.input && (
                 <>
-                    <HeadBtn name={"на главную"} link={"/"} />
+                    <HeadBtn icon={home} name={"на главную"} link={"/"} />
                     {userId && (
                         <HeadBtn
                             name={"личный кабинет"}
                             link={"/personal/bio"}
-                            icon={home}
+                            icon={user}
                         />
                     )}
                 </>
             )}
 
             {/* навигация страницы авторизации */}
-            {currentPage === "/logup" && (
-                <>
-                    <HeadBtn name={"на главную"} link={"/"} />
-                    {!userId && (
-                        <HeadBtn name={"регистрация"} link={"/signup"} />
-                    )}
-                </>
-            )}
-
-            {/* навигация страницы регистрация */}
-            {currentPage === "/signup" && (
-                <>
-                    <HeadBtn name={"на главную"} link={"/"} />
-                    {!userId && <HeadBtn name={"вход"} link={"/logup"} />}
-                </>
+            {currentPage === "/auth" && (
+                <HeadBtn icon={home} name={"на главную"} link={"/"} />
             )}
 
             {/* {навигация личной страницы */}
             {currentPage.match(/^\/personal/)?.input && (
                 <>
-                    <HeadBtn name={"на главную"} link={"/"} />
+                    <HeadBtn icon={home} name={"на главную"} link={"/"} />
                     {userId && (
-                        <HeadBtn name={"выход"} link={"/"} action={output} />
+                        <HeadBtn
+                            link={"/"}
+                            icon={exit}
+                            name={"выход"}
+                            action={output}
+                        />
                     )}
                 </>
             )}

@@ -11,7 +11,7 @@ const MainPage = () => {
     const isLoading = prods.status === "loading";
 
     return (
-        <main className={"main " + (isLoading ? "loading" : "")}>
+        <main className={"main" + (isLoading ? " loading" : "")}>
             <Search />
             <Conditions />
             {isLoading ? <Loading /> : <Products prodList={prods.value} />}

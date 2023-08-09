@@ -1,25 +1,18 @@
 /* ************************ common ************************ */
 .nav {
-    display: grid;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 530px;
     grid-area: 1/1/2/3;
-    align-self: flex-start;
 }
 
 /* ************************ search line ************************ */
 .form {
-    width: 50%;
-    display: grid;
-    column-gap: 2px;
-    justify-self: center;
-    align-self: flex-start;
-    padding: 0 2px 2px 2px;
-    border-radius: 0 0 5px 5px;
-    background-color: #16191a;
-    grid-template-columns: 1fr auto;
-}
-
-.formWithText {
-    grid-template-columns: 1fr auto auto;
+    display: flex;
+    background: #fff;
+    border: 2px solid #034956;
+    border-radius: 0 0 10px 10px;
+    border-top: none;
 }
 
 .formWithRes {
@@ -28,53 +21,57 @@
 
 /* ************************ input ************************ */
 .input {
-    font-size: 1.2rem;
-    padding: 0.3rem 1rem;
-    border-radius: 0 0 0 3px;
-    background-color: #f6f6f6;
+    flex: 1;
+    padding: 0 1rem;
+    color: #034956;
+    border-bottom-left-radius: 8px;
 }
 
 .input::placeholder {
-    color: #16191a;
-}
-
-.input:active,
-.input:focus {
-    color: #16191a;
-    background-color: #fff;
+    opacity: 0.75;
+    color: #034956;
 }
 
 /* ************************ input button ************************ */
-#searchBtn,
-#searchBtnFormNotEmpty {
-    border: none;
-    transition: all 0.3s;
-    border-radius: 0 0 3px 0;
-    background-color: #f6f6f6;
+
+.searchBtn {
+    display: flex;
+    padding: 0.5rem 1rem;
 }
 
-#searchBtnFormNotEmpty {
+.searchBtn img {
+    height: 1.125rem;
+    align-self: center;
+}
+
+.searchBtnFormNotEmpty {
     border-radius: 0;
 }
 
-#searchBtn:hover,
-#searchBtnFormNotEmpty:hover {
-    background-color: #fff;
+#btnFind img {
+    height: 1.375rem;
 }
 
-#searchBtn:active,
-#searchBtnFormNotEmpty:active {
-    background-color: #dedede;
+.searchBtn:hover img,
+.searchBtn:active img {
+    animation: growth 0.3s ease-in-out;
 }
 
-.searchImg {
-    height: auto;
-    transition: all 0.3s;
+@keyframes growth {
+    from {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 /* ************************ selected ************************ */
 .selectedWrap {
-    width: 50%;
+    width: 100%;
     display: grid;
     position: relative;
     justify-self: center;
@@ -86,7 +83,7 @@
     overflow: hidden;
     position: absolute;
     border-radius: 0 0 5px 5px;
-    background-color: #16191a;
+    background-color: #034956;
 }
 
 .selectedItem {
@@ -115,16 +112,6 @@
     border-radius: 0;
 }
 
-.btnReset {
-    border: none;
-    cursor: pointer;
-    padding: 0 1rem;
-    background-color: #f6f6f6;
-}
-.btnReset:hover {
-    background-color: #ffffff;
-}
-
 .btnDisabled {
     cursor: default;
 }
@@ -136,21 +123,21 @@
 /* ************************ media ************************ */
 
 @media (hover: none) {
-    #searchBtn:hover,
-    #searchBtnFormNotEmpty:hover {
+    .searchBtn:hover,
+    .searchBtnFormNotEmpty:hover {
         border-radius: 0 0 3px 0;
         background-color: #f6f6f6;
     }
 
-    #searchBtn:active,
-    #searchBtnFormNotEmpty:active {
+    .searchBtn:active,
+    .searchBtnFormNotEmpty:active {
         background-color: #dedede;
     }
 
-    #searchBtn:hover .searchImg,
-    #searchBtnFormNotEmpty:hover .searchImg {
+    /* .searchBtn:hover .searchImg,
+    .searchBtnFormNotEmpty:hover .searchImg {
         filter: none;
-    }
+    } */
 }
 
 @media (max-width: 980px) {
@@ -179,7 +166,7 @@
         border-radius: 5px;
     }
 
-    #searchBtn {
+    .searchBtn {
         padding: 0 1rem;
         border-radius: 0 3px 3px 0;
     }
