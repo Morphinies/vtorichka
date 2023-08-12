@@ -92,14 +92,14 @@ input[type="number"]:focus {
 
 /* sidebar */
 
-.sidebar {
-    width: 3rem;
+.sidebarWrapper {
     grid-area: 3/1/4/2;
     position: relative;
 }
 
-.sidebarCatalog {
+.sidebar {
     display: flex;
+    row-gap: 0.5rem;
     position: absolute;
     flex-direction: column;
 }

@@ -5,29 +5,38 @@
 }
 
 /* ************************ input container  ************************ */
+
 .filterLine {
-    display: grid;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.filterLine:hover,
-.filterLine:active {
-    background-color: rgba(255, 255, 255, 0.25);
-}
-
-.inputContainer {
     border: none;
     display: grid;
     column-gap: 1rem;
-    padding: 0.5rem 2rem;
+    padding: 0.7rem 2rem;
+    background-color: #056f82;
     grid-template-columns: 8rem 1rem;
 }
 
 .priceInput {
-    width: auto;
+    width: 100%;
     min-width: 50px;
+    color: #034956;
+    padding: 0 0.5rem;
     border-radius: 3px;
-    padding: 0.2rem 0.5rem;
+    background-color: #f6faf7;
+}
+
+.priceInput:focus {
+    background-color: #f6faf7;
+}
+
+.priceFilterWrapper {
+    position: relative;
+}
+
+.priceFilterWrapper label {
+    left: -2.5rem;
+    width: 2rem;
+    text-align: right;
+    position: absolute;
 }
 
 /* ************************ btn Clear  ************************ */
@@ -49,7 +58,7 @@
 }
 
 /* ************************ check box  ************************ */
-
+/* 
 .checkBoxContainer {
     cursor: pointer;
     padding: 0.7rem 2rem;
@@ -58,7 +67,7 @@
 
 .checkBoxContainer:active {
     background-color: rgba(255, 255, 255, 0.05);
-}
+} */
 
 .checkBox {
     height: 1rem;
@@ -66,7 +75,7 @@
     padding: 0.1rem;
     border-radius: 3px;
     align-self: center;
-    background-color: #fefefe;
+    background-color: #f6faf7;
 }
 
 .checkBox .imgCheckBox {
@@ -92,20 +101,19 @@
 /* ************************ block btns apply filters   ************************ */
 .btnsApplyFilters {
     display: grid;
-    column-gap: 0.5rem;
-    padding: 0.332rem 2rem;
+    background-color: #034956;
     grid-template-columns: auto auto;
 }
 
 .btnApplyFilters {
     display: grid;
-    padding: 0.4rem 1rem;
+    padding: 0.8rem;
+    transition: all 0.3s;
 }
 
 .btnApplyFilters:hover,
 .btnApplyFilters:active {
-    border: 1px solid #f6f6f6;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #056f82;
 }
 
 .btnApplyFiltersImg {

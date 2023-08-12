@@ -1,6 +1,6 @@
 import * as React from "react";
 import Catalog from "./catalog";
-import v from "../sidebar.module.css";
+import s from "../sidebar.module.css";
 import BtnDisplayBlock from "../btnDisplayBlock";
 import { useSearchParams } from "react-router-dom";
 import { ICatalogBlock } from "../../../../../types/types";
@@ -19,12 +19,7 @@ const CatalogBlock = ({
     };
 
     return (
-        <div
-            className={
-                v.categoriesNav + (isOpenedSideBar ? " " + v.catNavOpened : "")
-            }
-            id={v["categoriesNav" + id]}
-        >
+        <div className={s.sidebarItem} id={s["sidebarItem" + id]}>
             <BtnDisplayBlock
                 btnName={btnName + (searchParams.get("category") ? " *" : "")}
                 blockHidden={openedSideBar !== btnName}

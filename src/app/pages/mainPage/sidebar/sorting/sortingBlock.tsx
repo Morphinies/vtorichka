@@ -42,7 +42,7 @@ const SortingBlock = ({
 
     return (
         <div
-            className={v.categoriesNav + " " + (blockIsOpen && v.catNavOpened)}
+            className={v.sidebarItem + " " + (blockIsOpen && v.catNavOpened)}
             id={s.sorting}
         >
             <BtnDisplayBlock

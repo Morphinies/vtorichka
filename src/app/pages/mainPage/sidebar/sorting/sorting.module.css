@@ -16,16 +16,7 @@
 }
 
 .choosedSorting {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.choosedSorting:hover,
-.choosedSorting:active {
-    background-color: rgba(255, 255, 255, 0.25);
-}
-
-.sortsList .loadingMes {
-    color: white;
+    background-color: #056f82;
 }
 
 @media (max-width: 480px) {

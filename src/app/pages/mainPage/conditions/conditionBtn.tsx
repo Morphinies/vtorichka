@@ -13,7 +13,7 @@ const ConditionBtn = ({ cond, clearCondition }: IConditionBtn): JSX.Element => {
             <p className={s.conditionBtnText}>
                 {cond.name}: {cond.value}
             </p>
-            <img className={s.conditionBtnImg} src={String(cancelImg)} alt="" />
+            <img className={s.conditionBtnImg} src={cancelImg} alt="" />
         </button>
     );
 };

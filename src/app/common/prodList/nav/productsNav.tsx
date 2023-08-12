@@ -5,21 +5,21 @@ import ProductsPages from "./productsPages";
 import { IProductsNav } from "../../../../types/types";
 
 const ProductsNav = ({
-  pageNumbersArr,
-  productsNumbOnPage,
-  setProductsNumbOnPage,
+    pageNumbersArr,
+    productsNumbOnPage,
+    setProductsNumbOnPage,
 }: IProductsNav): JSX.Element => {
-  return (
-    <div className={s.pageNumber}>
-      {/*переход по страницам*/}
-      <ProductsPages pageNumbersArr={pageNumbersArr} />
-      {/*количество отображаемых карточек*/}
-      <ProductsNumb
-        productsNumbOnPage={productsNumbOnPage}
-        setProductsNumbOnPage={setProductsNumbOnPage}
-      />
-    </div>
-  );
+    return (
+        <div className={s.pageNumber}>
+            {/*переход по страницам*/}
+            <ProductsPages pageNumbersArr={pageNumbersArr} />
+            {/*количество отображаемых карточек*/}
+            <ProductsNumb
+                productsNumbOnPage={productsNumbOnPage}
+                setProductsNumbOnPage={setProductsNumbOnPage}
+            />
+        </div>
+    );
 };
 
 export default ProductsNav;

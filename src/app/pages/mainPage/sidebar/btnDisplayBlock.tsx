@@ -1,5 +1,5 @@
 import * as React from "react";
-import v from "./sidebar.module.css";
+import s from "./sidebar.module.css";
 import { cancelImg } from "../../../img/pictures";
 import { IBtnDisplayBlock } from "../../../../types/types";
 
@@ -12,12 +12,12 @@ const BtnDisplayBlock = ({
         <button
             type="button"
             onClick={hideBlock}
-            className={v.btnDisplayCat}
-            id={blockHidden ? v.categoriesShowBtn : v.categoriesHideBtn}
+            className={s.btnDisplayCat}
+            id={blockHidden ? s.categoriesShowBtn : s.categoriesHideBtn}
         >
-            <p className={v.btnDisplayCatText}>{btnName} </p>
+            <p className={s.btnDisplayCatText}>{btnName} </p>
             {!blockHidden && (
-                <img className={v.imgDisplayCat} src={cancelImg} alt="" />
+                <img className={s.imgDisplayCat} src={cancelImg} alt="" />
             )}
         </button>
     );

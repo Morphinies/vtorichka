@@ -14,8 +14,7 @@ const SortingItem = ({
         <li
             className={
                 v.btnDisplayCat +
-                " " +
-                (sortingIsActive ? s.choosedSorting : "")
+                (sortingIsActive ? " " + s.choosedSorting : "")
             }
             onClick={() => sort(sortingItem.name)}
         >

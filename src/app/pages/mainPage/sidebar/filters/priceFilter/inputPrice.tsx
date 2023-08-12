@@ -35,18 +35,20 @@ const InputPrice = ({
 
     return (
         <div className={s.filterLine}>
-            <div className={s.inputContainer}>
+            <div className={s.priceFilterWrapper}>
+                <label htmlFor={name}>{name}</label>
                 <input
+                    id={name}
                     type="text"
                     name={value}
                     maxLength={12}
-                    placeholder={name}
                     className={s.priceInput}
                     value={formData[value as keyof IfiltersForm] || ""}
                     onChange={(e) => changePrice(e.target.value)}
                 />
-                <BtnClearInput value={value} clearFilter={clearFilter} />
             </div>
+
+            <BtnClearInput value={value} clearFilter={clearFilter} />
         </div>
     );
 };

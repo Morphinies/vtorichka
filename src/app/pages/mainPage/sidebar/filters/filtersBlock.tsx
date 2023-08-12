@@ -1,6 +1,6 @@
 import * as React from "react";
 import Filters from "./filters";
-import v from "../sidebar.module.css";
+import s from "../sidebar.module.css";
 import { useEffect, useState } from "react";
 import BtnDisplayBlock from "../btnDisplayBlock";
 import { IFiltersBlock, IfiltersForm } from "../../../../../types/types";
@@ -56,9 +56,9 @@ const FiltersBlock = ({
     return (
         <div
             className={
-                v.categoriesNav + " " + (filtersIsOpened ? v.catNavOpened : "")
+                s.sidebarItem + " " + (filtersIsOpened ? s.catNavOpened : "")
             }
-            id={v["categoriesNav" + id]}
+            id={s["sidebarItem" + id]}
         >
             <BtnDisplayBlock
                 blockHidden={!filtersIsOpened}
