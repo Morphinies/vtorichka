@@ -90,9 +90,9 @@ input[type="number"]:focus {
     pointer-events: none;
 }
 
-/* sidebarWrap */
+/* sidebar */
 
-.sidebarWrap {
+.sidebar {
     width: 3rem;
     grid-area: 3/1/4/2;
     position: relative;

@@ -9,8 +9,8 @@ const Sidebar = (): JSX.Element => {
     const changeOpenedSideBar = (item: string) => setOpenedSideBar(item);
 
     return (
-        <aside className="sidebarWrap">
-            <div className="sidebarCatalog">
+        <nav className="sidebar">
+            <nav className="sidebarCatalog">
                 <CatalogBlock
                     id="1"
                     btnName="каталог"
@@ -28,8 +28,8 @@ const Sidebar = (): JSX.Element => {
                     openedSideBar={openedSideBar}
                     changeOpenedSideBar={changeOpenedSideBar}
                 />
-            </div>
-        </aside>
+            </nav>
+        </nav>
     );
 };
 

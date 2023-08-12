@@ -54,7 +54,7 @@ const FiltersBlock = ({
     };
 
     return (
-        <nav
+        <div
             className={
                 v.categoriesNav + " " + (filtersIsOpened ? v.catNavOpened : "")
             }
@@ -76,7 +76,7 @@ const FiltersBlock = ({
                     clearFilters={clearFilters}
                 />
             )}
-        </nav>
+        </div>
     );
 };
 

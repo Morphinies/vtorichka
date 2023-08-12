@@ -41,7 +41,7 @@ const SortingBlock = ({
     }, [searchParams]);
 
     return (
-        <nav
+        <div
             className={v.categoriesNav + " " + (blockIsOpen && v.catNavOpened)}
             id={s.sorting}
         >
@@ -53,7 +53,7 @@ const SortingBlock = ({
             {blockIsOpen && (
                 <Sorting sort={setSortParam} activeSort={activeSort} />
             )}
-        </nav>
+        </div>
     );
 };
 

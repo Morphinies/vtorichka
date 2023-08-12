@@ -19,7 +19,7 @@ const CatalogBlock = ({
     };
 
     return (
-        <nav
+        <div
             className={
                 v.categoriesNav + (isOpenedSideBar ? " " + v.catNavOpened : "")
             }
@@ -38,7 +38,7 @@ const CatalogBlock = ({
                     setSearchParams={setSearchParams}
                 />
             )}
-        </nav>
+        </div>
     );
 };
 
