@@ -14,7 +14,7 @@ const HeadLogo = (): JSX.Element => {
                 {currentPage === "/" && (
                     <p className={s.logoTagline}>
                         - доска объявлений в
-                        <span className={s.countrySpan}>Торо́пце</span>
+                        <span className={s.countrySpan}> Торо́пце</span>
                     </p>
                 )}
             </div>

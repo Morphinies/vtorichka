@@ -23,7 +23,6 @@
 .input {
     flex: 1;
     padding: 0 1rem;
-    color: #034956;
     border-bottom-left-radius: 8px;
 }
 
@@ -91,6 +90,7 @@
     margin-top: 0;
     display: block;
     cursor: pointer;
+
     padding: 0.5rem 1rem;
     background-color: #f6f6f6;
 }
@@ -118,6 +118,13 @@
 
 .btnDisabled:hover {
     background-color: #f6f6f6 !important;
+}
+
+.selectedItem,
+.input {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #034956;
 }
 
 /* ************************ media ************************ */
