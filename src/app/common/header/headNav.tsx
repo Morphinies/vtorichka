@@ -2,7 +2,7 @@ import * as React from "react";
 import HeadBtn from "./headBtn";
 import s from "./header.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { favoritesFull, home, exit, user, lock } from "../../img/pictures";
+import { heart, home, exit, user, lock } from "../../img/pictures";
 
 const HeadNav = (): JSX.Element => {
     const navigate = useNavigate();
@@ -19,11 +19,7 @@ const HeadNav = (): JSX.Element => {
         <nav className={s.navBlock}>
             {/* навигация главной страницы */}
             {currentPage !== "/favorites" && (
-                <HeadBtn
-                    name={"избранное"}
-                    link={"/favorites"}
-                    icon={favoritesFull}
-                />
+                <HeadBtn name={"избранное"} link={"/favorites"} icon={heart} />
             )}
 
             {/* навигация страницы избранное */}

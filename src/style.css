@@ -10,6 +10,10 @@
     font-family: "Montserrat", sans-serif;
 }
 
+body {
+    overflow-y: scroll;
+}
+
 a {
     text-decoration: none;
 }

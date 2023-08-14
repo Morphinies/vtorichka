@@ -10,7 +10,8 @@ import cancelImg from "./cancelImg.svg";
 import cancelDark from "./cancelDark.svg";
 import checked from "./checked.svg";
 import heart from "./heart.svg";
-import heartFill from "./heartFill.svg";
+import heartDark from "./heartDark.svg";
+import heartDarkFill from "./heartDarkFill.svg";
 import logo from "./logo.svg";
 import plus from "./plus.svg";
 import reset from "./reset.svg";
@@ -20,8 +21,6 @@ import star from "./star.svg";
 import starFill from "./starFill.svg";
 import message from "./message.svg";
 import bin from "./bin.svg";
-import favorites from "./favorites.svg";
-import favoritesFull from "./favoritesFull.svg";
 import cloud from "./cloud.svg";
 import home from "./home.svg";
 import exit from "./exit.svg";
@@ -46,7 +45,8 @@ export {
     cancelDark,
     checked,
     heart,
-    heartFill,
+    heartDark,
+    heartDarkFill,
     logo,
     message,
     plus,
@@ -56,6 +56,4 @@ export {
     star,
     starFill,
     bin,
-    favorites,
-    favoritesFull,
 };

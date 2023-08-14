@@ -1,7 +1,7 @@
 import * as React from "react";
 import s from "../prodCard.module.css";
 import { heart } from "../../../../img/pictures";
-import { heartFill } from "../../../../img/pictures";
+import { heartDarkFill } from "../../../../img/pictures";
 import { IBtnFavorite } from "../../../../../types/types";
 
 const BtnFavorite = ({
@@ -17,7 +17,7 @@ const BtnFavorite = ({
                 alt=""
                 title="избранное"
                 className={s.prodBtnImg}
-                src={isFavorite ? heartFill : heart}
+                src={isFavorite ? heartDarkFill : heart}
             />
         </button>
     );
