@@ -9,18 +9,14 @@ import ProdMainInfo from "./prodMainInfo";
 import { useEffect, useState } from "react";
 import ProdAboutBlock from "./prodAboutBlock";
 import { Iprod, Iseller } from "../../../../../types/types";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hooks";
-import {
-    selectFavorites,
-    updateFavorites,
-} from "../../../../redux/slices/favoritesSlice";
+import { useAppDispatch } from "../../../../redux/hooks/hooks";
+import { updateFavorites } from "../../../../redux/slices/favoritesSlice";
 
 interface IProdCardInfo {
     product: Iprod;
 }
 const ProdCardInfo = ({ product }: IProdCardInfo): JSX.Element => {
     const dispatch = useAppDispatch();
-    const isFavorite = useAppSelector(selectFavorites).includes(product._id);
     // избранные товары
     const [seller, setSeller] = useState<Iseller>();
 
@@ -46,7 +42,6 @@ const ProdCardInfo = ({ product }: IProdCardInfo): JSX.Element => {
                 <BtnsOfProd
                     seller={seller}
                     product={product}
-                    isFavorite={isFavorite}
                     updateFavorite={() =>
                         dispatch(updateFavorites(product._id))
                     }

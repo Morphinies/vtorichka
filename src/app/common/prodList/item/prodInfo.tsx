@@ -1,15 +1,15 @@
 import * as React from "react";
 import api from "../../../api";
 import s from "../products.module.css";
-import heart from "../../../img/heart.svg";
-import { bin } from "../../../img/pictures";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import settings from "../../../img/settings.svg";
-import heartDarkFill from "../../../img/heartDarkFill.svg";
 import { IProdInfo } from "../../../../types/types";
 import { useAppDispatch } from "../../../redux/hooks/hooks";
+import { bin, heartDark, heartDarkFill } from "../../../img/pictures";
 import { updateFavorites } from "../../../redux/slices/favoritesSlice";
+import { getPrice } from "../../../utils/getPrice";
+import { getStrMonth } from "../../../utils/getStrMonth";
 
 const ProdInfo = ({ prod, isFavorite }: IProdInfo): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -27,36 +27,6 @@ const ProdInfo = ({ prod, isFavorite }: IProdInfo): JSX.Element => {
     }, [prod.seller]);
 
     // из числового в строчное представление месяца
-    const getMonth = (monthNumb: number) => {
-        switch (monthNumb) {
-            case 1:
-                return "янв";
-            case 2:
-                return "фев";
-            case 3:
-                return "мар";
-            case 4:
-                return "апр";
-            case 5:
-                return "май";
-            case 6:
-                return "июн";
-            case 7:
-                return "июл";
-            case 8:
-                return "авг";
-            case 9:
-                return "сен";
-            case 10:
-                return "окт";
-            case 11:
-                return "ноя";
-            case 12:
-                return "дек";
-            default:
-                return "";
-        }
-    };
 
     const delProd = (id: string) => {
         console.log(id);
@@ -65,18 +35,12 @@ const ProdInfo = ({ prod, isFavorite }: IProdInfo): JSX.Element => {
             .then((data) => data && window.location.reload());
     };
 
-    // удобочитаемое представление суммы
-    const regExpPrice = (number: string) => {
-        return Number(number)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    };
     let publicTime = new Date();
     publicTime.setTime(Date.parse(prod.data));
 
     return (
         <div className={s.productInfoWrap}>
-            <p className={s.productPrice}>{regExpPrice(prod.price)} р.</p>
+            <p className={s.productPrice}>{getPrice(prod.price)} р.</p>
             <p className={s.productName}>{prod.name}</p>
             <div className={s.moreInfoWrap}>
                 <div>
@@ -84,7 +48,7 @@ const ProdInfo = ({ prod, isFavorite }: IProdInfo): JSX.Element => {
                     <p className={s.time}>
                         {publicTime.getDate() +
                             " " +
-                            getMonth(publicTime.getMonth() + 1) +
+                            getStrMonth(publicTime.getMonth() + 1) +
                             " " +
                             publicTime.getHours() +
                             ":" +
@@ -92,19 +56,19 @@ const ProdInfo = ({ prod, isFavorite }: IProdInfo): JSX.Element => {
                     </p>
                 </div>
 
-                <div className={s.prodBtns}>
+                <div className={s.prodBtnMinis}>
                     {!myProd && (
                         <img
                             alt="в избранное"
                             title="в избранное"
-                            className={s.likeImg}
+                            className={s.prodBtnMini}
                             onClick={() => dispatch(updateFavorites(prod._id))}
-                            src={isFavorite ? heartDarkFill : heart}
+                            src={isFavorite ? heartDarkFill : heartDark}
                         />
                     )}
                     {myProd && (
                         <img
-                            src={String(settings)}
+                            src={settings}
                             alt="редактировать"
                             title="редактировать"
                             onClick={() => {
@@ -112,7 +76,7 @@ const ProdInfo = ({ prod, isFavorite }: IProdInfo): JSX.Element => {
                                     "/personal/products/editor/" + prod._id
                                 );
                             }}
-                            className={s.likeImg}
+                            className={s.prodBtnMini}
                         />
                     )}
                     {myProd && (
@@ -121,7 +85,7 @@ const ProdInfo = ({ prod, isFavorite }: IProdInfo): JSX.Element => {
                             alt="удалить"
                             title="удалить"
                             onClick={() => delProd(prod._id)}
-                            className={s.likeImg}
+                            className={s.prodBtnMini}
                         />
                     )}
                 </div>

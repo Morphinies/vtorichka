@@ -1,37 +1,22 @@
 import * as React from "react";
-import { useState } from "react";
 import s from "./auth.module.css";
-import Signup from "./signup/signup";
-import Logup from "./logup/logup";
+import AuthWindow from "./authWindow";
+import { useLoaderData } from "react-router-dom";
+import BtnPrevPage from "../../common/btns/btnPrevPage";
+import ErrorMessage from "../../common/errorMes/errorMessage";
 
 const AuthPage = () => {
-    const [curWindow, setCurWindow] = useState("logup");
+    const curUser = useLoaderData();
 
-    const handleClick = (window: string) => {
-        if (window !== curWindow) {
-            setCurWindow(window);
-        }
-    };
-
-    return (
-        <div>
-            <div>
-                <button
-                    className={s.authBtn}
-                    onClick={() => handleClick("signup")}
-                >
-                    регистрация
-                </button>
-                <button
-                    className={s.authBtn}
-                    onClick={() => handleClick("logup")}
-                >
-                    вход
-                </button>
-            </div>
-            {curWindow === "signup" && <Signup />}
-            {curWindow === "logup" && <Logup />}
+    return !curUser ? (
+        <div className={s.authWrap}>
+            <BtnPrevPage name="авторизация" />
+            <AuthWindow />
         </div>
+    ) : (
+        <ErrorMessage
+            message={"Для начала регистрации выйдите из текущего аккаунта."}
+        />
     );
 };
 

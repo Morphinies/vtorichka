@@ -3,11 +3,12 @@ import { useState } from "react";
 import s from "../myPage.module.css";
 import ProdItem from "../../../common/prodList/item/prodItem";
 import { Iprod } from "../../../../types/types";
+import NoProdsMes from "../../../common/prodList/noProdsMes";
 
 const MySales = () => {
     const [products] = useState<Iprod[]>([]);
 
-    return (
+    return products.length ? (
         <ul className={s.prodList}>
             {products.map((product) => (
                 <ProdItem
@@ -17,6 +18,8 @@ const MySales = () => {
                 />
             ))}
         </ul>
+    ) : (
+        <NoProdsMes />
     );
 };
 

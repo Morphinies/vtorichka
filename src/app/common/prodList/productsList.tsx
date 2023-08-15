@@ -1,9 +1,9 @@
 import * as React from "react";
 import s from "./products.module.css";
 import ProdItem from "./item/prodItem";
-import { IProductsList, Iprod } from "../../../types/types";
-import { cloud } from "../../img/pictures";
+import NoProdsMes from "./noProdsMes";
 import { useAppSelector } from "../../redux/hooks/hooks";
+import { IProductsList, Iprod } from "../../../types/types";
 import { selectFavorites } from "../../redux/slices/favoritesSlice";
 
 const ProductsList = ({ productsOnPage }: IProductsList): JSX.Element => {
@@ -24,10 +24,7 @@ const ProductsList = ({ productsOnPage }: IProductsList): JSX.Element => {
             })}
         </ul>
     ) : (
-        <div className={s.noProdsWrapper}>
-            <img className={s.cloudIcon} src={cloud} alt="хранилище" />
-            <p className={s.noProdsText}>Пусто</p>
-        </div>
+        <NoProdsMes />
     );
 };
 

@@ -27,7 +27,6 @@ export interface IBtnFavorite {
 export interface IBtnsOfProd {
     product: Iprod;
     seller: Iseller;
-    isFavorite: boolean;
     updateFavorite: () => void;
 }
 
@@ -45,7 +44,7 @@ export interface IProdPhotoBtn {
     prod: Iprod;
 }
 
-export interface IBtnAuth {
+export interface IBtnSubmit {
     name: string;
     isValid: boolean;
 }

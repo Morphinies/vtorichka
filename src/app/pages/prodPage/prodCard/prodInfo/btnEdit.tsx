@@ -10,9 +10,9 @@ const BtnEdit = ({ productId }: { productId: string }) => {
             className={s.prodBtn + " " + s.btnSetting}
         >
             <img
+                src={settings}
                 alt="редактировать"
                 title="редактировать"
-                src={String(settings)}
                 className={s.prodBtnImg}
             />
         </Link>

@@ -14,8 +14,8 @@ const BtnWrite = ({ sellerId }: { sellerId: string }) => {
         >
             <img
                 alt=""
+                src={message}
                 title="написать"
-                src={String(message)}
                 className={s.prodBtnImg}
             />
         </button>

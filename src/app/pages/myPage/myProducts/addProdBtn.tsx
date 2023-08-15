@@ -4,7 +4,7 @@ import s from "../myPage.module.css";
 
 const AddProdBtn = (): JSX.Element => {
     return (
-        <Link to="addProd" className={"btn " + s.addProdBtn}>
+        <Link to="addProd" className={s.addProdBtn}>
             добавить товар
         </Link>
     );

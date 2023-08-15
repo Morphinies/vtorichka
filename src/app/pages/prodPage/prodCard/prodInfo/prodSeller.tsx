@@ -16,9 +16,9 @@ const ProdSeller = ({ seller }: { seller: Iseller }): JSX.Element => {
             >
                 <img
                     alt={seller.name}
-                    src={String(seller.avatar || plug)}
                     title={seller.name}
                     className={s.sellerAvatar}
+                    src={seller.avatar || plug}
                 />
             </button>
             <p className={s.sellerName}>{seller.name}</p>

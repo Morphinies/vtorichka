@@ -8,11 +8,11 @@ const ProdMainInfo = ({
     type,
 }: IProdMainInfo): JSX.Element => {
     return (
-        <div className={s.mainInfo}>
-            <p className={s.prodPlace}>{place}</p>
-            <p className={s.prodCategory}>{category}</p>
-            <p className={s.prodType}>{type}</p>
-        </div>
+        <ul className={s.mainInfoList}>
+            <li className={s.mainInfoItem}>{place}</li>
+            <li className={s.mainInfoItem}>{category}</li>
+            <li className={s.mainInfoItem}>{type}</li>
+        </ul>
     );
 };
 

@@ -1,23 +1,41 @@
-/* form wrap */
-.wrap {
-    position: relative;
-    width: min-content;
-    border-radius: 5px;
-    justify-self: center;
-    align-self: flex-start;
-    margin: 3rem 1rem 0 1rem;
-    border: 4px solid #16191a;
+/* auth Wrap */
+.authWrap {
+    display: flex;
+    flex-direction: column;
 }
 
-.title {
-    color: #eee;
-    margin: 0 auto;
-    cursor: default;
-    font-weight: 400;
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    background-color: #16191a;
+/* form window */
+.formWindow {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    max-width: 500px;
+    margin-top: 2rem;
+    position: relative;
+    align-self: center;
+    border-radius: 10px;
+    flex-direction: column;
+    border: 2px solid #034956;
+    background-color: #034956;
+}
+
+.formSwitcher {
+    display: flex;
+    overflow: hidden;
+}
+
+.formSwitcher button {
+    flex: 1;
+    padding: 0.7rem 2rem;
+    transition: all 0.3s;
+}
+
+.activeBtn {
+    background-color: #056f82;
+}
+
+.formSwitcher button:hover {
+    background-color: #056f82;
 }
 
 /* form */
@@ -38,14 +56,22 @@
 }
 
 .input {
+    font-weight: 500;
+    color: #034956;
+    font-size: 1.1rem;
     align-self: center;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 0.5rem 1rem;
-    border: 1px solid rgba(0, 0, 0, 1);
+    background-color: #f6faf7;
+    border: 2px solid #e2f1f2;
+}
+
+.input:focus {
+    background-color: #f6faf7;
 }
 
 .inputError {
-    border-color: rgb(255, 0, 0);
+    border-color: #eb2f06;
 }
 
 .inputSuccess {
@@ -55,7 +81,7 @@
 .label {
     padding: 0.5rem 0;
     margin-right: 2rem;
-    white-space: nowrap;
+    width: min-content;
 }
 
 /* forgot password */
@@ -69,18 +95,19 @@
     opacity: 80%;
 }
 
-/* button  */
-.button {
+/* button submit */
+.btnSubmit {
     margin: auto;
     margin-top: 1rem;
-    font-weight: 400;
-    color: #16191a;
+    font-weight: 500;
     width: min-content;
-    border: 1px solid #16191a;
+    border-radius: 10px;
+    transition: all 0.3s;
+    background-color: #f26722;
 }
 
-.button:hover {
-    background-color: #16191a1f;
+.btnSubmit:hover {
+    transform: scale(1.1);
 }
 
 /* error message */
@@ -88,7 +115,7 @@
 .errorMessage {
     height: 1rem;
     float: right;
-    color: red;
-    font-size: 0.7rem;
+    color: #eb2f06;
+    font-size: 0.8rem;
     margin-top: 0.1rem;
 }

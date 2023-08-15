@@ -1,22 +1,23 @@
 /* Response message */
 
 .message {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: grid;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.9);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    position: absolute;
+    background-color: #e2f1f2ee;
 }
 
 .messageText {
-  padding: 1rem 0;
-  color: #16191a;
-  font-size: 1.5rem;
-  text-align: center;
-  align-self: center;
-  border-top: 1px solid #16191a;
-  border-bottom: 1px solid #16191a;
-  background-color: rgb(255, 255, 255);
+    width: 100%;
+    padding: 1rem 0;
+    color: #034956;
+    font-size: 1.5rem;
+    text-align: center;
+    align-self: center;
+    background-color: #f6faf7;
+    border-top: 2px solid #034956;
+    border-bottom: 2px solid #034956;
 }

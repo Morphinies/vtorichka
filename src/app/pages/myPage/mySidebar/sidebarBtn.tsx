@@ -7,7 +7,7 @@ const SidebarBtn = ({ link, btnName }: ISidebarBtn): JSX.Element => {
     return (
         <NavLink
             to={link}
-            className={({ isActive }) => (isActive ? s.activeLink : undefined)}
+            className={({ isActive }) => (isActive ? s.activeLink : "")}
         >
             <button type="button" className={s.btnOpenBlock}>
                 <p className={s.btnOpenBlockText}>{btnName} </p>

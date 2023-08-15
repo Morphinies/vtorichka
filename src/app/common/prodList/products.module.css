@@ -177,12 +177,13 @@
     font-size: 0.8rem;
 }
 
-.likeImg {
+.prodBtnMini {
     width: 1.5rem;
     cursor: pointer;
-    align-self: center;
-    grid-area: 1/2/3/3;
-    justify-self: flex-end;
+}
+
+.prodBtnMini:hover {
+    animation: growth 0.3s ease-in-out;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~ btn change img ~~~~~~~~~~~~~~~~~~~~~*/
@@ -245,15 +246,27 @@
 }
 
 .noProdsText {
-    color: red;
-    font-weight: 500;
+    color: #eb2f06;
+    font-weight: 700;
+    margin-top: 1rem;
+    font-size: 1.1rem;
     text-align: center;
-    margin-top: 0.5rem;
-    font-size: 1.25rem;
 }
 
 .cloudIcon {
     width: 10rem;
+}
+
+@keyframes growth {
+    from {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 @media (max-width: 480px) {

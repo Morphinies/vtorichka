@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useEffect } from "react";
-import s from "./favorites.module.css";
 import Loading from "../../common/loading/loading";
 import Products from "../../common/prodList/products";
+import BtnPrevPage from "../../common/btns/btnPrevPage";
 import ErrorMessage from "../../common/errorMes/errorMessage";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { fetchFavoritesProd } from "../../redux/slices/favoritesProdSlice";
@@ -40,7 +40,7 @@ const Favorites = () => {
 
     return (
         <main className={"main"}>
-            <div className={s.pageTitle}>Избранное</div>
+            <BtnPrevPage name="избранное" />
             {content}
         </main>
     );

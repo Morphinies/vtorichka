@@ -5,12 +5,7 @@ import { call } from "../../../../img/pictures";
 const BtnCall = ({ phone }: { phone: string }) => {
     return (
         <a href={"tel:" + phone} className={s.prodBtn + " " + s.btnCall}>
-            <img
-                alt=""
-                title="позвонить"
-                src={String(call)}
-                className={s.prodBtnImg}
-            />
+            <img alt="" title="позвонить" src={call} className={s.prodBtnImg} />
         </a>
     );
 };

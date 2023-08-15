@@ -4,13 +4,14 @@ import AddProdBtn from "./addProdBtn";
 import { Iprod } from "../../../../types/types";
 import { useLoaderData } from "react-router-dom";
 import ProdItem from "../../../common/prodList/item/prodItem";
+import NoProdsMes from "../../../common/prodList/noProdsMes";
 
 const MyProducts = (): JSX.Element => {
     const products = useLoaderData() as Iprod[];
 
     return (
         <>
-            {products.length > 0 && (
+            {products.length > 0 ? (
                 <ul className={s.prodList}>
                     {products.map((product) => (
                         <ProdItem
@@ -20,6 +21,8 @@ const MyProducts = (): JSX.Element => {
                         />
                     ))}
                 </ul>
+            ) : (
+                <NoProdsMes />
             )}
             <AddProdBtn />
         </>
