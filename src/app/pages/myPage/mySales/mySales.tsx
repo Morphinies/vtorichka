@@ -19,7 +19,9 @@ const MySales = () => {
             ))}
         </ul>
     ) : (
-        <NoProdsMes />
+        <div className={s.noProdsWrap}>
+            <NoProdsMes />
+        </div>
     );
 };
 

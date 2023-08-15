@@ -3,7 +3,6 @@ import Root from "./root";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import MyPage from "./app/pages/myPage/myPage";
-import User from "./app/pages/myPage/user/user";
 import MainPage from "./app/pages/mainPage/mainPage";
 import ProdPage from "./app/pages/prodPage/prodPage";
 import { prodLoader } from "./app/loaders/prodLoader";
@@ -21,6 +20,7 @@ import Favorites from "./app/pages/favoritesPage/favorites";
 import { store } from "./app/redux/store/store";
 import { Provider } from "react-redux";
 import AuthPage from "./app/pages/authPage/authPage";
+import User from "./app/pages/myPage/myInfo/user";
 
 const router = createBrowserRouter([
     {

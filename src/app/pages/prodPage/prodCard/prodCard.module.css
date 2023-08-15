@@ -171,6 +171,7 @@
     width: 5rem;
     height: 5rem;
     overflow: hidden;
+    position: relative;
     align-self: center;
     border-radius: 100%;
     border: 2px solid #f6faf7;
@@ -178,8 +179,11 @@
 }
 
 .sellerAvatar {
-    height: 100%;
+    top: 50%;
+    left: 50%;
     width: 100%;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
 
 .sellerName {

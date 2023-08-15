@@ -1,25 +1,40 @@
 /* personal page */
 
 .main {
-    display: grid;
+    display: flex;
     margin: 2rem 0;
     position: relative;
+    flex-direction: column;
 }
 
-.avatar {
-    padding: 0 5rem;
-    align-self: flex-start;
+.userWrap {
+    width: 100%;
+    display: flex;
+    padding: 2rem;
+    row-gap: 1.5rem;
+    max-width: 1000px;
+    align-self: center;
+    border-radius: 10px;
+    flex-direction: column;
+    background-color: #034956;
+}
+
+/* avatar Wrap */
+.avatarWrap {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
 }
 
 .avatarPhotoWrap {
     width: 8rem;
     height: 8rem;
-    margin: 0 auto;
-    cursor: pointer;
     overflow: hidden;
     position: relative;
+    align-self: center;
     border-radius: 100%;
-    border: 1px solid #2d3436;
+    border: 2px solid #f6faf7;
+    background-color: #f6faf7;
 }
 
 .avatarPhoto {
@@ -31,25 +46,27 @@
 }
 
 .avatarName {
-    font-weight: 400;
-    margin: 0.2rem 0;
-    font-size: 1.3rem;
+    font-weight: 500;
+    font-size: 1.25rem;
     text-align: center;
+    margin-top: 0.25rem;
 }
 
 .about {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
-    margin-top: 2rem;
-    border-radius: 5px;
     padding: 1rem 2rem;
-    border: 1px solid #2d3436;
+    border-radius: 10px;
+    background-color: #f6faf7;
 }
 
 .textAbout {
     width: 100%;
     height: auto;
-    font-size: 1.3rem;
+    cursor: default;
+    color: #034956;
+    font-weight: 500;
+    font-size: 1.1rem;
     white-space: pre-wrap;
 }
 
@@ -57,15 +74,16 @@
 
 .btnToEdit {
     display: block;
-    width: min-content;
+    align-self: center;
+    padding: 0.5rem 1rem;
     border-radius: 100px;
-    padding: 0.5rem 1.5rem;
-    margin: 2rem auto 0 auto;
-    border: 2px outset #1b9cfc;
+    background-color: #f6faf7;
+    border: 4px outset #1b9cfc;
+    transition: all 0.3s;
 }
 
 .btnToEdit:hover {
-    background-color: #e4f3ff;
+    animation: growth 0.3s ease-in-out;
 }
 
 .btnToEdit img {
@@ -153,7 +171,6 @@
     gap: 1rem;
     display: grid;
     margin: 0 3rem;
-    align-self: flex-start;
     justify-content: center;
     grid-template-rows: repeat(auto-fill, 350px);
     grid-template-columns: repeat(auto-fill, 250px);
@@ -166,10 +183,25 @@
     white-space: nowrap;
     padding: 0.7rem 2rem;
     transition: all 0.3s;
-    align-self: flex-start;
     background-color: #034956;
 }
 
 .addProdBtn:hover {
     background-color: #056f82;
+}
+
+.noProdsWrap {
+    display: grid;
+}
+
+@keyframes growth {
+    from {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    to {
+        transform: scale(1);
+    }
 }

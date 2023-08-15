@@ -5,8 +5,8 @@ import ProductsList from "./productsList";
 import ProductsNav from "./nav/productsNav";
 import { IProducts } from "../../../types/types";
 import { useAppSelector } from "../../redux/hooks/hooks";
-import { selectPage } from "../../redux/slices/pageNumbSlice";
 import { arrayFromNumber } from "../../utils/arrFromNumb";
+import { selectPage } from "../../redux/slices/pageNumbSlice";
 
 const Products = ({ prodList }: IProducts): JSX.Element => {
     const choosedPage = useAppSelector(selectPage);

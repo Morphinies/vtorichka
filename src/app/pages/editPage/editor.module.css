@@ -1,30 +1,38 @@
 /* editor */
-
 .editWrap {
-    width: 60%;
+    width: 100%;
+    overflow: hidden;
+    max-width: 1000px;
+    align-self: center;
     position: relative;
-    border-radius: 5px;
-    align-self: flex-start;
-    justify-self: center;
-    background-color: #16191a;
+    border-radius: 10px;
+    border: 2px solid #034956;
+    background-color: #034956;
 }
 
 .editTitle {
     padding: 1rem;
-    font-size: 2rem;
-    color: #f6f6f6;
+    font-size: 1.5rem;
+    color: #f6faf7;
     text-align: center;
+    background-color: #056f82;
 }
 
 .btnCancel {
     top: 0;
     right: 0;
-    width: 2rem;
-    border: none;
+    padding: 1rem;
     cursor: pointer;
-    padding: 0.4rem;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0);
+}
+
+.btnCancel:hover {
+    animation: growth 0.3s ease-in-out;
+}
+
+.btnCancel img {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .smallBtn {
@@ -33,26 +41,13 @@
     filter: invert(1);
 }
 
-.btnCancel img {
-    transition: transform 0.5s;
-}
-
-.btnCancel:hover img {
-    transform: rotate(180deg);
-}
-
-.editHr {
-    width: 60%;
-    margin: auto;
-}
-
 /* form */
 
 .editForm {
-    row-gap: 0.5rem;
+    row-gap: 1rem;
     margin: auto;
     display: flex;
-    padding: 2rem 2rem;
+    padding: 1rem 2rem;
     flex-direction: column;
 }
 
@@ -63,15 +58,20 @@
 
 .labelText {
     font-weight: 400;
-    color: #f6f6f6;
-    padding-top: 0.5rem;
+    color: #f6faf7;
+    align-self: center;
 }
 
 .input {
     width: 80%;
+    color: #034956;
     border-radius: 3px;
     padding: 0.5rem 1rem;
-    background-color: #fff;
+    background-color: #f6faf7;
+}
+
+.input:focus {
+    background-color: #f6faf7;
 }
 
 /* list */
@@ -87,7 +87,7 @@
 
 .formValue {
     overflow: hidden;
-    background-color: #ccc;
+    background-color: #f6faf7;
 }
 
 .formValue img {
@@ -243,14 +243,14 @@
 .avatarField {
     width: 8rem;
     height: 8rem;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 1rem;
-    border-radius: 100px;
-    background-color: #fff;
-    border: 1px solid #16191a;
+    display: flex;
     cursor: pointer;
+    overflow: hidden;
+    align-self: center;
+    position: relative;
+    border-radius: 100px;
+    background-color: #f6faf7;
+    border: 2px solid #f6faf7;
 }
 
 .avatarInput {
@@ -259,45 +259,42 @@
     right: 0;
     bottom: 0;
     opacity: 0;
+    cursor: pointer;
     position: absolute;
+    border-radius: 100px;
 }
 
 .avatarImgAdd {
-    width: 60%;
-    align-self: center;
-    justify-self: center;
+    padding: 1rem;
 }
 
 .avatarImgChange {
     width: 100%;
 }
 
-.avatarField:hover {
-    opacity: 0.7;
-}
-
 .avatarField:hover .avatarImgAdd {
-    animation-name: pop;
-    animation-duration: 0.5s;
-}
-
-@keyframes pop {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    0% {
-        transform: scale(1);
-    }
+    animation-name: growth;
+    animation-duration: 0.3s;
 }
 
 .changePasBtn {
     margin: auto;
     border: none;
-    color: #ccc;
+    opacity: 0.75;
     cursor: pointer;
+    color: #f6faf7;
     width: max-content;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: none;
+}
+
+@keyframes growth {
+    from {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    to {
+        transform: scale(1);
+    }
 }

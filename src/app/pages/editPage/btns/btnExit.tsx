@@ -7,7 +7,7 @@ const BtnExit = (): JSX.Element => {
     const navigate = useNavigate();
     return (
         <button onClick={() => navigate(-1)} className={s.btnCancel}>
-            <img src={String(cancelImg)} alt="выход" title="выход" />
+            <img src={cancelImg} alt="выход" title="выход" />
         </button>
     );
 };

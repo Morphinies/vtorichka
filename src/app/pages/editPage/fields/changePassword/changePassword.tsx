@@ -5,22 +5,20 @@ import { IChangePassword } from "../../../../../types/types";
 
 const ChangePassword = ({
     errors,
-    pasField,
     formValues,
-    setPasField,
     errorsHidden,
     setFormValues,
 }: IChangePassword) => {
-    const switchPasField = (stateOfPasField: string) => {
-        if (stateOfPasField) {
-            setPasField(stateOfPasField);
+    const isOpened = formValues.hasOwnProperty("oldPas");
+
+    const switchPasField = (state: boolean) => {
+        if (state) {
             setFormValues((prevState) => {
                 delete prevState.oldPas;
                 delete prevState.newPas;
                 return { ...prevState };
             });
         } else {
-            setPasField("");
             setFormValues((prevState) => {
                 prevState.oldPas = "";
                 prevState.newPas = "";
@@ -34,11 +32,11 @@ const ChangePassword = ({
             <button
                 type="button"
                 className={s.changePasBtn}
-                onClick={() => switchPasField(pasField)}
+                onClick={() => switchPasField(isOpened)}
             >
-                {!pasField ? "сменить пароль" : "оставить старый пароль"}
+                {!isOpened ? "сменить пароль" : "оставить старый пароль"}
             </button>
-            {pasField && (
+            {isOpened && (
                 <>
                     <PasswordField
                         maxLength={30}

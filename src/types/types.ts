@@ -170,11 +170,9 @@ export interface ICatField {
 }
 
 export interface IChangePassword {
-    pasField: string;
     errorsHidden: boolean;
     formValues: IChangePasswordForm | IUserFormValues;
     errors: IChangePasswordFormErr | IUserFormValuesErrors;
-    setPasField: React.Dispatch<React.SetStateAction<string>>;
     setFormValues: React.Dispatch<React.SetStateAction<IChangePasswordForm>>;
 }
 

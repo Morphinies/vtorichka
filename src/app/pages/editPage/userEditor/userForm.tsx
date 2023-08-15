@@ -20,7 +20,6 @@ import ChangePassword from "../fields/changePassword/changePassword";
 const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [pasField, setPasField] = useState<string>();
     const [errorsHidden, setErrorsHidden] = useState(true);
     const [responseMes, setResponseMes] = useState<string>();
     const [errors, setErrors] = useState<IUserFormValuesErrors>({});
@@ -49,6 +48,8 @@ const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
         formIsValid ? handleForm() : setErrorsHidden(false);
     };
 
+    console.log(formValues);
+
     // проверка полей на валидность
     useEffect(() => {
         setErrorsHidden(true);
@@ -58,14 +59,14 @@ const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
                 photo: handleError(formValues.photo, []),
                 about: handleError(formValues.about, ["indent"]),
                 name: handleError(formValues.name, ["empty", "indent"]),
-                oldPas: pasField
+                oldPas: formValues.oldPas
                     ? handleError(
                           formValues.oldPas,
                           ["empty", "oldPas", "equal"],
                           formValues.password
                       )
                     : {},
-                newPas: pasField
+                newPas: formValues.newPas
                     ? handleError(formValues.newPas, [
                           "empty",
                           "password",
@@ -74,7 +75,7 @@ const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
                     : {},
             };
         });
-    }, [formValues, pasField]);
+    }, [formValues]);
 
     // сворачивание сообщения об ошибке
     useEffect(() => {
@@ -123,9 +124,7 @@ const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
 
             <ChangePassword
                 errors={errors}
-                pasField={pasField}
                 formValues={formValues}
-                setPasField={setPasField}
                 errorsHidden={errorsHidden}
                 setFormValues={setFormValues}
             />

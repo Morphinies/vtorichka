@@ -7,21 +7,24 @@ import ErrorMessage from "../../common/errorMes/errorMessage";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { fetchFavoritesProd } from "../../redux/slices/favoritesProdSlice";
 import { selectFavorites } from "../../redux/slices/favoritesSlice";
+import { setValue } from "../../redux/slices/pageNumbSlice";
 
 const Favorites = () => {
     const dispatch = useAppDispatch();
     const favorites = useAppSelector(selectFavorites);
     const favoritesProd = useAppSelector((state) => state.favoritesProd);
+    const status = favoritesProd.status;
 
     useEffect(() => {
         dispatch(fetchFavoritesProd(favorites));
+        dispatch(setValue(1));
     }, [dispatch, favorites]);
 
-    let content;
+    return (
+        <main className={"main"}>
+            <BtnPrevPage name="избранное" />
 
-    switch (favoritesProd.status) {
-        case "loading":
-            content = (
+            {status === "loading" && (
                 <>
                     {favoritesProd.value.length ? (
                         <Products prodList={favoritesProd.value} />
@@ -29,19 +32,13 @@ const Favorites = () => {
                         <Loading />
                     )}
                 </>
-            );
-            break;
-        case "succeeded":
-            content = <Products prodList={favoritesProd.value} />;
-            break;
-        case "failed":
-            content = <ErrorMessage message={favoritesProd.error} />;
-    }
-
-    return (
-        <main className={"main"}>
-            <BtnPrevPage name="избранное" />
-            {content}
+            )}
+            {status === "succeeded" && (
+                <Products prodList={favoritesProd.value} />
+            )}
+            {status === "failed" && (
+                <ErrorMessage message={favoritesProd.error} />
+            )}
         </main>
     );
 };

@@ -1,5 +1,4 @@
 import * as React from "react";
-import UserName from "./userName";
 import UserAbout from "./userAbout";
 import s from "../myPage.module.css";
 import BtnEditBio from "./btnEditBio";
@@ -14,9 +13,8 @@ const User = () => {
 
     return (
         user && (
-            <div className={s.avatar}>
-                <UserAvatar photo={user.avatar} />
-                <UserName name={user.name} />
+            <div className={s.userWrap}>
+                <UserAvatar photo={user.avatar} name={user.name} />
                 {user.rating && <UserRaiting rating={user.rating} />}
                 {user.rating && <UserReviews reviewsNumb={user.rating} />}
                 {user.about && <UserAbout text={user.about} />}
