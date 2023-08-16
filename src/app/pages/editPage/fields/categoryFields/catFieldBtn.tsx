@@ -92,9 +92,9 @@ const CatFieldBtn = ({
                     s.formValue)
             }
         >
-            <p>{catItem.name}</p>
+            <p className={s.catName}>{catItem.name}</p>
             {catItem.value && (
-                <img className={s.arrowDown} src={String(arrowDown)} alt="" />
+                <img className={s.arrowDown} src={arrowDown} alt="" />
             )}
         </button>
     );

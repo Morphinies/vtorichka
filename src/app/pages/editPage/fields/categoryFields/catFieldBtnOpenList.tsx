@@ -16,8 +16,8 @@ const CatFieldBtnOpenList = ({
             }}
             className={s.btn + " " + (listOpened && s.formValue)}
         >
-            <p>{catValue}</p>
-            <img className={s.arrowDown} src={String(arrowDown)} alt="" />
+            <p className={s.catName}>{catValue}</p>
+            <img className={s.arrowDown} src={arrowDown} alt="" />
         </button>
     );
 };

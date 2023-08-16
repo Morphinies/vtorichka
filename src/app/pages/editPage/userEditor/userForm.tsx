@@ -48,8 +48,6 @@ const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
         formIsValid ? handleForm() : setErrorsHidden(false);
     };
 
-    console.log(formValues);
-
     // проверка полей на валидность
     useEffect(() => {
         setErrorsHidden(true);

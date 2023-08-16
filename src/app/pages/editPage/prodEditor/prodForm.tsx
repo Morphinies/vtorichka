@@ -88,14 +88,13 @@ const ProdForm = ({ editorProd }: IProdForm): JSX.Element => {
         <form onSubmit={(e) => handleSubmit(e)} className={s.editForm}>
             <TextField
                 type="text"
-                label="имя"
+                label="название"
                 fieldId="name"
                 maxLength={40}
                 error={errors.name}
                 formValue={formValues.name}
                 errorsHidden={errorsHidden}
                 setFormValues={setFormValues}
-                // setErrorsHidden={setErrorsHidden}
             />
             <TextField
                 type="text"
@@ -106,7 +105,6 @@ const ProdForm = ({ editorProd }: IProdForm): JSX.Element => {
                 errorsHidden={errorsHidden}
                 formValue={formValues.price}
                 setFormValues={setFormValues}
-                // setErrorsHidden={setErrorsHidden}
             />
             <CatField
                 label="категория"
@@ -114,7 +112,6 @@ const ProdForm = ({ editorProd }: IProdForm): JSX.Element => {
                 setFormValues={setFormValues}
                 error={errors.category?.message}
                 catValue={formValues.category}
-                // setErrorsHidden={setErrorsHidden}
             />
             <SelectField
                 fieldId="type"

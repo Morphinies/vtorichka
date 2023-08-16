@@ -65,8 +65,11 @@
 .input {
     width: 80%;
     color: #034956;
-    border-radius: 3px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-radius: 10px;
     padding: 0.5rem 1rem;
+    border: 2px solid #f6faf7;
     background-color: #f6faf7;
 }
 
@@ -81,8 +84,10 @@
     cursor: pointer;
     text-align: left;
     overflow: hidden;
-    border-radius: 3px;
     position: relative;
+    border-radius: 10px;
+    background-color: #f6faf7;
+    border: 2px solid #f6faf7;
 }
 
 .formValue {
@@ -110,13 +115,24 @@
 }
 
 .btn:hover {
-    background-color: #ccc;
+    background-color: #e2f1f2;
 }
 
 .arrowDown {
     width: 1rem;
     align-self: flex-end;
     filter: invert(1);
+}
+
+.selectItem button,
+.catName {
+    height: 1.3125rem;
+    font-weight: 500;
+    color: #034956;
+}
+
+.selectItem button {
+    height: auto;
 }
 
 .textarea {
@@ -198,14 +214,16 @@
 
 .submit {
     cursor: pointer;
-    font-size: 1.2rem;
-    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    align-self: center;
+    border-radius: 10px;
     padding: 0.5rem 1rem;
-    margin: 1.5rem auto 0 auto;
+    background-color: #f26722;
 }
 
 .submit:hover {
-    background-color: #ccc;
+    animation: growth 0.3s ease-in-out;
 }
 
 /* errors */

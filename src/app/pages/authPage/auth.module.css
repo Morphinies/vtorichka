@@ -63,7 +63,7 @@
     border-radius: 10px;
     padding: 0.5rem 1rem;
     background-color: #f6faf7;
-    border: 2px solid #e2f1f2;
+    border: 2px solid #f6faf7;
 }
 
 .input:focus {
@@ -79,7 +79,7 @@
 }
 
 .label {
-    padding: 0.5rem 0;
+    align-self: center;
     margin-right: 2rem;
     width: min-content;
 }
