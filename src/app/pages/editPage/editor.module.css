@@ -261,36 +261,36 @@
 .avatarField {
     width: 8rem;
     height: 8rem;
-    display: flex;
-    cursor: pointer;
-    overflow: hidden;
-    align-self: center;
     position: relative;
+    align-self: center;
+}
+
+.avatarBtn {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
     border-radius: 100px;
     background-color: #f6faf7;
     border: 2px solid #f6faf7;
 }
 
-.avatarInput {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    cursor: pointer;
-    position: absolute;
-    border-radius: 100px;
-}
-
-.avatarImgAdd {
-    padding: 1rem;
-}
-
-.avatarImgChange {
+.avatarBtn img {
     width: 100%;
+    height: 100%;
 }
 
-.avatarField:hover .avatarImgAdd {
+.avatarInput {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.avatarBtn:hover .avatarImgAdd {
     animation-name: growth;
     animation-duration: 0.3s;
 }

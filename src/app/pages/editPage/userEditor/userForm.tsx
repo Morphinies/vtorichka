@@ -25,9 +25,25 @@ const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
     const [errors, setErrors] = useState<IUserFormValuesErrors>({});
     const [formValues, setFormValues] = useState<IUserFormValues>(editorUser);
     const formIsValid = Object.values(errors).every((value) => !value.name);
+    const [selectedFiles, setSelectedFiles] = useState<any>();
+
+    console.log(formValues);
 
     // обработка формы
-    const handleForm = () => {
+    const handleForm = async () => {
+        if (!selectedFiles) {
+            console.log("please, select a file");
+            return;
+        }
+        const formData = new FormData();
+        formData.append("file", selectedFiles);
+        const res = await fetch("url", {
+            method: "POST",
+            body: formData,
+        });
+        const data = await res.json();
+        formValues.avatar = data;
+
         setLoading(true);
         api.users
             .editUser(formValues)
@@ -86,7 +102,11 @@ const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
 
     return (
         <form onSubmit={(e) => handleSubmit(e)} className={s.editForm}>
-            <AvatarField avatar={formValues.avatar} />
+            <AvatarField
+                selectedFiles={selectedFiles}
+                setSelectedFiles={setSelectedFiles}
+                avatar={formValues.avatar}
+            />
 
             <TextField
                 type="text"
