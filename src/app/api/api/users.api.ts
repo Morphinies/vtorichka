@@ -121,12 +121,35 @@ async function signup(user: ISignupForm): Promise<string> {
     }
 }
 
+async function uploadAvatar(file: any, userId: string) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("userId", userId);
+
+    const response = await fetch(
+        "http://localhost:7000/api/users/uploadAvatar",
+        {
+            method: "POST",
+            body: formData,
+        }
+    );
+
+    if (response.ok === true) {
+        const data = await response.json();
+        return Promise.resolve(data);
+    } else {
+        const err: string = await response.text();
+        return Promise.reject(err);
+    }
+}
+
 const users = {
-    fetchAll,
     logup,
     signup,
-    fetchById,
+    fetchAll,
     editUser,
+    fetchById,
+    uploadAvatar,
     editUserFavorites,
 };
 
