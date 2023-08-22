@@ -16,7 +16,7 @@ const AuthSwitchBtn = ({
 }: IAuthSwitchBtn) => {
     return (
         <button
-            className={curForm === value && s.activeBtn}
+            className={curForm === value ? s.activeBtn : ""}
             onClick={() => toggleForm(value)}
         >
             {name}

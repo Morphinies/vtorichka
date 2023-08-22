@@ -14,7 +14,7 @@ const User = () => {
     return (
         user && (
             <div className={s.userWrap}>
-                <UserAvatar photo={user.avatar} name={user.name} />
+                <UserAvatar photo={user.avatar.filePath} name={user.name} />
                 {user.rating && <UserRaiting rating={user.rating} />}
                 {user.rating && <UserReviews reviewsNumb={user.rating} />}
                 {user.about && <UserAbout text={user.about} />}

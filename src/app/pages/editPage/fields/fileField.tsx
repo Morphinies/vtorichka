@@ -3,13 +3,16 @@ import s from "../editor.module.css";
 import { plus } from "../../../img/pictures";
 import { cancelImg } from "../../../img/pictures";
 import { IFileField } from "../../../../types/types";
+import api from "../../../api";
 
 const FileField = ({
     label,
+    userId,
     fieldId,
     formValue,
     setFormValues,
 }: IFileField) => {
+    const filePicker = React.useRef(null);
     const delPhoto = (photo: string) => {
         setFormValues((prevState) => {
             return {
@@ -19,6 +22,26 @@ const FileField = ({
                 ),
             };
         });
+    };
+
+    const handlePick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        filePicker.current.click();
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const selectedFiles = e.target.files;
+        if (!selectedFiles[0]) {
+            console.log("please, select a file");
+            return;
+        }
+        api.products
+            .uploadPhoto(selectedFiles, userId)
+            .then((data) =>
+                setFormValues((prevState) => ({ ...prevState, photo: data }))
+            )
+            .catch((err) => console.log(err));
     };
 
     return (
@@ -35,7 +58,7 @@ const FileField = ({
                                     className={s.btnCancel + " " + s.smallBtn}
                                 >
                                     <img
-                                        src={String(cancelImg)}
+                                        src={cancelImg}
                                         alt="delete"
                                         title="удалить"
                                     />
@@ -48,19 +71,20 @@ const FileField = ({
                             </li>
                         ))}
                     </ul>
-                    <div className={s.fileInputWrap}>
-                        <img
-                            src={String(plus)}
-                            alt="addPhoto"
-                            className={s.imgPlus}
-                        />
-                        <input
-                            type="file"
-                            name={fieldId}
-                            className={s.fileInput}
-                            onChange={(e) => console.log(e.target.value)}
-                        />
-                    </div>
+                    <input
+                        type="file"
+                        name={fieldId}
+                        ref={filePicker}
+                        className={s.fileInput}
+                        onChange={(e) => handleChange(e)}
+                    />
+                    <button
+                        type="button"
+                        onClick={(e) => handlePick(e)}
+                        className={s.fileInputWrap}
+                    >
+                        <img src={plus} alt="addPhoto" className={s.imgPlus} />
+                    </button>
                 </div>
             </div>
             <p className={s.errorMessage}></p>

@@ -132,6 +132,7 @@ const ProdForm = ({ editorProd }: IProdForm): JSX.Element => {
             <FileField
                 label="фото"
                 fieldId="photo"
+                userId={formValues.seller}
                 formValue={formValues.photo}
                 setFormValues={setFormValues}
             />

@@ -86,7 +86,16 @@ const UserForm = ({ editorUser }: { editorUser: Iseller }) => {
 
     return (
         <form onSubmit={(e) => handleSubmit(e)} className={s.editForm}>
-            <AvatarField userId={formValues._id} avatar={formValues.avatar} />
+            <AvatarField
+                userId={formValues._id}
+                avatar={formValues.avatar}
+                setAvatar={(avatar) =>
+                    setFormValues((prevState) => ({
+                        ...prevState,
+                        avatar: avatar,
+                    }))
+                }
+            />
 
             <TextField
                 type="text"

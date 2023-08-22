@@ -205,6 +205,7 @@ export interface ISelectField extends IdefFieldProps {
 
 export interface IFileField extends Omit<IdefFieldProps, "formValue"> {
     formValue: string[];
+    userId: string;
 }
 
 // edit form
@@ -220,7 +221,7 @@ export interface IUserFormValues {
     phone?: string;
     photo?: string;
     name?: string;
-    avatar?: string;
+    avatar?: IAvatar;
     rating?: number;
     about?: string;
     password?: string;
@@ -410,7 +411,7 @@ export interface Iseller {
     phone?: string;
     photo?: string;
     name?: string;
-    avatar?: string;
+    avatar?: IAvatar;
     rating?: number;
     about?: string;
     email?: string;
@@ -452,4 +453,11 @@ export interface IChangePasswordFormErr {
 export interface IChangePasswordForm {
     oldPas?: string;
     newPas: string;
+}
+
+//avatar
+
+export interface IAvatar {
+    fileName: string;
+    filePath: string;
 }

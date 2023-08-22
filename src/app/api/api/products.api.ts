@@ -132,6 +132,27 @@ async function addProd(prod: Iprod): Promise<Iprod> {
     }
 }
 
+async function uploadPhoto(files: any, userId: string) {
+    const formData = new FormData();
+    formData.append("files", files);
+    formData.append("userId", userId);
+
+    const response = await fetch(
+        "http://localhost:7000/api/products/uploadPhoto",
+        {
+            method: "POST",
+            body: formData,
+        }
+    );
+    if (response.ok === true) {
+        const data = await response.json();
+        return Promise.resolve(data);
+    } else {
+        const err: string = await response.text();
+        return Promise.reject(err);
+    }
+}
+
 const products = {
     addProd,
     fetchAll,
@@ -139,6 +160,7 @@ const products = {
     fetchById,
     deleteById,
     fetchByName,
+    uploadPhoto,
     fetchBySeller,
     fetchByParams,
     fetchFavorites,

@@ -37,7 +37,6 @@ async function fetchById(userId: string): Promise<Iseller> {
 
 // user edit api request
 async function editUser(user: IUserFormValues): Promise<Iseller | string> {
-    console.log(user);
     const response = await fetch("http://localhost:7000/api/users/editUser", {
         method: "PUT",
         headers: {

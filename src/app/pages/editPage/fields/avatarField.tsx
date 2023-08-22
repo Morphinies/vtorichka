@@ -1,21 +1,21 @@
 import * as React from "react";
-import { useState } from "react";
+import api from "../../../api";
 import s from "../editor.module.css";
 import plus from "../../../img/plus.svg";
 import { ChangeEvent, useRef } from "react";
-import api from "../../../api";
+import { IAvatar } from "../../../../types/types";
 
 interface IAvatarField {
-    avatar: string;
     userId: string;
+    avatar: IAvatar;
+    setAvatar: (avatar: IAvatar) => void;
 }
 
-const AvatarField = ({ avatar, userId }: IAvatarField) => {
-    console.log(userId);
-    const [curAvatar, setCurAvatar] = useState<any>();
+const AvatarField = ({ avatar, userId, setAvatar }: IAvatarField) => {
     const filePicker = useRef(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
         const selectedFile = e.target.files[0];
         if (!selectedFile) {
             console.log("please, select a file");
@@ -23,7 +23,7 @@ const AvatarField = ({ avatar, userId }: IAvatarField) => {
         }
         api.users
             .uploadAvatar(selectedFile, userId)
-            .then((data) => setCurAvatar(data))
+            .then((data) => setAvatar(data))
             .catch((err) => console.log(err));
     };
 
@@ -32,25 +32,24 @@ const AvatarField = ({ avatar, userId }: IAvatarField) => {
         filePicker.current.click();
     };
 
-    console.log(curAvatar);
     return (
         <div className={s.avatarField}>
             <input
                 type="file"
                 ref={filePicker}
                 title="изменить аватар"
-                className={s.avatarInput}
+                className={s.fileInput}
                 accept="image/*,.jpg,.png,.web"
                 onChange={(e) => handleChange(e)}
             />
 
             <button onClick={(e) => handlePick(e)} className={s.avatarBtn}>
-                {curAvatar ? (
+                {avatar.filePath ? (
                     <img
                         alt="avatar"
                         title="изменить аватар"
                         className={s.avatarImgChange}
-                        src={curAvatar.filePath}
+                        src={avatar.filePath}
                     />
                 ) : (
                     <img
